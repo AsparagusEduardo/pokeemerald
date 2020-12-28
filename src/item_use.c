@@ -1,6 +1,7 @@
 #include "global.h"
 #include "item_use.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "berry.h"
@@ -328,7 +329,7 @@ static void Task_UseItemfinder(u8 taskId)
             }
             return;
         }
-        PlaySE(SE_DAUGI);
+        PlaySE(SE_ITEMFINDER);
         tItemfinderBeeps++;
     }
     tCounter = (tCounter + 1) & 0x1F;
@@ -397,7 +398,7 @@ static bool8 IsHiddenItemPresentInConnection(struct MapConnection *connection, i
     u32 localOffset;
     s32 localLength;
 
-    struct MapHeader const *const mapHeader = mapconnection_get_mapheader(connection);
+    struct MapHeader const *const mapHeader = GetMapHeaderFromConnection(connection);
 
     switch (connection->direction)
     {
@@ -510,7 +511,7 @@ static void SetDistanceOfClosestHiddenItem(u8 taskId, s16 itemDistanceX, s16 ite
         }
         else
         {
-            if (oldItemAbsX + oldItemAbsY == newItemAbsX + newItemAbsY 
+            if (oldItemAbsX + oldItemAbsY == newItemAbsX + newItemAbsY
             && (oldItemAbsY > newItemAbsY || (oldItemAbsY == newItemAbsY && tItemDistanceY < itemDistanceY)))
             {
                 // If items are equal distance, use whichever is closer on the Y axis or further south
@@ -721,7 +722,7 @@ static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId)
 
 static bool8 TryToWaterSudowoodo(void)
 {
-    u16 x, y;
+    s16 x, y;
     u8 z;
     u8 objId;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
@@ -792,7 +793,7 @@ static void BootUpSoundTMHM(u8 taskId)
 
 static void Task_ShowTMHMContainedMessage(u8 taskId)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         StringCopy(gStringVar1, gMoveNames[ItemIdToBattleMoveId(gSpecialVar_ItemId)]);
         StringExpandPlaceholders(gStringVar4, gText_TMHMContainedVar1);
@@ -845,7 +846,7 @@ static void Task_StartUseRepel(u8 taskId)
     if (++data[8] > 7)
     {
         data[8] = 0;
-        PlaySE(SE_TU_SAA);
+        PlaySE(SE_REPEL);
         gTasks[taskId].func = Task_UseRepel;
     }
 }
@@ -867,7 +868,7 @@ static void Task_UsedBlackWhiteFlute(u8 taskId)
 {
     if(++gTasks[taskId].data[8] > 7)
     {
-        PlaySE(SE_BIDORO);
+        PlaySE(SE_GLASS_FLUTE);
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, 1, gStringVar4, BagMenu_InitListsMenu);
         else
@@ -938,7 +939,27 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
+    if (IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT))
+        && IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT))) // There are two present pokemon.
+    {
+        static const u8 textCantThrowPokeBall[] = _("Cannot throw a ball!\nThere are two pokemon out there!\p");
+
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, 1, textCantThrowPokeBall, BagMenu_InitListsMenu);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, textCantThrowPokeBall, Task_CloseBattlePyramidBagMessage);
+    }
+    else if (gBattlerInMenuId == GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)
+             && IsBattlerAlive(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT))) // Attempting to throw a ball with the second pokemon while both are alive.
+    {
+        static const u8 textCantThrowPokeBall[] = _("Cannot throw a ball!\p");
+
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, 1, textCantThrowPokeBall, BagMenu_InitListsMenu);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, textCantThrowPokeBall, Task_CloseBattlePyramidBagMessage);
+    }
+    else if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())
@@ -946,17 +967,18 @@ void ItemUseInBattle_PokeBall(u8 taskId)
         else
             CloseBattlePyramidBagAndSetCallback(taskId);
     }
-    else if (!InBattlePyramid())
-    {
-        DisplayItemMessage(taskId, 1, gText_BoxFull, BagMenu_InitListsMenu);
-    }
     else
-        DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, Task_CloseBattlePyramidBagMessage);
+    {
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, 1, gText_BoxFull, BagMenu_InitListsMenu);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, Task_CloseBattlePyramidBagMessage);
+    }
 }
 
 static void Task_CloseStatIncreaseMessage(u8 taskId)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         if (!InBattlePyramid())
             Task_FadeAndCloseBagMenu(taskId);
@@ -969,7 +991,7 @@ static void Task_UseStatIncreaseItem(u8 taskId)
 {
     if(++gTasks[taskId].data[8] > 7)
     {
-        PlaySE(SE_KAIFUKU);
+        PlaySE(SE_USE_ITEM);
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, 1, UseStatIncreaseItem(gSpecialVar_ItemId), Task_CloseStatIncreaseMessage);

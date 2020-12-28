@@ -26,12 +26,12 @@ const u8 gItemEffect_ParalyzeHeal[6] = {
 const u8 gItemEffect_FullRestore[7] = {
     [3] = ITEM3_STATUS_ALL,
     [4] = ITEM4_HEAL_HP,
-    [6] = -1,
+    [6] = ITEM6_HEAL_FULL,
 };
 
 const u8 gItemEffect_MaxPotion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = -1,
+    [6] = ITEM6_HEAL_FULL,
 };
 
 const u8 gItemEffect_HyperPotion[7] = {
@@ -50,12 +50,12 @@ const u8 gItemEffect_FullHeal[6] = {
 
 const u8 gItemEffect_Revive[7] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
-    [6] = -2,
+    [6] = ITEM6_HEAL_HALF,
 };
 
 const u8 gItemEffect_MaxRevive[7] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
-    [6] = -1,
+    [6] = ITEM6_HEAL_FULL,
 };
 
 const u8 gItemEffect_FreshWater[7] = {
@@ -107,7 +107,7 @@ const u8 gItemEffect_HealPowder[9] = {
 const u8 gItemEffect_RevivalHerb[10] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = -1,
+    [6] = ITEM6_HEAL_FULL,
     [7] = -15,
     [8] = -15,
     [9] = -20,
@@ -157,7 +157,7 @@ const u8 gItemEffect_BerryJuice[7] = {
 const u8 gItemEffect_SacredAsh[7] = {
     [0] = ITEM0_SACRED_ASH,
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
-    [6] = -1,
+    [6] = ITEM6_HEAL_FULL,
 };
 
 const u8 gItemEffect_HPUp[10] = {
@@ -206,7 +206,7 @@ const u8 gItemEffect_RareCandy[10] = {
     [3] = ITEM3_LEVEL_UP,
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 0xFD,
+    [6] = ITEM6_HEAL_LVL_UP,
     [7] = 5,
     [8] = 3,
     [9] = 2,
@@ -401,6 +401,111 @@ const u8 gItemEffect_TamatoBerry[10] = {
     [9] = 2,
 };
 
+//POKESCAPE
+const u8 gItemEffect_AirRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_WaterRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_EarthRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_FireRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+
+const u8 gItemEffect_MindRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_BodyRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_CosmicRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_ChaosRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_LawRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_NatureRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_DeathRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_BloodRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_SoulRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_DustRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_MudRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_MistRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_LavaRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_LifeRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_AstralRune[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_SpiritCharm[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_LegendaryItem[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+//ERROR I DO NOT NEED THESE METHODS?
+const u8 gItemEffect_RedScale[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_BlueScale[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_GreenScale[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+const u8 gItemEffect_BlackScale[6] = {
+    [4] = ITEM4_EVO_STONE,
+};
+
+
+
 const u8 *const gItemEffectTable[] =
 {
     [ITEM_POTION - ITEM_POTION] = gItemEffect_Potion,
@@ -472,5 +577,60 @@ const u8 *const gItemEffectTable[] =
     [ITEM_HONDEW_BERRY - ITEM_POTION] = gItemEffect_HondewBerry,
     [ITEM_GREPA_BERRY - ITEM_POTION] = gItemEffect_GrepaBerry,
     [ITEM_TAMATO_BERRY - ITEM_POTION] = gItemEffect_TamatoBerry,
+	//POKESCAPE
+	[ITEM_AIR_RUNE - ITEM_POTION] = gItemEffect_AirRune,
+	[ITEM_WATER_RUNE - ITEM_POTION] = gItemEffect_WaterRune,
+	[ITEM_EARTH_RUNE - ITEM_POTION] = gItemEffect_EarthRune,
+	[ITEM_FIRE_RUNE - ITEM_POTION] = gItemEffect_FireRune,	
+	[ITEM_MIND_RUNE - ITEM_POTION] = gItemEffect_MindRune,
+	[ITEM_BODY_RUNE - ITEM_POTION] = gItemEffect_BodyRune,
+	[ITEM_CHAOS_RUNE - ITEM_POTION] = gItemEffect_ChaosRune,
+	[ITEM_COSMIC_RUNE - ITEM_POTION] = gItemEffect_CosmicRune,
+	[ITEM_LAW_RUNE - ITEM_POTION] = gItemEffect_LawRune,
+	[ITEM_NATURE_RUNE - ITEM_POTION] = gItemEffect_NatureRune,
+	[ITEM_DEATH_RUNE - ITEM_POTION] = gItemEffect_DeathRune,
+	[ITEM_BLOOD_RUNE - ITEM_POTION] = gItemEffect_BloodRune,
+	[ITEM_SOUL_RUNE - ITEM_POTION] = gItemEffect_SoulRune,
+	[ITEM_DUST_RUNE - ITEM_POTION] = gItemEffect_DustRune,
+	[ITEM_MUD_RUNE - ITEM_POTION] = gItemEffect_MudRune,
+	[ITEM_MIST_RUNE - ITEM_POTION] = gItemEffect_MistRune,
+	[ITEM_LAVA_RUNE - ITEM_POTION] = gItemEffect_LavaRune,
+	[ITEM_LIFE_RUNE - ITEM_POTION] = gItemEffect_LifeRune,
+	[ITEM_ASTRAL_RUNE - ITEM_POTION] = gItemEffect_AstralRune,
+	[ITEM_SPIRIT_CHARM - ITEM_POTION] = gItemEffect_SpiritCharm,
+	[ITEM_LEGENDARY_ITEM - ITEM_POTION] = gItemEffect_LegendaryItem,
+	[ITEM_RED_SCALE - ITEM_POTION] = gItemEffect_RedScale,
+	[ITEM_BLUE_SCALE - ITEM_POTION] = gItemEffect_BlueScale,
+	[ITEM_GREEN_SCALE - ITEM_POTION] = gItemEffect_GreenScale,	
+	[ITEM_BLACK_SCALE - ITEM_POTION] = gItemEffect_BlackScale,	
+	
+	
+	
+	
     [LAST_BERRY_INDEX - ITEM_POTION] = NULL
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

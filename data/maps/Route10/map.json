@@ -1,0 +1,71 @@
+{
+  "id": "MAP_ROUTE10",
+  "name": "Route10",
+  "layout": "LAYOUT_ROUTE10",
+  "music": "MUS_GSC_PEWTER",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "right",
+      "offset": -28,
+      "map": "MAP_PORT_SARIM"
+    },
+    {
+      "direction": "left",
+      "offset": -6,
+      "map": "MAP_RIMMINGTON"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_ROUTE11"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+    {
+      "type": "weather",
+      "x": 13,
+      "y": 11,
+      "elevation": 0,
+      "weather": "COORD_EVENT_WEATHER_FOG_DIAGONAL"
+    },
+    {
+      "type": "weather",
+      "x": 12,
+      "y": 11,
+      "elevation": 0,
+      "weather": "COORD_EVENT_WEATHER_FOG_DIAGONAL"
+    },
+    {
+      "type": "weather",
+      "x": 10,
+      "y": 10,
+      "elevation": 0,
+      "weather": "COORD_EVENT_WEATHER_FOG_DIAGONAL"
+    },
+    {
+      "type": "weather",
+      "x": 10,
+      "y": 8,
+      "elevation": 0,
+      "weather": "COORD_EVENT_WEATHER_FOG_DIAGONAL"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

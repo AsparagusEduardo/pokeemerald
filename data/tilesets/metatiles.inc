@@ -557,3 +557,91 @@ gMetatiles_UnionRoom:: @ 83DF392
 	.align 1
 gMetatileAttributes_UnionRoom:: @ 83DF6A2
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PokeScapeOutdoors::
+	.incbin "data/tilesets/primary/PokeScapeOutdoors/metatiles.bin"
+	.align 1
+	
+gMetatileAttributes_PokeScapeOutdoors::
+	.incbin "data/tilesets/primary/PokeScapeOutdoors/metatile_attributes.bin"
+	.align 1
+	
+gMetatiles_Lumbridge::
+	.incbin "data/tilesets/secondary/lumbridge/metatiles.bin"
+	.align 1
+	
+gMetatileAttributes_Lumbridge::
+	.incbin "data/tilesets/secondary/lumbridge/metatile_attributes.bin"
+	
+	.align 1
+gMetatiles_PokeScapeIndoors::
+	.incbin "data/tilesets/primary/PokeScapeIndoors/metatiles.bin"
+	.align 1
+	
+gMetatileAttributes_PokeScapeIndoors::
+	.incbin "data/tilesets/primary/PokeScapeIndoors/metatile_attributes.bin"
+	.align 1
+	
+gMetatiles_Lumbridge_Swamp::
+	.incbin "data/tilesets/secondary/Lumbridge_Swamp/metatiles.bin"
+	.align 1
+	
+gMetatileAttributes_Lumbridge_Swamp::
+	.incbin "data/tilesets/secondary/Lumbridge_Swamp/metatile_attributes.bin"
+	.align 1
+gMetatiles_Windmill::
+	.incbin "data/tilesets/secondary/windmill/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Windmill::
+	.incbin "data/tilesets/secondary/windmill/metatile_attributes.bin"
+	.align 1
+gMetatiles_Rimmington::
+	.incbin "data/tilesets/secondary/rimmington/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Rimmington::
+	.incbin "data/tilesets/secondary/rimmington/metatile_attributes.bin"
+	.align 1
+gMetatiles_Bank::
+	.incbin "data/tilesets/secondary/bank/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Bank::
+	.incbin "data/tilesets/secondary/bank/metatile_attributes.bin"
+	.align 1
+gMetatiles_Draynor::
+	.incbin "data/tilesets/secondary/draynor/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Draynor::
+	.incbin "data/tilesets/secondary/draynor/metatile_attributes.bin"
+	.align 1
+gMetatiles_Falador::
+	.incbin "data/tilesets/secondary/falador/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Falador::
+	.incbin "data/tilesets/secondary/falador/metatile_attributes.bin"
+	.align 1
+gMetatiles_Varrock::
+	.incbin "data/tilesets/secondary/varrock/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Varrock::
+	.incbin "data/tilesets/secondary/varrock/metatile_attributes.bin"
+	.align 1
+gMetatiles_AlKharid::
+	.incbin "data/tilesets/secondary/alkharid/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_AlKharid::
+	.incbin "data/tilesets/secondary/alkharid/metatile_attributes.bin"
+	.align 1
+gMetatiles_IndoorTowns1::
+	.incbin "data/tilesets/secondary/indoortowns1/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_IndoorTowns1::
+	.incbin "data/tilesets/secondary/indoortowns1/metatile_attributes.bin"

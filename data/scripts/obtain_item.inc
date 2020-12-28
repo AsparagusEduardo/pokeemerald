@@ -17,10 +17,13 @@ EventScript_ObtainItemMessage:: @ 8271AE3
 EventScript_BufferPocketNameAndTryFanfare:: @ 8271B08
 	switch VAR_RESULT
 	case POCKET_ITEMS, EventScript_BufferItemsPocket
-	case POCKET_KEY_ITEMS, EventScript_BufferKeyItemsPocket
+	case POCKET_MEDICINE, EventScript_BufferMedicinePocket
 	case POCKET_POKE_BALLS, EventScript_BufferPokeballsPocket
-	case POCKET_TM_HM, EventScript_BufferTMHMsPocket
+	case POCKET_BATTLE_ITEMS, EventScript_BufferBattleItemsPocket
 	case POCKET_BERRIES, EventScript_BufferBerriesPocket
+	case POCKET_POWER_UP, EventScript_BufferPowerUpPocket
+	case POCKET_TM_HM, EventScript_BufferTMHMsPocket
+	case POCKET_KEY_ITEMS, EventScript_BufferKeyItemsPocket
 	end
 
 EventScript_BufferItemsPocket:: @ 8271B45
@@ -53,6 +56,24 @@ EventScript_BufferBerriesPocket:: @ 8271B85
 	call_if_eq EventScript_PlayFanfareObtainedItem
 	return
 
+EventScript_BufferMedicinePocket::
+	bufferstdstring 2, STDSTRING_MEDICINE
+	compare VAR_0x8007, 1
+	call_if_eq EventScript_PlayFanfareObtainedItem
+	return
+
+EventScript_BufferBattleItemsPocket::
+	bufferstdstring 2, STDSTRING_BATTLEITEMS
+	compare VAR_0x8007, 1
+	call_if_eq EventScript_PlayFanfareObtainedItem
+	return
+
+EventScript_BufferPowerUpPocket::
+	bufferstdstring 2, STDSTRING_POWERUP
+	compare VAR_0x8007, 1
+	call_if_eq EventScript_PlayFanfareObtainedItem
+	return
+
 EventScript_ObtainedItem:: @ 8271B95
 	message gText_ObtainedTheItem
 	waitfanfare
@@ -65,11 +86,11 @@ EventScript_NoRoomForItem:: @ 8271BA9
 	return
 
 EventScript_PlayFanfareObtainedItem:: @ 8271BAF
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	return
 
 EventScript_PlayFanfareObtainedTMHM:: @ 8271BB3
-	playfanfare MUS_ME_WAZA
+	playfanfare MUS_OBTAIN_TMHM
 	return
 
 Std_ObtainDecoration:: @ 8271BB7
@@ -87,7 +108,7 @@ EventScript_ObtainDecorationMessage:: @ 8271BC5
 	return
 
 EventScript_ObtainedDecor:: @ 8271BE0
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message gText_ObtainedTheDecor
 	waitfanfare
 	msgbox gText_TheDecorWasTransferredToThePC, MSGBOX_DEFAULT
@@ -205,3 +226,4 @@ EventScript_NoRoomForHiddenItem:: @ 8271D47
 	setvar VAR_RESULT, 0
 	releaseall
 	end
+

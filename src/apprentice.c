@@ -27,7 +27,6 @@
 #include "constants/items.h"
 #include "constants/pokemon.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/moves.h"
 
@@ -49,7 +48,7 @@
  * - Asking which move a mon should use, which they will ask at most 5 times
  * - Asking what held item to give to a mon, which they will ask at most 3 times (once for each mon)
  * - Asking what they should say when they win a battle, which will always be their final question before departing
- * 
+ *
  * ## After departing
  * After telling them what they should say when they win a battle they will leave the lobby for a final time
  * They will then be replaced by a new random Apprentice (they can repeat)
@@ -275,7 +274,7 @@ static void SetRandomQuestionData(void)
 
     for (i = 0; i < ARRAY_COUNT(questionOrder); i++)
         questionOrder[i] = sQuestionPossibilities[i];
-    
+
     // Shuffle the questions an arbitrary 50 times
     for (i = 0; i < 50; i++)
     {
@@ -343,7 +342,7 @@ static u16 GetRandomAlternateMove(u8 monId)
     u8 id;
     u8 numLearnsetMoves;
     u16 species;
-    const u16 *learnset;
+    const struct LevelUpMove *learnset;
     bool32 needTMs = FALSE;
     u16 moveId = MOVE_NONE;
     bool32 shouldUseMove;
@@ -368,9 +367,9 @@ static u16 GetRandomAlternateMove(u8 monId)
     else // == APPRENTICE_LVL_MODE_OPEN
         level = 60;
 
-    for (j = 0; learnset[j] != LEVEL_UP_END; j++)
+    for (j = 0; learnset[j].move != LEVEL_UP_END; j++)
     {
-        if ((learnset[j] & LEVEL_UP_MOVE_LV) > (level << 9))
+        if (learnset[j].level > level)
             break;
     }
 
@@ -407,7 +406,7 @@ static u16 GetRandomAlternateMove(u8 monId)
                 for (; j < numLearnsetMoves; j++)
                 {
                     // Keep looking for TMs until one not in the level up learnset is found
-                    if ((learnset[j] & LEVEL_UP_MOVE_ID) == moveId)
+                    if ((learnset[j].move) == moveId)
                     {
                         shouldUseMove = FALSE;
                         break;
@@ -431,13 +430,13 @@ static u16 GetRandomAlternateMove(u8 monId)
                 {
                     // Get a random move excluding the 4 it would know at max level
                     u8 learnsetId = Random() % (numLearnsetMoves - MAX_MON_MOVES);
-                    moveId = learnset[learnsetId] & LEVEL_UP_MOVE_ID;
+                    moveId = learnset[learnsetId].move;
                     shouldUseMove = TRUE;
 
                     for (j = numLearnsetMoves - MAX_MON_MOVES; j < numLearnsetMoves; j++)
                     {
                         // Keep looking for moves until one not in the last 4 is found
-                        if ((learnset[j] & LEVEL_UP_MOVE_ID) == moveId)
+                        if ((learnset[j].move) == moveId)
                         {
                             shouldUseMove = FALSE;
                             break;
@@ -477,7 +476,7 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
 {
     u8 i, j;
     u8 level, numLearnsetMoves;
-    const u16 *learnset;
+    const struct LevelUpMove *learnset;
 
     if (PLAYER_APPRENTICE.lvlMode == APPRENTICE_LVL_MODE_50)
         level = 50;
@@ -485,9 +484,9 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
         level = 60;
 
     learnset = gLevelUpLearnsets[species];
-    for (i = 0; learnset[i] != LEVEL_UP_END; i++)
+    for (i = 0; learnset[i].move != LEVEL_UP_END; i++)
     {
-        if ((learnset[i] & LEVEL_UP_MOVE_LV) > (level << 9))
+        if (learnset[i].level > level)
             break;
     }
 
@@ -496,7 +495,7 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
         numLearnsetMoves = MAX_MON_MOVES;
 
     for (j = 0; j < numLearnsetMoves; j++)
-        moves[j] = learnset[(i - 1) - j] & LEVEL_UP_MOVE_ID;
+        moves[j] = learnset[(i - 1) - j].move;
 }
 
 // Get the level up move or previously suggested move to be the first move choice
@@ -802,7 +801,7 @@ static void GetNumApprenticePartyMonsAssigned(void)
 static void IsFinalQuestion(void)
 {
     s32 questionNum = CURRENT_QUESTION_NUM;
-    
+
     if (questionNum < 0)
     {
         // Not finished asking initial questions
@@ -955,7 +954,7 @@ static void ApprenticeGetQuestion(void)
             gSpecialVar_Result = APPRENTICE_QUESTION_WHICH_FIRST;
             break;
         default:
-      //case QUESTION_ID_WIN_SPEECH:  
+      //case QUESTION_ID_WIN_SPEECH:
             gSpecialVar_Result = APPRENTICE_QUESTION_WIN_SPEECH;
             break;
         }
@@ -1297,13 +1296,13 @@ const u8 *GetApprenticeNameInLanguage(u32 apprenticeId, s32 language)
 // Functionally unused
 static void Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
 {
-    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         SwitchTaskToFollowupFunc(taskId);
 }
 
 static void Task_ExecuteFuncAfterButtonPress(u8 taskId)
 {
-    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
         gApprenticeFunc = (void*)(u32)(((u16)gTasks[taskId].data[0] | (gTasks[taskId].data[1] << 16)));
         gApprenticeFunc();

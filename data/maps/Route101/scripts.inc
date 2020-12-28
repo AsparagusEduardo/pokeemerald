@@ -21,7 +21,7 @@ Route101_EventScript_HideMapNamePopup:: @ 81EBCD5
 
 Route101_EventScript_StartBirchRescue:: @ 81EBCDE
 	lockall
-	playbgm MUS_EVENT0, 1
+	playbgm MUS_HELP, 1
 	msgbox Route101_Text_HelpMe, MSGBOX_DEFAULT
 	closemessage
 	setobjectxy LOCALID_BIRCH, 0, 15
@@ -302,3 +302,25 @@ Route101_Text_RouteSign: @ 81EC0C8
 	.string "ROUTE 101\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
 
+
+Script_CheckDexFlag::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_NATIONAL_DEX, Script_DexFlagSet
+	msgbox Text_DexFlagClear, MSGBOX_DEFAULT
+	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
+	release
+	end
+	
+Script_DexFlagSet::
+	msgbox Text_DexFlagSet, MSGBOX_DEFAULT
+	giveitem ITEM_MASTER_BALL, 100
+	release
+	end
+	
+Text_DexFlagClear:
+	.string "Pokédex flag is cleared.$"
+	
+Text_DexFlagSet:
+	.string "Pokédex flag is set.$"

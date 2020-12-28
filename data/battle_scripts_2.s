@@ -2,6 +2,7 @@
 #include "constants/battle_script_commands.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_string_ids.h"
+#include "constants/battle_config.h"
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/game_stat.h"
@@ -13,28 +14,28 @@
 
 	.align 2
 gBattlescriptsForBallThrow:: @ 82DBD08
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_SafariBallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow        @ ITEM_NONE
+	.4byte BattleScript_BallThrow        @ ITEM_MASTER_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_ULTRA_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_GREAT_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_POKE_BALL
+	.4byte BattleScript_SafariBallThrow  @ ITEM_SAFARI_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_NET_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_DIVE_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_NEST_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_REPEAT_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_TIMER_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_LUXURY_BALL
+	.4byte BattleScript_BallThrow        @ ITEM_PREMIER_BALL
 
 	.align 2
 gBattlescriptsForUsingItem:: @ 82DBD3C
 	.4byte BattleScript_PlayerUsesItem
-	.4byte BattleScript_OpponentUsesHealItem
-	.4byte BattleScript_OpponentUsesHealItem
-	.4byte BattleScript_OpponentUsesStatusCureItem
-	.4byte BattleScript_OpponentUsesXItem
-	.4byte BattleScript_OpponentUsesGuardSpecs
+	.4byte BattleScript_OpponentUsesHealItem        @ AI_ITEM_FULL_RESTORE
+	.4byte BattleScript_OpponentUsesHealItem        @ AI_ITEM_HEAL_HP
+	.4byte BattleScript_OpponentUsesStatusCureItem  @ AI_ITEM_CURE_CONDITION
+	.4byte BattleScript_OpponentUsesXItem           @ AI_ITEM_X_STAT
+	.4byte BattleScript_OpponentUsesGuardSpecs      @ AI_ITEM_GUARD_SPECS
 
 	.align 2
 gBattlescriptsForRunningByItem:: @ 82DBD54
@@ -62,10 +63,16 @@ BattleScript_SafariBallThrow::
 	handleballthrow
 
 BattleScript_SuccessBallThrow::
+	setbyte sMON_CAUGHT, TRUE
 	jumpifhalfword CMP_EQUAL, gLastUsedItem, ITEM_SAFARI_BALL, BattleScript_PrintCaughtMonInfo
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
 BattleScript_PrintCaughtMonInfo::
 	printstring STRINGID_GOTCHAPKMNCAUGHT
+	jumpifbyte CMP_NOT_EQUAL, sEXP_CATCH, TRUE, BattleScript_TryPrintCaughtMonInfo
+	setbyte sGIVEEXP_STATE, 0x0
+	getexp BS_TARGET
+	sethword gBattle_BG2_X, 0x0
+BattleScript_TryPrintCaughtMonInfo:
 	trysetcaughtmondexflags BattleScript_TryNicknameCaughtMon
 	printstring STRINGID_PKMNDATAADDEDTODEX
 	waitstate
@@ -118,9 +125,10 @@ BattleScript_PlayerUsesItem::
 BattleScript_OpponentUsesHealItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
+	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	useitemonopponent
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
@@ -135,7 +143,7 @@ BattleScript_OpponentUsesHealItem::
 BattleScript_OpponentUsesStatusCureItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -149,7 +157,7 @@ BattleScript_OpponentUsesStatusCureItem::
 BattleScript_OpponentUsesXItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -162,7 +170,7 @@ BattleScript_OpponentUsesXItem::
 BattleScript_OpponentUsesGuardSpecs::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -173,7 +181,7 @@ BattleScript_OpponentUsesGuardSpecs::
 	finishaction
 
 BattleScript_RunByUsingItem::
-	playse SE_NIGERU
+	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
 	finishturn
 
@@ -204,4 +212,18 @@ BattleScript_ActionWallyThrow:
 	waitstate
 	printstring STRINGID_YOUTHROWABALLNOWRIGHT
 	waitmessage 0x40
+	end2
+	
+BattleScript_TrainerSlideMsgRet::
+	handletrainerslidemsg BS_SCRIPTING, 0
+	trainerslidein 1
+	handletrainerslidemsg BS_SCRIPTING, 1
+	waitstate
+	trainerslideout 1
+	handletrainerslidemsg BS_SCRIPTING, 2
+	waitstate
+	return
+	
+BattleScript_TrainerSlideMsgEnd2::
+	call BattleScript_TrainerSlideMsgRet
 	end2

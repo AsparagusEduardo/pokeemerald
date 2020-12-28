@@ -464,7 +464,36 @@
 #define ITEM_MAGMA_EMBLEM 375
 #define ITEM_OLD_SEA_MAP 376
 
-#define ITEMS_COUNT 377
+//POKESCAPE
+#define ITEM_AIR_RUNE 377
+#define ITEM_WATER_RUNE 378
+#define ITEM_EARTH_RUNE 379
+#define ITEM_FIRE_RUNE 380
+#define ITEM_MIND_RUNE 381
+#define ITEM_BODY_RUNE 382
+#define ITEM_LAW_RUNE 383
+#define ITEM_NATURE_RUNE 384
+#define ITEM_CHAOS_RUNE 385
+#define ITEM_COSMIC_RUNE 386
+#define ITEM_BLOOD_RUNE 387
+#define ITEM_SOUL_RUNE 388
+#define ITEM_DEATH_RUNE 389
+#define ITEM_MUD_RUNE 390
+#define ITEM_MIST_RUNE 391
+#define ITEM_LAVA_RUNE 392
+#define ITEM_DUST_RUNE 393
+#define ITEM_ASTRAL_RUNE 394
+#define ITEM_LIFE_RUNE 395
+#define ITEM_SPIRIT_CHARM 396
+#define ITEM_LEGENDARY_ITEM 397
+
+#define ITEM_RED_SCALE 398
+#define ITEM_GREEN_SCALE 399
+#define ITEM_BLUE_SCALE 400
+#define ITEM_BLACK_SCALE 401
+#define ITEM_FRAGMENT_OF_JAS 402
+
+#define ITEMS_COUNT 403
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 #define FIRST_BERRY_INDEX             ITEM_CHERI_BERRY
@@ -497,7 +526,16 @@
 #define MAX_PC_ITEM_CAPACITY   999
 #define MAX_BERRY_CAPACITY     999
 
+#define BAG_ITEM_CAPACITY_DIGITS 2
+#define BERRY_CAPACITY_DIGITS 3
+#define MAX_ITEM_DIGITS BERRY_CAPACITY_DIGITS
+
+// Secondary IDs for rods
+#define OLD_ROD   0
+#define GOOD_ROD  1
+#define SUPER_ROD 2
+
 // Check if the item is one that can be used on a Pokemon.
-#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
+#define ITEM_HAS_EFFECT(item) (((item) >= ITEM_POTION && (item) <= ITEM_0B2) || ((item) >= ITEM_AIR_RUNE && (item) < ITEMS_COUNT))
 
 #endif  // GUARD_CONSTANTS_ITEMS_H

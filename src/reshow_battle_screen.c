@@ -11,7 +11,6 @@
 #include "battle_controllers.h"
 #include "link.h"
 #include "sprite.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 #include "battle_interface.h"
 #include "battle_anim.h"
@@ -220,6 +219,8 @@ static void CreateBattlerSprite(u8 battler)
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
         {
             if (GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_HP) == 0)
+                return;
+            if (gBattleScripting.monCaught) // Don't create opponent sprite if it has been caught.
                 return;
 
             SetMultiuseSpriteTemplateToPokemon(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES), GetBattlerPosition(battler));

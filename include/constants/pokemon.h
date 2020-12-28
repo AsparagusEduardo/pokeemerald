@@ -21,7 +21,8 @@
 #define TYPE_ICE              15
 #define TYPE_DRAGON           16
 #define TYPE_DARK             17
-#define NUMBER_OF_MON_TYPES   18
+#define TYPE_FAIRY            18
+#define NUMBER_OF_MON_TYPES   19
 
 // Pokemon egg groups
 #define EGG_GROUP_NONE          0
@@ -83,6 +84,10 @@
 
 #define NUM_NATURE_STATS NUM_STATS - 1 // excludes HP
 #define NUM_BATTLE_STATS NUM_STATS + 2 // includes Accuracy and Evasion
+
+#define MIN_STAT_STAGE     0
+#define DEFAULT_STAT_STAGE 6
+#define MAX_STAT_STAGE    12
 
 // Shiny odds
 #define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536
@@ -200,6 +205,8 @@
 #define LEVEL_UP_MOVE_LV   0xFE00
 #define LEVEL_UP_END       0xFFFF
 
+#define MAX_LEVEL_UP_MOVES       20
+
 #define MON_MALE       0x00
 #define MON_FEMALE     0xFE
 #define MON_GENDERLESS 0xFF
@@ -226,18 +233,42 @@
 #define STATUS_PRIMARY_POKERUS   6
 #define STATUS_PRIMARY_FAINTED   7
 
+#define MAX_PER_STAT_EVS 255
 #define MAX_TOTAL_EVS 510
 #define EV_ITEM_RAISE_LIMIT 100
 
 #define UNOWN_FORM_COUNT 28
 
 // Battle move flags
-#define FLAG_MAKES_CONTACT          0x1
-#define FLAG_PROTECT_AFFECTED       0x2
-#define FLAG_MAGICCOAT_AFFECTED     0x4
-#define FLAG_SNATCH_AFFECTED        0x8
-#define FLAG_MIRROR_MOVE_AFFECTED   0x10
-#define FLAG_KINGSROCK_AFFECTED     0x20
+#define FLAG_MAKES_CONTACT          (1 << 0)
+#define FLAG_PROTECT_AFFECTED       (1 << 1)
+#define FLAG_MAGICCOAT_AFFECTED     (1 << 2)
+#define FLAG_SNATCH_AFFECTED        (1 << 3)
+#define FLAG_MIRROR_MOVE_AFFECTED   (1 << 4)
+#define FLAG_KINGSROCK_AFFECTED     (1 << 5)
+#define FLAG_HIGH_CRIT              (1 << 6)
+#define FLAG_RECKLESS_BOOST         (1 << 7)
+#define FLAG_IRON_FIST_BOOST        (1 << 8)
+#define FLAG_SHEER_FORCE_BOOST      (1 << 9)
+#define FLAG_STRONG_JAW_BOOST       (1 << 10)
+#define FLAG_MEGA_LAUNCHER_BOOST    (1 << 11)
+#define FLAG_STAT_STAGES_IGNORED    (1 << 12)
+#define FLAG_DMG_MINIMIZE           (1 << 13)
+#define FLAG_DMG_UNDERGROUND        (1 << 14)
+#define FLAG_DMG_UNDERWATER         (1 << 15)
+#define FLAG_SOUND                  (1 << 16)
+#define FLAG_BALLISTIC              (1 << 17)
+#define FLAG_PROTECTION_MOVE        (1 << 18)
+#define FLAG_POWDER                 (1 << 19)
+#define FLAG_TARGET_ABILITY_IGNORED (1 << 20)
+#define FLAG_DANCE                  (1 << 21)
+#define FLAG_DMG_IN_AIR             (1 << 22) // X2 dmg on air, always hits target on air
+#define FLAG_HIT_IN_AIR             (1 << 23) // dmg is normal, always hits target on air
+
+// Split defines.
+#define SPLIT_PHYSICAL  0x0
+#define SPLIT_SPECIAL   0x1
+#define SPLIT_STATUS    0x2
 
 // Growth rates
 #define GROWTH_MEDIUM_FAST  0
@@ -261,24 +292,65 @@
 
 #define F_SUMMARY_SCREEN_FLIP_SPRITE 0x80
 
-// Evolution type flags
-#define EVO_FRIENDSHIP       0x0001 // Pokémon levels up with friendship ≥ 220
-#define EVO_FRIENDSHIP_DAY   0x0002 // Pokémon levels up during the day with friendship ≥ 220
-#define EVO_FRIENDSHIP_NIGHT 0x0003 // Pokémon levels up at night with friendship ≥ 220
-#define EVO_LEVEL            0x0004 // Pokémon reaches the specified level
-#define EVO_TRADE            0x0005 // Pokémon is traded
-#define EVO_TRADE_ITEM       0x0006 // Pokémon is traded while it's holding the specified item
-#define EVO_ITEM             0x0007 // specified item is used on Pokémon
-#define EVO_LEVEL_ATK_GT_DEF 0x0008 // Pokémon reaches the specified level with attack > defense
-#define EVO_LEVEL_ATK_EQ_DEF 0x0009 // Pokémon reaches the specified level with attack = defense
-#define EVO_LEVEL_ATK_LT_DEF 0x000a // Pokémon reaches the specified level with attack < defense
-#define EVO_LEVEL_SILCOON    0x000b // Pokémon reaches the specified level with a Silcoon personality value
-#define EVO_LEVEL_CASCOON    0x000c // Pokémon reaches the specified level with a Cascoon personality value
-#define EVO_LEVEL_NINJASK    0x000d // Pokémon reaches the specified level (special value for Ninjask)
-#define EVO_LEVEL_SHEDINJA   0x000e // Pokémon reaches the specified level (special value for Shedinja)
-#define EVO_BEAUTY           0x000f // Pokémon levels up with beauty ≥ specified value
+// Evolution types
+#define EVO_MEGA_EVOLUTION   0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
+#define EVO_FRIENDSHIP       1      // Pokémon levels up with friendship ≥ 220
+#define EVO_FRIENDSHIP_DAY   2      // Pokémon levels up during the day with friendship ≥ 220
+#define EVO_FRIENDSHIP_NIGHT 3      // Pokémon levels up at night with friendship ≥ 220
+#define EVO_LEVEL            4      // Pokémon reaches the specified level
+#define EVO_TRADE            5      // Pokémon is traded
+#define EVO_TRADE_ITEM       6      // Pokémon is traded while it's holding the specified item
+#define EVO_ITEM             7      // specified item is used on Pokémon
+#define EVO_LEVEL_ATK_GT_DEF 8      // Pokémon reaches the specified level with attack > defense
+#define EVO_LEVEL_ATK_EQ_DEF 9      // Pokémon reaches the specified level with attack = defense
+#define EVO_LEVEL_ATK_LT_DEF 10     // Pokémon reaches the specified level with attack < defense
+#define EVO_LEVEL_SILCOON    11     // Pokémon reaches the specified level with a Silcoon personality value
+#define EVO_LEVEL_CASCOON    12     // Pokémon reaches the specified level with a Cascoon personality value
+#define EVO_LEVEL_NINJASK    13     // Pokémon reaches the specified level (special value for Ninjask)
+#define EVO_LEVEL_SHEDINJA   14     // Pokémon reaches the specified level (special value for Shedinja)
+#define EVO_BEAUTY           15     // Pokémon levels up with beauty ≥ specified value
+#define EVO_FEMALE_LEVEL	 16		// Pokemon reaches the specified level and is female
+#define EVO_MALE_LEVEL		 17		// Pokemon reaches the specified level and is male
+#define EVO_MALE_DEATH		 18		// Pokemon levels up while fainted and is male
+#define EVO_FEMALE_DEATH	 19		// Pokemon levels up while fainted and is female
+#define EVO_HOLD_ITEM		 20		// Pokemon levels up while holding specified item
+#define EVO_SPECIFIC_MAP     21		// Pokemon levels up in a specific map
+#define	EVO_MOVE			 22		// Pokemon levels up with a specific known move
+#define EVO_MOVE_TYPE		 23		// Pokemon levels up while knowing a move of given type
+#define EVO_STATUS_LEVEL	 24	 	// Pokemon levels up while being status'd
+#define EVO_SPECIFIC_MON	 25		//Pokemon levels up with a specific mon in the party
+#define EVO_PARTY_TYPE		 26		// Pokemon evolves with a specific pokemon type in party
+#define EVO_WEATHER			 27		// Pokemon evolves when leveling in specific weather
+#define EVO_RANDOM_ONE		 28		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_TWO		 29		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_THREE	 30		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_FOUR	 	 31		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_FIVE		 32		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_SIX		 33		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_SEVEN	 34		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_EIGHT	 35		// pokemon evolves with randomness wooo
+#define EVO_RANDOM_NINE	 	 36		// pokemon evolves with randomness wooo
+#define EVO_FEMALE_MAP		 37		// pokemon evolves on a specific map if female
+#define EVO_MALE_MAP		 38		//pokemon evolves on a specific map if male
+#define EVO_MAPSEC			 39		// pokemon evolves in a map section
+#define EVO_LEVEL_DAY		 40		// pokemon evolves at level at daytime
+#define EVO_LEVEL_NIGHT		 41		// pokemon evolves at level at nighttime
+#define EVO_MAPSEC_MALE		 42		// pokemon evolves in a map section if male
+#define EVO_MAPSEC_FEMALE	 43		// pokemon evolves in a map section if female
+#define EVO_LEVEL_ATK_LT_SPATK	44		//pokemon evolves at given level if ATK < SPATK
+#define EVO_LEVEL_ATK_GT_SPATK	45		//pokemon evolves at given level if ATK > SPATK
+#define EVO_LEVEL_ATK_EQ_SPATK	46		//pokemon evolves at given level if ATK == SPATK
+#define EVO_LEVEL_SPE_LT_SPDEF	47		// pokemon  evolves at given level if SPE < SPDEF
+#define EVO_LEVEL_SPE_GT_SPDEF	48		// pokemon evolves at given level if SPE > SPDEF
+#define EVO_LEVEL_DEF_LT_SPE	49		// pokemon evolves at given level if DEF > SPE
+#define EVO_LEVEL_DEF_GT_SPE	50		// pokemon evolves at given level if DEF < SPE
+#define EVO_LEVEL_DEF_EQ_SPE	51		//pokemon evolves at given level if DEF == SPE
+#define EVO_DEATH			    52		// pokemon evolves when fainted and gains a level
+#define EVO_ITEM_MALE			53		// pokemon evolves with item used on it if male
+#define EVO_ITEM_FEMALE			54		// pokemon evolves with item used on it if female
 
-#define EVOS_PER_MON 5
+
+#define EVOS_PER_MON 15
 
 #define NUM_MALE_LINK_FACILITY_CLASSES   8
 #define NUM_FEMALE_LINK_FACILITY_CLASSES 8

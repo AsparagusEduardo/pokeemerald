@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE122",
   "name": "Route122",
   "layout": "LAYOUT_ROUTE122",
-  "music": "MUS_DOORO_X4",
+  "music": "MUS_ROUTE122",
   "region_map_section": "MAPSEC_ROUTE_122",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -24,7 +24,9 @@
       "map": "MAP_ROUTE123"
     }
   ],
-  "object_events": [],
+  "object_events": [
+
+  ],
   "warp_events": [
     {
       "x": 22,
@@ -34,6 +36,10 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

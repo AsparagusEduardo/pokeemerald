@@ -1,0 +1,59 @@
+{
+  "id": "MAP_ROUTE21",
+  "name": "Route21",
+  "layout": "LAYOUT_ROUTE21",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": -46,
+      "map": "MAP_ROUTE20"
+    },
+    {
+      "direction": "down",
+      "offset": -26,
+      "map": "MAP_MILL_LANE_MILL"
+    },
+    {
+      "direction": "up",
+      "offset": 0,
+      "map": "MAP_ROUTE18"
+    },
+    {
+      "direction": "right",
+      "offset": 18,
+      "map": "MAP_ROUTE14"
+    },
+    {
+      "direction": "down",
+      "offset": 6,
+      "map": "MAP_ROUTE22"
+    },
+    {
+      "direction": "right",
+      "offset": -32,
+      "map": "MAP_VARROCK"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

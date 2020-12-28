@@ -1,0 +1,39 @@
+{
+  "id": "MAP_AL_KHARID",
+  "name": "AlKharid",
+  "layout": "LAYOUT_AL_KHARID",
+  "music": "MUS_B_PYRAMID",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": -30,
+      "map": "MAP_ROUTE12"
+    },
+    {
+      "direction": "up",
+      "offset": 10,
+      "map": "MAP_ROUTE28"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

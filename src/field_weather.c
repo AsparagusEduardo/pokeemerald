@@ -16,15 +16,9 @@
 #include "task.h"
 #include "trig.h"
 #include "gpu_regs.h"
+#include "field_camera.h"
 
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
-
-enum
-{
-    GAMMA_NONE,
-    GAMMA_NORMAL,
-    GAMMA_ALT,
-};
 
 struct RGBColor
 {
@@ -116,7 +110,7 @@ void (*const gWeatherPalStateFuncs[])(void) =
 
 // This table specifies which of the gamma shift tables should be
 // applied to each of the background and sprite palettes.
-static const u8 sBasePaletteGammaTypes[32] =
+EWRAM_DATA u8 sBasePaletteGammaTypes[32] =
 {
     // background palettes
     GAMMA_NORMAL,
@@ -161,11 +155,10 @@ void StartWeather(void)
 {
     if (!FuncIsActiveTask(Task_WeatherMain))
     {
-        u8 index = AllocSpritePalette(0x1200);
+        u8 index = 15;
         CpuCopy32(gUnknown_083970E8, &gPlttBufferUnfaded[0x100 + index * 16], 32);
         BuildGammaShiftTables();
         gWeatherPtr->altGammaSpritePalIndex = index;
-        gWeatherPtr->weatherPicSpritePalIndex = AllocSpritePalette(0x1201);
         gWeatherPtr->rainSpriteCount = 0;
         gWeatherPtr->curRainSpriteIndex = 0;
         gWeatherPtr->cloudSpritesCreated = 0;
@@ -225,6 +218,7 @@ static void Task_WeatherInit(u8 taskId)
     // When the screen fades in, this is set to TRUE.
     if (gWeatherPtr->readyForInit)
     {
+		UpdateCameraPanning();
         sWeatherFuncs[gWeatherPtr->currWeather].initAll();
         gTasks[taskId].func = Task_WeatherMain;
     }
@@ -283,6 +277,10 @@ static void BuildGammaShiftTables(void)
     u32 v10;
     u16 v11;
     s16 dunno;
+    u8 i;
+
+    for (i = 0; i <= 12; i++)
+        sBasePaletteGammaTypes[i] = GAMMA_NORMAL;
 
     sPaletteGammaTypes = sBasePaletteGammaTypes;
     for (v0 = 0; v0 <= 1; v0++)
@@ -857,10 +855,10 @@ u8 sub_80ABF20(void)
         return 0;
 }
 
-void LoadCustomWeatherSpritePalette(const u16 *palette)
+void LoadCustomWeatherSpritePalette(const struct SpritePalette *palette)
 {
-    LoadPalette(palette, 0x100 + gWeatherPtr->weatherPicSpritePalIndex * 16, 32);
-    UpdateSpritePaletteWithWeather(gWeatherPtr->weatherPicSpritePalIndex);
+    LoadSpritePalette(palette);
+    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
 }
 
 static void LoadDroughtWeatherPalette(u8 *gammaIndexPtr, u8 *a1)
@@ -1038,13 +1036,13 @@ void SetRainStrengthFromSoundEffect(u16 soundEffect)
     {
         switch (soundEffect)
         {
-        case SE_T_KOAME:
+        case SE_RAIN:
             gWeatherPtr->rainStrength = 0;
             break;
-        case SE_T_OOAME:
+        case SE_DOWNPOUR:
             gWeatherPtr->rainStrength = 1;
             break;
-        case SE_T_AME:
+        case SE_THUNDERSTORM:
             gWeatherPtr->rainStrength = 2;
             break;
         default:
@@ -1062,14 +1060,14 @@ void PlayRainStoppingSoundEffect(void)
         switch (gWeatherPtr->rainStrength)
         {
         case 0:
-            PlaySE(SE_T_KOAME_E);
+            PlaySE(SE_RAIN_STOP);
             break;
         case 1:
-            PlaySE(SE_T_OOAME_E);
+            PlaySE(SE_DOWNPOUR_STOP);
             break;
         case 2:
         default:
-            PlaySE(SE_T_AME_E);
+            PlaySE(SE_THUNDERSTORM_STOP);
             break;
         }
     }
@@ -1100,4 +1098,10 @@ void PreservePaletteInWeather(u8 preservedPalIndex)
 void ResetPreservedPalettesInWeather(void)
 {
     sPaletteGammaTypes = sBasePaletteGammaTypes;
+}
+
+void UpdatePaletteGammaType(u8 index, u8 gammaType)
+{
+    if (index != 0xFF)
+        sBasePaletteGammaTypes[index + 16] = gammaType;
 }

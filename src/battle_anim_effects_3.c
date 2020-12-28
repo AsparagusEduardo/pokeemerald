@@ -21,17 +21,14 @@
 #include "constants/battle_anim.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 #include "constants/weather.h"
 
 extern const struct SpriteTemplate gThoughtBubbleSpriteTemplate;
 
-static void AnimBlackSmoke(struct Sprite *);
 static void AnimBlackSmoke_Step(struct Sprite *);
 static void AnimWhiteHalo(struct Sprite *);
 static void AnimWhiteHalo_Step1(struct Sprite *);
 static void AnimWhiteHalo_Step2(struct Sprite *);
-static void AnimTealAlert(struct Sprite *);
 static void AnimMeanLookEye(struct Sprite *);
 static void AnimMeanLookEye_Step1(struct Sprite *);
 static void AnimMeanLookEye_Step2(struct Sprite *);
@@ -63,7 +60,6 @@ static void AnimGreenStar_Step1(struct Sprite *);
 static void AnimGreenStar_Step2(struct Sprite *);
 static void AnimGreenStar_Callback(struct Sprite *);
 static void AnimWeakFrustrationAngerMark(struct Sprite *);
-static void AnimSweetScentPetal(struct Sprite *);
 static void AnimSweetScentPetal_Step(struct Sprite *);
 static void AnimPainSplitProjectile(struct Sprite *);
 static void AnimFlatterConfetti(struct Sprite *);
@@ -90,7 +86,6 @@ static void AnimForesightMagnifyingGlass(struct Sprite *);
 static void AnimForesightMagnifyingGlass_Step(struct Sprite *);
 static void AnimMeteorMashStar(struct Sprite *);
 static void AnimMeteorMashStar_Step(struct Sprite *sprite);
-static void AnimBlockX(struct Sprite *);
 static void AnimBlockX_Step(struct Sprite *);
 static void sub_815FE80(struct Sprite *);
 static void AnimKnockOffStrike(struct Sprite *);
@@ -252,6 +247,17 @@ const struct SpriteTemplate gSpikesSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SPIKES,
     .paletteTag = ANIM_TAG_SPIKES,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSpikes,
+};
+
+const struct SpriteTemplate gToxicSpikesSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_TOXIC_SPIKES,
+    .paletteTag = ANIM_TAG_TOXIC_SPIKES,
     .oam = &gOamData_AffineOff_ObjNormal_16x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
@@ -1180,7 +1186,40 @@ const union AffineAnimCmd gSlackOffSquishAffineAnimCmds[] =
     AFFINEANIMCMD_END,
 };
 
-static void AnimBlackSmoke(struct Sprite *sprite)
+const struct SpriteTemplate gMegaStoneSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_MEGA_STONE,
+    .paletteTag = ANIM_TAG_MEGA_STONE,
+    .oam = &gOamData_AffineDouble_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_LusterPurgeCircle,
+    .callback = AnimSpriteOnMonPos,
+};
+
+const struct SpriteTemplate gMegaParticlesSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_MEGA_PARTICLES,
+    .paletteTag = ANIM_TAG_MEGA_PARTICLES,
+    .oam = &gOamData_AffineNormal_ObjBlend_16x16,
+    .anims = gPowerAbsorptionOrbAnimTable,
+    .images = NULL,
+    .affineAnims = gPowerAbsorptionOrbAffineAnimTable,
+    .callback = AnimPowerAbsorptionOrb,
+};
+
+const struct SpriteTemplate gMegaSymbolSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_MEGA_SYMBOL,
+    .paletteTag = ANIM_TAG_MEGA_SYMBOL,
+    .oam = &gOamData_AffineOff_ObjBlend_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimGhostStatusSprite,
+};
+
+void AnimBlackSmoke(struct Sprite *sprite)
 {
     sprite->pos1.x += gBattleAnimArgs[0];
     sprite->pos1.y += gBattleAnimArgs[1];
@@ -1245,7 +1284,7 @@ static void AnimWhiteHalo_Step2(struct Sprite *sprite)
     DestroyAnimSprite(sprite);
 }
 
-static void AnimTealAlert(struct Sprite *sprite)
+void AnimTealAlert(struct Sprite *sprite)
 {
     u16 rotation;
     u8 x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
@@ -1647,7 +1686,7 @@ static void AnimClappingHand_Step(struct Sprite *sprite)
             sprite->data[2]++;
             if (sprite->data[3] == 0)
             {
-                PlaySE1WithPanning(SE_W227, BattleAnimAdjustPanning(-64));
+                PlaySE1WithPanning(SE_M_ENCORE, BattleAnimAdjustPanning(-64));
             }
         }
     }
@@ -1931,7 +1970,7 @@ static void TormentAttacker_Step(u8 taskId)
 
         y = task->data[3] + task->data[5];
         spriteId = CreateSprite(&gThoughtBubbleSpriteTemplate, x, y, 6 - task->data[1]);
-        PlaySE12WithPanning(SE_W118, BattleAnimAdjustPanning(-64));
+        PlaySE12WithPanning(SE_M_METRONOME, BattleAnimAdjustPanning(-64));
 
         if (spriteId != MAX_SPRITES)
         {
@@ -2283,7 +2322,7 @@ void AnimTask_TransformMon(u8 taskId)
         }
         break;
     case 2:
-        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10]);
+        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10], gBattleAnimArgs[1]);
         sub_80A6BFC(&animBg, gBattleAnimAttacker);
 
         if (IsContest())
@@ -2297,7 +2336,7 @@ void AnimTask_TransformMon(u8 taskId)
         LoadBgTiles(1, animBg.bgTiles, 0x800, animBg.tilesOffset);
         if (IsContest())
         {
-            if (IsSpeciesNotUnown(gContestResources->field_18->species) != IsSpeciesNotUnown(gContestResources->field_18->unk2))
+            if (IsSpeciesNotUnown(gContestResources->moveAnim->species) != IsSpeciesNotUnown(gContestResources->moveAnim->targetSpecies))
             {
                 bgTilemap = (u16 *)animBg.bgTilemap;
                 for (i = 0; i < 8; i++)
@@ -2319,7 +2358,7 @@ void AnimTask_TransformMon(u8 taskId)
                 }
             }
 
-            if (IsSpeciesNotUnown(gContestResources->field_18->unk2))
+            if (IsSpeciesNotUnown(gContestResources->moveAnim->targetSpecies))
                 gSprites[gBattlerSpriteIds[gBattleAnimAttacker]].affineAnims = gUnknown_082FF6C0;
             else
                 gSprites[gBattlerSpriteIds[gBattleAnimAttacker]].affineAnims = gUnknown_082FF694;
@@ -2370,7 +2409,7 @@ void AnimTask_IsMonInvisible(u8 taskId)
 
 void AnimTask_CastformGfxDataChange(u8 taskId)
 {
-    HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, TRUE);
+    HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, TRUE, FALSE);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -2412,7 +2451,7 @@ void AnimTask_MorningSunLightBeam(u8 taskId)
         gTasks[taskId].data[11] = gBattle_BG1_Y;
 
         gTasks[taskId].data[0]++;
-        PlaySE12WithPanning(SE_W234, BattleAnimAdjustPanning(-64));
+        PlaySE12WithPanning(SE_M_MORNING_SUN, BattleAnimAdjustPanning(-64));
         break;
     case 1:
         if (gTasks[taskId].data[4]++ > 0)
@@ -2447,7 +2486,7 @@ void AnimTask_MorningSunLightBeam(u8 taskId)
         {
             gTasks[taskId].data[3] = 0;
             gTasks[taskId].data[0] = 1;
-            PlaySE12WithPanning(SE_W234, BattleAnimAdjustPanning(-64));
+            PlaySE12WithPanning(SE_M_MORNING_SUN, BattleAnimAdjustPanning(-64));
         }
         break;
     case 4:
@@ -2799,7 +2838,7 @@ static void AnimTask_RockMonBackAndForth_Step(u8 taskId)
 // arg 0: initial y pixel offset
 // arg 1: sprite anim num
 // arg 2: unused
-static void AnimSweetScentPetal(struct Sprite *sprite)
+void AnimSweetScentPetal(struct Sprite *sprite)
 {
     if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
     {
@@ -3196,10 +3235,10 @@ void AnimTask_RolePlaySilhouette(u8 taskId)
     GetAnimBattlerSpriteId(ANIM_ATTACKER);
     if (IsContest())
     {
-        isBackPic = 1;
-        personality = gContestResources->field_18->unk10;
-        otId = gContestResources->field_18->unkC;
-        species = gContestResources->field_18->unk2;
+        isBackPic = TRUE;
+        personality = gContestResources->moveAnim->targetPersonality;
+        otId = gContestResources->moveAnim->otId;
+        species = gContestResources->moveAnim->targetSpecies;
         xOffset = 20;
         priority = GetBattlerSpriteBGPriority(gBattleAnimAttacker);
     }
@@ -4656,6 +4695,17 @@ static void AnimForesightMagnifyingGlass_Step(struct Sprite *sprite)
     }
 }
 
+const struct SpriteTemplate gDracoMeteorSmashSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WARM_ROCK,
+    .paletteTag = ANIM_TAG_WARM_ROCK,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimMeteorMashStar,
+};
+
 static void AnimMeteorMashStar_Step(struct Sprite *sprite)
 {
     sprite->pos2.x = ((sprite->data[2] - sprite->data[0]) * sprite->data[5]) / sprite->data[4];
@@ -4769,7 +4819,7 @@ static void AnimTask_MonToSubstituteDoll(u8 taskId)
 
         if (gSprites[spriteId].pos2.y == 0)
         {
-            PlaySE12WithPanning(SE_W145B, BattleAnimAdjustPanning(-64));
+            PlaySE12WithPanning(SE_M_BUBBLE2, BattleAnimAdjustPanning(-64));
             gTasks[taskId].data[10] -= 0x800;
             gTasks[taskId].data[0]++;
         }
@@ -4791,7 +4841,7 @@ static void AnimTask_MonToSubstituteDoll(u8 taskId)
 
         if (gSprites[spriteId].pos2.y == 0)
         {
-            PlaySE12WithPanning(SE_W145B, BattleAnimAdjustPanning(-64));
+            PlaySE12WithPanning(SE_M_BUBBLE2, BattleAnimAdjustPanning(-64));
             DestroyAnimVisualTask(taskId);
         }
         break;
@@ -4800,7 +4850,7 @@ static void AnimTask_MonToSubstituteDoll(u8 taskId)
 
 // Moves down an X that flickers and disappears.
 // No args.
-static void AnimBlockX(struct Sprite *sprite)
+void AnimBlockX(struct Sprite *sprite)
 {
     s16 y;
 
@@ -4828,7 +4878,7 @@ static void AnimBlockX_Step(struct Sprite *sprite)
         sprite->pos2.y += 10;
         if (sprite->pos2.y >= 0)
         {
-            PlaySE12WithPanning(SE_W166, BattleAnimAdjustPanning(63));
+            PlaySE12WithPanning(SE_M_SKETCH, BattleAnimAdjustPanning(63));
             sprite->pos2.y = 0;
             sprite->data[0]++;
         }
@@ -4838,7 +4888,7 @@ static void AnimBlockX_Step(struct Sprite *sprite)
         sprite->pos2.y = -(gSineTable[sprite->data[1]] >> 3);
         if (sprite->data[1] > 0x7F)
         {
-            PlaySE12WithPanning(SE_W166, BattleAnimAdjustPanning(63));
+            PlaySE12WithPanning(SE_M_SKETCH, BattleAnimAdjustPanning(63));
             sprite->data[1] = 0;
             sprite->pos2.y = 0;
             sprite->data[0]++;
@@ -4857,7 +4907,7 @@ static void AnimBlockX_Step(struct Sprite *sprite)
     case 3:
         if (++sprite->data[1] > 8)
         {
-            PlaySE12WithPanning(SE_W043, BattleAnimAdjustPanning(63));
+            PlaySE12WithPanning(SE_M_LEER, BattleAnimAdjustPanning(63));
             sprite->data[1] = 0;
             sprite->data[0]++;
         }
@@ -5003,11 +5053,11 @@ void AnimTask_GetReturnPowerLevel(u8 taskId)
 void AnimTask_SnatchOpposingMonMove(u8 taskId)
 {
     u8 spriteId, spriteId2;
-    int personality;
-    int otId;
+    u32 personality;
+    u32 otId;
     u16 species;
     u8 subpriority;
-    u8 isBackPic;
+    bool8 isBackPic;
     s16 x;
 
     switch (gTasks[taskId].data[0])
@@ -5031,41 +5081,38 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
     case 1:
         if (IsContest())
         {
-            personality = gContestResources->field_18->unk8;
-            otId = gContestResources->field_18->unkC;
-            species = gContestResources->field_18->species;
+            personality = gContestResources->moveAnim->personality;
+            otId = gContestResources->moveAnim->otId;
+            species = gContestResources->moveAnim->species;
             subpriority = GetBattlerSpriteSubpriority(gBattleAnimAttacker);
-            isBackPic = 0;
+            isBackPic = FALSE;
             x = -32;
+        }
+        else if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
+        {
+            personality = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_PERSONALITY);
+            otId = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_OT_ID);
+            if (gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies == SPECIES_NONE)
+                species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
+            else
+                species = gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies;
+
+            subpriority = gSprites[GetAnimBattlerSpriteId(ANIM_TARGET)].subpriority + 1;
+            isBackPic = FALSE;
+            x = 272;
         }
         else
         {
-            if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-            {
-                personality = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_PERSONALITY);
-                otId = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_OT_ID);
-                if (gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies == SPECIES_NONE)
-                    species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
-                else
-                    species = gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies;
-
-                subpriority = gSprites[GetAnimBattlerSpriteId(ANIM_TARGET)].subpriority + 1;
-                isBackPic = 0;
-                x = 272;
-            }
+            personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_PERSONALITY);
+            otId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_OT_ID);
+            if (gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies == SPECIES_NONE)
+                species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
             else
-            {
-                personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_PERSONALITY);
-                otId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_OT_ID);
-                if (gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies == SPECIES_NONE)
-                    species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
-                else
-                    species = gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies;
+                species = gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies;
 
-                subpriority = gSprites[GetAnimBattlerSpriteId(ANIM_TARGET)].subpriority - 1;
-                isBackPic = 1;
-                x = -32;
-            }
+            subpriority = gSprites[GetAnimBattlerSpriteId(ANIM_TARGET)].subpriority - 1;
+            isBackPic = TRUE;
+            x = -32;
         }
 
         spriteId2 = sub_80A8394(species, isBackPic, 0, x, GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y), subpriority, personality, otId, gBattleAnimAttacker, 0);
@@ -5092,7 +5139,7 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
                 if (x < GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X))
                 {
                     gTasks[taskId].data[14]++;
-                    gBattleAnimArgs[7] = 0xFFFF;
+                    gBattleAnimArgs[7] = -1;
                 }
             }
             else
@@ -5100,7 +5147,7 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
                 if (x > GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X))
                 {
                     gTasks[taskId].data[14]++;
-                    gBattleAnimArgs[7] = 0xFFFF;
+                    gBattleAnimArgs[7] = -1;
                 }
             }
         }
@@ -5138,7 +5185,7 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
                 gSprites[spriteId].pos2.x = 0;
         }
 
-        gTasks[taskId].data[1] = (u8)gTasks[taskId].data[1];
+        gTasks[taskId].data[1] &= 0xFF;
         if (gSprites[spriteId].pos2.x == 0)
             DestroyAnimVisualTask(taskId);
         break;
@@ -5152,7 +5199,7 @@ static void sub_815FE80(struct Sprite *sprite)
     case 0:
         if (gBattleAnimArgs[7] == -1)
         {
-            PlaySE12WithPanning(SE_W233, BattleAnimAdjustPanning(63));
+            PlaySE12WithPanning(SE_M_VITAL_THROW, BattleAnimAdjustPanning(63));
             sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y) + 16;
             sprite->data[0] = -32;
             sprite->data[7]++;

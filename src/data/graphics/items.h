@@ -736,3 +736,115 @@ const u32 gItemIconPalette_MagmaEmblem[] = INCBIN_U32("graphics/items/icon_palet
 
 const u32 gItemIcon_OldSeaMap[] = INCBIN_U32("graphics/items/icons/old_sea_map.4bpp.lz");
 const u32 gItemIconPalette_OldSeaMap[] = INCBIN_U32("graphics/items/icon_palettes/old_sea_map.gbapal.lz");
+
+//POKESCAPE
+
+const u32 gItemIcon_AirRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_air.4bpp.lz");
+const u32 gItemIconPalette_AirRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_air.gbapal.lz");    
+
+const u32 gItemIcon_WaterRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_water.4bpp.lz");
+const u32 gItemIconPalette_WaterRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_water.gbapal.lz");   
+
+const u32 gItemIcon_EarthRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_earth.4bpp.lz");
+const u32 gItemIconPalette_EarthRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_earth.gbapal.lz");   
+
+const u32 gItemIcon_FireRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_fire.4bpp.lz");
+const u32 gItemIconPalette_FireRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_fire.gbapal.lz");   
+
+const u32 gItemIcon_MindRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_mind.4bpp.lz");
+const u32 gItemIconPalette_MindRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_mind.gbapal.lz");   
+
+const u32 gItemIcon_BodyRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_body.4bpp.lz");
+const u32 gItemIconPalette_BodyRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_body.gbapal.lz");   
+
+const u32 gItemIcon_NatureRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_nature.4bpp.lz");
+const u32 gItemIconPalette_NatureRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_nature.gbapal.lz");   
+
+const u32 gItemIcon_LawRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_law.4bpp.lz");
+const u32 gItemIconPalette_LawRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_law.gbapal.lz");   
+
+const u32 gItemIcon_DeathRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_death.4bpp.lz");
+const u32 gItemIconPalette_DeathRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_death.gbapal.lz");  
+
+const u32 gItemIcon_BloodRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_blood.4bpp.lz");
+const u32 gItemIconPalette_BloodRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_blood.gbapal.lz");  
+
+const u32 gItemIcon_CosmicRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_cosmic.4bpp.lz");
+const u32 gItemIconPalette_CosmicRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_cosmic.gbapal.lz");  
+
+const u32 gItemIcon_SoulRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_soul.4bpp.lz");
+const u32 gItemIconPalette_SoulRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_soul.gbapal.lz");  
+
+const u32 gItemIcon_ChaosRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_chaos.4bpp.lz");
+const u32 gItemIconPalette_ChaosRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_chaos.gbapal.lz");  
+
+const u32 gItemIcon_MudRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_mud.4bpp.lz");
+const u32 gItemIconPalette_MudRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_mud.gbapal.lz");  
+
+const u32 gItemIcon_MistRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_mist.4bpp.lz");
+const u32 gItemIconPalette_MistRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_mist.gbapal.lz");  
+
+const u32 gItemIcon_DustRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_dust.4bpp.lz");
+const u32 gItemIconPalette_DustRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_dust.gbapal.lz");  
+
+const u32 gItemIcon_LavaRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_lava.4bpp.lz");
+const u32 gItemIconPalette_LavaRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_lava.gbapal.lz");  
+
+const u32 gItemIcon_LifeRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_life.4bpp.lz");
+const u32 gItemIconPalette_LifeRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_life.gbapal.lz");  
+
+const u32 gItemIcon_AstralRune[] = INCBIN_U32("graphics/items/pokescape_icons/rune_astral.4bpp.lz");
+const u32 gItemIconPalette_AstralRune[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/rune_astral.gbapal.lz");  
+
+const u32 gItemIcon_SpiritCharm[] = INCBIN_U32("graphics/items/pokescape_icons/spirit_charm.4bpp.lz");
+const u32 gItemIconPalette_SpiritCharm[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/spirit_charm.gbapal.lz");  
+
+const u32 gItemIcon_LegendaryItem[] = INCBIN_U32("graphics/items/pokescape_icons/legendary_item.4bpp.lz");
+const u32 gItemIconPalette_LegendaryItem[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/legendary_item.gbapal.lz");  
+const u32 gItemIcon_RedScale[] = INCBIN_U32("graphics/items/pokescape_icons/red_scale.4bpp.lz");
+const u32 gItemIconPalette_RedScale[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/red_scale.gbapal.lz");  
+
+const u32 gItemIcon_BlueScale[] = INCBIN_U32("graphics/items/pokescape_icons/blue_scale.4bpp.lz");
+const u32 gItemIconPalette_BlueScale[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/blue_scale.gbapal.lz");  
+
+const u32 gItemIcon_BlackScale[] = INCBIN_U32("graphics/items/pokescape_icons/black_scale.4bpp.lz");
+const u32 gItemIconPalette_BlackScale[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/black_scale.gbapal.lz");  
+
+const u32 gItemIcon_GreenScale[] = INCBIN_U32("graphics/items/pokescape_icons/green_scale.4bpp.lz");
+const u32 gItemIconPalette_GreenScale[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/green_scale.gbapal.lz");  
+
+const u32 gItemIcon_FragmentOfJas[] = INCBIN_U32("graphics/items/pokescape_icons/fragment_of_jas.4bpp.lz");
+const u32 gItemIconPalette_FragmentOfJas[] = INCBIN_U32("graphics/items/pokescape_icon_palettes/fragment_of_jas.gbapal.lz");  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

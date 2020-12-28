@@ -30,6 +30,10 @@ const u8 gWeatherAshTiles[] = INCBIN_U8("graphics/weather/ash.4bpp");
 const u8 gWeatherRainTiles[] = INCBIN_U8("graphics/weather/rain.4bpp");
 const u8 gWeatherSandstormTiles[] = INCBIN_U8("graphics/weather/sandstorm.4bpp");
 
+const struct SpritePalette sSpritePalette_Weather0 = {gUnknown_083970E8, 0x1201};
+const struct SpritePalette sCloudsSpritePalette = {gCloudsWeatherPalette, 0x1207};
+const struct SpritePalette sSandstormSpritePalette = {gSandstormWeatherPalette, 0x1204};
+
 //------------------------------------------------------------------------------
 // WEATHER_SUNNY_CLOUDS
 //------------------------------------------------------------------------------
@@ -85,7 +89,7 @@ static const union AnimCmd *const sCloudSpriteAnimCmds[] =
 static const struct SpriteTemplate sCloudSpriteTemplate =
 {
     .tileTag = 0x1200,
-    .paletteTag = 0x1201,
+    .paletteTag = 0x1207,
     .oam = &sCloudSpriteOamData,
     .anims = sCloudSpriteAnimCmds,
     .images = NULL,
@@ -181,7 +185,7 @@ static void CreateCloudSprites(void)
         return;
 
     LoadSpriteSheet(&sCloudSpriteSheet);
-    LoadCustomWeatherSpritePalette(gCloudsWeatherPalette);
+    LoadCustomWeatherSpritePalette(&sCloudsSpritePalette);
     for (i = 0; i < NUM_CLOUD_SPRITES; i++)
     {
         spriteId = CreateSprite(&sCloudSpriteTemplate, 0, 0, 0xFF);
@@ -214,7 +218,7 @@ static void DestroyCloudSprites(void)
             DestroySprite(gWeatherPtr->sprites.s1.cloudSprites[i]);
     }
 
-    FreeSpriteTilesByTag(0x1200);
+    FreeSpriteTilesByTag(0x1207);
     gWeatherPtr->cloudSpritesCreated = FALSE;
 }
 
@@ -479,7 +483,7 @@ void Rain_InitVars(void)
     gWeatherPtr->targetRainSpriteCount = 10;
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
-    SetRainStrengthFromSoundEffect(SE_T_KOAME);
+    SetRainStrengthFromSoundEffect(SE_RAIN);
 }
 
 void Rain_InitAll(void)
@@ -971,31 +975,7 @@ static void UpdateSnowflakeSprite(struct Sprite *sprite)
     else if (x > 242)
         sprite->pos1.x = -3 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
 
-    y = (sprite->pos1.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY) & 0xFF;
-    if (y > 163 && y < 171)
-    {
-        sprite->pos1.y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
-        sprite->tPosY = sprite->pos1.y * 128;
-        sprite->tFallCounter = 0;
-        sprite->tFallDuration = 220;
-    }
-    else if (y > 242 && y < 250)
-    {
-        sprite->pos1.y = 163;
-        sprite->tPosY = sprite->pos1.y * 128;
-        sprite->tFallCounter = 0;
-        sprite->tFallDuration = 220;
-        sprite->invisible = TRUE;
-        sprite->callback = WaitSnowflakeSprite;
-    }
-
-    if (++sprite->tFallCounter == sprite->tFallDuration)
-    {
-        InitSnowflakeSpriteMovement(sprite);
-        sprite->pos1.y = 250;
-        sprite->invisible = TRUE;
-        sprite->callback = WaitSnowflakeSprite;
-    }
+   
 }
 
 #undef tPosY
@@ -1023,7 +1003,7 @@ void Thunderstorm_InitVars(void)
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
     gWeatherPtr->thunderTriggered = 0;
-    SetRainStrengthFromSoundEffect(SE_T_AME);
+    SetRainStrengthFromSoundEffect(SE_THUNDERSTORM);
 }
 
 void Thunderstorm_InitAll(void)
@@ -1051,7 +1031,7 @@ void Downpour_InitVars(void)
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
-    SetRainStrengthFromSoundEffect(SE_T_OOAME);
+    SetRainStrengthFromSoundEffect(SE_DOWNPOUR);
 }
 
 void Downpour_InitAll(void)
@@ -1220,9 +1200,9 @@ static void UpdateThunderSound(void)
                 return;
 
             if (Random() & 1)
-                PlaySE(SE_T_KAMI);
+                PlaySE(SE_THUNDER);
             else
-                PlaySE(SE_T_KAMI2);
+                PlaySE(SE_THUNDER2);
 
             gWeatherPtr->thunderTriggered = 0;
         }
@@ -1446,6 +1426,7 @@ static void CreateFogHorizontalSprites(void)
                 sprite->pos1.x = (i % 5) * 64 + 32;
                 sprite->pos1.y = (i / 5) * 64 + 32;
                 gWeatherPtr->sprites.s2.fogHSprites[i] = sprite;
+                sprite->oam.paletteNum = gWeatherPtr->altGammaSpritePalIndex;
             }
             else
             {
@@ -1604,7 +1585,7 @@ static const union AnimCmd *const sAshSpriteAnimCmds[] =
 static const struct SpriteTemplate sAshSpriteTemplate =
 {
     .tileTag = 4610,
-    .paletteTag = 0x1200,
+    .paletteTag = 0x1201,
     .oam = &sAshSpriteOamData,
     .anims = sAshSpriteAnimCmds,
     .images = NULL,
@@ -1625,6 +1606,7 @@ static void CreateAshSprites(void)
 
     if (!gWeatherPtr->ashSpritesCreated)
     {
+        LoadCustomWeatherSpritePalette(&sSpritePalette_Weather0);
         for (i = 0; i < NUM_ASH_SPRITES; i++)
         {
             spriteId = CreateSpriteAtEnd(&sAshSpriteTemplate, 0, 0, 0x4E);
@@ -1821,7 +1803,7 @@ static const union AnimCmd *const sFogDiagonalSpriteAnimCmds[] =
 static const struct SpriteTemplate sFogDiagonalSpriteTemplate =
 {
     .tileTag = 0x1203,
-    .paletteTag = 0x1200,
+    .paletteTag = 0x1201,
     .oam = &sFogDiagonalSpriteOamData,
     .anims = sFogDiagonalSpriteAnimCmds,
     .images = NULL,
@@ -1843,6 +1825,7 @@ static void CreateFogDiagonalSprites(void)
     {
         fogDiagonalSpriteSheet = gFogDiagonalSpriteSheet;
         LoadSpriteSheet(&fogDiagonalSpriteSheet);
+        LoadCustomWeatherSpritePalette(&sSpritePalette_Weather0);
         for (i = 0; i < NUM_FOG_DIAGONAL_SPRITES; i++)
         {
             spriteId = CreateSpriteAtEnd(&sFogDiagonalSpriteTemplate, 0, (i / 5) * 64, 0xFF);
@@ -2068,7 +2051,7 @@ static const union AnimCmd *const sSandstormSpriteAnimCmds[] =
 static const struct SpriteTemplate sSandstormSpriteTemplate =
 {
     .tileTag = 0x1204,
-    .paletteTag = 0x1201,
+    .paletteTag = 0x1204,
     .oam = &sSandstormSpriteOamData,
     .anims = sSandstormSpriteAnimCmds,
     .images = NULL,
@@ -2101,7 +2084,7 @@ static void CreateSandstormSprites(void)
     if (!gWeatherPtr->sandstormSpritesCreated)
     {
         LoadSpriteSheet(&sSandstormSpriteSheet);
-        LoadCustomWeatherSpritePalette(gSandstormWeatherPalette);
+        LoadCustomWeatherSpritePalette(&sSandstormSpritePalette);
         for (i = 0; i < NUM_SANDSTORM_SPRITES; i++)
         {
             spriteId = CreateSpriteAtEnd(&sSandstormSpriteTemplate, 0, (i / 5) * 64, 1);

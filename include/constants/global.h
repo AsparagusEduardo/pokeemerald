@@ -39,11 +39,14 @@
 #define TV_SHOWS_COUNT 25
 #define POKE_NEWS_COUNT 16
 #define PC_ITEMS_COUNT 50
-#define BAG_ITEMS_COUNT 30
+#define BAG_ITEMS_COUNT 40
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
 #define BAG_TMHM_COUNT 64
 #define BAG_BERRIES_COUNT 46
+#define BAG_MEDICINE_COUNT 34
+#define BAG_BATTLEITEMS_COUNT 47
+#define BAG_POWERUP_COUNT 18
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
 #define DECOR_MAX_SECRET_BASE 16
 #define DECOR_MAX_PLAYERS_HOUSE 12
@@ -59,6 +62,14 @@
 #define TRAINER_ID_LENGTH 4
 #define MAX_MON_MOVES 4
 #define NUM_STATS 6
+
+#define CONTESTANT_COUNT 4
+#define CONTEST_CATEGORY_COOL     0
+#define CONTEST_CATEGORY_BEAUTY   1
+#define CONTEST_CATEGORY_CUTE     2
+#define CONTEST_CATEGORY_SMART    3
+#define CONTEST_CATEGORY_TOUGH    4
+#define CONTEST_CATEGORIES_COUNT  5
 
 // party sizes
 #define PARTY_SIZE 6
@@ -108,5 +119,8 @@
 #define DIR_SOUTHEAST   6
 #define DIR_NORTHWEST   7
 #define DIR_NORTHEAST   8
+
+#define SLOW_MOVEMENT_ON_STAIRS         TRUE
+#define FOLLOW_ME_IMPLEMENTED           FALSE    //for stairs movement. see ObjectMovingOnRockStairs in src/field_player_avatar.c
 
 #endif // GUARD_CONSTANTS_GLOBAL_H

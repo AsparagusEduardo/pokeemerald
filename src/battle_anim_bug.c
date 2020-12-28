@@ -9,13 +9,9 @@ static void AnimLeechLifeNeedle(struct Sprite *);
 static void AnimTranslateWebThread(struct Sprite *);
 static void AnimTranslateWebThread_Step(struct Sprite *);
 static void AnimStringWrap(struct Sprite *);
-static void AnimStringWrap_Step(struct Sprite *);
-static void AnimSpiderWeb(struct Sprite *);
 static void AnimSpiderWeb_Step(struct Sprite *);
 static void AnimSpiderWeb_End(struct Sprite *);
 static void AnimTranslateStinger(struct Sprite *);
-static void AnimMissileArc(struct Sprite *);
-static void AnimMissileArc_Step(struct Sprite *);
 static void AnimTailGlowOrb(struct Sprite *);
 
 static const union AffineAnimCmd sAffineAnim_MegahornHorn_0[] =
@@ -307,7 +303,7 @@ static void AnimStringWrap(struct Sprite *sprite)
     sprite->callback = AnimStringWrap_Step;
 }
 
-static void AnimStringWrap_Step(struct Sprite *sprite)
+void AnimStringWrap_Step(struct Sprite *sprite)
 {
     if (++sprite->data[0] == 3)
     {
@@ -321,11 +317,23 @@ static void AnimStringWrap_Step(struct Sprite *sprite)
     }
 }
 
-static void AnimSpiderWeb(struct Sprite *sprite)
+// arg0: x
+// arg1: y
+// arg2: targets both
+void AnimSpiderWeb(struct Sprite *sprite)
 {
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
 
+    if (gBattleAnimArgs[2])
+        SetAverageBattlerPositions(gBattleAnimTarget, FALSE, &sprite->pos1.x, &sprite->pos1.y);
+
+    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT)
+        sprite->pos1.x -= gBattleAnimArgs[0];
+    else
+        sprite->pos1.x += gBattleAnimArgs[0];
+
+    sprite->pos1.y += gBattleAnimArgs[1];
     sprite->data[0] = 16;
     sprite->callback = AnimSpiderWeb_Step;
 }
@@ -372,14 +380,11 @@ static void AnimTranslateStinger(struct Sprite *sprite)
     {
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
     }
-    else
+    else if (GetBattlerSide(gBattleAnimAttacker))
     {
-        if (GetBattlerSide(gBattleAnimAttacker))
-        {
-            gBattleAnimArgs[2] = -gBattleAnimArgs[2];
-            gBattleAnimArgs[1] = -gBattleAnimArgs[1];
-            gBattleAnimArgs[3] = -gBattleAnimArgs[3];
-        }
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+        gBattleAnimArgs[1] = -gBattleAnimArgs[1];
+        gBattleAnimArgs[3] = -gBattleAnimArgs[3];
     }
 
     if (!IsContest() && GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
@@ -387,13 +392,8 @@ static void AnimTranslateStinger(struct Sprite *sprite)
         if (GetBattlerPosition(gBattleAnimTarget) == B_POSITION_PLAYER_LEFT
          || GetBattlerPosition(gBattleAnimTarget) == B_POSITION_OPPONENT_LEFT)
         {
-            s16 temp1, temp2;
-
-            temp1 = gBattleAnimArgs[2];
-            gBattleAnimArgs[2] = -temp1;
-
-            temp2 = gBattleAnimArgs[0];
-            gBattleAnimArgs[0] = -temp2;
+            gBattleAnimArgs[2] *= -1;
+            gBattleAnimArgs[0] *= -1;
         }
     }
 
@@ -420,7 +420,7 @@ static void AnimTranslateStinger(struct Sprite *sprite)
 // arg 3: target y pixel offset
 // arg 4: duration
 // arg 5: wave amplitude
-static void AnimMissileArc(struct Sprite *sprite)
+void AnimMissileArc(struct Sprite *sprite)
 {
     InitSpritePosToAnimAttacker(sprite, 1);
 
@@ -437,7 +437,7 @@ static void AnimMissileArc(struct Sprite *sprite)
     sprite->invisible = TRUE;
 }
 
-static void AnimMissileArc_Step(struct Sprite *sprite)
+void AnimMissileArc_Step(struct Sprite *sprite)
 {
     sprite->invisible = FALSE;
 
@@ -448,28 +448,24 @@ static void AnimMissileArc_Step(struct Sprite *sprite)
     else
     {
         s16 tempData[8];
-        u16 *data = sprite->data;
-        u16 x1 = sprite->pos1.x;
-        s16 x2 = sprite->pos2.x;
-        u16 y1 = sprite->pos1.y;
-        s16 y2 = sprite->pos2.y;
+        s16 xpos, ypos;
         int i;
 
         for (i = 0; i < 8; i++)
-            tempData[i] = data[i];
+            tempData[i] = sprite->data[i];
 
-        x2 += x1;
-        y2 += y1;
+        xpos = sprite->pos1.x + sprite->pos2.x;
+        ypos = sprite->pos1.y + sprite->pos2.y;
 
         if (!TranslateAnimHorizontalArc(sprite))
         {
-            u16 rotation = ArcTan2Neg(sprite->pos1.x + sprite->pos2.x - x2,
-                                  sprite->pos1.y + sprite->pos2.y - y2);
+            u16 rotation = ArcTan2Neg(sprite->pos1.x + sprite->pos2.x - xpos, //Isn't this zero lol
+                                  sprite->pos1.y + sprite->pos2.y - ypos);
             rotation += 0xC000;
             TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
 
             for (i = 0; i < 8; i++)
-                data[i] = tempData[i];
+                sprite->data[i] = tempData[i];
         }
     }
 }

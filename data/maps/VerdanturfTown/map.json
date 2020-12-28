@@ -2,7 +2,7 @@
   "id": "MAP_VERDANTURF_TOWN",
   "name": "VerdanturfTown",
   "layout": "LAYOUT_VERDANTURF_TOWN",
-  "music": "MUS_GOMACHI0",
+  "music": "MUS_VERDANTURF",
   "region_map_section": "MAPSEC_VERDANTURF_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -129,7 +129,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

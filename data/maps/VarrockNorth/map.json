@@ -1,0 +1,64 @@
+{
+  "id": "MAP_VARROCK_NORTH",
+  "name": "VarrockNorth",
+  "layout": "LAYOUT_VARROCK_NORTH",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_VARROCK"
+    },
+    {
+      "direction": "right",
+      "offset": 16,
+      "map": "MAP_ROUTE17"
+    },
+    {
+      "direction": "right",
+      "offset": 40,
+      "map": "MAP_ROUTE16"
+    },
+    {
+      "direction": "up",
+      "offset": 42,
+      "map": "MAP_ROUTE30"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 27,
+      "y": 21,
+      "elevation": 3,
+      "item": "ITEM_MASTER_BALL",
+      "flag": "FLAG_UNUSED_0x2A0"
+    },
+    {
+      "type": "hidden_item",
+      "x": 28,
+      "y": 21,
+      "elevation": 3,
+      "item": "ITEM_MASTER_BALL",
+      "flag": "FLAG_UNUSED_0x29F"
+    }
+  ]
+}

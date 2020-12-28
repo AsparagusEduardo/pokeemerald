@@ -40,6 +40,7 @@
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/pokemon.h"
+#include "constants/roulette.h"
 #include "constants/script_menu.h"
 #include "constants/secret_bases.h"
 #include "constants/songs.h"
@@ -150,13 +151,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route132/scripts.inc"
 	.include "data/maps/Route133/scripts.inc"
 	.include "data/maps/Route134/scripts.inc"
-	.include "data/maps/Underwater1/scripts.inc"
-	.include "data/maps/Underwater2/scripts.inc"
-	.include "data/maps/Underwater3/scripts.inc"
-	.include "data/maps/Underwater4/scripts.inc"
-	.include "data/maps/Underwater5/scripts.inc"
-	.include "data/maps/Underwater6/scripts.inc"
-	.include "data/maps/Underwater7/scripts.inc"
+	.include "data/maps/Underwater_Route124/scripts.inc"
+	.include "data/maps/Underwater_Route126/scripts.inc"
+	.include "data/maps/Underwater_Route127/scripts.inc"
+	.include "data/maps/Underwater_Route128/scripts.inc"
+	.include "data/maps/Underwater_Route129/scripts.inc"
+	.include "data/maps/Underwater_Route105/scripts.inc"
+	.include "data/maps/Underwater_Route125/scripts.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc"
 	.include "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc"
@@ -712,13 +713,13 @@ Common_EventScript_SetAbnormalWeather:: @ 827207A
 	return
 
 Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
-	playfanfare MUS_ME_BACHI
+	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
 	return
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_ME_ASA
+	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
 	fadescreen FADE_FROM_BLACK
@@ -735,7 +736,7 @@ EventScript_RegionMap:: @ 827208F
 
 Common_EventScript_PlayBrineysBoatMusic:: @ 82720A0
 	setflag FLAG_DONT_TRANSITION_MUSIC
-	playbgm MUS_M_BOAT, 0
+	playbgm MUS_SAILING, 0
 	return
 
 Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
@@ -819,7 +820,7 @@ Common_EventScript_NameReceivedPartyMon:: @ 82723DD
 
 Common_EventScript_PlayerHandedOverTheItem:: @ 82723E4
 	bufferitemname 0, VAR_0x8004
-	playfanfare MUS_ME_WAZA
+	playfanfare MUS_OBTAIN_TMHM
 	message gText_PlayerHandedOverTheItem
 	waitmessage
 	waitfanfare
@@ -1059,3 +1060,159 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+	
+	.include "data/maps/Lumbridge/scripts.inc"
+
+	.include "data/maps/Route1/scripts.inc"
+	
+	.include "data/maps/Lumbridge_Swamp/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_BobsAxes1/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_BobsAxes2/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_1/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_2/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_Roddeck1/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_Roddeck2/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_Starter1/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_Starter2/scripts.inc"
+
+	.include "data/maps/Lumbridge_GeneralStore1/scripts.inc"
+
+	.include "data/maps/Lumbridge_GeneralStore2/scripts.inc"
+
+	.include "data/maps/Mill_Lane_Mill/scripts.inc"
+
+	.include "data/maps/Mill_Lane_Mill_1/scripts.inc"
+
+	.include "data/maps/Mill_Lane_Mill_2/scripts.inc"
+
+	.include "data/maps/Mill_Lane_Mill_3/scripts.inc"
+
+	.include "data/maps/Route1_House_Fred/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_3/scripts.inc"
+
+	.include "data/maps/Draynor/scripts.inc"
+
+	.include "data/maps/Route2/scripts.inc"
+
+	.include "data/maps/Route3/scripts.inc"
+
+	.include "data/maps/Route4/scripts.inc"
+
+	.include "data/maps/Route5/scripts.inc"
+
+	.include "data/maps/Route6/scripts.inc"
+
+	.include "data/maps/Port_Sarim/scripts.inc"
+
+	.include "data/maps/Draynor_Manor/scripts.inc"
+
+	.include "data/maps/Route7/scripts.inc"
+
+	.include "data/maps/Route8/scripts.inc"
+
+	.include "data/maps/Route9/scripts.inc"
+
+	.include "data/maps/Rimmington/scripts.inc"
+
+	.include "data/maps/Route10/scripts.inc"
+
+	.include "data/maps/Route11/scripts.inc"
+
+	.include "data/maps/Lumbridge_Bank/scripts.inc"
+
+	.include "data/maps/Lumbridge_House_4/scripts.inc"
+
+	.include "data/maps/Lumbridge_Castle_1/scripts.inc"
+
+	.include "data/maps/Lumbridge_Castle_2/scripts.inc"
+
+	.include "data/maps/Lumbridge_Castle_3/scripts.inc"
+
+	.include "data/maps/Lumbridge_Castle_4/scripts.inc"
+
+	.include "data/maps/Falador/scripts.inc"
+
+	.include "data/maps/Route12/scripts.inc"
+
+	.include "data/maps/Route13/scripts.inc"
+
+	.include "data/maps/Route14/scripts.inc"
+
+	.include "data/maps/Route15/scripts.inc"
+
+	.include "data/maps/Route16/scripts.inc"
+
+	.include "data/maps/Route17/scripts.inc"
+
+	.include "data/maps/Varrock/scripts.inc"
+
+	.include "data/maps/VarrockNorth/scripts.inc"
+
+	.include "data/maps/Route18/scripts.inc"
+
+	.include "data/maps/Route19/scripts.inc"
+
+	.include "data/maps/Route20/scripts.inc"
+
+	.include "data/maps/Route21/scripts.inc"
+
+	.include "data/maps/Route22/scripts.inc"
+
+	.include "data/maps/BarbarianVillage/scripts.inc"
+
+	.include "data/maps/Route23/scripts.inc"
+
+	.include "data/maps/Route24/scripts.inc"
+
+	.include "data/maps/GoblinVillage/scripts.inc"
+
+	.include "data/maps/Route25/scripts.inc"
+
+	.include "data/maps/DwarvenMines/scripts.inc"
+
+	.include "data/maps/Route26/scripts.inc"
+
+	.include "data/maps/Route27/scripts.inc"
+
+	.include "data/maps/Edgeville/scripts.inc"
+
+	.include "data/maps/Route28/scripts.inc"
+
+	.include "data/maps/AlKharid/scripts.inc"
+
+	.include "data/maps/Route29/scripts.inc"
+
+	.include "data/maps/Route30/scripts.inc"
+
+	.include "data/maps/Route31/scripts.inc"
+
+	.include "data/maps/MudskipperPoint/scripts.inc"
+
+	.include "data/maps/Route32/scripts.inc"
+
+	.include "data/maps/MusaPoint/scripts.inc"
+
+	.include "data/maps/Route33/scripts.inc"
+
+	.include "data/maps/Route34/scripts.inc"
+
+	.include "data/maps/Route35/scripts.inc"
+
+	.include "data/maps/Route36/scripts.inc"
+
+	.include "data/maps/Taverley/scripts.inc"
+
+	.include "data/maps/Route37/scripts.inc"
+
+	.include "data/maps/Route38/scripts.inc"
+
+	.include "data/maps/Route1_House_1/scripts.inc"

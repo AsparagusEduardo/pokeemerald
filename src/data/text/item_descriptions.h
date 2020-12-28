@@ -1549,3 +1549,46 @@ static const u8 sOldSeaMapDesc[] = _(
     "A faded sea chart\n"
     "that shows the way\n"
     "to a certain island.");
+
+
+//POKESCAPE
+static const u8 sAirRuneDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+
+static const u8 sEvoItemDesc[] = _(
+    "Makes certain\n"
+    "species of POKéMON\n"
+    "evolve.");
+	
+	
+static const u8 sEvoLegendaryItemDesc[] = _(
+    "Makes Legendary\n"
+    "species of POKéMON\n"
+    "evolve.");	
+	
+static const u8 sRedScaleDesc[] = _(
+    "A scale obtained\n"
+	"from a Red Dragon.");		
+	
+static const u8 sGreenScaleDesc[] = _(
+    "A scale obtained\n"
+	"from a Green Dragon.");		
+	
+static const u8 sBlueScaleDesc[] = _(
+    "A scale obtained\n"
+	"from a Blue Dragon.");		
+		
+static const u8 sBlackScaleDesc[] = _(
+    "A scale obtained\n"
+	"from a Black Dragon.");		
+	
+	
+static const u8 sFragmentOfJasDesc[] = _(
+    "MEGA EVOLUTION");	
+	
+	
+	
+
+
