@@ -152,6 +152,11 @@ void NewGameInitData(void)
         RtcReset();
 
     gDifferentSaveFile = TRUE;
+    gSaveBlock2Ptr->_saveSentinel = 0xFF;
+    gSaveBlock2Ptr->saveVersion = SAVE_VERSION;
+#ifdef RHH_EXPANSION
+    gSaveBlock2Ptr->expansionVersion = RHH_EXPANSION_VERSION;
+#endif
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();

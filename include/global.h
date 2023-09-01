@@ -504,6 +504,13 @@ struct RankingHall2P
 
 struct SaveBlock2
 {
+    // _saveSentinel, saveVersion and expansionVersion (if using pokeemerald-expansion) are used by the save migration system. Please do not (re)move them.
+    u8 _saveSentinel; // 0xFF
+    // u8 unused;
+    u16 saveVersion;
+#ifdef RHH_EXPANSION
+    u16 expansionVersion;
+#endif
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x08*/ u8 playerGender; // MALE, FEMALE
     /*0x09*/ u8 specialSaveWarpFlags;
