@@ -159,7 +159,6 @@ void QueueZMove(u8 battlerId, u16 baseMove)
 bool32 IsViableZMove(u8 battlerId, u16 move)
 {
     struct Pokemon *mon;
-    struct MegaEvolutionData *mega = &(((struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]))->mega);
     u8 battlerPosition = GetBattlerPosition(battlerId);
     u8 partnerPosition = GetBattlerPosition(BATTLE_PARTNER(battlerId));
     u32 item;
@@ -185,20 +184,6 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
         return FALSE;
 
-    if (mega->alreadyEvolved[battlerPosition])
-        return FALSE;   // Trainer has mega evolved
-
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        if (IsPartnerMonFromSameTrainer(battlerId) && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & gBitTable[BATTLE_PARTNER(battlerId)])))
-            return FALSE;   // Partner has mega evolved or is about to mega evolve
-    }
-
-#if DEBUG_BATTLE_MENU == TRUE
-    if (gBattleStruct->debugHoldEffects[battlerId])
-        holdEffect = gBattleStruct->debugHoldEffects[battlerId];
-    else
-#endif
     if (item == ITEM_ENIGMA_BERRY_E_READER)
         return FALSE;   // HoldEffect = gEnigmaBerries[battlerId].holdEffect;
     else
@@ -355,9 +340,12 @@ bool32 IsZMoveTriggerSpriteActive(void)
 
 void HideZMoveTriggerSprite(void)
 {
-    struct Sprite *sprite = &gSprites[gBattleStruct->zmove.triggerSpriteId];
-    sprite->tHide = TRUE;
+    struct Sprite *sprite;
     gBattleStruct->zmove.viable = FALSE;
+    if (gBattleStruct->zmove.triggerSpriteId >= MAX_SPRITES)
+        return;
+    sprite = &gSprites[gBattleStruct->zmove.triggerSpriteId];
+    sprite->tHide = TRUE;
 }
 
 static void ShowZMoveTriggerSprite(u8 battlerId)
@@ -628,6 +616,10 @@ void SetZEffect(void)
             BattleScriptPush(gBattlescriptCurrInstr + Z_EFFECT_BS_LENGTH);
             gBattlescriptCurrInstr = BattleScript_ZEffectPrintString;
         }
+        else
+        {
+            gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
+        }
         break;
     case Z_EFFECT_BOOST_CRITS:
         if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY))
@@ -636,6 +628,10 @@ void SetZEffect(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_Z_BOOST_CRITS;
             BattleScriptPush(gBattlescriptCurrInstr + Z_EFFECT_BS_LENGTH);
             gBattlescriptCurrInstr = BattleScript_ZEffectPrintString;
+        }
+        else
+        {
+            gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
         }
         break;
     case Z_EFFECT_FOLLOW_ME:
@@ -652,6 +648,10 @@ void SetZEffect(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_Z_RECOVER_HP;
             BattleScriptPush(gBattlescriptCurrInstr + Z_EFFECT_BS_LENGTH);
             gBattlescriptCurrInstr = BattleScript_RecoverHPZMove;
+        }
+        else
+        {
+            gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
         }
         break;
     case Z_EFFECT_RESTORE_REPLACEMENT_HP:

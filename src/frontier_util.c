@@ -644,8 +644,8 @@ static const u8 *const sRecordsWindowChallengeTexts[][2] =
 
 static const u8 *const sLevelModeText[] =
 {
-    gText_RecordsLv50,
-    gText_RecordsOpenLevel,
+    [FRONTIER_LVL_50]   = gText_RecordsLv50,
+    [FRONTIER_LVL_OPEN] = gText_RecordsOpenLevel,
 };
 
 static const u8 *const sHallFacilityToRecordsText[] =
@@ -735,28 +735,28 @@ void CallFrontierUtilFunc(void)
     sFrontierUtilFuncs[gSpecialVar_0x8004]();
 }
 
-// Buffers into VAR_TEMP_0 specifically because this is used to react to the status in OnFrame map scripts
+// VAR_TEMP_CHALLENGE_STATUS is used to react to the status in OnFrame map scripts
 static void GetChallengeStatus(void)
 {
-    VarSet(VAR_TEMP_0, 0xFF);
+    VarSet(VAR_TEMP_CHALLENGE_STATUS, 0xFF);
     switch (gSaveBlock2Ptr->frontier.challengeStatus)
     {
     case 0:
         break;
     case CHALLENGE_STATUS_SAVING:
         FrontierGamblerSetWonOrLost(FALSE);
-        VarSet(VAR_TEMP_0, gSaveBlock2Ptr->frontier.challengeStatus);
+        VarSet(VAR_TEMP_CHALLENGE_STATUS, gSaveBlock2Ptr->frontier.challengeStatus);
         break;
     case CHALLENGE_STATUS_LOST:
         FrontierGamblerSetWonOrLost(FALSE);
-        VarSet(VAR_TEMP_0, gSaveBlock2Ptr->frontier.challengeStatus);
+        VarSet(VAR_TEMP_CHALLENGE_STATUS, gSaveBlock2Ptr->frontier.challengeStatus);
         break;
     case CHALLENGE_STATUS_WON:
         FrontierGamblerSetWonOrLost(TRUE);
-        VarSet(VAR_TEMP_0, gSaveBlock2Ptr->frontier.challengeStatus);
+        VarSet(VAR_TEMP_CHALLENGE_STATUS, gSaveBlock2Ptr->frontier.challengeStatus);
         break;
     case CHALLENGE_STATUS_PAUSED:
-        VarSet(VAR_TEMP_0, gSaveBlock2Ptr->frontier.challengeStatus);
+        VarSet(VAR_TEMP_CHALLENGE_STATUS, gSaveBlock2Ptr->frontier.challengeStatus);
         break;
     }
 }
@@ -1911,7 +1911,7 @@ static u8 AppendCaughtBannedMonSpeciesName(u16 species, u8 count, s32 numBannedM
             StringAppend(gStringVar1, gText_LineBreak);
             break;
         }
-        StringAppend(gStringVar1, gSpeciesNames[species]);
+        StringAppend(gStringVar1, GetSpeciesName(species));
     }
 
     return count;
@@ -2465,10 +2465,7 @@ void CreateFrontierBrainPokemon(void)
 
         do
         {
-            do
-            {
-                j = Random32(); //should just be one while loop, but that doesn't match
-            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+            j = Random32(); //should just be one while loop, but that doesn't match
         } while (sFrontierBrainsMons[facility][symbol][i].nature != GetNatureFromPersonality(j));
         CreateMon(&gEnemyParty[monPartyId],
                   sFrontierBrainsMons[facility][symbol][i].species,
@@ -2487,6 +2484,8 @@ void CreateFrontierBrainPokemon(void)
                 friendship = 0;
         }
         SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+        j = FALSE;
+        SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_IS_SHINY, &j);
         CalculateMonStats(&gEnemyParty[monPartyId]);
         monPartyId++;
     }

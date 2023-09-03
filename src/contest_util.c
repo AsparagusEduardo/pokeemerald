@@ -456,7 +456,7 @@ static void LoadContestResultsBgGfx(void)
     CopyToBgTilemapBuffer(2, gContestResults_Interface_Tilemap, 0, 0);
     CopyToBgTilemapBuffer(0, gContestResults_WinnerBanner_Tilemap, 0, 0);
     LoadContestResultsTitleBarTilemaps();
-    LoadCompressedPalette(gContestResults_Pal, BG_PLTT_ID(0), 16 * PLTT_SIZE_4BPP);
+    LoadCompressedPalette(gContestResults_Pal, BG_PLTT_OFFSET, BG_PLTT_SIZE);
     LoadPalette(sResultsTextWindow_Pal, BG_PLTT_ID(15), sizeof(sResultsTextWindow_Pal));
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
@@ -879,7 +879,7 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
     int i;
     u8 spriteId;
     u16 species;
-    u32 otId;
+    bool8 isShiny;
     u32 personality;
     const struct CompressedSpritePalette *pokePal;
 
@@ -892,13 +892,13 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
         GET_CONTEST_WINNER_ID(i);
         species = gContestMons[i].species;
         personality = gContestMons[i].personality;
-        otId = gContestMons[i].otId;
+        isShiny = gContestMons[i].isShiny;
         HandleLoadSpecialPokePic(TRUE,
                                 gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
                                 species,
                                 personality);
 
-        pokePal = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
+        pokePal = GetMonSpritePalStructFromOtIdPersonality(species, isShiny, personality);
         LoadCompressedSpritePalette(pokePal);
         SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_OPPONENT_LEFT);
         gMultiuseSpriteTemplate.paletteTag = pokePal->tag;
@@ -1994,7 +1994,7 @@ void GiveMonContestRibbon(void)
     {
     case CONTEST_CATEGORY_COOL:
         ribbonData = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_COOL_RIBBON);
-        if (ribbonData <= gSpecialVar_ContestRank && ribbonData < 4)
+        if (ribbonData <= gSpecialVar_ContestRank && ribbonData <= CONTEST_RANK_MASTER)
         {
             ribbonData++;
             SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_COOL_RIBBON, &ribbonData);
@@ -2004,7 +2004,7 @@ void GiveMonContestRibbon(void)
         break;
     case CONTEST_CATEGORY_BEAUTY:
         ribbonData = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_BEAUTY_RIBBON);
-        if (ribbonData <= gSpecialVar_ContestRank && ribbonData < 4)
+        if (ribbonData <= gSpecialVar_ContestRank && ribbonData <= CONTEST_RANK_MASTER)
         {
             ribbonData++;
             SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_BEAUTY_RIBBON, &ribbonData);
@@ -2014,7 +2014,7 @@ void GiveMonContestRibbon(void)
         break;
     case CONTEST_CATEGORY_CUTE:
         ribbonData = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_CUTE_RIBBON);
-        if (ribbonData <= gSpecialVar_ContestRank && ribbonData < 4)
+        if (ribbonData <= gSpecialVar_ContestRank && ribbonData <= CONTEST_RANK_MASTER)
         {
             ribbonData++;
             SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_CUTE_RIBBON, &ribbonData);
@@ -2024,7 +2024,7 @@ void GiveMonContestRibbon(void)
         break;
     case CONTEST_CATEGORY_SMART:
         ribbonData = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_SMART_RIBBON);
-        if (ribbonData <= gSpecialVar_ContestRank && ribbonData < 4)
+        if (ribbonData <= gSpecialVar_ContestRank && ribbonData <= CONTEST_RANK_MASTER)
         {
             ribbonData++;
             SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_SMART_RIBBON, &ribbonData);
@@ -2034,7 +2034,7 @@ void GiveMonContestRibbon(void)
         break;
     case CONTEST_CATEGORY_TOUGH:
         ribbonData = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_TOUGH_RIBBON);
-        if (ribbonData <= gSpecialVar_ContestRank && ribbonData < 4)
+        if (ribbonData <= gSpecialVar_ContestRank && ribbonData <= CONTEST_RANK_MASTER)
         {
             ribbonData++;
             SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_TOUGH_RIBBON, &ribbonData);
@@ -2555,11 +2555,12 @@ bool8 IsContestDebugActive(void)
 void ShowContestEntryMonPic(void)
 {
     const struct CompressedSpritePalette *palette;
-    u32 personality, otId;
+    u32 personality;
     u16 species;
     u8 spriteId;
     u8 taskId;
     u8 left, top;
+    bool8 isShiny;
 
     if (FindTaskIdByFunc(Task_ShowContestEntryMonPic) == TASK_NONE)
     {
@@ -2568,13 +2569,13 @@ void ShowContestEntryMonPic(void)
         top = 3;
         species = gContestMons[gSpecialVar_0x8006].species;
         personality = gContestMons[gSpecialVar_0x8006].personality;
-        otId = gContestMons[gSpecialVar_0x8006].otId;
+        isShiny = gContestMons[gSpecialVar_0x8006].isShiny;
         taskId = CreateTask(Task_ShowContestEntryMonPic, 0x50);
         gTasks[taskId].data[0] = 0;
         gTasks[taskId].data[1] = species;
         HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], species, personality);
 
-        palette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
+        palette = GetMonSpritePalStructFromOtIdPersonality(species, isShiny, personality);
         LoadCompressedSpritePalette(palette);
         SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_OPPONENT_LEFT);
         gMultiuseSpriteTemplate.paletteTag = palette->tag;

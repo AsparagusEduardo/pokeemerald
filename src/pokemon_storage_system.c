@@ -552,8 +552,8 @@ struct PokemonStorageSystemData
     u16 *displayMonTilePtr;
     struct Sprite *displayMonSprite;
     u16 displayMonPalBuffer[0x40];
-    u8 tileBuffer[MON_PIC_SIZE * MAX_MON_PIC_FRAMES];
-    u8 itemIconBuffer[0x800];
+    u8 ALIGNED(4) tileBuffer[MON_PIC_SIZE * MAX_MON_PIC_FRAMES];
+    u8 ALIGNED(4) itemIconBuffer[0x800];
     u8 wallpaperBgTilemapBuffer[0x1000];
     u8 displayMenuTilemapBuffer[0x800];
 };
@@ -5110,7 +5110,7 @@ static u16 TryLoadMonIconTiles(u16 species, u32 personality)
     u16 i, offset;
 
     // Treat female mons as a seperate species as they may have a different icon than males
-    if (ShouldShowFemaleDifferences(species, personality))
+    if (gMonIconTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
         species |= 0x8000; // 1 << 15
 
     // Search icon list for this species
@@ -5177,7 +5177,7 @@ static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s
     struct SpriteTemplate template = sSpriteTemplate_MonIcon;
 
     species = GetIconSpecies(species, personality);
-    if (ShouldShowFemaleDifferences(species, personality))
+    if (gMonIconTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
     {
         template.paletteTag = PALTAG_MON_ICON_0 + gMonIconPaletteIndicesFemale[species];
     }
@@ -5528,7 +5528,7 @@ static void InitBoxTitle(u8 boxId)
 
     tagIndex = IndexOfSpritePaletteTag(PALTAG_BOX_TITLE);
     sStorage->boxTitlePalOffset = OBJ_PLTT_ID(tagIndex) + 14;
-    sStorage->wallpaperPalBits |= 0x10000 << tagIndex;
+    sStorage->wallpaperPalBits |= (1 << 16) << tagIndex;
 
     // The below seems intended to have separately tracked
     // the incoming wallpaper title's palette, but as they now
@@ -5536,7 +5536,7 @@ static void InitBoxTitle(u8 boxId)
     // this is redundant along with the use of boxTitleAltPalOffset
     tagIndex = IndexOfSpritePaletteTag(PALTAG_BOX_TITLE);
     sStorage->boxTitleAltPalOffset = OBJ_PLTT_ID(tagIndex) + 14;
-    sStorage->wallpaperPalBits |= 0x10000 << tagIndex;
+    sStorage->wallpaperPalBits |= (1 << 16) << tagIndex;
 
     StringCopyPadded(sStorage->boxTitleText, GetBoxNamePtr(boxId), 0, BOX_NAME_LENGTH);
     DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);
@@ -5654,9 +5654,9 @@ static void CycleBoxTitleColor(void)
     u8 boxId = StorageGetCurrentBox();
     u8 wallpaperId = GetBoxWallpaper(boxId);
     if (sStorage->boxTitleCycleId == 0)
-        CpuCopy16(sBoxTitleColors[wallpaperId], gPlttBufferUnfaded + sStorage->boxTitlePalOffset, 4);
+        CpuCopy16(sBoxTitleColors[wallpaperId], &gPlttBufferUnfaded[sStorage->boxTitlePalOffset], PLTT_SIZEOF(2));
     else
-        CpuCopy16(sBoxTitleColors[wallpaperId], gPlttBufferUnfaded + sStorage->boxTitleAltPalOffset, 4);
+        CpuCopy16(sBoxTitleColors[wallpaperId], &gPlttBufferUnfaded[sStorage->boxTitleAltPalOffset], PLTT_SIZEOF(2));
 }
 
 static s16 GetBoxTitleBaseX(const u8 *string)
@@ -6411,7 +6411,6 @@ static void SetPlacedMonData(u8 boxId, u8 position)
     }
     else
     {
-        BoxMonRestorePP(&sStorage->movingMon.box);
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
     }
 }
@@ -6941,7 +6940,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
         sStorage->displayMonSpecies = GetBoxMonData(pokemon, MON_DATA_SPECIES_OR_EGG);
         if (sStorage->displayMonSpecies != SPECIES_NONE)
         {
-            u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+            bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
             sanityIsBadEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
             if (sanityIsBadEgg)
                 sStorage->displayMonIsEgg = TRUE;
@@ -6954,7 +6953,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-            sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, otId, sStorage->displayMonPersonality);
+            sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, isShiny, sStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
             sStorage->displayMonItemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
         }
@@ -6993,7 +6992,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
 
         txtPtr = sStorage->displayMonSpeciesName;
         *(txtPtr)++ = CHAR_SLASH;
-        StringCopyPadded(txtPtr, gSpeciesNames[sStorage->displayMonSpecies], CHAR_SPACE, 5);
+        StringCopyPadded(txtPtr, GetSpeciesName(sStorage->displayMonSpecies), CHAR_SPACE, 5);
 
         txtPtr = sStorage->displayMonGenderLvlText;
         *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
@@ -8794,8 +8793,7 @@ static void CreateItemIconSprites(void)
             LoadCompressedSpriteSheet(&spriteSheet);
             sStorage->itemIcons[i].tiles = GetSpriteTileStartByTag(spriteSheet.tag) * TILE_SIZE_4BPP + (void *)(OBJ_VRAM0);
             sStorage->itemIcons[i].palIndex = AllocSpritePalette(PALTAG_ITEM_ICON_0 + i);
-            sStorage->itemIcons[i].palIndex *= 16;
-            sStorage->itemIcons[i].palIndex += 0x100;
+            sStorage->itemIcons[i].palIndex = OBJ_PLTT_ID(sStorage->itemIcons[i].palIndex);
             spriteTemplate.tileTag = GFXTAG_ITEM_ICON_0 + i;
             spriteTemplate.paletteTag = PALTAG_ITEM_ICON_0 + i;
             spriteId = CreateSprite(&spriteTemplate, 0, 0, 11);
@@ -10130,12 +10128,12 @@ static void UnkUtil_DmaRun(struct UnkUtilData *data)
 void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
-    u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+    bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
     u32 pid = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
 
     // Update front sprite
     sStorage->displayMonSpecies = species;
-    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
+    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, pid);
     if (!sJustOpenedBag)
     {
         LoadDisplayMonGfx(species, pid);
@@ -10151,7 +10149,7 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
         {
             DestroyBoxMonIcon(sStorage->boxMonsSprites[sCursorPosition]);
             CreateBoxMonIconAtPos(sCursorPosition);
-            SetBoxMonIconObjMode(sCursorPosition, GetMonData(boxMon, MON_DATA_HELD_ITEM) == ITEM_NONE);
+            SetBoxMonIconObjMode(sCursorPosition, GetBoxMonData(boxMon, MON_DATA_HELD_ITEM) == ITEM_NONE);
         }
     }
     sJustOpenedBag = FALSE;

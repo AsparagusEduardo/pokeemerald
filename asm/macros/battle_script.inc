@@ -1053,8 +1053,9 @@
 	.byte 0xca
 	.endm
 
-	.macro setcharge
+	.macro setcharge battler:req
 	.byte 0xcb
+	.byte \battler
 	.endm
 
 	.macro callterrainattack
@@ -1186,11 +1187,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro doweatherformchangeanimation
+	.macro unused3
 	.byte 0xe6
 	.endm
 
-	.macro tryweatherformdatachange
+	.macro unused4
 	.byte 0xe7
 	.endm
 
@@ -1317,7 +1318,7 @@
 	.2byte \holdEffect
 	.4byte \jumpInstr
 	.endm
-	
+
 	.macro dostockpilestatchangeswearoff, battler:req, statChangeInstr:req
 	callnative BS_DoStockpileStatChangesWearOff
 	.byte \battler
@@ -1353,7 +1354,7 @@
 	.macro setsnow
 	callnative BS_SetSnow
 	.endm
-	
+
 	.macro setzeffect
 	callnative BS_SetZEffect
 	.endm
@@ -1361,12 +1362,6 @@
 	@ Used by effects that may proc Symbiosis but do not call removeitem.
 	.macro trysymbiosis
 	callnative BS_TrySymbiosis
-	.endm
-
-	@ returns TRUE or FALSE to gBattleCommunication[0]
-	.macro canteleport battler:req
-	callnative BS_CanTeleport
-	.byte \battler
 	.endm
 
 	@ returns B_SIDE_x to gBattleCommunication[0]
@@ -1378,6 +1373,12 @@
 	.macro checkparentalbondcounter counter:req, ptr:req
 	callnative BS_CheckParentalBondCounter
 	.byte \counter
+	.4byte \ptr
+	.endm
+	
+	.macro jumpifcantloseitem battler:req, ptr:req
+	callnative BS_JumpIfCantLoseItem
+	.byte \battler
 	.4byte \ptr
 	.endm
 
@@ -1633,6 +1634,11 @@
 
 	.macro handleprimalreversion battler:req, case:req
 	various \battler, VARIOUS_HANDLE_PRIMAL_REVERSION
+	.byte \case
+	.endm
+
+	.macro handleultraburst battler:req, case:req
+	various \battler, VARIOUS_HANDLE_ULTRA_BURST
 	.byte \case
 	.endm
 
@@ -2076,7 +2082,7 @@
 	.macro swapsidestatuses
 	various BS_ATTACKER, VARIOUS_SWAP_SIDE_STATUSES
 	.endm
-	
+
 	.macro swapstats stat:req
 	various BS_ATTACKER, VARIOUS_SWAP_STATS
 	.byte \stat
@@ -2175,6 +2181,11 @@
 
 	.macro jumpifmovehadnoeffect jumpInstr:req
 	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpInstr
+	.endm
+
+	.macro jumpifside battler:req, side:req, equalJumpInstr:req
+	getbattlerside \battler
+	jumpifbyte CMP_EQUAL, gBattleCommunication, \side, \equalJumpInstr
 	.endm
 
 	.macro jumpifbattletype flags:req, jumpInstr:req

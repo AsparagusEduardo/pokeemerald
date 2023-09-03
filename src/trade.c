@@ -1165,7 +1165,7 @@ static bool8 BufferTradeParties(void)
                     GetMonData(mon, MON_DATA_NICKNAME, name);
 
                     if (!StringCompareWithoutExtCtrlCodes(name, sText_ShedinjaJP))
-                        SetMonData(mon, MON_DATA_NICKNAME, gSpeciesNames[SPECIES_SHEDINJA]);
+                        SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(SPECIES_SHEDINJA));
                 }
             }
         }
@@ -1570,13 +1570,6 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     partnerMonIdx %= PARTY_SIZE;
     partnerSpecies = GetMonData(&gEnemyParty[partnerMonIdx], MON_DATA_SPECIES);
 
-    // Partner cant trade illegitimate Deoxys or Mew
-    if (partnerSpecies == SPECIES_DEOXYS || partnerSpecies == SPECIES_MEW)
-    {
-        if (!GetMonData(&gEnemyParty[partnerMonIdx], MON_DATA_MODERN_FATEFUL_ENCOUNTER))
-            return PARTNER_MON_INVALID;
-    }
-
     // Can't trade specific species
     if (gSpeciesInfo[partnerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
         return PARTNER_MON_INVALID;
@@ -1864,7 +1857,7 @@ static void SetSelectedMon(u8 cursorPosition)
 static void DrawSelectedMonScreen(u8 whichParty)
 {
     s8 nameStringWidth;
-    u8 nickname[20];
+    u8 nickname[POKEMON_NAME_BUFFER_SIZE];
     u8 movesString[56];
     u8 i;
     u8 partyIdx;
@@ -1950,7 +1943,7 @@ static void DrawSelectedMonScreen(u8 whichParty)
 
 static u8 GetMonNicknameWidth(u8 *str, u8 whichParty, u8 partyIdx)
 {
-    u8 nickname[POKEMON_NAME_LENGTH];
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
 
     if (whichParty == TRADE_PLAYER)
         GetMonData(&gPlayerParty[partyIdx], MON_DATA_NICKNAME, nickname);
@@ -2006,8 +1999,8 @@ static void PrintPartyMonNickname(u8 whichParty, u8 windowId, u8 *nickname)
 static void PrintPartyNicknames(u8 whichParty)
 {
     u8 i;
-    u8 nickname[20];
-    u8 str[32];
+    u8 nickname[POKEMON_NAME_BUFFER_SIZE];
+    u8 str[max(32, POKEMON_NAME_BUFFER_SIZE)];
     struct Pokemon *party = (whichParty == TRADE_PLAYER) ? gPlayerParty : gEnemyParty;
 
     for (i = 0; i < sTradeMenu->partyCounts[whichParty]; i++)
@@ -2023,7 +2016,7 @@ static void PrintLevelAndGender(u8 whichParty, u8 monIdx, u8 x, u8 y, u8 width, 
     u8 level;
     u32 symbolTile;
     u8 gender;
-    u8 nickname[POKEMON_NAME_LENGTH];
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
 
     CopyToBgTilemapBufferRect_ChangePalette(1, gTradeMenuMonBox_Tilemap, width, height, 6, 3, 0);
     CopyBgTilemapBufferToVram(1);
@@ -2422,12 +2415,6 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
             if (!IsSpeciesInHoennDex(species2[monIdx]))
                 return CANT_TRADE_INVALID_MON;
         }
-    }
-
-    if (species[monIdx] == SPECIES_DEOXYS || species[monIdx] == SPECIES_MEW)
-    {
-        if (!GetMonData(&playerParty[monIdx], MON_DATA_MODERN_FATEFUL_ENCOUNTER))
-            return CANT_TRADE_INVALID_MON;
     }
 
     // Can't trade specific species
@@ -3339,7 +3326,7 @@ static void LoadTradeSequenceSpriteSheetsAndPalettes(void)
 static void BufferTradeSceneStrings(void)
 {
     u8 mpId;
-    u8 name[20];
+    u8 name[POKEMON_NAME_BUFFER_SIZE];
     const struct InGameTrade *ingameTrade;
 
     if (sTradeAnim->isLinkTrade)
@@ -4541,18 +4528,18 @@ static void SpriteCB_BouncingPokeballArrive(struct Sprite *sprite)
 u16 GetInGameTradeSpeciesInfo(void)
 {
     const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8004];
-    StringCopy(gStringVar1, gSpeciesNames[inGameTrade->requestedSpecies]);
-    StringCopy(gStringVar2, gSpeciesNames[inGameTrade->species]);
+    StringCopy(gStringVar1, GetSpeciesName(inGameTrade->requestedSpecies));
+    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
     return inGameTrade->requestedSpecies;
 }
 
 static void BufferInGameTradeMonName(void)
 {
-    u8 nickname[32];
+    u8 nickname[max(32, POKEMON_NAME_BUFFER_SIZE)];
     const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8004];
     GetMonData(&gPlayerParty[gSpecialVar_0x8005], MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(gStringVar1, nickname);
-    StringCopy(gStringVar2, gSpeciesNames[inGameTrade->species]);
+    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
 }
 
 static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTrade)

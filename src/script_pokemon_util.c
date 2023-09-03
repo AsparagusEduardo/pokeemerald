@@ -16,6 +16,7 @@
 #include "party_menu.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "script.h"
 #include "sprite.h"
@@ -26,6 +27,7 @@
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
+static void HealPlayerBoxes(void);
 
 void HealPlayerParty(void)
 {
@@ -55,6 +57,46 @@ void HealPlayerParty(void)
         arg[2] = 0;
         arg[3] = 0;
         SetMonData(&gPlayerParty[i], MON_DATA_STATUS, arg);
+    }
+    HealPlayerBoxes();
+}
+
+static void HealPlayerBoxes(void)
+{
+    int boxId, boxPosition;
+    struct BoxPokemon *boxMon;
+
+    u8 i, j;
+    u8 ppBonuses;
+    u32 status = STATUS1_NONE;
+
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    {
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
+        {
+            boxMon = &gPokemonStoragePtr->boxes[boxId][boxPosition];
+            if (GetBoxMonData(boxMon, MON_DATA_SANITY_HAS_SPECIES))
+            {
+                // restore HP.
+                u16 maxHP = GetBoxMonData(boxMon, MON_DATA_MAX_HP);
+                SetBoxMonData(boxMon, MON_DATA_HP, &maxHP);
+                ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES);
+
+                // restore PP.
+                for (i = 0; i < MAX_MON_MOVES; i++)
+                {
+                    if (GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0))
+                    {
+                        u16 move = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0);
+                        u16 bonus = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, 0);
+                        u8 pp = CalculatePPWithBonus(move, bonus, i);
+                        SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp);
+                    }
+                }
+                // restore status.
+                SetBoxMonData(boxMon, MON_DATA_STATUS, &status);
+            }
+        }
     }
 }
 

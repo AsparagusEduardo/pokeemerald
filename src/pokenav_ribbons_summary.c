@@ -401,7 +401,7 @@ static void GetMonNicknameLevelGender(u8 *nick, u8 *level, u8 *gender)
     StringGet_Nickname(nick);
 }
 
-static void GetMonSpeciesPersonalityOtId(u16 *species, u32 *personality, u32 *otId)
+static void GetMonSpeciesPersonalityShiny(u16 *species, u32 *personality, bool8 *isShiny)
 {
     struct Pokenav_RibbonsSummaryList *list = GetSubstructPtr(POKENAV_SUBSTRUCT_RIBBONS_SUMMARY_LIST);
     struct PokenavMonList *mons = list->monList;
@@ -413,7 +413,7 @@ static void GetMonSpeciesPersonalityOtId(u16 *species, u32 *personality, u32 *ot
         struct Pokemon *mon = &gPlayerParty[monInfo->monId];
         *species = GetMonData(mon, MON_DATA_SPECIES);
         *personality = GetMonData(mon, MON_DATA_PERSONALITY);
-        *otId = GetMonData(mon, MON_DATA_OT_ID);
+        *isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
     }
     else
     {
@@ -421,7 +421,7 @@ static void GetMonSpeciesPersonalityOtId(u16 *species, u32 *personality, u32 *ot
         struct BoxPokemon *boxMon = GetBoxedMonPtr(monInfo->boxId, monInfo->monId);
         *species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
         *personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-        *otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+        *isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
     }
 }
 
@@ -584,7 +584,7 @@ static u32 LoopedTask_OpenRibbonsSummaryMenu(s32 state)
             SetBgTilemapBuffer(1, menu->tilemapBuffers[1]);
             FillBgTilemapBufferRect_Palette0(1, 0, 0, 0, 32, 20);
             CopyPaletteIntoBufferUnfaded(sRibbonIcons1_Pal, BG_PLTT_ID(2), 5 * PLTT_SIZE_4BPP);
-            CopyPaletteIntoBufferUnfaded(sMonInfo_Pal, BG_PLTT_ID(10), PLTT_SIZE_4BPP);
+            CopyPaletteIntoBufferUnfaded(sMonInfo_Pal, BG_PLTT_ID(10), sizeof(sMonInfo_Pal));
             CopyBgTilemapBufferToVram(1);
             return LT_INC_AND_PAUSE;
         }
@@ -941,9 +941,10 @@ static void PrintRibbonsMonListIndex(struct Pokenav_RibbonsSummaryMenu *menu)
 static void ResetSpritesAndDrawMonFrontPic(struct Pokenav_RibbonsSummaryMenu *menu)
 {
     u16 species;
-    u32 personality, otId;
+    u32 personality;
+    bool8 isShiny;
 
-    GetMonSpeciesPersonalityOtId(&species, &personality, &otId);
+    GetMonSpeciesPersonalityShiny(&species, &personality, &isShiny);
     ResetAllPicSprites();
     menu->monSpriteId = DrawRibbonsMonFrontPic(MON_SPRITE_X_ON, MON_SPRITE_Y);
     PokenavFillPalette(15, 0);
@@ -960,10 +961,11 @@ static void DestroyRibbonsMonFrontPic(struct Pokenav_RibbonsSummaryMenu *menu)
 static u16 DrawRibbonsMonFrontPic(s32 x, s32 y)
 {
     u16 species, spriteId;
-    u32 personality, otId;
+    u32 personality;
+    bool8 isShiny;
 
-    GetMonSpeciesPersonalityOtId(&species, &personality, &otId);
-    spriteId = CreateMonPicSprite(species, otId, personality, TRUE, MON_SPRITE_X_ON, MON_SPRITE_Y, 15, TAG_NONE);
+    GetMonSpeciesPersonalityShiny(&species, &personality, &isShiny);
+    spriteId = CreateMonPicSprite(species, isShiny, personality, TRUE, MON_SPRITE_X_ON, MON_SPRITE_Y, 15, TAG_NONE);
     gSprites[spriteId].oam.priority = 0;
     return spriteId;
 }

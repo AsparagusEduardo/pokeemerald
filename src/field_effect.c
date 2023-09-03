@@ -181,7 +181,7 @@ static void AnimateIndoorShowMonBg(struct Task *);
 static bool8 SlideIndoorBannerOnscreen(struct Task *);
 static bool8 SlideIndoorBannerOffscreen(struct Task *);
 
-static u8 InitFieldMoveMonSprite(u32, u32, u32);
+static u8 InitFieldMoveMonSprite(u32, bool8, u32);
 static void SpriteCB_FieldMoveMonSlideOnscreen(struct Sprite *);
 static void SpriteCB_FieldMoveMonWaitAfterCry(struct Sprite *);
 static void SpriteCB_FieldMoveMonSlideOffscreen(struct Sprite *);
@@ -236,7 +236,7 @@ static void Task_MoveDeoxysRock(u8 taskId);
 static u8 sActiveList[32];
 
 // External declarations
-extern struct CompressedSpritePalette gMonPaletteTable[]; // GF made a mistake and did not extern it as const.
+extern const struct CompressedSpritePalette gMonPaletteTable[];
 extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern u8 *gFieldEffectScriptPointers[];
@@ -900,7 +900,8 @@ u8 CreateTrainerSprite(u8 trainerSpriteID, s16 x, s16 y, u8 subpriority, u8 *buf
     return CreateSprite(&spriteTemplate, x, y, subpriority);
 }
 
-void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
+// Unused
+static void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
 {
     LZDecompressVram(gTrainerFrontPicTable[gender].data, dest);
     LoadCompressedPalette(gTrainerFrontPicPaletteTable[gender].data, palOffset, PLTT_SIZE_4BPP);
@@ -914,7 +915,7 @@ u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 {
-    s32 spriteId = CreateMonPicSprite(species, 0, 0x8000, TRUE, x, y, 0, gMonPaletteTable[species].tag);
+    s32 spriteId = CreateMonPicSprite(species, FALSE, 0x8000, TRUE, x, y, 0, gMonPaletteTable[species].tag);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(gMonPaletteTable[species].tag) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
@@ -922,10 +923,10 @@ u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
         return spriteId;
 }
 
-u8 CreateMonSprite_FieldMove(u16 species, u32 otId, u32 personality, s16 x, s16 y, u8 subpriority)
+u8 CreateMonSprite_FieldMove(u16 species, bool8 isShiny, u32 personality, s16 x, s16 y, u8 subpriority)
 {
-    const struct CompressedSpritePalette *spritePalette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-    u16 spriteId = CreateMonPicSprite(species, otId, personality, TRUE, x, y, 0, spritePalette->tag);
+    const struct CompressedSpritePalette *spritePalette = GetMonSpritePalStructFromOtIdPersonality(species, isShiny, personality);
+    u16 spriteId = CreateMonPicSprite(species, isShiny, personality, TRUE, x, y, 0, spritePalette->tag);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(spritePalette->tag) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
@@ -1190,14 +1191,14 @@ static void PokeballGlowEffect_Flash1(struct Sprite *sprite)
             sprite->data[3]++;
     }
     phase = (sprite->sCounter + 3) & 3;
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x108, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 8, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
     phase = (sprite->sCounter + 2) & 3;
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x106, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 6, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
     phase = (sprite->sCounter + 1) & 3;
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x102, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 2, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
     phase = sprite->sCounter;
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x105, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x103, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 5, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 3, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
     if (sprite->data[3] > 2)
     {
         sprite->sState++;
@@ -1221,19 +1222,17 @@ static void PokeballGlowEffect_Flash2(struct Sprite *sprite)
         }
     }
     phase = sprite->sCounter;
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x108, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x106, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x102, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x105, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
-    MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW) << 4) + 0x103, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 8, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 6, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 2, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 5, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
+    MultiplyInvertedPaletteRGBComponents(OBJ_PLTT_ID(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_POKEBALL_GLOW)) + 3, sPokeballGlowReds[phase], sPokeballGlowGreens[phase], sPokeballGlowBlues[phase]);
 }
 
 static void PokeballGlowEffect_WaitAfterFlash(struct Sprite *sprite)
 {
     if ((--sprite->sTimer) == 0)
-    {
         sprite->sState++;
-    }
 }
 
 static void PokeballGlowEffect_Dummy(struct Sprite *sprite)
@@ -2417,7 +2416,7 @@ static void TeleportWarpOutFieldEffect_SpinExit(struct Task *task)
     {
         sprite->subspriteMode = SUBSPRITES_IGNORE_PRIORITY;
     }
-    if (task->data[4] >= 0xa8)
+    if (task->data[4] >= DISPLAY_HEIGHT + 8)
     {
         task->tState++;
         TryFadeOutOldMapMusic();
@@ -2584,7 +2583,7 @@ bool8 FldEff_FieldMoveShowMonInit(void)
     bool32 noDucking = gFieldEffectArguments[0] & SHOW_MON_CRY_NO_DUCKING;
     pokemon = &gPlayerParty[(u8)gFieldEffectArguments[0]];
     gFieldEffectArguments[0] = GetMonData(pokemon, MON_DATA_SPECIES);
-    gFieldEffectArguments[1] = GetMonData(pokemon, MON_DATA_OT_ID);
+    gFieldEffectArguments[1] = GetMonData(pokemon, MON_DATA_IS_SHINY);
     gFieldEffectArguments[2] = GetMonData(pokemon, MON_DATA_PERSONALITY);
     gFieldEffectArguments[0] |= noDucking;
     FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON);
@@ -2924,14 +2923,14 @@ static bool8 SlideIndoorBannerOffscreen(struct Task *task)
 #undef tBgOffset
 #undef tMonSpriteId
 
-static u8 InitFieldMoveMonSprite(u32 species, u32 otId, u32 personality)
+static u8 InitFieldMoveMonSprite(u32 species, bool8 isShiny, u32 personality)
 {
     bool16 noDucking;
     u8 monSprite;
     struct Sprite *sprite;
     noDucking = (species & SHOW_MON_CRY_NO_DUCKING) >> 16;
     species &= ~SHOW_MON_CRY_NO_DUCKING;
-    monSprite = CreateMonSprite_FieldMove(species, otId, personality, 320, 80, 0);
+    monSprite = CreateMonSprite_FieldMove(species, isShiny, personality, 320, 80, 0);
     sprite = &gSprites[monSprite];
     sprite->callback = SpriteCallbackDummy;
     sprite->oam.priority = 0;

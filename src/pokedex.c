@@ -93,6 +93,13 @@ enum
     NAME_YZ,
 };
 
+enum {
+    WIN_INFO,
+    WIN_FOOTPRINT,
+    WIN_CRY_WAVE,
+    WIN_VU_METER,
+};
+
 // For scrolling search parameter
 #define MAX_SEARCH_PARAM_ON_SCREEN   6
 #define MAX_SEARCH_PARAM_CURSOR_POS  (MAX_SEARCH_PARAM_ON_SCREEN - 1)
@@ -887,11 +894,6 @@ static const struct BgTemplate sInfoScreen_BgTemplate[] =
         .baseTile = 0
     }
 };
-
-#define WIN_INFO 0
-#define WIN_FOOTPRINT 1
-#define WIN_CRY_WAVE 2
-#define WIN_VU_METER 3
 
 static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 {
@@ -2445,7 +2447,7 @@ static u8 CreateMonName(u16 num, u8 left, u8 top)
 
     num = NationalPokedexNumToSpecies(num);
     if (num)
-        str = gSpeciesNames[num];
+        str = GetSpeciesName(num);
     else
         str = sText_TenDashes;
     PrintMonDexNumAndName(0, FONT_NARROW, str, left, top);
@@ -3264,7 +3266,7 @@ static void Task_LoadInfoScreen(u8 taskId)
     case 4:
         PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
         if (!sPokedexListItem->owned)
-            LoadPalette(gPlttBufferUnfaded + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(16 - 1));
+            LoadPalette(&gPlttBufferUnfaded[BG_PLTT_ID(0) + 1], BG_PLTT_ID(3) + 1, PLTT_SIZEOF(16 - 1));
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -3753,7 +3755,7 @@ static void Task_LoadSizeScreen(u8 taskId)
 
             StringCopy(string, gText_SizeComparedTo);
             StringAppend(string, gSaveBlock2Ptr->playerName);
-            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, 0xF0), 0x79);
+            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, DISPLAY_WIDTH), 121);
             gMain.state++;
         }
         break;
@@ -3928,19 +3930,17 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 #define tDexNum        data[1]
 #define tPalTimer      data[2]
 #define tMonSpriteId   data[3]
-#define tOtIdLo        data[12]
-#define tOtIdHi        data[13]
+#define tIsShiny       data[13]
 #define tPersonalityLo data[14]
 #define tPersonalityHi data[15]
 
-u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality)
+u8 DisplayCaughtMonDexPage(u16 dexNum, bool8 isShiny, u32 personality)
 {
     u8 taskId = CreateTask(Task_DisplayCaughtMonDexPage, 0);
 
     gTasks[taskId].tState = 0;
     gTasks[taskId].tDexNum = dexNum;
-    gTasks[taskId].tOtIdLo = otId;
-    gTasks[taskId].tOtIdHi = otId >> 16;
+    gTasks[taskId].tIsShiny = isShiny;
     gTasks[taskId].tPersonalityLo = personality;
     gTasks[taskId].tPersonalityHi = personality >> 16;
     return taskId;
@@ -3992,7 +3992,7 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        spriteId = CreateMonPicSprite(NationalPokedexNumToSpecies(dexNum), 0, ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo, TRUE, MON_PAGE_X, MON_PAGE_Y, 0, TAG_NONE);
+        spriteId = CreateMonPicSprite(NationalPokedexNumToSpecies(dexNum), FALSE, ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo, TRUE, MON_PAGE_X, MON_PAGE_Y, 0, TAG_NONE);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
@@ -4043,7 +4043,7 @@ static void Task_ExitCaughtMonPage(u8 taskId)
     if (!gPaletteFade.active)
     {
         u16 species;
-        u32 otId;
+        bool8 isShiny;
         u32 personality;
         u8 paletteNum;
         const u32 *lzPaletteData;
@@ -4059,10 +4059,10 @@ static void Task_ExitCaughtMonPage(u8 taskId)
             Free(buffer);
 
         species = NationalPokedexNumToSpecies(gTasks[taskId].tDexNum);
-        otId = ((u16)gTasks[taskId].tOtIdHi << 16) | (u16)gTasks[taskId].tOtIdLo;
+        isShiny = (bool8)gTasks[taskId].tIsShiny;
         personality = ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo;
         paletteNum = gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum;
-        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);
+        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality);
         LoadCompressedPalette(lzPaletteData, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
         DestroyTask(taskId);
     }
@@ -4070,14 +4070,14 @@ static void Task_ExitCaughtMonPage(u8 taskId)
 
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 {
-    if (sprite->x < 0x78)
+    if (sprite->x < DISPLAY_WIDTH / 2)
         sprite->x += 2;
-    if (sprite->x > 0x78)
+    if (sprite->x > DISPLAY_WIDTH / 2)
         sprite->x -= 2;
 
-    if (sprite->y < 0x50)
+    if (sprite->y < DISPLAY_HEIGHT / 2)
         sprite->y += 1;
-    if (sprite->y > 0x50)
+    if (sprite->y > DISPLAY_HEIGHT / 2)
         sprite->y -= 1;
 }
 
@@ -4101,7 +4101,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     const u8 *description;
 
     if (newEntry)
-        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
+        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, DISPLAY_WIDTH), 0);
     if (value == 0)
         value = NationalToHoennOrder(num);
     else
@@ -4110,7 +4110,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(str, 0x60, 0x19);
     natNum = NationalPokedexNumToSpecies(num);
     if (natNum)
-        name = gSpeciesNames[natNum];
+        name = GetSpeciesName(natNum);
     else
         name = sText_TenDashes2;
     PrintInfoScreenText(name, 0x84, 0x19);
@@ -4140,7 +4140,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         description = gPokedexEntries[num].description;
     else
         description = sExpandedPlaceholder_PokedexDescription;
-    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
+    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, DISPLAY_WIDTH), 95);
 }
 
 static void PrintMonHeight(u16 height, u8 left, u8 top)
@@ -4457,8 +4457,8 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     switch (num)
     {
     default:
-        for (i = 0; gSpeciesNames[num][i] != EOS && i < POKEMON_NAME_LENGTH; i++)
-            str[i] = gSpeciesNames[num][i];
+        for (i = 0; GetSpeciesName(num)[i] != EOS && i < POKEMON_NAME_LENGTH; i++)
+            str[i] = GetSpeciesName(num)[i];
         break;
     case 0:
         for (i = 0; i < 5; i++)
@@ -4527,28 +4527,44 @@ static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
     PrintInfoSubMenuText(windowId, str, left, top);
 }
 
+// The footprints are drawn on WIN_FOOTPRINT, which uses BG palette 15 (loaded with graphics/text_window/message_box.gbapal)
+// The footprint pixels are stored as 1BPP, and set to the below color index in this palette when converted to 4BPP.
+#define FOOTPRINT_COLOR_IDX  2
+
+#define NUM_FOOTPRINT_TILES  4
+
 static void DrawFootprint(u8 windowId, u16 dexNum)
 {
-    u8 footprint[32 * 4] = {0};
+    u8 ALIGNED(4) footprint4bpp[TILE_SIZE_4BPP * NUM_FOOTPRINT_TILES];
     const u8 *footprintGfx = gMonFootprintTable[NationalPokedexNumToSpecies(dexNum)];
     u32 i, j, tileIdx = 0;
 
     if (footprintGfx != NULL)
     {
-        for (i = 0; i < 32; i++)
+        for (i = 0; i < TILE_SIZE_1BPP * NUM_FOOTPRINT_TILES; i++)
         {
-            u8 tile = footprintGfx[i];
+            u8 footprint1bpp = footprintGfx[i];
+
+            // Convert the 8 pixels in the above 1BPP byte to 4BPP.
+            // Each iteration creates one 4BPP byte (2 pixels),
+            // so we need 4 iterations to do all 8 pixels.
             for (j = 0; j < 4; j++)
             {
-                u8 value = ((tile >> (2 * j)) & 1 ? 2 : 0);
-                if (tile & (2 << (2 * j)))
-                    value |= 0x20;
-                footprint[tileIdx] = value;
+                u8 tile = 0;
+                if (footprint1bpp & (1 << (2 * j)))
+                    tile |= FOOTPRINT_COLOR_IDX; // Set pixel
+                if (footprint1bpp & (2 << (2 * j)))
+                    tile |= FOOTPRINT_COLOR_IDX << 4; // Set pixel
+                footprint4bpp[tileIdx] = tile;
                 tileIdx++;
             }
         }
     }
-    CopyToWindowPixelBuffer(windowId, footprint, sizeof(footprint), 0);
+    else
+    {
+        CpuFastFill(0, footprint4bpp, sizeof(footprint4bpp));
+    }
+    CopyToWindowPixelBuffer(windowId, footprint4bpp, sizeof(footprint4bpp), 0);
 }
 
 // Unused Ruby/Sapphire function.
@@ -4608,7 +4624,7 @@ static u32 GetPokedexMonPersonality(u16 species)
 u16 CreateMonSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
 {
     nationalNum = NationalPokedexNumToSpecies(nationalNum);
-    return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
+    return CreateMonPicSprite(nationalNum, FALSE, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
 }
 
 static u16 CreateSizeScreenTrainerPic(u16 species, s16 x, s16 y, s8 paletteSlot)
@@ -4643,7 +4659,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
             u8 firstLetter;
 
             species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
-            firstLetter = gSpeciesNames[species][0];
+            firstLetter = GetSpeciesName(species)[0];
             if (LETTER_IN_RANGE_UPPER(firstLetter, abcGroup) || LETTER_IN_RANGE_LOWER(firstLetter, abcGroup))
             {
                 sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];

@@ -140,7 +140,9 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     {
         u16 species; // 0x0
         u16 species2; // 0x2
-        u8 isEgg; // 0x4
+        u8 isEgg:1; // 0x4
+        u8 isShiny:1;
+        u8 padding:6;
         u8 level; // 0x5
         u8 ribbonCount; // 0x6
         u8 ailment; // 0x7
@@ -167,6 +169,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 sanity; // 0x35
         u8 OTName[17]; // 0x36
         u32 OTID; // 0x48
+        u8 teraType;
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
     u8 mode;
@@ -1502,28 +1505,14 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
         break;
     case 2:
-        if (sMonSummaryScreen->monList.mons == gPlayerParty || sMonSummaryScreen->mode == SUMMARY_MODE_BOX || sMonSummaryScreen->handleDeoxys == TRUE)
-        {
-            sum->nature = GetNature(mon);
-            sum->currentHP = GetMonData(mon, MON_DATA_HP);
-            sum->maxHP = GetMonData(mon, MON_DATA_MAX_HP);
-            sum->atk = GetMonData(mon, MON_DATA_ATK);
-            sum->def = GetMonData(mon, MON_DATA_DEF);
-            sum->spatk = GetMonData(mon, MON_DATA_SPATK);
-            sum->spdef = GetMonData(mon, MON_DATA_SPDEF);
-            sum->speed = GetMonData(mon, MON_DATA_SPEED);
-        }
-        else
-        {
-            sum->nature = GetNature(mon);
-            sum->currentHP = GetMonData(mon, MON_DATA_HP);
-            sum->maxHP = GetMonData(mon, MON_DATA_MAX_HP);
-            sum->atk = GetMonData(mon, MON_DATA_ATK2);
-            sum->def = GetMonData(mon, MON_DATA_DEF2);
-            sum->spatk = GetMonData(mon, MON_DATA_SPATK2);
-            sum->spdef = GetMonData(mon, MON_DATA_SPDEF2);
-            sum->speed = GetMonData(mon, MON_DATA_SPEED2);
-        }
+        sum->nature = GetNature(mon);
+        sum->currentHP = GetMonData(mon, MON_DATA_HP);
+        sum->maxHP = GetMonData(mon, MON_DATA_MAX_HP);
+        sum->atk = GetMonData(mon, MON_DATA_ATK);
+        sum->def = GetMonData(mon, MON_DATA_DEF);
+        sum->spatk = GetMonData(mon, MON_DATA_SPATK);
+        sum->spdef = GetMonData(mon, MON_DATA_SPDEF);
+        sum->speed = GetMonData(mon, MON_DATA_SPEED);
         break;
     case 3:
         GetMonData(mon, MON_DATA_OT_NAME, sum->OTName);
@@ -1538,6 +1527,8 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         break;
     default:
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
+        sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
+        sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
         return TRUE;
     }
     sMonSummaryScreen->switchCounter++;
@@ -2331,7 +2322,7 @@ static bool8 CanReplaceMove(void)
 {
     if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES
         || sMonSummaryScreen->newMove == MOVE_NONE
-        || IsMoveHm(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]) != TRUE)
+        || IsMoveHM(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]) != TRUE)
         return TRUE;
     else
         return FALSE;
@@ -2863,7 +2854,7 @@ static void PrintNotEggInfo(void)
     GetMonNickname(mon, gStringVar1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME, gStringVar1, 0, 1, 0, 1);
     strArray[0] = CHAR_SLASH;
-    StringCopy(&strArray[1], &gSpeciesNames[summary->species2][0]);
+    StringCopy(&strArray[1], &GetSpeciesName(summary->species2)[0]);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_SPECIES, strArray, 0, 1, 0, 1);
     PrintGenderSymbol(mon, summary->species2);
     PutWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME);
@@ -3918,6 +3909,8 @@ static void SetMonTypeIcons(void)
         {
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, TRUE);
         }
+        //Uncomment when Terastalizing is implemented
+        //SetTypeSpritePosAndPal(summary->teraType, 200, 48, SPRITE_ARR_ID_TYPE + 2);
     }
 }
 
@@ -4018,7 +4011,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
         (*state)++;
         return 0xFF;
     case 1:
-        pal = GetMonSpritePalStructFromOtIdPersonality(summary->species2, summary->OTID, summary->pid);
+        pal = GetMonSpritePalStructFromOtIdPersonality(summary->species2, summary->isShiny, summary->pid);
         LoadCompressedSpritePalette(pal);
         SetMultiuseSpriteTemplateToPokemon(pal->tag, B_POSITION_OPPONENT_LEFT);
         (*state)++;

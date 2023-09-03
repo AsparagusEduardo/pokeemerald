@@ -157,7 +157,8 @@ enum {
 
 struct PokemonJump_MonInfo
 {
-    u16 species;
+    u16 isShiny:1;
+    u16 species:15;
     u32 otId;
     u32 personality;
 };
@@ -839,6 +840,7 @@ static void InitJumpMonInfo(struct PokemonJump_MonInfo *monInfo, struct Pokemon 
 {
     monInfo->species = GetMonData(mon, MON_DATA_SPECIES);
     monInfo->otId = GetMonData(mon, MON_DATA_OT_ID);
+    monInfo->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
     monInfo->personality = GetMonData(mon, MON_DATA_PERSONALITY);
 }
 
@@ -2915,7 +2917,7 @@ static void CreateJumpMonSprite(struct PokemonJumpGfx *jumpGfx, struct PokemonJu
         spriteSheet.size = MON_PIC_SIZE;
         LoadSpriteSheet(&spriteSheet);
 
-        spritePalette.data = GetMonSpritePalFromSpeciesAndPersonality(monInfo->species, monInfo->otId, monInfo->personality);
+        spritePalette.data = GetMonSpritePalFromSpeciesAndPersonality(monInfo->species, monInfo->isShiny, monInfo->personality);
         spritePalette.tag = multiplayerId;
         LoadCompressedSpritePalette(&spritePalette);
 
@@ -4106,7 +4108,8 @@ static void Task_UpdateBonus(u8 taskId)
 struct MonInfoPacket
 {
     u8 id;
-    u16 species;
+    u16 isShiny:1;
+    u16 species:15;
     u32 personality;
     u32 otId;
 };
@@ -4115,6 +4118,7 @@ static void SendPacket_MonInfo(struct PokemonJump_MonInfo *monInfo)
 {
     struct MonInfoPacket packet;
     packet.id = PACKET_MON_INFO,
+    packet.isShiny = monInfo->isShiny,
     packet.species = monInfo->species,
     packet.otId = monInfo->otId,
     packet.personality = monInfo->personality,
@@ -4132,6 +4136,7 @@ static bool32 RecvPacket_MonInfo(int multiplayerId, struct PokemonJump_MonInfo *
     if (packet.id == PACKET_MON_INFO)
     {
         monInfo->species = packet.species;
+        monInfo->isShiny = packet.isShiny;
         monInfo->otId = packet.otId;
         monInfo->personality = packet.personality;
         return TRUE;

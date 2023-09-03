@@ -18,6 +18,7 @@
 #include "recorded_battle.h"
 #include "string_util.h"
 #include "strings.h"
+#include "test_runner.h"
 #include "text.h"
 #include "trainer_hill.h"
 #include "window.h"
@@ -142,8 +143,8 @@ static const u8 sText_PkmnRaisedSpDefALittle[] = _("{B_ATK_PREFIX2}'s {B_CURRENT
 static const u8 sText_PkmnRaisedDef[] = _("{B_ATK_PREFIX2}'s {B_CURRENT_MOVE}\nraised DEFENSE!");
 static const u8 sText_PkmnRaisedDefALittle[] = _("{B_ATK_PREFIX2}'s {B_CURRENT_MOVE}\nraised DEFENSE a little!");
 static const u8 sText_PkmnCoveredByVeil[] = _("{B_ATK_PREFIX2}'s party is covered\nby a veil!");
-static const u8 sText_PkmnUsedSafeguard[] = _("{B_DEF_NAME_WITH_PREFIX}'s party is protected\nby SAFEGUARD!");
-static const u8 sText_PkmnSafeguardExpired[] = _("{B_ATK_PREFIX3}'s party is no longer\nprotected by SAFEGUARD!");
+static const u8 sText_PkmnUsedSafeguard[] = _("{B_DEF_NAME_WITH_PREFIX}'s party is protected\nby Safeguard!");
+static const u8 sText_PkmnSafeguardExpired[] = _("{B_ATK_PREFIX3}'s party is no longer\nprotected by Safeguard!");
 static const u8 sText_PkmnWentToSleep[] = _("{B_ATK_NAME_WITH_PREFIX} went\nto sleep!");
 static const u8 sText_PkmnSleptHealthy[] = _("{B_ATK_NAME_WITH_PREFIX} slept and\nbecame healthy!");
 static const u8 sText_PkmnWhippedWhirlwind[] = _("{B_ATK_NAME_WITH_PREFIX} whipped\nup a whirlwind!");
@@ -350,7 +351,7 @@ static const u8 sText_DontLeaveBirch[] = _("PROF. BIRCH: Don't leave me like thi
 static const u8 sText_ButNothingHappened[] = _("But nothing happened!");
 static const u8 sText_ButItFailed[] = _("But it failed!");
 static const u8 sText_ItHurtConfusion[] = _("It hurt itself in its\nconfusion!");
-static const u8 sText_MirrorMoveFailed[] = _("The MIRROR MOVE failed!");
+static const u8 sText_MirrorMoveFailed[] = _("The Mirror Move failed!");
 static const u8 sText_StartedToRain[] = _("It started to rain!");
 static const u8 sText_DownpourStarted[] = _("A downpour started!"); // corresponds to DownpourText in pokegold and pokecrystal and is used by Rain Dance in GSC
 static const u8 sText_RainContinues[] = _("Rain continues to fall.");
@@ -783,7 +784,7 @@ static const u8 sText_AttackerMeltedTheIce[] = _("{B_ATK_NAME_WITH_PREFIX} melte
 static const u8 sText_TargetToughedItOut[] = _("{B_DEF_NAME_WITH_PREFIX} toughed it out\nto show you its best side!");
 static const u8 sText_AttackerLostElectricType[] = _("{B_ATK_NAME_WITH_PREFIX} used up all\nof its electricity!");
 static const u8 sText_AttackerSwitchedStatWithTarget[] = _("{B_ATK_NAME_WITH_PREFIX} switched {B_BUFF1}\nwith its target!");
-static const u8 sText_BeingHitChargedPkmnWithPower[] = _("Being hit by {B_CURRENT_MOVE}\ncharged {B_ATK_NAME_WITH_PREFIX} with power!");
+static const u8 sText_BeingHitChargedPkmnWithPower[] = _("Being hit by {B_CURRENT_MOVE}\ncharged {B_DEF_NAME_WITH_PREFIX} with power!");
 static const u8 sText_SunlightActivatedAbility[] = _("The harsh sunlight activated\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}!");
 static const u8 sText_StatWasHeightened[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1} was heightened!");
 static const u8 sText_ElectricTerrainActivatedAbility[] = _("The Electric Terrain activated\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}!");
@@ -799,9 +800,14 @@ static const u8 sText_ItemCuredSpeciesStatus[] = _("{B_BUFF1} had\nits status he
 static const u8 sText_ItemRestoredSpeciesPP[] = _("{B_BUFF1} had its\nPP restored!");
 static const u8 sText_AtkTrappedDef[] = _("{B_ATK_NAME_WITH_PREFIX} trapped\nthe {B_DEF_NAME_WITH_PREFIX}!");
 static const u8 sText_MirrorHerbCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} used its {B_LAST_ITEM}\nto mirror its opponent's stat changes!");
+static const u8 sText_PkmnItemMelted[] = _("{B_ATK_NAME_WITH_PREFIX} corroded\n{B_DEF_NAME_WITH_PREFIX}'s {B_LAST_ITEM}!");
+static const u8 sText_UltraBurstReacting[] = _("Bright light is about to\nburst out of {B_ATK_NAME_WITH_PREFIX}!");
+static const u8 sText_UltraBurstCompleted[] = _("{B_ATK_NAME_WITH_PREFIX} regained its\ntrue power through Ultra Burst!");
+
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNITEMMELTED - BATTLESTRINGS_TABLE_START] = sText_PkmnItemMelted,
     [STRINGID_MIRRORHERBCOPIED - BATTLESTRINGS_TABLE_START] = sText_MirrorHerbCopied,
     [STRINGID_THUNDERCAGETRAPPED - BATTLESTRINGS_TABLE_START] = sText_AtkTrappedDef,
     [STRINGID_ITEMRESTOREDSPECIESHEALTH - BATTLESTRINGS_TABLE_START] = sText_ItemRestoredSpeciesHealth,
@@ -1454,6 +1460,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNFROSTBITEHEALED - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealed,
     [STRINGID_PKMNFROSTBITEHEALED2 - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealed2,
     [STRINGID_PKMNFROSTBITEHEALEDBY - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealedBy,
+    [STRINGID_ULTRABURSTREACTING - BATTLESTRINGS_TABLE_START] = sText_UltraBurstReacting,
+    [STRINGID_ULTRABURSTCOMPLETED - BATTLESTRINGS_TABLE_START] = sText_UltraBurstCompleted,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1850,6 +1858,12 @@ const u16 gWeatherStartsStringIds[] =
     [WEATHER_ABNORMAL]           = STRINGID_ITISRAINING
 };
 
+const u16 gPrimalWeatherBlocksStringIds[] =
+{
+    [B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN]      = STRINGID_MOVEFIZZLEDOUTINTHEHEAVYRAIN,
+    [B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN]    = STRINGID_MOVEEVAPORATEDINTHEHARSHSUNLIGHT,
+};
+
 const u16 gInobedientStringIds[] =
 {
     [B_MSG_LOAFING]            = STRINGID_PKMNLOAFING,
@@ -1986,7 +2000,8 @@ const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Draw");
 static const u8 sText_SpaceIs[] = _(" is");
 static const u8 sText_ApostropheS[] = _("'s");
 
-// For displaying names of invalid moves
+// For displaying names of invalid moves.
+// This is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][17] =
 {
     [TYPE_NORMAL]   = _("a NORMAL move"),
@@ -2140,7 +2155,7 @@ static const u16 sGrammarMoveUsedTable[] =
     MOVE_COVET, 0
 };
 
-static const u8 sDummyWeirdStatusString[] = {EOS, EOS, EOS, EOS, EOS, EOS, EOS, EOS, 0, 0};
+static const u8 sText_EmptyStatus[] = _("$$$$$$$");
 
 static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
 {
@@ -2692,7 +2707,7 @@ void BufferStringBattle(u16 stringID)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
                 stringPtr = sText_LegendaryPkmnAppeared;
-            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)]])) // interesting, looks like they had something planned for wild double battles
+            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)]]))
                 stringPtr = sText_TwoWildPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
                 stringPtr = sText_WildPkmnAppearedPause;
@@ -2933,10 +2948,10 @@ static const u8 *TryGetStatusString(u8 *src)
     u32 chars1, chars2;
     u8 *statusPtr;
 
-    memcpy(status, sDummyWeirdStatusString, 8);
+    memcpy(status, sText_EmptyStatus, min(ARRAY_COUNT(status), ARRAY_COUNT(sText_EmptyStatus)));
 
     statusPtr = status;
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < ARRAY_COUNT(status); i++)
     {
         if (*src == EOS) break; // one line required to match -g
         *statusPtr = *src;
@@ -3074,7 +3089,8 @@ static const u8 *BattleStringGetPlayerName(u8 *text, u8 battlerId)
             toCpy = gSaveBlock2Ptr->playerName;
         break;
     case B_POSITION_PLAYER_RIGHT:
-        if ((gBattleTypeFlags & BATTLE_TYPE_RECORDED) && !(gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER)))
+        if (((gBattleTypeFlags & BATTLE_TYPE_RECORDED) && !(gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER)))
+            || gTestRunnerEnabled)
         {
             toCpy = gLinkPlayers[0].name;
         }
@@ -3127,11 +3143,16 @@ static const u8 *BattleStringGetOpponentClassByTrainerId(u16 trainerId)
     return toCpy;
 }
 
+// Ensure the defined length for an item name can contain the full defined length of a berry name.
+// This ensures that custom Enigma Berry names will fit in the text buffer at the top of BattleStringExpandPlaceholders.
+STATIC_ASSERT(BERRY_NAME_LENGTH + ARRAY_COUNT(sText_BerrySuffix) <= ITEM_NAME_LENGTH, BerryNameTooLong);
+
 u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
 {
     u32 dstID = 0; // if they used dstID, why not use srcID as well?
     const u8 *toCpy = NULL;
-    u8 text[30];
+    // This buffer may hold either the name of a trainer, pokemon, or item.
+    u8 text[max(max(max(32, TRAINER_NAME_LENGTH + 1), POKEMON_NAME_LENGTH + 1), ITEM_NAME_LENGTH)];
     u8 multiplayerId;
     s32 i;
 
@@ -3602,7 +3623,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
 {
     u32 srcID = 1;
     u32 value = 0;
-    u8 text[12];
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
     u16 hword;
 
     *dst = EOS;
@@ -3642,7 +3663,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
         case B_BUFF_MON_NICK_WITH_PREFIX: // poke nick with prefix
             if (GetBattlerSide(src[srcID + 1]) == B_SIDE_PLAYER)
             {
-                GetMonData(&gPlayerParty[src[srcID + 2]], MON_DATA_NICKNAME, text);
+                GetMonData(&gPlayerParty[src[srcID + 2]], MON_DATA_NICKNAME, nickname);
             }
             else
             {
@@ -3651,10 +3672,10 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
                 else
                     StringAppend(dst, sText_WildPkmnPrefix);
 
-                GetMonData(&gEnemyParty[src[srcID + 2]], MON_DATA_NICKNAME, text);
+                GetMonData(&gEnemyParty[src[srcID + 2]], MON_DATA_NICKNAME, nickname);
             }
-            StringGet_Nickname(text);
-            StringAppend(dst, text);
+            StringGet_Nickname(nickname);
+            StringAppend(dst, nickname);
             srcID += 3;
             break;
         case B_BUFF_STAT: // stats
@@ -3662,7 +3683,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcID += 2;
             break;
         case B_BUFF_SPECIES: // species name
-            GetSpeciesName(dst, T1_READ_16(&src[srcID + 1]));
+            StringCopy(dst, GetSpeciesName(T1_READ_16(&src[srcID + 1])));
             srcID += 3;
             break;
         case B_BUFF_MON_NICK: // poke nick without prefix
@@ -3892,11 +3913,11 @@ void SetPpNumbersPaletteInMoveSelection(void)
     else
         var = GetCurrentPpToMaxPpState(chooseMoveStruct->currentPp[gMoveSelectionCursor[gActiveBattler]], gBattleMoves[gMoveSelectionCursor[gActiveBattler]].pp);
 
-    gPlttBufferUnfaded[92] = palPtr[(var * 2) + 0];
-    gPlttBufferUnfaded[91] = palPtr[(var * 2) + 1];
+    gPlttBufferUnfaded[BG_PLTT_ID(5) + 12] = palPtr[(var * 2) + 0];
+    gPlttBufferUnfaded[BG_PLTT_ID(5) + 11] = palPtr[(var * 2) + 1];
 
-    CpuCopy16(&gPlttBufferUnfaded[92], &gPlttBufferFaded[92], sizeof(u16));
-    CpuCopy16(&gPlttBufferUnfaded[91], &gPlttBufferFaded[91], sizeof(u16));
+    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5) + 12], &gPlttBufferFaded[BG_PLTT_ID(5) + 12], PLTT_SIZEOF(1));
+    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5) + 11], &gPlttBufferFaded[BG_PLTT_ID(5) + 11], PLTT_SIZEOF(1));
 }
 
 u8 GetCurrentPpToMaxPpState(u8 currentPp, u8 maxPp)
@@ -3935,6 +3956,7 @@ u8 GetCurrentPpToMaxPpState(u8 currentPp, u8 maxPp)
 struct TrainerSlide
 {
     u16 trainerId;
+    bool8 isFrontierTrainer;
     const u8 *msgLastSwitchIn;
     const u8 *msgLastLowHp;
     const u8 *msgFirstDown;
@@ -3954,6 +3976,7 @@ static const struct TrainerSlide sTrainerSlides[] =
     Example:
     {
         .trainerId = TRAINER_WALLY_VR_2,
+        .isFrontierTrainer = FALSE,
         .msgLastSwitchIn = sText_AarghAlmostHadIt,
         .msgLastLowHp = sText_BoxIsFull,
         .msgFirstDown = sText_123Poof,
@@ -4046,7 +4069,9 @@ u32 ShouldDoTrainerSlide(u32 battlerId, u32 which)
 
     for (i = 0; i < ARRAY_COUNT(sTrainerSlides); i++)
     {
-        if (trainerId == sTrainerSlides[i].trainerId)
+        if (trainerId == sTrainerSlides[i].trainerId
+            && (((gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && sTrainerSlides[i].isFrontierTrainer)
+                || (!(gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && !sTrainerSlides[i].isFrontierTrainer)))
         {
             gBattleScripting.battler = battlerId;
             switch (which)

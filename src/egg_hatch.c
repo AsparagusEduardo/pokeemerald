@@ -332,7 +332,6 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     gameMet = GetMonData(egg, MON_DATA_MET_GAME);
     markings = GetMonData(egg, MON_DATA_MARKINGS);
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
-    isModernFatefulEncounter = GetMonData(egg, MON_DATA_MODERN_FATEFUL_ENCOUNTER);
 
     CreateMon(temp, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
 
@@ -350,7 +349,6 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     friendship = 120;
     SetMonData(temp, MON_DATA_FRIENDSHIP, &friendship);
     SetMonData(temp, MON_DATA_POKERUS, &pokerus);
-    SetMonData(temp, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
 
     *egg = *temp;
 }
@@ -369,7 +367,7 @@ static void AddHatchedMonToParty(u8 id)
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 
     species = GetMonData(mon, MON_DATA_SPECIES);
-    GetSpeciesName(name, species);
+    StringCopy(name, GetSpeciesName(species));
     SetMonData(mon, MON_DATA_NICKNAME, name);
 
     species = SpeciesToNationalPokedexNum(species);
@@ -396,7 +394,7 @@ void ScriptHatchMon(void)
 
 static bool8 _CheckDaycareMonReceivedMail(struct DayCare *daycare, u8 daycareId)
 {
-    u8 nickname[32];
+    u8 nickname[max(32, POKEMON_NAME_BUFFER_SIZE)];
     struct DaycareMon *daycareMon = &daycare->mons[daycareId];
 
     GetBoxMonNickname(&daycareMon->mon, nickname);
