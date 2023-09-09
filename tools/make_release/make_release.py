@@ -5,23 +5,25 @@ from cxxheaderparser.simple import parse_file
 # os and sys for interaction with the file system
 import os
 import sys
+import math
 import re
 import shutil
 
-# trusted_typedefs clarifies that the underlying construction doesn't need to be compared (unlike say two instances of a BoxPokemon struct) 
+# trusted_typedefs clarifies that the underlying construction doesn't need to be compared (unlike say two instances of a BoxPokemon struct)
+# it also includes the amount of bits it can store
 trusted_typedefs = {
-    'u8': [0, pow(2, 8) - 1],
-    'u16': [0, pow(2, 16) - 1],
-    'u32': [0, pow(2, 32) - 1],
-    'u64': [0, pow(2, 64) - 1],
-    's8': [-(pow(2, 7) - 1), pow(2, 7) - 1],
-    's16': [-(pow(2, 15) - 1), pow(2, 15) - 1],
-    's32': [-(pow(2, 31) - 1), pow(2, 31) - 1],
-    's64': [-(pow(2, 63) - 1), pow(2, 63) - 1],
-    'bool8': [0, 1],
-    'bool16': [0, 1],
-    'bool32': [0, 1],
-    'int': [0, 0]
+    'u8': 8,
+    'u16': 16,
+    'u32': 32,
+    'u64': 64,
+    's8': 8,
+    's16': 16,
+    's32': 32,
+    's64': 64,
+    'bool8': 8,
+    'bool16': 16,
+    'bool32': 32,
+    'int': 32
 }
 # ignoreable includes prevents the preprocessor from complaining about include files that don't exist that we don't need anyway
 ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
@@ -160,17 +162,54 @@ def out(str):
         f.write(str + '\n')
 
 # a hacky solution that replaces enums with their actual values, allowing the Evaluator to deal with it
-def parse_size(tokens, enumlist):
+def parse_size(tokens, enumlist, classlist):
     sizetokens = ""
+    doingsizeof = -1
     e = Evaluator()
     for x in tokens:
+        if doingsizeof > -1:
+            if str(x.value) in ['(', 'struct']:
+                continue
+            if str(x.value) == ")":
+                doingsizeof = -1
+                continue
+            sizetokens += str(get_size_of(str(x.value), enumlist, classlist))
+            continue
+        if str(x.value) == "sizeof":
+            doingsizeof = 0
+            continue
         if x.value in enumlist:
             sizetokens += str(enumlist[x.value])
         else:
             sizetokens += str(x.value)
     return e(sizetokens)
 
-def parse_field(field, enumlist):
+def get_size_of(field, enumlist, classlist):
+    out = 0
+    out2 = 0
+    activetype = ""
+    # flies through the struct and outputs the size
+    if not field in classlist:
+        out("Unable to find sizeof %s!" % field)
+        return(0)
+    for x in classlist[field].fields:
+        if (x.type.__class__.__name__ == "Type"):
+            if (activetype != x.type.typename.segments[0].name):
+                activetype = x.type.typename.segments[0].name
+                out += out2
+                out2 = 0
+            if (x.bits != None):
+                out2 += x.bits
+            else:
+                out2 += trusted_typedefs[activetype]
+        else:
+            out += out2
+            out2 = 0
+            out += trusted_typedefs[x.type.array_of.typename.segments[0].name] * int(parse_size(x.type.size.tokens, enumlist, classlist))
+    out += out2
+    return(math.ceil(out / 8))
+
+def parse_field(field, enumlist, classlist):
     cl = {}
     cl['name'] = field.name
     cl['type'] = field.type.__class__.__name__
@@ -197,13 +236,13 @@ def parse_field(field, enumlist):
         cl['kind'] = field.type.ptr_to.typename.segments[0].name
         cl['is_pointer'] = True
     if hasattr(field.type, 'size'):
-        cl['size'] = parse_size(field.type.size.tokens, enumlist)
+        cl['size'] = parse_size(field.type.size.tokens, enumlist, classlist)
     if hasattr(field.type, 'array_of'):
         if hasattr(field.type.array_of, 'size'):
-            cl['size2'] = parse_size(field.type.array_of.size.tokens, enumlist)
+            cl['size2'] = parse_size(field.type.array_of.size.tokens, enumlist, classlist)
         if hasattr(field.type.array_of, 'array_of'):
             if hasattr(field.type.array_of.array_of, 'size'):
-                cl['size3'] = parse_size(field.type.array_of.array_of.size.tokens, enumlist)
+                cl['size3'] = parse_size(field.type.array_of.array_of.size.tokens, enumlist, classlist)
     if (field.bits != None):
         cl['bits'] = field.bits
     return(cl)
@@ -270,8 +309,8 @@ def compareFields(fieldname, parentstructs, extratext):
             out("  " * inline  + "%s is a new field that was not present in the previous version" % x.name)
             addToGlobal(fieldname, parentstructs)
             continue
-        oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
-        newclass = parse_field(x, GlobalEnumsNew)
+        oldclass = parse_field(fields_old[x.name], GlobalEnumsOld, GlobalClassesOld)
+        newclass = parse_field(x, GlobalEnumsNew, GlobalClassesNew)
 
         if (x.name in fields_old_array):
             fields_old_array.remove(x.name)
@@ -555,26 +594,58 @@ def backupDump(structname, versionnumber, listofchanges, tobackup):
         # add "struct" etc if necessary
         if field_type.typename.classkey != None:
             out += "%s " % field_type.typename.classkey
-        out += field_type.typename.segments[0].name
-        # if the referenced struct is different from the modern one, refer to the old one
-        if field_type.typename.segments[0].name in listofchanges and field_type.typename.segments[0].name not in trusted_typedefs:
-            out += "_v%s" % versionnumber
-            if field_type.typename.segments[0].name in tobackup:
-                # postpone this dump for compiler purposes
-                return("")
-        out += " %s" % field.name
-        # add sizes for arrays
-        field_type = field.type
-        while hasattr(field_type, 'size'):
-            out += "[%s]" % int(parse_size(field_type.size.tokens, GlobalEnumsOld))
-            if (field_type.__class__.__name__ == "Array"):
-                field_type = field_type.array_of
-            else:
-                break
-        # add bits if necessary
-        if field.bits != None:
-            out += ":%s" % field.bits
-        out += ";\n"
+        if hasattr(field_type.typename.segments[0], 'name'):
+            out += field_type.typename.segments[0].name
+            # if the referenced struct is different from the modern one, refer to the old one
+            if field_type.typename.segments[0].name in listofchanges and field_type.typename.segments[0].name not in trusted_typedefs:
+                out += "_v%s" % versionnumber
+                if field_type.typename.segments[0].name in tobackup:
+                    # postpone this dump for compiler purposes
+                    return("")
+            out += " %s" % field.name
+            # add sizes for arrays
+            field_type = field.type
+            while hasattr(field_type, 'size'):
+                out += "[%s]" % int(parse_size(field_type.size.tokens, GlobalEnumsOld, GlobalClassesOld))
+                if (field_type.__class__.__name__ == "Array"):
+                    field_type = field_type.array_of
+                else:
+                    break
+            # add bits if necessary
+            if field.bits != None:
+                out += ":%s" % field.bits
+            out += ";\n"
+
+        else:
+            # we are dealing with a union
+            class_scope = GlobalClassesOld["__AnonymousName%s" % field.type.typename.segments[0].id]
+            out += "\n    {\n"
+
+            for x in class_scope.fields:
+                out += "        "
+                # this largely copies code from above
+                field_type = x.type
+                while (field_type.__class__.__name__ == "Array"):
+                    field_type = field_type.array_of
+                if field_type.typename.classkey != None:
+                    out += "%s " % field_type.typename.classkey
+                out += field_type.typename.segments[0].name
+                out += " %s" % x.name
+                # add sizes for arrays
+                field_type = x.type
+                while hasattr(field_type, 'size'):
+                    out += "[%s]" % int(parse_size(field_type.size.tokens, GlobalEnumsOld, GlobalClassesOld))
+                    if (field_type.__class__.__name__ == "Array"):
+                        field_type = field_type.array_of
+                    else:
+                        break
+                # add bits if necessary
+                if x.bits != None:
+                    out += ":%s" % x.bits
+                out += ";\n"
+
+            out += "    } %s;\n" % field.name
+        
     return (out + "};\n\n")
 
 """
