@@ -404,7 +404,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSkyDrop                 @ EFFECT_SKY_DROP
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXPANDING_FORCE
 	.4byte BattleScript_EffectMeteorBeam              @ EFFECT_METEOR_BEAM
-	.4byte BattleScript_EffectHit                     @ EFFECT_RISING_VOLTAGE
 	.4byte BattleScript_EffectHit                     @ EFFECT_BEAK_BLAST
 	.4byte BattleScript_EffectCourtChange             @ EFFECT_COURT_CHANGE
 	.4byte BattleScript_EffectSteelBeam               @ EFFECT_STEEL_BEAM
@@ -418,7 +417,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectTeatime                 @ EFFECT_TEATIME
 	.4byte BattleScript_EffectAttackUpUserAlly        @ EFFECT_ATTACK_UP_USER_ALLY
 	.4byte BattleScript_EffectShellTrap               @ EFFECT_SHELL_TRAP
-	.4byte BattleScript_EffectHit                     @ EFFECT_PSYBLADE
 	.4byte BattleScript_EffectHit                     @ EFFECT_HYDRO_STEAM
 	.4byte BattleScript_EffectHitSetEntryHazard       @ EFFECT_HIT_SET_ENTRY_HAZARD
 	.4byte BattleScript_EffectDireClaw                @ EFFECT_DIRE_CLAW

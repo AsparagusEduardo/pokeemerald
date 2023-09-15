@@ -8,6 +8,7 @@
 
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 #define FORM_SPECIES_END (0xffff)
+#define MOVE_ATTRIBUTES_END (0xffff)
 
 // Property labels for Get(Box)MonData / Set(Box)MonData
 enum {
@@ -334,6 +335,19 @@ struct SpeciesInfo /*0x24*/
  /* 0x20 */ u16 flags;
 };
 
+struct BattleMoveAttribute
+{
+    u16 type;
+    union {
+        struct {
+            uq4_12_t multiplier; 
+            union{
+                u32 terrain;
+            } condition;
+        } basePowerBoost;
+    } data;
+};
+
 struct BattleMove
 {
     u16 effect;
@@ -384,6 +398,7 @@ struct BattleMove
     u32 copycatBanned:1;
     u32 sleepTalkBanned:1;
     u32 instructBanned:1;
+    const struct BattleMoveAttribute *const attributes;
 };
 
 #define SPINDA_SPOT_WIDTH 16

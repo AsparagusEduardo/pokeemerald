@@ -8757,19 +8757,25 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_PSYCHIC_TERRAIN))
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
         break;
-    case EFFECT_RISING_VOLTAGE:
-        if (IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_ELECTRIC_TERRAIN))
-            basePower *= 2;
-        break;
     case EFFECT_BEAT_UP:
         #if B_BEAT_UP >= GEN_5
         basePower = CalcBeatUpPower();
         #endif
         break;
-    case EFFECT_PSYBLADE:
-        if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN))
-            basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
-        break;
+    }
+
+    if (gBattleMoves[move].attributes != NULL)
+    {
+        for (i = 0; gBattleMoves[move].attributes[i].type != MOVE_ATTRIBUTES_END; i++)
+        {
+            switch (gBattleMoves[move].attributes[i].type)
+            {
+            case MOVE_ATTRIBUTE_TYPE_FIELD_BP_BOOST:
+                if (IsBattlerTerrainAffected(battlerAtk, gBattleMoves[move].attributes[i].data.basePowerBoost.condition.terrain))
+                    basePower = uq4_12_multiply(basePower, gBattleMoves[move].attributes[i].data.basePowerBoost.multiplier);
+                break;
+            }
+        }
     }
 
     // Move-specific base power changes

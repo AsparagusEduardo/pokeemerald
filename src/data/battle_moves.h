@@ -1,3 +1,7 @@
+#define MOVE_ATTRIBUTES(...) (struct BattleMoveAttribute[]) { __VA_ARGS__, MOVE_ATTRIBUTES_END, }
+
+#define ATR_BP_BOOST_TERRAIN(_terrain, multi) { .type = MOVE_ATTRIBUTE_TYPE_FIELD_BP_BOOST, .data = { .basePowerBoost = { .condition = { .terrain = _terrain }, .multiplier = Q_4_12(multi) } } }
+
 const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 {
     [MOVE_NONE] =
@@ -12215,7 +12219,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_RISING_VOLTAGE] =
     {
-        .effect = EFFECT_RISING_VOLTAGE,
+        .effect = EFFECT_HIT,
         .power = 70,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
@@ -12225,6 +12229,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .attributes = MOVE_ATTRIBUTES(
+            ATR_BP_BOOST_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 2.0)
+        ),
     },
 
     [MOVE_TERRAIN_PULSE] =
@@ -13784,7 +13791,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_PSYBLADE] =
     {
-        .effect = EFFECT_PSYBLADE,
+        .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
@@ -13796,6 +13803,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .slicingMove = TRUE,
+        .attributes = MOVE_ATTRIBUTES(
+            ATR_BP_BOOST_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 1.5)
+        ),
     },
 
     [MOVE_HYDRO_STEAM] =

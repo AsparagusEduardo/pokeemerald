@@ -381,41 +381,39 @@
 #define EFFECT_SKY_DROP                     375
 #define EFFECT_EXPANDING_FORCE              376
 #define EFFECT_METEOR_BEAM                  377
-#define EFFECT_RISING_VOLTAGE               378
-#define EFFECT_BEAK_BLAST                   379
-#define EFFECT_COURT_CHANGE                 380
-#define EFFECT_STEEL_BEAM                   381
-#define EFFECT_EXTREME_EVOBOOST             382
-#define EFFECT_HIT_SET_REMOVE_TERRAIN       383 // genesis supernova
-#define EFFECT_DARK_VOID                    384
-#define EFFECT_SLEEP_HIT                    385
-#define EFFECT_DOUBLE_SHOCK                 386
-#define EFFECT_SPECIAL_ATTACK_UP_HIT        387
-#define EFFECT_VICTORY_DANCE                388
-#define EFFECT_TEATIME                      389
-#define EFFECT_ATTACK_UP_USER_ALLY          390 // Howl 6th Gen
-#define EFFECT_SHELL_TRAP                   391
-#define EFFECT_PSYBLADE                     392
-#define EFFECT_HYDRO_STEAM                  393
-#define EFFECT_HIT_SET_ENTRY_HAZARD         394
-#define EFFECT_DIRE_CLAW                    395
-#define EFFECT_BARB_BARRAGE                 396
-#define EFFECT_REVIVAL_BLESSING             397
-#define EFFECT_FROSTBITE_HIT                398
-#define EFFECT_SNOWSCAPE                    399
-#define EFFECT_TRIPLE_ARROWS                400
-#define EFFECT_INFERNAL_PARADE              401
-#define EFFECT_TAKE_HEART                   402
-#define EFFECT_AXE_KICK                     403
-#define EFFECT_COLLISION_COURSE             404
-#define EFFECT_SPIN_OUT                     405
-#define EFFECT_MAKE_IT_RAIN                 406
-#define EFFECT_CORROSIVE_GAS                407
-#define EFFECT_POPULATION_BOMB              408
-#define EFFECT_MORTAL_SPIN                  409
-#define EFFECT_GIGATON_HAMMER               410
-#define EFFECT_SALT_CURE                    411
+#define EFFECT_BEAK_BLAST                   378
+#define EFFECT_COURT_CHANGE                 379
+#define EFFECT_STEEL_BEAM                   380
+#define EFFECT_EXTREME_EVOBOOST             381
+#define EFFECT_HIT_SET_REMOVE_TERRAIN       382 // genesis supernova
+#define EFFECT_DARK_VOID                    383
+#define EFFECT_SLEEP_HIT                    384
+#define EFFECT_DOUBLE_SHOCK                 385
+#define EFFECT_SPECIAL_ATTACK_UP_HIT        386
+#define EFFECT_VICTORY_DANCE                387
+#define EFFECT_TEATIME                      388
+#define EFFECT_ATTACK_UP_USER_ALLY          389 // Howl 5th Gen
+#define EFFECT_SHELL_TRAP                   390
+#define EFFECT_HYDRO_STEAM                  391
+#define EFFECT_HIT_SET_ENTRY_HAZARD         392
+#define EFFECT_DIRE_CLAW                    393
+#define EFFECT_BARB_BARRAGE                 394
+#define EFFECT_REVIVAL_BLESSING             395
+#define EFFECT_FROSTBITE_HIT                396
+#define EFFECT_SNOWSCAPE                    397
+#define EFFECT_TRIPLE_ARROWS                398
+#define EFFECT_INFERNAL_PARADE              399
+#define EFFECT_TAKE_HEART                   400
+#define EFFECT_AXE_KICK                     401
+#define EFFECT_COLLISION_COURSE             402
+#define EFFECT_SPIN_OUT                     403
+#define EFFECT_MAKE_IT_RAIN                 404
+#define EFFECT_CORROSIVE_GAS                405
+#define EFFECT_POPULATION_BOMB              406
+#define EFFECT_MORTAL_SPIN                  407
+#define EFFECT_GIGATON_HAMMER               408
+#define EFFECT_SALT_CURE                    409
 
-#define NUM_BATTLE_MOVE_EFFECTS             412
+#define NUM_BATTLE_MOVE_EFFECTS             410
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

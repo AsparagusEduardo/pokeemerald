@@ -465,7 +465,6 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_SKY_DROP]                   = 0, // TODO: Assign points
     [EFFECT_EXPANDING_FORCE]            = 0, // TODO: Assign points
     [EFFECT_METEOR_BEAM]                = 0, // TODO: Assign points
-    [EFFECT_RISING_VOLTAGE]             = 0, // TODO: Assign points
     [EFFECT_BEAK_BLAST]                 = 0, // TODO: Assign points
     [EFFECT_COURT_CHANGE]               = 0, // TODO: Assign points
     [EFFECT_STEEL_BEAM]                 = 0, // TODO: Assign points
