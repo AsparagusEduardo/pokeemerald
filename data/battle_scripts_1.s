@@ -393,7 +393,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAuraWheel               @ EFFECT_AURA_WHEEL
 	.4byte BattleScript_EffectPhotonGeyser            @ EFFECT_PHOTON_GEYSER
 	.4byte BattleScript_EffectShellSideArm            @ EFFECT_SHELL_SIDE_ARM
-	.4byte BattleScript_EffectHit                     @ EFFECT_TERRAIN_PULSE
 	.4byte BattleScript_EffectJawLock                 @ EFFECT_JAW_LOCK
 	.4byte BattleScript_EffectNoRetreat               @ EFFECT_NO_RETREAT
 	.4byte BattleScript_EffectTarShot                 @ EFFECT_TAR_SHOT

@@ -338,14 +338,13 @@ struct SpeciesInfo /*0x24*/
 struct BattleMoveAttribute
 {
     u16 type;
+    union{
+        u32 terrain;
+    } condition;
     union {
-        struct {
-            uq4_12_t multiplier; 
-            union{
-                u32 terrain;
-            } condition;
-        } basePowerBoost;
-    } data;
+        uq4_12_t basePowerMultiplier; 
+        u8 moveType;
+    } effect;
 };
 
 struct BattleMove

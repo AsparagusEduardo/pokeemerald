@@ -5577,7 +5577,7 @@ void RunBattleScriptCommands(void)
 
 void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 {
-    u32 moveType, ateType, attackerAbility;
+    u32 moveType, ateType, attackerAbility, i;
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (move == MOVE_STRUGGLE)
@@ -5638,20 +5638,20 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             gBattleStruct->dynamicMoveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
     }
-    else if (gBattleMoves[move].effect == EFFECT_TERRAIN_PULSE)
+    else if (gBattleMoves[move].attributes != NULL)
     {
-        if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
+        for (i = 0; gBattleMoves[move].attributes[i].type != MOVE_ATTRIBUTES_END; i++)
         {
-            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-                gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_2;
-            else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
-                gBattleStruct->dynamicMoveType = TYPE_GRASS | F_DYNAMIC_TYPE_2;
-            else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
-                gBattleStruct->dynamicMoveType = TYPE_FAIRY | F_DYNAMIC_TYPE_2;
-            else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
-                gBattleStruct->dynamicMoveType = TYPE_PSYCHIC | F_DYNAMIC_TYPE_2;
-            else //failsafe
-                gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
+            switch (gBattleMoves[move].attributes[i].type)
+            {
+            case MOVE_ATTRIBUTE_TERRAIN_MOVE_TYPE:
+                if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
+                {
+                    if (gFieldStatuses & gBattleMoves[move].attributes[i].condition.terrain)
+                        gBattleStruct->dynamicMoveType = gBattleMoves[move].attributes[i].effect.moveType | F_DYNAMIC_TYPE_2;
+                }
+                break;
+            }
         }
     }
 

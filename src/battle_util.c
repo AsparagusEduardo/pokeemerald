@@ -8748,11 +8748,6 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         if (gFieldStatuses & STATUS_FIELD_GRAVITY)
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
         break;
-    case EFFECT_TERRAIN_PULSE:
-        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
-            && IsBattlerGrounded(battlerAtk))
-            basePower *= 2;
-        break;
     case EFFECT_EXPANDING_FORCE:
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_PSYCHIC_TERRAIN))
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
@@ -8770,9 +8765,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         {
             switch (gBattleMoves[move].attributes[i].type)
             {
-            case MOVE_ATTRIBUTE_TYPE_FIELD_BP_BOOST:
-                if (IsBattlerTerrainAffected(battlerAtk, gBattleMoves[move].attributes[i].data.basePowerBoost.condition.terrain))
-                    basePower = uq4_12_multiply(basePower, gBattleMoves[move].attributes[i].data.basePowerBoost.multiplier);
+            case MOVE_ATTRIBUTE_TERRAIN_BASE_POWER_MULT:
+                if (IsBattlerTerrainAffected(battlerAtk, gBattleMoves[move].attributes[i].condition.terrain))
+                    basePower = uq4_12_multiply(basePower, gBattleMoves[move].attributes[i].effect.basePowerMultiplier);
                 break;
             }
         }

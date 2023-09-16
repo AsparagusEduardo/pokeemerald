@@ -1,6 +1,7 @@
 #define MOVE_ATTRIBUTES(...) (struct BattleMoveAttribute[]) { __VA_ARGS__, MOVE_ATTRIBUTES_END, }
 
-#define ATR_BP_BOOST_TERRAIN(_terrain, multi) { .type = MOVE_ATTRIBUTE_TYPE_FIELD_BP_BOOST, .data = { .basePowerBoost = { .condition = { .terrain = _terrain }, .multiplier = Q_4_12(multi) } } }
+#define BASE_POWER_MULT_TERRAIN(_terrain, multi) { .type = MOVE_ATTRIBUTE_TERRAIN_BASE_POWER_MULT, .condition = { .terrain = _terrain }, .effect = { .basePowerMultiplier = Q_4_12(multi) } }
+#define MOVE_TYPE_TERRAIN(_terrain, _type) { .type = MOVE_ATTRIBUTE_TERRAIN_MOVE_TYPE, .condition = { .terrain = _terrain }, .effect = { .moveType = _type } }
 
 const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 {
@@ -12230,13 +12231,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .attributes = MOVE_ATTRIBUTES(
-            ATR_BP_BOOST_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 2.0)
+            BASE_POWER_MULT_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 2.0)
         ),
     },
 
     [MOVE_TERRAIN_PULSE] =
     {
-        .effect = EFFECT_TERRAIN_PULSE,
+        .effect = EFFECT_HIT,
         .power = 50,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -12247,6 +12248,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .pulseMove = TRUE,
+        .attributes = MOVE_ATTRIBUTES(
+            BASE_POWER_MULT_TERRAIN(STATUS_FIELD_TERRAIN_ANY, 2.0),
+            MOVE_TYPE_TERRAIN(STATUS_FIELD_GRASSY_TERRAIN, TYPE_GRASS),
+            MOVE_TYPE_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, TYPE_FAIRY),
+            MOVE_TYPE_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, TYPE_ELECTRIC),
+            MOVE_TYPE_TERRAIN(STATUS_FIELD_PSYCHIC_TERRAIN, TYPE_PSYCHIC)
+        ),
     },
 
     [MOVE_SKITTER_SMACK] =
@@ -13804,7 +13812,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .slicingMove = TRUE,
         .attributes = MOVE_ATTRIBUTES(
-            ATR_BP_BOOST_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 1.5)
+            BASE_POWER_MULT_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, 1.5)
         ),
     },
 
