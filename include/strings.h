@@ -3034,6 +3034,10 @@ extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];
 
+// Exp. Share
+extern const u8 gText_ExpShareOn[];
+extern const u8 gText_ExpShareOff[];
+
 // Save Migration
 extern const u8 gText_SaveFileOldUpdated[];
 extern const u8 gText_SaveFileOldErrored[];
