@@ -375,7 +375,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCoaching                @ EFFECT_COACHING
 	.4byte BattleScript_EffectHit                     @ EFFECT_LASH_OUT
 	.4byte BattleScript_EffectHit                     @ EFFECT_GRASSY_GLIDE
-	.4byte BattleScript_EffectRemoveTerrain           @ EFFECT_REMOVE_TERRAIN
 	.4byte BattleScript_EffectHit                     @ EFFECT_DYNAMAX_DOUBLE_DMG
 	.4byte BattleScript_EffectDecorate                @ EFFECT_DECORATE
 	.4byte BattleScript_EffectHit                     @ EFFECT_SNIPE_SHOT
@@ -1249,33 +1248,6 @@ BattleScript_DecorateBoostSpAtk:
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_MoveEnd
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
-
-BattleScript_EffectRemoveTerrain:
-	attackcanceler
-	attackstring
-	ppreduce
-	jumpifword CMP_NO_COMMON_BITS, gFieldStatuses, STATUS_FIELD_TERRAIN_ANY, BattleScript_ButItFailed
-	critcalc
-	damagecalc
-	adjustdamage
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	removeterrain
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_TERRAINENDS_COUNT, BattleScript_MoveEnd
-	printfromtable gTerrainEndingStringIds
-	waitmessage B_WAIT_TIME_LONG
-	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
-	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectCoaching:
@@ -2559,7 +2531,7 @@ BattleScript_EffectPsychicTerrain:
 	attackcanceler
 	attackstring
 	ppreduce
-	setterrain BattleScript_ButItFailed
+	setremoveterrain BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printfromtable gTerrainStringIds
@@ -6802,7 +6774,7 @@ BattleScript_MagicRoomEnds::
 	end2
 
 BattleScript_TerrainEnds_Ret::
-	printfromtable gTerrainEndingStringIds
+	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
 	return
@@ -8750,6 +8722,17 @@ BattleScript_ActivateSwitchInAbilities_Increment:
 	copybyte gBattlerAttacker, sBATTLER
 	return
 
+BattleScript_ActivateTerrainAbilities:
+	savetarget
+	setbyte gBattlerTarget, 0
+BattleScript_ActivateTerrainAbilities_Loop:
+	activateterrainchangeabilities BS_ATTACKER
+BattleScript_ActivateTerrainAbilities_Increment:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_ActivateTerrainAbilities_Loop
+	restoretarget
+	return
+
 BattleScript_ElectricSurgeActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
@@ -9269,6 +9252,7 @@ BattleScript_SpikyShieldEffect::
 	printstring STRINGID_PKMNHURTSWITH
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 BattleScript_SpikyShieldRet::
 	return
 
@@ -9280,6 +9264,7 @@ BattleScript_KingsShieldEffect::
 	copybyte sBATTLER, gBattlerTarget
 	copybyte gBattlerTarget, gBattlerAttacker
 	copybyte gBattlerAttacker, sBATTLER
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 	return
 
 BattleScript_BanefulBunkerEffect::
@@ -9287,6 +9272,7 @@ BattleScript_BanefulBunkerEffect::
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	seteffectsecondary
 	setmoveeffect 0
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 	return
 
 BattleScript_CuteCharmActivates::
@@ -10101,11 +10087,55 @@ BattleScript_ExtremeEvoboostEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectHitSetRemoveTerrain:
-	call BattleScript_EffectHit_Ret
-	setterrain BattleScript_TryFaint
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	jumpifargument ARG_TRY_REMOVE_TERRAIN_FAIL, BattleScript_RemoveTerrain
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	setremoveterrain BattleScript_TryFaint
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
 	printfromtable gTerrainStringIds
+	waitmessage B_WAIT_TIME_LONG
 BattleScript_TryFaint:
+	tryfaintmon BS_TARGET
+	goto BattleScript_MoveEnd
+
+BattleScript_RemoveTerrain:
+	jumpifterrainaffected BS_TARGET, STATUS_FIELD_TERRAIN_ANY, BattleScript_RemoveTerrain_Cont
+	goto BattleScript_ButItFailed
+BattleScript_RemoveTerrain_Cont:
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	removeterrain
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
+	printfromtable gTerrainStringIds
+	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
