@@ -1,3 +1,5 @@
+#include "constants/moves.h"
+
 #define EGG_MOVES_SPECIES_OFFSET 20000
 #define EGG_MOVES_TERMINATOR 0xFFFF
 #define egg_moves(species, moves...) (SPECIES_##species + EGG_MOVES_SPECIES_OFFSET), moves
@@ -2579,7 +2581,7 @@ const u16 gEggMoves[] = {
         MOVE_FLOWER_SHIELD,
         MOVE_GRASSY_TERRAIN),
 
-    egg_moves(SHELLOS,
+    egg_moves(SHELLOS_WEST_SEA,
         MOVE_COUNTER,
         MOVE_MIRROR_COAT,
         MOVE_STOCKPILE,
@@ -3865,7 +3867,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDEAVOR,
         MOVE_AMNESIA),
 
-    egg_moves(ORICORIO,
+    egg_moves(ORICORIO_BAILE,
         MOVE_PLUCK,
         MOVE_TAILWIND,
         MOVE_SAFEGUARD,
@@ -4428,7 +4430,7 @@ const u16 gEggMoves[] = {
 		MOVE_STOCKPILE,
 		MOVE_SWALLOW),
 
-	egg_moves(TAUROS_PALDEAN,
+	egg_moves(TAUROS_PALDEAN_COMBAT_BREED,
 		MOVE_CURSE,
 		MOVE_ENDEAVOR),
 
@@ -4510,7 +4512,25 @@ const u16 gEggMoves[] = {
     MOVE_SYNTHESIS,
     MOVE_WEATHER_BALL),
 
-    egg_moves(SQUAWKABILLY,
+    egg_moves(SQUAWKABILLY_GREEN_PLUMAGE,
+    MOVE_DOUBLE_EDGE,
+    MOVE_FINAL_GAMBIT,
+    MOVE_FLATTER,
+    MOVE_PARTING_SHOT),
+
+    egg_moves(SQUAWKABILLY_BLUE_PLUMAGE,
+    MOVE_DOUBLE_EDGE,
+    MOVE_FINAL_GAMBIT,
+    MOVE_FLATTER,
+    MOVE_PARTING_SHOT),
+
+    egg_moves(SQUAWKABILLY_YELLOW_PLUMAGE,
+    MOVE_DOUBLE_EDGE,
+    MOVE_FINAL_GAMBIT,
+    MOVE_FLATTER,
+    MOVE_PARTING_SHOT),
+
+    egg_moves(SQUAWKABILLY_WHITE_PLUMAGE,
     MOVE_DOUBLE_EDGE,
     MOVE_FINAL_GAMBIT,
     MOVE_FLATTER,
@@ -4672,7 +4692,17 @@ const u16 gEggMoves[] = {
     MOVE_THRASH,
     MOVE_YAWN),
 
-    egg_moves(TATSUGIRI,
+    egg_moves(TATSUGIRI_CURLY,
+    MOVE_BATON_PASS,
+    MOVE_COUNTER,
+    MOVE_RAPID_SPIN),
+
+    egg_moves(TATSUGIRI_DROOPY,
+    MOVE_BATON_PASS,
+    MOVE_COUNTER,
+    MOVE_RAPID_SPIN),
+
+    egg_moves(TATSUGIRI_STRETCHY,
     MOVE_BATON_PASS,
     MOVE_COUNTER,
     MOVE_RAPID_SPIN),
