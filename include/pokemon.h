@@ -303,7 +303,7 @@ struct BattlePokemon
     /*0x59*/ u8 metLevel;
 };
 
-struct SpeciesInfo /*0x24*/
+struct SpeciesInfo /*0x8C*/
 {
  /* 0x00 */ u8 baseHP;
  /* 0x01 */ u8 baseAttack;
@@ -313,8 +313,7 @@ struct SpeciesInfo /*0x24*/
  /* 0x05 */ u8 baseSpDefense;
  /* 0x06 */ u8 types[2];
  /* 0x08 */ u8 catchRate;
- /* 0x22 */ u8 gigantamax:1;
- /* 0x09 padding */
+ /* 0x09 */ u8 padding1;
  /* 0x0A */ u16 expYield; // expYield was changed from u8 to u16 for the new Exp System.
  /* 0x0C */ u16 evYield_HP:2;
             u16 evYield_Attack:2;
@@ -322,6 +321,7 @@ struct SpeciesInfo /*0x24*/
             u16 evYield_Speed:2;
  /* 0x0D */ u16 evYield_SpAttack:2;
             u16 evYield_SpDefense:2;
+            u16 padding2:4;
  /* 0x0E */ u16 itemCommon;
  /* 0x10 */ u16 itemRare;
  /* 0x12 */ u8 genderRatio;
@@ -331,10 +331,51 @@ struct SpeciesInfo /*0x24*/
  /* 0x16 */ u8 eggGroups[2];
  /* 0x18 */ u16 abilities[NUM_ABILITY_SLOTS]; // 3 abilities, no longer u8 because we have over 255 abilities now.
  /* 0x1E */ u8 safariZoneFleeRate;
- /* 0x1F */ u8 bodyColor : 7;
+            // Pokédex data
+ /* 0x1F */ u8 categoryName[13];
+ /* 0x2C */ u16 cryId;
+ /* 0x2E */ u16 natDexNum;
+ /* 0x30 */ u16 height; //in decimeters
+ /* 0x32 */ u16 weight; //in hectograms
+ /* 0x34 */ u16 pokemonScale;
+ /* 0x36 */ u16 pokemonOffset;
+ /* 0x38 */ u16 trainerScale;
+ /* 0x3A */ u16 trainerOffset;
+ /* 0x3C */ const u8 *description;
+ /* 0x40 */ u8 bodyColor : 7;
+            // Graphical Data
             u8 noFlip : 1;
- /* 0x20 */ u16 flags;
- /* 0x23*/  u16 cryId;
+ /* 0x41 */ u8 frontAnimDelay;
+ /* 0x42 */ u8 frontAnimId;
+ /* 0x43 */ u8 backAnimId;
+ /* 0x44 */ const union AnimCmd *const *frontAnimFrames;
+ /* 0x48 */ const u32 *const frontPic;
+ /* 0x4C */ const u32 *const frontPicFemale;
+ /* 0x50 */ const u32 *const backPic;
+ /* 0x54 */ const u32 *const backPicFemale;
+ /* 0x58 */ const u32 *const palette;
+ /* 0x5C */ const u32 *const paletteFemale;
+ /* 0x60 */ const u32 *const shinyPalette;
+ /* 0x64 */ const u32 *const shinyPaletteFemale;
+ /* 0x68 */ const u8 *const iconSprite;
+ /* 0x6C */ const u8 *const iconSpriteFemale;
+ /* 0x70 */ const u8 *const footprint;
+            // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
+ /* 0x74 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
+ /* 0x75 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0x76 */ u8 backPicSize; // The dimensions of this drawn pixel area.
+ /* 0x77 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0x78 */ u8 iconPalIndex:3;
+            u8 iconPalIndexFemale:3;
+            u8 padding3:2;
+ /* 0x79 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
+            // Flags
+ /* 0x7A */ u32 flags:31;
+ /* 0x7C */ u32 gigantamax:1;
+            // Move Data
+ /* 0x80 */ const struct LevelUpMove *const levelUpLearnset;
+ /* 0x84 */ const u16 *const teachableLearnset;
+ /* 0x88 */ const struct Evolution *const evolutions;
 };
 
 struct BattleMove
