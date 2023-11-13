@@ -2352,7 +2352,7 @@ Cry_Darkrai::
 	.incbin "sound/direct_sound_samples/cries/darkrai.bin"
 
 	.align 2
-Cry_Shaymin::
+Cry_ShayminLand::
 	.incbin "sound/direct_sound_samples/cries/shaymin.bin"
 
 	.align 2
@@ -2950,11 +2950,11 @@ Cry_Virizion::
 	.incbin "sound/direct_sound_samples/cries/virizion.bin"
 
 	.align 2
-Cry_Tornadus::
+Cry_TornadusIncarnate::
 	.incbin "sound/direct_sound_samples/cries/tornadus.bin"
 
 	.align 2
-Cry_Thundurus::
+Cry_ThundurusIncarnate::
 	.incbin "sound/direct_sound_samples/cries/thundurus.bin"
 
 	.align 2
@@ -2966,7 +2966,7 @@ Cry_Zekrom::
 	.incbin "sound/direct_sound_samples/cries/zekrom.bin"
 
 	.align 2
-Cry_Landorus::
+Cry_LandorusIncarnate::
 	.incbin "sound/direct_sound_samples/cries/landorus.bin"
 
 	.align 2
@@ -3260,7 +3260,7 @@ Cry_Yveltal::
 	.incbin "sound/direct_sound_samples/cries/yveltal.bin"
 
 	.align 2
-Cry_Zygarde::
+Cry_Zygarde50::
 	.incbin "sound/direct_sound_samples/cries/zygarde.bin"
 
 	.align 2
@@ -3268,7 +3268,7 @@ Cry_Diancie::
 	.incbin "sound/direct_sound_samples/cries/diancie.bin"
 
 	.align 2
-Cry_Hoopa::
+Cry_HoopaConfined::
 	.incbin "sound/direct_sound_samples/cries/hoopa.bin"
 
 	.align 2
@@ -3354,7 +3354,7 @@ Cry_Crabominable::
 	.incbin "sound/direct_sound_samples/cries/crabominable.bin"
 
 	.align 2
-Cry_Oricorio::
+Cry_OricorioBaile::
 	.incbin "sound/direct_sound_samples/cries/oricorio.bin"
 
 	.align 2
@@ -3370,11 +3370,11 @@ Cry_Rockruff::
 	.incbin "sound/direct_sound_samples/cries/rockruff.bin"
 
 	.align 2
-Cry_Lycanroc::
+Cry_LycanrocMidday::
 	.incbin "sound/direct_sound_samples/cries/lycanroc.bin"
 
 	.align 2
-Cry_Wishiwashi::
+Cry_WishiwashiSolo::
 	.incbin "sound/direct_sound_samples/cries/wishiwashi.bin"
 
 	.align 2
@@ -3788,7 +3788,7 @@ Cry_Toxel::
 	.incbin "sound/direct_sound_samples/cries/toxel.bin"
 
 	.align 2
-Cry_Toxtricity::
+Cry_ToxtricityAmped::
 	.incbin "sound/direct_sound_samples/cries/toxtricity.bin"
 
 	.align 2
@@ -3892,15 +3892,15 @@ Cry_Stonjourner::
 	.incbin "sound/direct_sound_samples/cries/stonjourner.bin"
 
 	.align 2
-Cry_Eiscue::
+Cry_EiscueIceFace::
 	.incbin "sound/direct_sound_samples/cries/eiscue.bin"
 
 	.align 2
-Cry_Indeedee::
+Cry_IndeedeeMale::
 	.incbin "sound/direct_sound_samples/cries/indeedee.bin"
 
 	.align 2
-Cry_Morpeko::
+Cry_MorpekoFullBelly::
 	.incbin "sound/direct_sound_samples/cries/morpeko.bin"
 
 	.align 2
@@ -3944,11 +3944,11 @@ Cry_Dragapult::
 	.incbin "sound/direct_sound_samples/cries/dragapult.bin"
 
 	.align 2
-Cry_Zacian::
+Cry_ZacianHeroOfManyBattles::
 	.incbin "sound/direct_sound_samples/cries/zacian.bin"
 
 	.align 2
-Cry_Zamazenta::
+Cry_ZamazentaHeroOfManyBattles::
 	.incbin "sound/direct_sound_samples/cries/zamazenta.bin"
 
 	.align 2
@@ -3960,7 +3960,7 @@ Cry_Kubfu::
 	.incbin "sound/direct_sound_samples/cries/kubfu.bin"
 
 	.align 2
-Cry_Urshifu::
+Cry_UrshifuSingleStrikeStyle::
 	.incbin "sound/direct_sound_samples/cries/urshifu.bin"
 
 	.align 2
@@ -4012,7 +4012,7 @@ Cry_Overqwil::
 	.incbin "sound/direct_sound_samples/cries/overqwil.bin"
 
 	.align 2
-Cry_Enamorus::
+Cry_EnamorusIncarnate::
 	.incbin "sound/direct_sound_samples/cries/enamorus.bin"
 
 .endif
@@ -4407,7 +4407,7 @@ Cry_Lechonk::
     .incbin "sound/direct_sound_samples/cries/lechonk.bin"
 
     .align 2
-Cry_Oinkologne::
+Cry_OinkologneMale::
     .incbin "sound/direct_sound_samples/cries/oinkologne.bin"
 
     .align 2
@@ -4447,7 +4447,7 @@ Cry_Tandemaus::
     .incbin "sound/direct_sound_samples/cries/tandemaus.bin"
 
     .align 2
-Cry_Maushold::
+Cry_MausholdFamilyOfThree::
     .incbin "sound/direct_sound_samples/cries/maushold.bin"
 
     .align 2
@@ -4607,7 +4607,7 @@ Cry_Finizen::
     .incbin "sound/direct_sound_samples/cries/finizen.bin"
 
     .align 2
-Cry_Palafin::
+Cry_PalafinZero::
     .incbin "sound/direct_sound_samples/cries/palafin.bin"
 
     .align 2
@@ -4667,7 +4667,7 @@ Cry_Dondozo::
     .incbin "sound/direct_sound_samples/cries/dondozo.bin"
 
     .align 2
-Cry_Tatsugiri::
+Cry_TatsugiriCurly::
     .incbin "sound/direct_sound_samples/cries/tatsugiri.bin"
 
     .align 2

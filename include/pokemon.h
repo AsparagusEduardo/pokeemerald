@@ -313,6 +313,7 @@ struct SpeciesInfo /*0x24*/
  /* 0x05 */ u8 baseSpDefense;
  /* 0x06 */ u8 types[2];
  /* 0x08 */ u8 catchRate;
+ /* 0x22 */ u8 gigantamax:1;
  /* 0x09 padding */
  /* 0x0A */ u16 expYield; // expYield was changed from u8 to u16 for the new Exp System.
  /* 0x0C */ u16 evYield_HP:2;
@@ -333,7 +334,7 @@ struct SpeciesInfo /*0x24*/
  /* 0x1F */ u8 bodyColor : 7;
             u8 noFlip : 1;
  /* 0x20 */ u16 flags;
- /* 0x22 */ u8 gigantamax:1;
+ /* 0x23*/  u16 cryId;
 };
 
 struct BattleMove
@@ -631,5 +632,6 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
 bool32 IsSpeciesEnabled(u16 species);
+u16 GetCryIdBySpecies(u16 species);
 
 #endif // GUARD_POKEMON_H
