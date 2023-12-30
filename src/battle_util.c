@@ -7790,6 +7790,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
         }
         break;
     case ITEMEFFECT_KINGSROCK:
+    {
         bool8 shouldFlinch = FALSE;
 
         if(gBattleMoveDamage != 0)
@@ -7858,6 +7859,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
             BattleScriptPop();
         }
         break;
+    }
     case ITEMEFFECT_LIFEORB_SHELLBELL:
         // Occur after the final hit of a multi-strike move
         switch (atkHoldEffect)
