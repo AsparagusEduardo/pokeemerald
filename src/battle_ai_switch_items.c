@@ -320,7 +320,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))])
+        if (IS_BATTLER_ABSENT(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
             battlerIn2 = battler;
         else
             battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
@@ -645,7 +645,7 @@ static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
     u32 opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
     u32 opposingBattler = GetBattlerAtPosition(opposingPosition);
 
-    if (!(gAbsentBattlerFlags & gBitTable[opposingBattler]))
+    if (!IS_BATTLER_ABSENT(opposingBattler))
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
@@ -667,7 +667,7 @@ static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
 
     opposingBattler = GetBattlerAtPosition(BATTLE_PARTNER(opposingPosition));
 
-    if (!(gAbsentBattlerFlags & gBitTable[opposingBattler]))
+    if (!IS_BATTLER_ABSENT(opposingBattler))
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
@@ -723,7 +723,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 modu
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))])
+        if (IS_BATTLER_ABSENT(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
             battlerIn2 = battler;
         else
             battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
@@ -804,7 +804,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         {
             battlerIn1 = battler;
-            if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))])
+            if (IS_BATTLER_ABSENT(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
                 battlerIn2 = battler;
             else
                 battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
@@ -957,7 +957,7 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))])
+        if (IS_BATTLER_ABSENT(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
             battlerIn2 = battler;
         else
             battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
@@ -1913,13 +1913,13 @@ u8 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))])
+        if (IS_BATTLER_ABSENT(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
             battlerIn2 = battler;
         else
             battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
 
         opposingBattler = BATTLE_OPPOSITE(battlerIn1);
-        if (gAbsentBattlerFlags & gBitTable[opposingBattler])
+        if (IS_BATTLER_ABSENT(opposingBattler))
             opposingBattler ^= BIT_FLANK;
     }
     else

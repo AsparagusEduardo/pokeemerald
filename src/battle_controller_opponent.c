@@ -556,7 +556,7 @@ static void OpponentHandleChooseMove(u32 battler)
                     if (GetBattlerMoveTargetType(battler, chosenMove) & MOVE_TARGET_BOTH)
                     {
                         gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-                        if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+                        if (IS_BATTLER_ABSENT(gBattlerTarget))
                             gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
                     }
                     if (ShouldUseZMove(battler, gBattlerTarget, chosenMove))

@@ -1312,7 +1312,7 @@ static void Cmd_attackcanceler(void)
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_OFF
     && GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+    && !(IS_BATTLER_ABSENT(gBattlerTarget))
     && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
@@ -3975,7 +3975,7 @@ static void Cmd_tryfaintmon(void)
             destinyBondBattler = gBattlerAttacker;
             faintScript = BattleScript_FaintTarget;
         }
-        if (!(gAbsentBattlerFlags & gBitTable[battler])
+        if (!(IS_BATTLER_ABSENT(battler))
          && gBattleMons[battler].hp == 0)
         {
             gHitMarker |= HITMARKER_FAINTED(battler);
@@ -4422,11 +4422,11 @@ static void Cmd_getexp(void)
                     // get exp getter battler
                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                     {
-                        if (gBattlerPartyIndexes[2] == *expMonId && !(gAbsentBattlerFlags & gBitTable[2]))
+                        if (gBattlerPartyIndexes[2] == *expMonId && !(IS_BATTLER_ABSENT(2)))
                             gBattleStruct->expGetterBattlerId = 2;
                         else
                         {
-                            if (!(gAbsentBattlerFlags & gBitTable[0]))
+                            if (!(IS_BATTLER_ABSENT(0)))
                                 gBattleStruct->expGetterBattlerId = 0;
                             else
                                 gBattleStruct->expGetterBattlerId = 2;
@@ -5814,7 +5814,7 @@ static void Cmd_moveend(void)
                         gBattleStruct->dynamax.lastUsedBaseMove = gBattleStruct->dynamax.baseMove[gBattlerAttacker];
                 }
             }
-            if (!(gAbsentBattlerFlags & gBitTable[gBattlerAttacker])
+            if (!(IS_BATTLER_ABSENT(gBattlerAttacker))
                 && !(gBattleStruct->absentBattlerFlags & gBitTable[gBattlerAttacker])
                 && gMovesInfo[originallyUsedMove].effect != EFFECT_BATON_PASS
                 && gMovesInfo[originallyUsedMove].effect != EFFECT_HEALING_WISH)
@@ -5857,7 +5857,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_MIRROR_MOVE: // mirror move
-            if (!(gAbsentBattlerFlags & gBitTable[gBattlerAttacker])
+            if (!(IS_BATTLER_ABSENT(gBattlerAttacker))
                 && !(gBattleStruct->absentBattlerFlags & gBitTable[gBattlerAttacker])
                 && !gMovesInfo[originallyUsedMove].mirrorMoveBanned
                 && gHitMarker & HITMARKER_OBEYS
@@ -6760,7 +6760,7 @@ static void Cmd_openpartyscreen(void)
                 hasReplacement_2 = gSpecialStatuses[2].faintedHasReplacement;
                 if (!hasReplacement_2 && hitmarkerFaintBits != 0)
                 {
-                    if (gAbsentBattlerFlags & gBitTable[0])
+                    if (IS_BATTLER_ABSENT(0))
                         battler = 2;
                     else
                         battler = 0;
@@ -6776,7 +6776,7 @@ static void Cmd_openpartyscreen(void)
                 hasReplacement_3 = gSpecialStatuses[3].faintedHasReplacement;
                 if (!hasReplacement_3 && hitmarkerFaintBits != 0)
                 {
-                    if (gAbsentBattlerFlags & gBitTable[1])
+                    if (IS_BATTLER_ABSENT(1))
                         battler = 3;
                     else
                         battler = 1;
@@ -6897,7 +6897,7 @@ static void Cmd_openpartyscreen(void)
             else
             {
                 u32 battlerOpposite = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-                if (gAbsentBattlerFlags & gBitTable[battlerOpposite])
+                if (IS_BATTLER_ABSENT(battlerOpposite))
                     battlerOpposite ^= BIT_FLANK;
 
                 BtlController_EmitLinkStandbyMsg(battlerOpposite, BUFFER_A, LINK_STANDBY_MSG_ONLY, FALSE);
@@ -7184,7 +7184,7 @@ static void Cmd_switchineffects(void)
             gBattlerFainted++;
             while (1)
             {
-                if (hitmarkerFaintBits & gBitTable[gBattlerFainted] && !(gAbsentBattlerFlags & gBitTable[gBattlerFainted]))
+                if (hitmarkerFaintBits & gBitTable[gBattlerFainted] && !(IS_BATTLER_ABSENT(gBattlerFainted)))
                     break;
                 if (gBattlerFainted >= gBattlersCount)
                     break;
@@ -12361,7 +12361,7 @@ static void Cmd_updatestatusicon(void)
     else
     {
         battler = gBattlerAttacker;
-        if (!(gAbsentBattlerFlags & gBitTable[battler]))
+        if (!(IS_BATTLER_ABSENT(battler)))
         {
             BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
             MarkBattlerForControllerExec(battler);
@@ -12369,7 +12369,7 @@ static void Cmd_updatestatusicon(void)
         if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
         {
             battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
-            if (!(gAbsentBattlerFlags & gBitTable[battler]))
+            if (!(IS_BATTLER_ABSENT(battler)))
             {
                 BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
                 MarkBattlerForControllerExec(battler);
@@ -12402,7 +12402,7 @@ static void Cmd_setfocusenergy(void)
 {
     CMD_ARGS();
 
-    if ((gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_CHEER && (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || (gAbsentBattlerFlags & gBitTable[gBattlerTarget])))
+    if ((gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_CHEER && (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || (IS_BATTLER_ABSENT(gBattlerTarget))))
      || gBattleMons[gBattlerTarget].status2 & STATUS2_FOCUS_ENERGY_ANY)
     {
         gMoveResultFlags |= MOVE_RESULT_FAILED;
@@ -13059,7 +13059,7 @@ static void Cmd_healpartystatus(void)
         battler = gBattleScripting.battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
 
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-            && !(gAbsentBattlerFlags & gBitTable[battler]))
+            && !(IS_BATTLER_ABSENT(battler)))
         {
             if (GetBattlerAbility(battler) != ABILITY_SOUNDPROOF)
             {
@@ -13088,7 +13088,7 @@ static void Cmd_healpartystatus(void)
                     ability = GetBattlerAbility(gBattlerAttacker);
                 else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                          && gBattlerPartyIndexes[battler] == i
-                         && !(gAbsentBattlerFlags & gBitTable[battler]))
+                         && !(IS_BATTLER_ABSENT(battler)))
                     ability = GetBattlerAbility(battler);
                 else
                     ability = GetAbilityBySpecies(species, abilityNum);
@@ -13108,7 +13108,7 @@ static void Cmd_healpartystatus(void)
 
         battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-            && !(gAbsentBattlerFlags & gBitTable[battler]))
+            && !(IS_BATTLER_ABSENT(battler)))
         {
             gBattleMons[battler].status1 = 0;
             gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
@@ -13390,7 +13390,7 @@ static void Cmd_magnitudedamagecalculation(void)
     {
         if (gBattlerTarget == gBattlerAttacker)
             continue;
-        if (!(gAbsentBattlerFlags & gBitTable[gBattlerTarget])) // A valid target was found.
+        if (!(IS_BATTLER_ABSENT(gBattlerTarget))) // A valid target was found.
             break;
     }
 
@@ -13959,7 +13959,7 @@ static void Cmd_trysethelpinghand(void)
     gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-        && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+        && !(IS_BATTLER_ABSENT(gBattlerTarget))
         && !gProtectStructs[gBattlerAttacker].helpingHand
         && !gProtectStructs[gBattlerTarget].helpingHand)
     {
@@ -14781,7 +14781,7 @@ static void Cmd_pursuitdoubles(void)
     u32 battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-        && !(gAbsentBattlerFlags & gBitTable[battler])
+        && !(IS_BATTLER_ABSENT(battler))
         && gChosenActionByBattler[battler] == B_ACTION_USE_MOVE
         && gMovesInfo[gChosenMoveByBattler[battler]].effect == EFFECT_PURSUIT)
     {
