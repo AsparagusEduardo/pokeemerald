@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Stuff Cheeks fails if the user's berry is removed before the
     }
 }
 
-SINGLE_BATTLE_TEST("Belch cannot be used if the user has not eaten a berry")
+SINGLE_BATTLE_TEST("Belch can be used when eating a berry via Stuff Cheeks")
 {
     u16 item = 0;
     PARAMETRIZE { item = ITEM_NONE; }
