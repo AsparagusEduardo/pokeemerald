@@ -303,7 +303,7 @@ bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 
 u8 GetTimeOfDay(void)
 {
-    RtcCalcLocalTime();
+    UpdateTimeOfDay();
     if (IsBetweenHours(gLocalTime.hours, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
         return TIME_MORNING;
     else if (IsBetweenHours(gLocalTime.hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END))
