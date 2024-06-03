@@ -2481,7 +2481,7 @@ void UpdateLightSprite(struct Sprite *sprite) {
         return;
     }
 
-    if (gTimeOfDay != TIME_OF_DAY_NIGHT) {
+    if (gTimeOfDay != TIME_NIGHT) {
         sprite->invisible = TRUE;
         return;
     }
