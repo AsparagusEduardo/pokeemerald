@@ -132,9 +132,9 @@ void BufferApprenticeChallengeText(u8 saveApprenticeId)
     StringExpandPlaceholders(gStringVar4, challengeText);
 }
 
-void Apprentice_EnableBothScriptContexts(void)
+void Apprentice_ScriptContext_Enable(void)
 {
-    EnableBothScriptContexts();
+    ScriptContext_Enable();
 }
 
 void ResetApprenticeStruct(struct Apprentice *apprentice)
@@ -346,11 +346,10 @@ static u16 GetRandomAlternateMove(u8 monId)
     learnset = gLevelUpLearnsets[species];
     j = 0;
 
-    // Despite being open level, level up moves are only read up to level 60
     if (PLAYER_APPRENTICE.lvlMode == APPRENTICE_LVL_MODE_50)
-        level = 50;
+        level = FRONTIER_MAX_LEVEL_50;
     else // == APPRENTICE_LVL_MODE_OPEN
-        level = 60;
+        level = 60; // Despite being open level, level up moves are only read up to level 60
 
     for (j = 0; learnset[j] != LEVEL_UP_END; j++)
     {
@@ -464,7 +463,7 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
     const u16 *learnset;
 
     if (PLAYER_APPRENTICE.lvlMode == APPRENTICE_LVL_MODE_50)
-        level = 50;
+        level = FRONTIER_MAX_LEVEL_50;
     else // == APPRENTICE_LVL_MODE_OPEN
         level = 60;
 
@@ -624,6 +623,9 @@ static void CreateApprenticeMenu(u8 menu)
     default:
         left = 0;
         top = 0;
+#ifdef UBFIX
+        return;
+#endif
         break;
     }
 
@@ -638,7 +640,7 @@ static void CreateApprenticeMenu(u8 menu)
     width = ConvertPixelWidthToTileWidth(pixelWidth);
     left = ScriptMenu_AdjustLeftCoordFromWidth(left, width);
     windowId = CreateAndShowWindow(left, top, width, count * 2);
-    SetStandardWindowBorderStyle(windowId, 0);
+    SetStandardWindowBorderStyle(windowId, FALSE);
 
     for (i = 0; i < count; i++)
         AddTextPrinterParameterized(windowId, FONT_NORMAL, strings[i], 8, (i * 16) + 1, TEXT_SKIP_DRAW, NULL);
@@ -666,11 +668,12 @@ static void Task_ChooseAnswer(u8 taskId)
     case MENU_NOTHING_CHOSEN:
         return;
     case MENU_B_PRESSED:
+        // Only ever true. Answering Apprentice questions is required.
         if (tNoBButton)
             return;
 
         PlaySE(SE_SELECT);
-        gSpecialVar_Result = 0x7F;
+        gSpecialVar_Result = MULTI_B_PRESSED;
         break;
     default:
         gSpecialVar_Result = input;
@@ -679,7 +682,7 @@ static void Task_ChooseAnswer(u8 taskId)
 
     RemoveAndHideWindow(tWindowId);
     DestroyTask(taskId);
-    EnableBothScriptContexts();
+    ScriptContext_Enable();
 }
 
 static u8 CreateAndShowWindow(u8 left, u8 top, u8 width, u8 height)
@@ -815,9 +818,9 @@ static void Task_WaitForPrintingMessage(u8 taskId)
     {
         DestroyTask(taskId);
         if (gSpecialVar_0x8005)
-            ExecuteFuncAfterButtonPress(EnableBothScriptContexts);
+            ExecuteFuncAfterButtonPress(ScriptContext_Enable);
         else
-            EnableBothScriptContexts();
+            ScriptContext_Enable();
     }
 }
 
@@ -895,7 +898,7 @@ static void PrintApprenticeMessage(void)
     }
     else
     {
-        EnableBothScriptContexts();
+        ScriptContext_Enable();
         return;
     }
 
@@ -906,11 +909,11 @@ static void PrintApprenticeMessage(void)
 
 static void Script_PrintApprenticeMessage(void)
 {
-    ScriptContext2_Enable();
+    LockPlayerFieldControls();
     FreezeObjectEvents();
     PlayerFreeze();
     StopPlayerAvatar();
-    DrawDialogueFrame(0, 1);
+    DrawDialogueFrame(0, TRUE);
     PrintApprenticeMessage();
 }
 
@@ -1278,8 +1281,7 @@ const u8 *GetApprenticeNameInLanguage(u32 apprenticeId, s32 language)
     }
 }
 
-// Functionally unused
-static void Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
+static void UNUSED Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         SwitchTaskToFollowupFunc(taskId);
@@ -1289,7 +1291,7 @@ static void Task_ExecuteFuncAfterButtonPress(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
-        gApprenticeFunc = (void*)(u32)(((u16)gTasks[taskId].data[0] | (gTasks[taskId].data[1] << 16)));
+        gApprenticeFunc = (void *)(u32)(((u16)gTasks[taskId].data[0] | (gTasks[taskId].data[1] << 16)));
         gApprenticeFunc();
         DestroyTask(taskId);
     }
@@ -1302,8 +1304,7 @@ static void ExecuteFuncAfterButtonPress(void (*func)(void))
     gTasks[taskId].data[1] = (u32)(func) >> 16;
 }
 
-// Unused
-static void ExecuteFollowupFuncAfterButtonPress(TaskFunc task)
+static void UNUSED ExecuteFollowupFuncAfterButtonPress(TaskFunc task)
 {
     u8 taskId = CreateTask(Task_SwitchToFollowupFuncAfterButtonPress, 1);
     SetTaskFuncWithFollowupFunc(taskId, Task_SwitchToFollowupFuncAfterButtonPress, task);

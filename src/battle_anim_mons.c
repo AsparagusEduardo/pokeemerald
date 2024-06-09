@@ -77,11 +77,11 @@ static const u8 sCastformBackSpriteYCoords[NUM_CASTFORM_FORMS] =
     [CASTFORM_ICE]    = 0,
 };
 
-// Placeholders for pokemon sprites to be created for a move animation effect (e.g. Role Play / Snatch)
+// Placeholders for Pokémon sprites to be created for a move animation effect (e.g. Role Play / Snatch)
 #define TAG_MOVE_EFFECT_MON_1 55125
 #define TAG_MOVE_EFFECT_MON_2 55126
 
-static const struct SpriteTemplate sSpriteTemplate_MoveEffectMons[] =
+static const struct SpriteTemplate sSpriteTemplates_MoveEffectMons[] =
 {
     {
         .tileTag = TAG_MOVE_EFFECT_MON_1,
@@ -103,7 +103,7 @@ static const struct SpriteTemplate sSpriteTemplate_MoveEffectMons[] =
     }
 };
 
-static const struct SpriteSheet sSpriteSheet_MoveEffectMons[] =
+static const struct SpriteSheet sSpriteSheets_MoveEffectMons[] =
 {
     { gMiscBlank_Gfx, MON_PIC_SIZE, TAG_MOVE_EFFECT_MON_1, },
     { gMiscBlank_Gfx, MON_PIC_SIZE, TAG_MOVE_EFFECT_MON_2, },
@@ -414,7 +414,7 @@ u8 GetAnimBattlerSpriteId(u8 animBattler)
     }
 }
 
-void StoreSpriteCallbackInData6(struct Sprite *sprite, void (*callback)(struct Sprite*))
+void StoreSpriteCallbackInData6(struct Sprite *sprite, void (*callback)(struct Sprite *))
 {
     sprite->data[6] = (u32)(callback) & 0xffff;
     sprite->data[7] = (u32)(callback) >> 16;
@@ -440,7 +440,7 @@ void SetCallbackToStoredInData6(struct Sprite *sprite)
 #define sAmplitudeX sAmplitude
 #define sAmplitudeY data[4]
 
-// TranslateSpriteInWavePattern
+// TranslateSpriteInLissajousCurve
 #define sCirclePosX   sCirclePos
 #define sCircleSpeedX sCircleSpeed
 #define sCirclePosY   data[4]
@@ -485,9 +485,8 @@ void TranslateSpriteInGrowingCircle(struct Sprite *sprite)
     }
 }
 
-// Unused
 // Exact shape depends on arguments. Can move in a figure-8-like pattern, or circular, etc.
-static void TranslateSpriteInWavePattern(struct Sprite *sprite)
+static void UNUSED TranslateSpriteInLissajousCurve(struct Sprite *sprite)
 {
     if (sprite->sDuration)
     {
@@ -495,7 +494,7 @@ static void TranslateSpriteInWavePattern(struct Sprite *sprite)
         sprite->y2 = Cos(sprite->sCirclePosY, sprite->sAmplitude);
         sprite->sCirclePosX += sprite->sCircleSpeedX;
         sprite->sCirclePosY += sprite->sCircleSpeedY;
-        
+
         if (sprite->sCirclePosX >= 0x100)
             sprite->sCirclePosX -= 0x100;
         else if (sprite->sCirclePosX < 0)
@@ -639,8 +638,7 @@ static void TranslateSpriteLinearFixedPointIconFrame(struct Sprite *sprite)
     UpdateMonIconFrame(sprite);
 }
 
-// Unused
-static void TranslateSpriteToBattleTargetPos(struct Sprite *sprite)
+static void UNUSED TranslateSpriteToBattleTargetPos(struct Sprite *sprite)
 {
     sprite->sStartX = sprite->x + sprite->x2;
     sprite->sStartY = sprite->y + sprite->y2;
@@ -707,8 +705,7 @@ void DestroySpriteAndMatrix(struct Sprite *sprite)
     DestroyAnimSprite(sprite);
 }
 
-// Unused
-static void TranslateSpriteToBattleAttackerPos(struct Sprite *sprite)
+static void UNUSED TranslateSpriteToBattleAttackerPos(struct Sprite *sprite)
 {
     sprite->sStartX = sprite->x + sprite->x2;
     sprite->sStartY = sprite->y + sprite->y2;
@@ -723,8 +720,7 @@ static void TranslateSpriteToBattleAttackerPos(struct Sprite *sprite)
 #undef sStartY
 #undef sTargetY
 
-// Unused
-static void EndUnkPaletteAnim(struct Sprite *sprite)
+static void UNUSED EndUnkPaletteAnim(struct Sprite *sprite)
 {
     PaletteStruct_ResetById(sprite->data[5]);
     DestroySpriteAndMatrix(sprite);
@@ -857,7 +853,7 @@ u8 GetBattlerSide(u8 battlerId)
 
 u8 GetBattlerPosition(u8 battlerId)
 {
-    return GET_BATTLER_POSITION(battlerId);
+    return gBattlerPositions[battlerId];
 }
 
 u8 GetBattlerAtPosition(u8 position)
@@ -908,13 +904,17 @@ bool8 IsDoubleBattle(void)
     return IS_DOUBLE_BATTLE();
 }
 
+#define BG_ANIM_PAL_1        8
+#define BG_ANIM_PAL_2        9
+#define BG_ANIM_PAL_CONTEST 14
+
 void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
 {
     if (IsContest())
     {
         out->bgTiles = gBattleAnimBgTileBuffer;
         out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
-        out->paletteId = 14;
+        out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
         out->unused = 0;
@@ -923,7 +923,7 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
     {
         out->bgTiles = gBattleAnimBgTileBuffer;
         out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
-        out->paletteId = 8;
+        out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
         out->unused = 0;
@@ -936,7 +936,7 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
     {
         out->bgTiles = gBattleAnimBgTileBuffer;
         out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
-        out->paletteId = 14;
+        out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
         out->unused = 0;
@@ -949,7 +949,7 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
     {
         out->bgTiles = gBattleAnimBgTileBuffer;
         out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
-        out->paletteId = 9;
+        out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
         out->unused = 0;
@@ -962,21 +962,21 @@ void GetBgDataForTransform(struct BattleAnimBgData *out, u8 battlerId)
     out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
     if (IsContest())
     {
-        out->paletteId = 14;
+        out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
         out->unused = 0;
     }
     else if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
     {
-        out->paletteId = 8;
+        out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
         out->unused = 0;
     }
     else
     {
-        out->paletteId = 9;
+        out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
         out->unused = 0;
@@ -1043,7 +1043,7 @@ void UpdateAnimBg3ScreenSize(bool8 largeScreenSize)
     }
 }
 
-void TradeMenuBouncePartySprites(struct Sprite *sprite)
+void Trade_MoveSelectedMonToTarget(struct Sprite *sprite)
 {
     sprite->data[1] = sprite->x;
     sprite->data[3] = sprite->y;
@@ -1099,8 +1099,7 @@ void StartAnimLinearTranslation(struct Sprite *sprite)
     sprite->callback(sprite);
 }
 
-// Unused
-static void StartAnimLinearTranslation_SetCornerVecX(struct Sprite *sprite)
+static void UNUSED StartAnimLinearTranslation_SetCornerVecX(struct Sprite *sprite)
 {
     sprite->data[1] = sprite->x;
     sprite->data[3] = sprite->y;
@@ -1361,14 +1360,14 @@ void ResetSpriteRotScale_PreserveAffine(struct Sprite *sprite)
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 }
 
-static u16 ArcTan2_(s16 a, s16 b)
+static u16 ArcTan2_(s16 x, s16 y)
 {
-    return ArcTan2(a, b);
+    return ArcTan2(x, y);
 }
 
-u16 ArcTan2Neg(s16 a, s16 b)
+u16 ArcTan2Neg(s16 x, s16 y)
 {
-    u16 var = ArcTan2_(a, b);
+    u16 var = ArcTan2_(x, y);
     return -var;
 }
 
@@ -1378,18 +1377,17 @@ void SetGrayscaleOrOriginalPalette(u16 paletteNum, bool8 restoreOriginalColor)
     struct PlttData *originalColor;
     struct PlttData *destColor;
     u16 average;
-
-    paletteNum *= 16;
+    u16 paletteOffset = PLTT_ID(paletteNum);
 
     if (!restoreOriginalColor)
     {
         for (i = 0; i < 16; i++)
         {
-            originalColor = (struct PlttData *)&gPlttBufferUnfaded[paletteNum + i];
+            originalColor = (struct PlttData *)&gPlttBufferUnfaded[paletteOffset + i];
             average = originalColor->r + originalColor->g + originalColor->b;
             average /= 3;
 
-            destColor = (struct PlttData *)&gPlttBufferFaded[paletteNum + i];
+            destColor = (struct PlttData *)&gPlttBufferFaded[paletteOffset + i];
             destColor->r = average;
             destColor->g = average;
             destColor->b = average;
@@ -1397,11 +1395,11 @@ void SetGrayscaleOrOriginalPalette(u16 paletteNum, bool8 restoreOriginalColor)
     }
     else
     {
-        CpuCopy32(&gPlttBufferUnfaded[paletteNum], &gPlttBufferFaded[paletteNum], 32);
+        CpuCopy32(&gPlttBufferUnfaded[paletteOffset], &gPlttBufferFaded[paletteOffset], PLTT_SIZE_4BPP);
     }
 }
 
-u32 GetBattleBgPalettesMask(u8 battleBackground, u8 attacker, u8 target, u8 attackerPartner, u8 targetPartner, u8 a6, u8 a7)
+u32 GetBattlePalettesMask(bool8 battleBackground, bool8 attacker, bool8 target, bool8 attackerPartner, bool8 targetPartner, bool8 anim1, bool8 anim2)
 {
     u32 selectedPalettes = 0;
     u32 shift;
@@ -1409,7 +1407,7 @@ u32 GetBattleBgPalettesMask(u8 battleBackground, u8 attacker, u8 target, u8 atta
     if (battleBackground)
     {
         if (!IsContest())
-            selectedPalettes = 0xe;
+            selectedPalettes = 0xe; // Palettes 1, 2, and 3
         else
             selectedPalettes = 1 << GetBattleBgPaletteNum();
     }
@@ -1439,17 +1437,17 @@ u32 GetBattleBgPalettesMask(u8 battleBackground, u8 attacker, u8 target, u8 atta
             selectedPalettes |= 1 << shift;
         }
     }
-    if (a6)
+    if (anim1)
     {
         if (!IsContest())
-            selectedPalettes |= 0x100;
+            selectedPalettes |= 1 << BG_ANIM_PAL_1;
         else
-            selectedPalettes |= 0x4000;
+            selectedPalettes |= 1 << BG_ANIM_PAL_CONTEST;
     }
-    if (a7)
+    if (anim2)
     {
         if (!IsContest())
-            selectedPalettes |= 0x200;
+            selectedPalettes |= 1 << BG_ANIM_PAL_2;
     }
     return selectedPalettes;
 }
@@ -1504,13 +1502,12 @@ u32 GetBattleMonSpritePalettesMask(u8 playerLeft, u8 playerRight, u8 opponentLef
     return selectedPalettes;
 }
 
-// Presumably something commented here, just returns arg
-u8 AnimDummyReturnArg(u8 battler)
+u8 GetSpritePalIdxByBattler(u8 battler)
 {
     return battler;
 }
 
-static u8 GetBattlerAtPosition_(u8 position)
+static u8 UNUSED GetSpritePalIdxByPosition(u8 position)
 {
     return GetBattlerAtPosition(position);
 }
@@ -1548,20 +1545,20 @@ void AnimSpriteOnMonPos(struct Sprite *sprite)
 // arg 5: lower 8 bits = location on attacking mon, upper 8 bits = location on target mon pick to target
 void TranslateAnimSpriteToTargetMonLocation(struct Sprite *sprite)
 {
-    bool8 v1;
+    bool8 respectMonPicOffsets;
     u8 coordType;
 
     if (!(gBattleAnimArgs[5] & 0xff00))
-        v1 = TRUE;
+        respectMonPicOffsets = TRUE;
     else
-        v1 = FALSE;
+        respectMonPicOffsets = FALSE;
 
     if (!(gBattleAnimArgs[5] & 0xff))
         coordType = BATTLER_COORD_Y_PIC_OFFSET;
     else
         coordType = BATTLER_COORD_Y;
 
-    InitSpritePosToAnimAttacker(sprite, v1);
+    InitSpritePosToAnimAttacker(sprite, respectMonPicOffsets);
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
@@ -1574,7 +1571,7 @@ void TranslateAnimSpriteToTargetMonLocation(struct Sprite *sprite)
 
 void AnimThrowProjectile(struct Sprite *sprite)
 {
-    InitSpritePosToAnimAttacker(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, TRUE);
     if (GetBattlerSide(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
     sprite->data[0] = gBattleAnimArgs[4];
@@ -1722,7 +1719,7 @@ void AnimTask_BlendMonInAndOut(u8 task)
         DestroyAnimVisualTask(task);
         return;
     }
-    gTasks[task].data[0] = (gSprites[spriteId].oam.paletteNum * 0x10) + 0x101;
+    gTasks[task].data[0] = OBJ_PLTT_ID(gSprites[spriteId].oam.paletteNum) + 1;
     AnimTask_BlendPalInAndOutSetup(&gTasks[task]);
 }
 
@@ -2009,8 +2006,7 @@ void AnimTask_GetFrustrationPowerLevel(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-// Unused
-static void SetPriorityForVisibleBattlers(u8 priority)
+static void UNUSED SetPriorityForVisibleBattlers(u8 priority)
 {
     if (IsBattlerSpriteVisible(gBattleAnimTarget))
         gSprites[gBattlerSpriteIds[gBattleAnimTarget]].oam.priority = priority;
@@ -2089,18 +2085,18 @@ u8 GetBattlerSpriteBGPriorityRank(u8 battlerId)
     return 1;
 }
 
-// Create pokemon sprite to be used for a move animation effect (e.g. Role Play / Snatch)
+// Create Pokémon sprite to be used for a move animation effect (e.g. Role Play / Snatch)
 u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16 x, s16 y, u8 subpriority, u32 personality, u32 trainerId, u32 battlerId, bool32 ignoreDeoxysForm)
 {
     u8 spriteId;
-    u16 sheet = LoadSpriteSheet(&sSpriteSheet_MoveEffectMons[id]);
-    u16 palette = AllocSpritePalette(sSpriteTemplate_MoveEffectMons[id].paletteTag);
+    u16 sheet = LoadSpriteSheet(&sSpriteSheets_MoveEffectMons[id]);
+    u16 palette = AllocSpritePalette(sSpriteTemplates_MoveEffectMons[id].paletteTag);
 
     if (gMonSpritesGfxPtr != NULL && gMonSpritesGfxPtr->buffer == NULL)
-        gMonSpritesGfxPtr->buffer = AllocZeroed(0x2000);
+        gMonSpritesGfxPtr->buffer = AllocZeroed(MON_PIC_SIZE * MAX_MON_PIC_FRAMES);
     if (!isBackpic)
     {
-        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), OBJ_PLTT_ID(palette), PLTT_SIZE_4BPP);
         if (ignoreDeoxysForm == TRUE || ShouldIgnoreDeoxysForm(5, battlerId) == TRUE || gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies != 0)
             LoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species],
                                                 gMonSpritesGfxPtr->buffer,
@@ -2116,7 +2112,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     }
     else
     {
-        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), OBJ_PLTT_ID(palette), PLTT_SIZE_4BPP);
         if (ignoreDeoxysForm == TRUE || ShouldIgnoreDeoxysForm(5, battlerId) == TRUE || gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies != 0)
             LoadSpecialPokePic_DontHandleDeoxys(&gMonBackPicTable[species],
                                                 gMonSpritesGfxPtr->buffer,
@@ -2135,9 +2131,9 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);
 
     if (!isBackpic)
-        spriteId = CreateSprite(&sSpriteTemplate_MoveEffectMons[id], x, y + gMonFrontPicCoords[species].y_offset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gMonFrontPicCoords[species].y_offset, subpriority);
     else
-        spriteId = CreateSprite(&sSpriteTemplate_MoveEffectMons[id], x, y + gMonBackPicCoords[species].y_offset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gMonBackPicCoords[species].y_offset, subpriority);
 
     if (IsContest())
     {
@@ -2423,9 +2419,9 @@ void AnimTask_AttackerPunchWithTrace(u8 taskId)
     task->tPaletteNum = AllocSpritePalette(ANIM_TAG_BENT_SPOON);
     task->tNumTracesActive = 0;
 
-    dest = (task->tPaletteNum + 16) * 16;
-    src = (gSprites[task->tBattlerSpriteId].oam.paletteNum + 0x10) * 0x10;
-    
+    dest = OBJ_PLTT_ID2(task->tPaletteNum);
+    src = OBJ_PLTT_ID2(gSprites[task->tBattlerSpriteId].oam.paletteNum);
+
     // Set trace's priority based on battler's subpriority
     task->tPriority = GetBattlerSpriteSubpriority(gBattleAnimAttacker);
     if (task->tPriority == 20 || task->tPriority == 40)
@@ -2433,7 +2429,7 @@ void AnimTask_AttackerPunchWithTrace(u8 taskId)
     else
         task->tPriority = 3;
 
-    CpuCopy32(&gPlttBufferUnfaded[src], &gPlttBufferFaded[dest], 0x20);
+    CpuCopy32(&gPlttBufferUnfaded[src], &gPlttBufferFaded[dest], PLTT_SIZE_4BPP);
     BlendPalette(dest, 16, gBattleAnimArgs[1], gBattleAnimArgs[0]);
     task->func = AnimTask_AttackerPunchWithTrace_Step;
 }
@@ -2515,7 +2511,7 @@ void AnimWeatherBallUp(struct Sprite *sprite)
 {
     sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
     sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET);
-    if (!GetBattlerSide(gBattleAnimAttacker))
+    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
         sprite->data[0] = 5;
     else
         sprite->data[0] = -10;
@@ -2541,7 +2537,7 @@ void AnimWeatherBallDown(struct Sprite *sprite)
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[2] = sprite->x + gBattleAnimArgs[4];
     sprite->data[4] = sprite->y + gBattleAnimArgs[5];
-    if (!GetBattlerSide(gBattleAnimTarget))
+    if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
     {
         x = (u16)gBattleAnimArgs[4] + 30;
         sprite->x += x;

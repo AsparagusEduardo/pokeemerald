@@ -147,7 +147,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_TERMINATOR_NOP]           = SafariCmdEnd
 };
 
-static void SpriteCB_Null4(void)
+static void UNUSED SpriteCB_Null4(void)
 {
 }
 
@@ -307,7 +307,7 @@ static void SafariBufferExecCompleted(void)
     }
 }
 
-static void CompleteOnFinishedStatusAnimation(void)
+static void UNUSED CompleteOnFinishedStatusAnimation(void)
 {
     if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive)
         SafariBufferExecCompleted();
@@ -422,7 +422,7 @@ static void SafariHandlePrintString(void)
 
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
-    stringId = (u16*)(&gBattleBufferA[gActiveBattler][2]);
+    stringId = (u16 *)(&gBattleBufferA[gActiveBattler][2]);
     BufferStringBattle(*stringId);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MSG);
     gBattlerControllerFuncs[gActiveBattler] = CompleteOnInactiveTextPrinter;
