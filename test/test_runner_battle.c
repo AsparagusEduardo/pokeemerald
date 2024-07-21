@@ -2107,8 +2107,9 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
 
         // Check multiple gimmick use.
         INVALID_IF(DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] != GIMMICK_NONE
-                   && !(DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] == GIMMICK_ULTRA_BURST
-                   && ctx->gimmick == GIMMICK_Z_MOVE), "Cannot use multiple gimmicks on the same battler");
+               && (DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] != GIMMICK_ULTRA_BURST && ctx->gimmick == GIMMICK_Z_MOVE),
+                   "Cannot use multiple gimmicks on the same battler (Gimmicks: %d - %d, battlerId: %d)",
+                    DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]], ctx->gimmick, battlerId);
 
         DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] = ctx->gimmick;
         *moveSlot |= RET_GIMMICK;
