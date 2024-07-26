@@ -1,5 +1,6 @@
 #include "gba/gba.h"
 #include "gba/flash_internal.h"
+#include "save.h"
 
 const u16 mxMaxTime[] =
 {
@@ -13,6 +14,7 @@ const struct FlashSetupInfo MX29L010 =
 {
     ProgramFlashByte_MX,
     ProgramFlashSector_MX,
+    ProgramFlashSectorNBytesAndHeader_MX,
     EraseFlashChip_MX,
     EraseFlashSector_MX,
     WaitForFlashWrite_Common,
@@ -34,6 +36,7 @@ const struct FlashSetupInfo DefaultFlash =
 {
     ProgramFlashByte_MX,
     ProgramFlashSector_MX,
+    ProgramFlashSectorNBytesAndHeader_MX,
     EraseFlashChip_MX,
     EraseFlashSector_MX,
     WaitForFlashWrite_Common,
@@ -187,6 +190,65 @@ u16 ProgramFlashSector_MX(u16 sectorNum, u8 *src)
         gFlashNumRemainingBytes--;
         src++;
         dest++;
+    }
+
+    return result;
+}
+
+u16 ProgramFlashSectorNBytesAndHeader_MX(u16 sectorNum, u8 *src, u32 size)
+{
+    u16 result;
+    u8 *dest;
+    u8 *baseDest;
+    u8 *baseSrc;
+    u16 readFlash1Buffer[0x20];
+
+    if (sectorNum >= gFlash->sector.count)
+        return 0x80FF;
+
+    result = EraseFlashSector_MX(sectorNum);
+
+    if (result != 0)
+        return result;
+
+    SwitchFlashBank(sectorNum / SECTORS_PER_BANK);
+    sectorNum %= SECTORS_PER_BANK;
+
+    SetReadFlash1(readFlash1Buffer);
+
+    REG_WAITCNT = (REG_WAITCNT & ~WAITCNT_SRAM_MASK) | gFlash->wait[0];
+
+    gFlashNumRemainingBytes = size;
+    dest = FLASH_BASE + (sectorNum << gFlash->sector.shift);
+    baseDest = dest;
+    baseSrc = src;
+
+    while (gFlashNumRemainingBytes > 0)
+    {
+        result = ProgramByte(src, dest);
+
+        if (result != 0)
+            break;
+
+        gFlashNumRemainingBytes--;
+        src++;
+        dest++;
+    }
+
+    gFlashNumRemainingBytes = 0x1000 - SAVE_SECTION_HEADER_POS;
+    baseSrc += offsetof(struct SaveSection, isCompressed);
+    baseDest += SAVE_SECTION_HEADER_POS;
+
+    while (gFlashNumRemainingBytes > 0)
+    {
+        result = ProgramByte(baseSrc, baseDest);
+
+        if (result != 0)
+            break;
+
+        gFlashNumRemainingBytes--;
+        baseSrc++;
+        baseDest++;
     }
 
     return result;

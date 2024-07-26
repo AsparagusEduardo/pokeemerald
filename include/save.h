@@ -58,6 +58,9 @@ enum
     SAVE_HALL_OF_FAME_ERASE_BEFORE // unused
 };
 
+// MUST BE HWORD ALIGNED
+#define SAVE_SECTION_HEADER_POS 0xff0
+
 // A save sector location holds a pointer to the data for a particular sector
 // and the size of that data. Size cannot be greater than SECTOR_DATA_SIZE.
 struct SaveSectorLocation
@@ -68,7 +71,8 @@ struct SaveSectorLocation
 
 struct SaveSector
 {
-    u8 data[SECTOR_DATA_SIZE];
+    u8 data[SAVE_SECTION_HEADER_POS * 3/2];
+    u32 isCompressed;
     u8 saveBlock3Chunk[SAVE_BLOCK_3_CHUNK_SIZE];
     u16 id;
     u16 checksum;

@@ -30,7 +30,6 @@ static void VBlankIntr(void);
 static void HBlankIntr(void);
 static void VCountIntr(void);
 static void SerialIntr(void);
-static void IntrDummy(void);
 
 // Defined in the linker script so that the test build can override it.
 extern void gInitialMainCB2(void);
@@ -442,7 +441,7 @@ static void SerialIntr(void)
     gMain.intrCheck |= INTR_FLAG_SERIAL;
 }
 
-static void IntrDummy(void)
+void IntrDummy(void)
 {}
 
 static void WaitForVBlank(void)

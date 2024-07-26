@@ -11,6 +11,7 @@
 #include "main.h"
 #include "trainer_hill.h"
 #include "link.h"
+#include "lz_compress.h"
 #include "constants/game_stat.h"
 
 static u16 CalculateChecksum(void *, u16);
@@ -18,6 +19,7 @@ static bool8 ReadFlashSector(u8, struct SaveSector *);
 static u8 GetSaveValidStatus(const struct SaveSectorLocation *);
 static u8 CopySaveSlotData(u16, struct SaveSectorLocation *);
 static u8 TryWriteSector(u8, u8 *);
+static u8 TryWriteSectorNBytesAndHeader(u8 sector, u8 *data, u32 n);
 static u8 HandleWriteSector(u16, const struct SaveSectorLocation *);
 static u8 HandleReplaceSector(u16, const struct SaveSectorLocation *);
 static void CopyToSaveBlock3(u32, struct SaveSector *);
@@ -51,6 +53,9 @@ static void CopyFromSaveBlock3(u32, struct SaveSector *);
     min(sizeof(structure) - chunkNum * SECTOR_DATA_SIZE, SECTOR_DATA_SIZE) : 0 \
 }
 
+#define SECTOR_ID_BOX_START 5
+#define SECTOR_ID_BOX_LAST 13
+
 struct
 {
     u16 offset;
@@ -73,6 +78,26 @@ struct
     SAVEBLOCK_CHUNK(struct PokemonStorage, 6),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 7),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 8), // SECTOR_ID_PKMN_STORAGE_END
+};
+
+struct BoxChunkPartition
+{
+    u8 startBoxId;
+    u8 startBoxPos;
+    u8 endBoxId;
+    u8 endBoxPos;
+};
+
+static const struct BoxChunkPartition sBoxChunkPartitions[] =
+{
+    {0, 0, 1, 19+1},
+    {1, 19, 3, 9+1},
+    {3, 9, 4, 28+1},
+    {4, 28, 6, 18+1},
+    {6, 18, 8, 7+1},
+    {8, 7, 9, 27+1},
+    {9, 27, 11, 17+1},
+    {11, 17, 13, 6+1},
 };
 
 // These will produce an error if a save struct is larger than the space
@@ -138,12 +163,19 @@ static bool32 SetDamagedSectorBits(u8 op, u8 sectorId)
     return retVal;
 }
 
+static u8 WriteSaveSectorOrSlot_Common(u16 sectorId, const struct SaveSectorLocation *locations, u32 startSectorId, u32 endSectorId, bool32 adjustSaveCounters);
+
 static u8 WriteSaveSectorOrSlot(u16 sectorId, const struct SaveSectorLocation *locations)
+{
+    return WriteSaveSectorOrSlot_Common(sectorId, locations, 0, NUM_SECTORS_PER_SLOT, TRUE);
+}
+
+static u8 WriteSaveSectorOrSlot_Common(u16 sectorId, const struct SaveSectorLocation *locations, u32 startSectorId, u32 endSectorId, bool32 adjustSaveCounters)
 {
     u32 status;
     u16 i;
 
-    gReadWriteSector = &gSaveDataBuffer;
+    gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
 
     if (sectorId != FULL_SAVE_SLOT)
     {
@@ -153,15 +185,17 @@ static u8 WriteSaveSectorOrSlot(u16 sectorId, const struct SaveSectorLocation *l
     }
     else
     {
-        // No sector was specified, write full save slot.
-        gLastKnownGoodSector = gLastWrittenSector; // backup the current written sector before attempting to write.
-        gLastSaveCounter = gSaveCounter;
-        gLastWrittenSector++;
-        gLastWrittenSector = gLastWrittenSector % NUM_SECTORS_PER_SLOT;
-        gSaveCounter++;
+        if (adjustSaveCounters) {
+            // No sector was specified, write full save slot.
+            gLastKnownGoodSector = gLastWrittenSector; // backup the current written sector before attempting to write.
+            gLastSaveCounter = gSaveCounter;
+            gLastWrittenSector++;
+            gLastWrittenSector = gLastWrittenSector % NUM_SECTORS_PER_SLOT;
+            gSaveCounter++;
+        }
         status = SAVE_STATUS_OK;
 
-        for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
+        for (i = startSectorId; i < endSectorId; i++)
             HandleWriteSector(i, locations);
 
         if (gDamagedSaveSectors)
@@ -175,6 +209,27 @@ static u8 WriteSaveSectorOrSlot(u16 sectorId, const struct SaveSectorLocation *l
 
     return status;
 }
+ 
+// https://www.reddit.com/r/C_Programming/comments/unqh5f/comment/i8ap0c3/
+u32 CountPokemonInBoxChunk(u32 sectorId)
+{
+    const struct BoxChunkPartition * boxChunkPartition = &sBoxChunkPartitions[sectorId - 5];
+    u8 * boxesAsU8 = (u8 *)&gPokemonStoragePtr->boxes[boxChunkPartition->startBoxId][boxChunkPartition->startBoxPos];
+    u8 * boxesEndAsU8 = (u8 *)&gPokemonStoragePtr->boxes[boxChunkPartition->endBoxId][boxChunkPartition->endBoxPos];
+    u32 count = 0;
+
+    while (boxesAsU8 < boxesEndAsU8) {
+        if (((struct BoxPokemon *)boxesAsU8)->language != 0) {
+            count++;
+            if (count >= 46) {
+                return count;
+            }
+        }
+        boxesAsU8 += sizeof(struct BoxPokemon);
+    }
+
+    return count;
+}
 
 static u8 HandleWriteSector(u16 sectorId, const struct SaveSectorLocation *locations)
 {
@@ -182,6 +237,7 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectorLocation *locat
     u16 sector;
     u8 *data;
     u16 size;
+    u32 compressedSize;
 
     // Adjust sector id for current save slot
     sector = sectorId + gLastWrittenSector;
@@ -193,8 +249,7 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectorLocation *locat
     size = locations[sectorId].size;
 
     // Clear temp save sector
-    for (i = 0; i < SECTOR_SIZE; i++)
-        ((u8 *)gReadWriteSector)[i] = 0;
+    CpuFastFill(0, gReadWriteSector, 0x1000);
 
     // Set footer data
     gReadWriteSector->id = sectorId;
@@ -202,25 +257,50 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectorLocation *locat
     gReadWriteSector->counter = gSaveCounter;
 
     // Copy current data to temp buffer for writing
-    for (i = 0; i < size; i++)
-        gReadWriteSector->data[i] = data[i];
+    if (sectorId >= SECTOR_ID_BOX_START && sectorId != SECTOR_ID_BOX_LAST) {
+        // try to optimize whether to compress boxes
+        // a box chunk can have either 48 or 49 pokemon (+ 2 overlaps)
+        // 46 is a good cutoff for whether to bother compressing or not
+        u32 boxCount = CountPokemonInBoxChunk(sectorId);
+        if (boxCount < 46) {
+            compressedSize = FastRLE0CompressUnsafe((u16 *)data, (u16 *)gReadWriteSector->data, size);
+        } else {
+            // don't bother compressing if the box chunk is almost full
+            compressedSize = 0xffffffff;
+        }
+    } else {
+        compressedSize = FastRLE0CompressUnsafe((u16 *)data, (u16 *)gReadWriteSector->data, size);
+    }
 
     CopyFromSaveBlock3(sectorId, gReadWriteSector);
+    if (compressedSize <= size) {
+        gReadWriteSector->isCompressed = TRUE;
+    } else {
+        u32 roundedSize;
+        gReadWriteSector->isCompressed = FALSE;
+        // should never overflow
+        roundedSize = (size * 0x20 + 0x1f) / 0x20;
+        CpuFastCopy(data, gReadWriteSector->data, roundedSize);
+        compressedSize = size;
+    }
 
-    gReadWriteSector->checksum = CalculateChecksum(data, size);
+    gReadWriteSector->checksum = CalculateChecksum(gReadWriteSector->data, compressedSize);
 
-    return TryWriteSector(sector, gReadWriteSector->data);
+    return TryWriteSectorNBytesAndHeader(sector, gReadWriteSector->data, compressedSize);
 }
 
 static u8 HandleWriteSectorNBytes(u8 sectorId, u8 *data, u16 size)
 {
     u16 i;
-    struct SaveSector *sector = &gSaveDataBuffer;
+    struct SaveSector *sector = AllocZeroed(sizeof(struct SaveSector));
 
     // Clear temp save sector
-    for (i = 0; i < SECTOR_SIZE; i++)
-        ((u8 *)sector)[i] = 0;
+    for (i = 0; i < SAVE_SECTION_HEADER_POS; i++)
+        ((char *)sector)[i] = 0;
 
+    sector->isCompressed = FALSE;
+    sector->checksum = 0;
+    sector->counter = 0;
     sector->signature = SECTOR_SIGNATURE;
 
     // Copy data to temp buffer for writing
@@ -243,6 +323,20 @@ static u8 TryWriteSector(u8 sector, u8 *data)
     {
         // Succeeded
         SetDamagedSectorBits(DISABLE, sector);
+        return SAVE_STATUS_OK;
+    }
+}
+ 
+static u8 TryWriteSectorNBytesAndHeader(u8 sector, u8 *data, u32 n)
+{
+    if (ProgramFlashSectorNBytesAndHeaderAndVerify(sector, data, n) != 0) // is damaged?
+    {
+        SetDamagedSectorBits(ENABLE, sector); // set damaged sector bits.
+        return SAVE_STATUS_ERROR;
+    }
+    else
+    {
+        SetDamagedSectorBits(DISABLE, sector); // unset damaged sector bits. it's safe now.
         return SAVE_STATUS_OK;
     }
 }
@@ -276,6 +370,7 @@ static u8 HandleWriteIncrementalSector(u16 numSectors, const struct SaveSectorLo
 
     if (gIncrementalSectorId < numSectors - 1)
     {
+        gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
         status = SAVE_STATUS_OK;
         HandleWriteSector(gIncrementalSectorId, locations);
         gIncrementalSectorId++;
@@ -329,7 +424,7 @@ static u8 HandleReplaceSector(u16 sectorId, const struct SaveSectorLocation *loc
     size = locations[sectorId].size;
 
     // Clear temp save sector.
-    for (i = 0; i < SECTOR_SIZE; i++)
+    for (i = 0; i < SAVE_SECTION_HEADER_POS; i++)
         ((u8 *)gReadWriteSector)[i] = 0;
 
     // Set footer data

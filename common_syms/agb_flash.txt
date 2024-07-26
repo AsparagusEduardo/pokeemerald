@@ -2,6 +2,7 @@ gFlashTimeoutFlag
 PollFlashStatus
 WaitForFlashWrite
 ProgramFlashSector
+ProgramFlashSectorNBytesAndHeader
 gFlash
 ProgramFlashByte
 gFlashNumRemainingBytes

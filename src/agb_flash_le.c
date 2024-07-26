@@ -13,6 +13,7 @@ const struct FlashSetupInfo LE26FV10N1TS =
 {
     ProgramFlashByte_MX,
     ProgramFlashSector_MX,
+    ProgramFlashSectorNBytesAndHeader_MX,
     EraseFlashChip_MX,
     EraseFlashSector_MX,
     WaitForFlashWrite_Common,

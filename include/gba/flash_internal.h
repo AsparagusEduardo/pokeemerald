@@ -36,6 +36,7 @@ struct FlashSetupInfo
 {
     u16 (*programFlashByte)(u16, u32, u8);
     u16 (*programFlashSector)(u16, u8 *);
+    u16 (*programFlashSectorNBytesAndHeader)(u16, u8 *, u32);
     u16 (*eraseFlashChip)(void);
     u16 (*eraseFlashSector)(u16);
     u16 (*WaitForFlashWrite)(u8, u8 *, u8);
@@ -47,6 +48,7 @@ extern u16 gFlashNumRemainingBytes;
 
 extern u16 (*ProgramFlashByte)(u16, u32, u8);
 extern u16 (*ProgramFlashSector)(u16, u8 *);
+extern u16 (*ProgramFlashSectorNBytesAndHeader)(u16, u8 *, u32);
 extern u16 (*EraseFlashChip)(void);
 extern u16 (*EraseFlashSector)(u16);
 extern u16 (*WaitForFlashWrite)(u8, u8 *, u8);
@@ -73,5 +75,6 @@ u16 EraseFlashChip_MX(void);
 u16 EraseFlashSector_MX(u16 sectorNum);
 u16 ProgramFlashByte_MX(u16 sectorNum, u32 offset, u8 data);
 u16 ProgramFlashSector_MX(u16 sectorNum, u8 *src);
+u16 ProgramFlashSectorNBytesAndHeader_MX(u16 sectorNum, u8 *src, u32 size);
 
 #endif // GUARD_GBA_FLASH_INTERNAL_H

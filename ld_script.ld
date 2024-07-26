@@ -360,6 +360,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_sprite_visualizer.o(.text);
         src/expansion_intro.o(.text);
+        src/lz_compress.o(.text);
     } > ROM =0
 
     script_data :

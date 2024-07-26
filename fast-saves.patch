@@ -1,0 +1,927 @@
+From 23352ef705c565440675b8e655702111bf50f892 Mon Sep 17 00:00:00 2001
+From: luckytyphlosion <10688458+luckytyphlosion@users.noreply.github.com>
+Date: Thu, 13 Jun 2024 10:49:05 -0400
+Subject: [PATCH] Compress saves
+
+---
+ Makefile                     |   8 +-
+ common_syms/agb_flash.txt    |   1 +
+ include/agb_flash.h          |   1 +
+ include/gba/flash_internal.h |   3 +
+ include/lz_compress.h        |   8 ++
+ include/main.h               |   1 +
+ include/overworld.h          |   1 +
+ include/save.h               |   6 +-
+ ld_script.txt                |   1 +
+ src/agb_flash.c              |  82 +++++++++++++-
+ src/agb_flash_1m.c           |   1 +
+ src/agb_flash_le.c           |   1 +
+ src/agb_flash_mx.c           |  62 +++++++++++
+ src/lz_compress.c            | 210 +++++++++++++++++++++++++++++++++++
+ src/main.c                   |   3 +-
+ src/overworld.c              |   3 +-
+ src/save.c                   | 199 +++++++++++++++++++++++++++------
+ src/start_menu.c             |  50 +++++++--
+ 18 files changed, 584 insertions(+), 57 deletions(-)
+ create mode 100644 include/lz_compress.h
+ create mode 100644 src/lz_compress.c
+
+diff --git a/Makefile b/Makefile
+index 6d54f35b2..45ea5446a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -338,9 +338,9 @@ $(C_BUILDDIR)/libc.o: CFLAGS := -O2
+ 
+ $(C_BUILDDIR)/siirtc.o: CFLAGS := -mthumb-interwork
+ 
+-$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
+-$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
+-$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
++$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -g -mthumb-interwork
++$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -g -mthumb-interwork
++$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -g -mthumb-interwork
+ 
+ $(C_BUILDDIR)/m4a.o: CC1 := tools/agbcc/bin/old_agbcc$(EXE)
+ 
+@@ -353,7 +353,7 @@ endif
+ 
+ ifeq (fast_glyph,$(MAKECMDGOALS))
+ MODERN_CC1 := $(shell $(PATH_MODERNCC) --print-prog-name=cc1) -quiet
+-MODERN_CFLAGS := -marm -mthumb-interwork -Wimplicit -Wparentheses -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
++MODERN_CFLAGS := -marm -mthumb-interwork -Wimplicit -Wparentheses -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder  -Wno-pointer-to-int-cast
+ endif
+ 
+ fast_glyph:
+diff --git a/common_syms/agb_flash.txt b/common_syms/agb_flash.txt
+index cb421ec80..a285a5c2b 100644
+--- a/common_syms/agb_flash.txt
++++ b/common_syms/agb_flash.txt
+@@ -2,6 +2,7 @@ gFlashTimeoutFlag
+ PollFlashStatus
+ WaitForFlashWrite
+ ProgramFlashSector
++ProgramFlashSectorNBytesAndHeader
+ gFlash
+ ProgramFlashByte
+ gFlashNumRemainingBytes
+diff --git a/include/agb_flash.h b/include/agb_flash.h
+index ba5820f01..31cd8fc5d 100644
+--- a/include/agb_flash.h
++++ b/include/agb_flash.h
+@@ -10,5 +10,6 @@
+ u16 SetFlashTimerIntr(u8 timerNum, void (**intrFunc)(void));
+ u16 IdentifyFlash(void);
+ u32 ProgramFlashSectorAndVerify(u16 sectorNum, u8 *src);
++u32 ProgramFlashSectorNBytesAndHeaderAndVerify(u16 sectorNum, u8 *src, u32 n);
+ 
+ #endif //GUARD_AGB_FLASH_H
+diff --git a/include/gba/flash_internal.h b/include/gba/flash_internal.h
+index ba84546aa..d856cca6c 100644
+--- a/include/gba/flash_internal.h
++++ b/include/gba/flash_internal.h
+@@ -36,6 +36,7 @@ struct FlashSetupInfo
+ {
+     u16 (*programFlashByte)(u16, u32, u8);
+     u16 (*programFlashSector)(u16, u8 *);
++    u16 (*programFlashSectorNBytesAndHeader)(u16, u8 *, u32);
+     u16 (*eraseFlashChip)(void);
+     u16 (*eraseFlashSector)(u16);
+     u16 (*WaitForFlashWrite)(u8, u8 *, u8);
+@@ -47,6 +48,7 @@ extern u16 gFlashNumRemainingBytes;
+ 
+ extern u16 (*ProgramFlashByte)(u16, u32, u8);
+ extern u16 (*ProgramFlashSector)(u16, u8 *);
++extern u16 (*ProgramFlashSectorNBytesAndHeader)(u16, u8 *, u32);
+ extern u16 (*EraseFlashChip)(void);
+ extern u16 (*EraseFlashSector)(u16);
+ extern u16 (*WaitForFlashWrite)(u8, u8 *, u8);
+@@ -73,5 +75,6 @@ u16 EraseFlashChip_MX(void);
+ u16 EraseFlashSector_MX(u16 sectorNum);
+ u16 ProgramFlashByte_MX(u16 sectorNum, u32 offset, u8 data);
+ u16 ProgramFlashSector_MX(u16 sectorNum, u8 *src);
++u16 ProgramFlashSectorNBytesAndHeader_MX(u16 sectorNum, u8 *src, u32 size);
+ 
+ #endif // GUARD_GBA_FLASH_INTERNAL_H
+diff --git a/include/lz_compress.h b/include/lz_compress.h
+new file mode 100644
+index 000000000..588e53417
+--- /dev/null
++++ b/include/lz_compress.h
+@@ -0,0 +1,8 @@
++#ifndef GUARD_LZ_COMPRESS_H
++#define GUARD_LZ_COMPRESS_H
++
++u32 FastRLE0Compress(u16 *src, u16 *dest, u32 srcSize);
++u32 FastRLE0CompressUnsafe(u16 * src, u16 * dst, u32 size);
++void FastRLE0Decompress(u16 * src, u16 * dst, u16 uncompressedSize);
++
++#endif
+diff --git a/include/main.h b/include/main.h
+index 18df5180b..c9cb55047 100644
+--- a/include/main.h
++++ b/include/main.h
+@@ -81,5 +81,6 @@ void Menu_LoadStdPal(void);
+ void SetAntiSpeedup(bool8 i);
+ bool8 GetAntiSpeedup(void);
+ void WaitForVBlank(void);
++void IntrDummy(void);
+ 
+ #endif // GUARD_MAIN_H
+diff --git a/include/overworld.h b/include/overworld.h
+index 13ce78803..aa7fc72de 100644
+--- a/include/overworld.h
++++ b/include/overworld.h
+@@ -172,5 +172,6 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
+ bool32 Overworld_SendKeysToLinkIsRunning(void);
+ bool32 IsSendingKeysOverCable(void);
+ void ClearLinkPlayerObjectEvents(void);
++void VBlankCB_Field(void);
+ 
+ #endif // GUARD_OVERWORLD_H
+diff --git a/src/agb_flash.c b/src/agb_flash.c
+index 6b9381c70..ceaa7772c 100644
+--- a/src/agb_flash.c
++++ b/src/agb_flash.c
+@@ -1,5 +1,6 @@
+ #include "gba/gba.h"
+ #include "gba/flash_internal.h"
++#include "save.h"
+ 
+ static u8 sTimerNum;
+ static u16 sTimerCount;
+@@ -10,6 +11,7 @@ u8 gFlashTimeoutFlag;
+ u8 (*PollFlashStatus)(u8 *);
+ u16 (*WaitForFlashWrite)(u8 phase, u8 *addr, u8 lastData);
+ u16 (*ProgramFlashSector)(u16 sectorNum, u8 *src);
++u16 (*ProgramFlashSectorNBytesAndHeader)(u16 sectorNum, u8 *src, u32 size);
+ const struct FlashType *gFlash;
+ u16 (*ProgramFlashByte)(u16 sectorNum, u32 offset, u8 data);
+ u16 gFlashNumRemainingBytes;
+@@ -183,6 +185,29 @@ u32 VerifyFlashSector_Core(u8 *src, u8 *tgt, u32 size)
+     return 0;
+ }
+ 
++u32 VerifyFlashSectorNBytesAndHeader_Core(u8 *src, u8 *tgt, u32 size)
++{
++    u8 * unmodifiedSrc = src;
++    u8 * unmodifiedTgt = tgt;
++
++    while (size-- != 0)
++    {
++        if (*tgt++ != *src++)
++            return (u32)(tgt - 1);
++    }
++
++    unmodifiedSrc += offsetof(struct SaveSector, isCompressed);
++    unmodifiedTgt += SAVE_SECTION_HEADER_POS;
++    size = 0x1000 - SAVE_SECTION_HEADER_POS;
++    while (size-- != 0) {
++        if (*unmodifiedTgt++ != *unmodifiedSrc++) {
++            return (u32)(unmodifiedTgt - 1);
++        }
++    }
++
++    return 0;
++}
++
+ u32 VerifyFlashSector(u16 sectorNum, u8 *src)
+ {
+     u16 i;
+@@ -205,7 +230,7 @@ u32 VerifyFlashSector(u16 sectorNum, u8 *src)
+     funcSrc = (vu16 *)((s32)funcSrc ^ 1);
+     funcDest = verifyFlashSector_Core_Buffer;
+ 
+-    i = ((s32)VerifyFlashSector - (s32)VerifyFlashSector_Core) >> 1;
++    i = ((s32)VerifyFlashSectorNBytesAndHeader_Core - (s32)VerifyFlashSector_Core) >> 1;
+ 
+     while (i != 0)
+     {
+@@ -257,6 +282,42 @@ u32 VerifyFlashSectorNBytes(u16 sectorNum, u8 *src, u32 n)
+     return verifyFlashSector_Core(src, tgt, n);
+ }
+ 
++u32 VerifyFlashSectorNBytesAndHeader(u16 sectorNum, u8 *src, u32 n)
++{
++    u16 i;
++    vu16 verifyFlashSector_Core_Buffer[0x80];
++    vu16 *funcSrc;
++    vu16 *funcDest;
++    u8 *tgt;
++    u32 (*verifyFlashSector_Core)(u8 *, u8 *, u32);
++
++    if (gFlash->romSize == FLASH_ROM_SIZE_1M)
++    {
++        SwitchFlashBank(sectorNum / SECTORS_PER_BANK);
++        sectorNum %= SECTORS_PER_BANK;
++    }
++
++    REG_WAITCNT = (REG_WAITCNT & ~WAITCNT_SRAM_MASK) | WAITCNT_SRAM_8;
++
++    funcSrc = (vu16 *)VerifyFlashSectorNBytesAndHeader_Core;
++    funcSrc = (vu16 *)((s32)funcSrc ^ 1);
++    funcDest = verifyFlashSector_Core_Buffer;
++
++    i = ((s32)VerifyFlashSector - (s32)VerifyFlashSectorNBytesAndHeader_Core) >> 1;
++
++    while (i != 0)
++    {
++        *funcDest++ = *funcSrc++;
++        i--;
++    }
++
++    verifyFlashSector_Core = (u32 (*)(u8 *, u8 *, u32))((s32)verifyFlashSector_Core_Buffer + 1);
++
++    tgt = FLASH_BASE + (sectorNum << gFlash->sector.shift);
++
++    return verifyFlashSector_Core(src, tgt, n);
++}
++
+ u32 ProgramFlashSectorAndVerify(u16 sectorNum, u8 *src)
+ {
+     u8 i;
+@@ -294,3 +355,22 @@ u32 ProgramFlashSectorAndVerifyNBytes(u16 sectorNum, u8 *src, u32 n)
+ 
+     return result;
+ }
++
++u32 ProgramFlashSectorNBytesAndHeaderAndVerify(u16 sectorNum, u8 *src, u32 n)
++{
++    u32 i;
++    u32 result;
++
++    for (i = 0; i < 3; i++) {
++        result = ProgramFlashSectorNBytesAndHeader(sectorNum, src, n);
++        if (result != 0) {
++            continue;
++        }
++
++        result = VerifyFlashSectorNBytesAndHeader(sectorNum, src, n);
++        if (result == 0)
++            break;
++    }
++
++    return result;
++}
+diff --git a/src/agb_flash_1m.c b/src/agb_flash_1m.c
+index e249fab9a..b4db38f77 100644
+--- a/src/agb_flash_1m.c
++++ b/src/agb_flash_1m.c
+@@ -39,6 +39,7 @@ u16 IdentifyFlash(void)
+ 
+     ProgramFlashByte = (*setupInfo)->programFlashByte;
+     ProgramFlashSector = (*setupInfo)->programFlashSector;
++    ProgramFlashSectorNBytesAndHeader = (*setupInfo)->programFlashSectorNBytesAndHeader;
+     EraseFlashChip = (*setupInfo)->eraseFlashChip;
+     EraseFlashSector = (*setupInfo)->eraseFlashSector;
+     WaitForFlashWrite = (*setupInfo)->WaitForFlashWrite;
+diff --git a/src/agb_flash_le.c b/src/agb_flash_le.c
+index 39d956e27..5f899d24a 100644
+--- a/src/agb_flash_le.c
++++ b/src/agb_flash_le.c
+@@ -13,6 +13,7 @@ const struct FlashSetupInfo LE26FV10N1TS =
+ {
+     ProgramFlashByte_MX,
+     ProgramFlashSector_MX,
++    ProgramFlashSectorNBytesAndHeader_MX,
+     EraseFlashChip_MX,
+     EraseFlashSector_MX,
+     WaitForFlashWrite_Common,
+diff --git a/src/agb_flash_mx.c b/src/agb_flash_mx.c
+index 01f848901..6064a6be3 100644
+--- a/src/agb_flash_mx.c
++++ b/src/agb_flash_mx.c
+@@ -1,5 +1,6 @@
+ #include "gba/gba.h"
+ #include "gba/flash_internal.h"
++#include "save.h"
+ 
+ const u16 mxMaxTime[] =
+ {
+@@ -13,6 +14,7 @@ const struct FlashSetupInfo MX29L010 =
+ {
+     ProgramFlashByte_MX,
+     ProgramFlashSector_MX,
++    ProgramFlashSectorNBytesAndHeader_MX,
+     EraseFlashChip_MX,
+     EraseFlashSector_MX,
+     WaitForFlashWrite_Common,
+@@ -34,6 +36,7 @@ const struct FlashSetupInfo DefaultFlash =
+ {
+     ProgramFlashByte_MX,
+     ProgramFlashSector_MX,
++    ProgramFlashSectorNBytesAndHeader_MX,
+     EraseFlashChip_MX,
+     EraseFlashSector_MX,
+     WaitForFlashWrite_Common,
+@@ -191,3 +194,62 @@ u16 ProgramFlashSector_MX(u16 sectorNum, u8 *src)
+ 
+     return result;
+ }
++
++u16 ProgramFlashSectorNBytesAndHeader_MX(u16 sectorNum, u8 *src, u32 size)
++{
++    u16 result;
++    u8 *dest;
++    u8 *baseDest;
++    u8 *baseSrc;
++    u16 readFlash1Buffer[0x20];
++
++    if (sectorNum >= gFlash->sector.count)
++        return 0x80FF;
++
++    result = EraseFlashSector_MX(sectorNum);
++
++    if (result != 0)
++        return result;
++
++    SwitchFlashBank(sectorNum / SECTORS_PER_BANK);
++    sectorNum %= SECTORS_PER_BANK;
++
++    SetReadFlash1(readFlash1Buffer);
++
++    REG_WAITCNT = (REG_WAITCNT & ~WAITCNT_SRAM_MASK) | gFlash->wait[0];
++
++    gFlashNumRemainingBytes = size;
++    dest = FLASH_BASE + (sectorNum << gFlash->sector.shift);
++    baseDest = dest;
++    baseSrc = src;
++
++    while (gFlashNumRemainingBytes > 0)
++    {
++        result = ProgramByte(src, dest);
++
++        if (result != 0)
++            break;
++
++        gFlashNumRemainingBytes--;
++        src++;
++        dest++;
++    }
++
++    gFlashNumRemainingBytes = 0x1000 - SAVE_SECTION_HEADER_POS;
++    baseSrc += offsetof(struct SaveSector, isCompressed);
++    baseDest += SAVE_SECTION_HEADER_POS;
++
++    while (gFlashNumRemainingBytes > 0)
++    {
++        result = ProgramByte(baseSrc, baseDest);
++
++        if (result != 0)
++            break;
++
++        gFlashNumRemainingBytes--;
++        baseSrc++;
++        baseDest++;
++    }
++
++    return result;
++}
++ 
+diff --git a/src/main.c b/src/main.c
+index a1c05e452..20bc68480 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -37,7 +37,6 @@ static void VBlankIntr(void);
+ static void HBlankIntr(void);
+ static void VCountIntr(void);
+ static void SerialIntr(void);
+-static void IntrDummy(void);
+ 
+ const u8 gGameVersion = GAME_VERSION;
+ 
+@@ -498,7 +497,7 @@ static void SerialIntr(void)
+     gMain.intrCheck |= INTR_FLAG_SERIAL;
+ }
+ 
+-static void IntrDummy(void)
++void IntrDummy(void)
+ {}
+ 
+ void WaitForVBlank(void)
+diff --git a/src/overworld.c b/src/overworld.c
+index 913b6dae1..b576b0a24 100644
+--- a/src/overworld.c
++++ b/src/overworld.c
+@@ -96,7 +96,6 @@ static void CB2_ReturnToFieldLocal(void);
+ static void CB2_ReturnToFieldLink(void);
+ static void CB2_LoadMapOnReturnToFieldCableClub(void);
+ static void CB2_LoadMap2(void);
+-static void VBlankCB_Field(void);
+ static void SpriteCB_LinkPlayer(struct Sprite *sprite);
+ static void ChooseAmbientCrySpecies(void);
+ static void DoMapLoadLoop(u8 *state);
+@@ -1801,7 +1800,7 @@ static void SetFieldVBlankCallback(void)
+     SetVBlankCallback(VBlankCB_Field);
+ }
+ 
+-static void VBlankCB_Field(void)
++void VBlankCB_Field(void)
+ {
+     LoadOam();
+     ProcessSpriteCopyRequests();
+diff --git a/src/save.c b/src/save.c
+index 0ab49b9b0..307e69f64 100644
+--- a/src/save.c
++++ b/src/save.c
+@@ -12,6 +12,7 @@
+ #include "trainer_hill.h"
+ #include "link.h"
+ #include "malloc.h"
++#include "lz_compress.h"
+ #include "constants/game_stat.h"
+ 
+ static u16 CalculateChecksum(void *data, u16 size);
+@@ -20,6 +21,7 @@ static u8 GetSaveValidStatus(const struct SaveSectionLocation *location);
+ static u8 CopySaveSlotData(u16 a1, const struct SaveSectionLocation *location);
+ static u8 ClearSaveData_2(u16 a1, const struct SaveSectionLocation *location);
+ static u8 TryWriteSector(u8 sector, u8 *data);
++static u8 TryWriteSectorNBytesAndHeader(u8 sector, u8 *data, u32 n);
+ static u8 HandleWriteSector(u16 a1, const struct SaveSectionLocation *location);
+ 
+ // Divide save blocks into individual chunks to be written to flash sectors
+@@ -54,6 +56,9 @@ static u8 HandleWriteSector(u16 a1, const struct SaveSectionLocation *location);
+     min(sizeof(structure) - chunkNum * SECTOR_DATA_SIZE, SECTOR_DATA_SIZE)  \
+ }                                                                           \
+ 
++#define SECTOR_ID_BOX_START 5
++#define SECTOR_ID_BOX_LAST 13
++
+ static const struct SaveSectionOffsets sSaveSectionOffsets[] =
+ {
+     SAVEBLOCK_CHUNK(gSaveblock2, 0),
+@@ -74,6 +79,26 @@ static const struct SaveSectionOffsets sSaveSectionOffsets[] =
+     SAVEBLOCK_CHUNK(gPokemonStorage, 8),
+ };
+ 
++struct BoxChunkPartition
++{
++    u8 startBoxId;
++    u8 startBoxPos;
++    u8 endBoxId;
++    u8 endBoxPos;
++};
++
++static const struct BoxChunkPartition sBoxChunkPartitions[] =
++{
++    {0, 0, 1, 19+1},
++    {1, 19, 3, 9+1},
++    {3, 9, 4, 28+1},
++    {4, 28, 6, 18+1},
++    {6, 18, 8, 7+1},
++    {8, 7, 9, 27+1},
++    {9, 27, 11, 17+1},
++    {11, 17, 13, 6+1},
++};
++
+ // iwram common
+ u16 gLastWrittenSector;
+ u32 gLastSaveCounter;
+@@ -133,12 +158,19 @@ static bool32 SetDamagedSectorBits(u8 op, u8 bit)
+     return retVal;
+ }
+ 
++static u8 WriteSaveSectorOrSlot_Common(u16 a1, const struct SaveSectionLocation *location, u32 startSectorId, u32 endSectorId, bool32 adjustSaveCounters);
++
+ static u8 WriteSaveSectorOrSlot(u16 a1, const struct SaveSectionLocation *location)
++{
++    return WriteSaveSectorOrSlot_Common(a1, location, 0, NUM_SECTORS_PER_SLOT, TRUE);
++}
++
++static u8 WriteSaveSectorOrSlot_Common(u16 a1, const struct SaveSectionLocation *location, u32 startSectorId, u32 endSectorId, bool32 adjustSaveCounters)
+ {
+     u32 status;
+     u16 i;
+ 
+-    gReadWriteSector = AllocZeroed(0x1000);
++    gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+ 
+     if (a1 != 0xFFFF) // for link
+     {
+@@ -146,14 +178,16 @@ static u8 WriteSaveSectorOrSlot(u16 a1, const struct SaveSectionLocation *location)
+     }
+     else
+     {
+-        gLastKnownGoodSector = gLastWrittenSector; // backup the current written sector before attempting to write.
+-        gLastSaveCounter = gSaveCounter;
+-        gLastWrittenSector++;
+-        gLastWrittenSector = gLastWrittenSector % NUM_SECTORS_PER_SLOT; // array count save sector locations
+-        gSaveCounter++;
++        if (adjustSaveCounters) {
++            gLastKnownGoodSector = gLastWrittenSector; // backup the current written sector before attempting to write.
++            gLastSaveCounter = gSaveCounter;
++            gLastWrittenSector++;
++            gLastWrittenSector = gLastWrittenSector % NUM_SECTORS_PER_SLOT; // array count save sector locations
++            gSaveCounter++;
++        }
+         status = SAVE_STATUS_OK;
+ 
+-        for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
++        for (i = startSectorId; i < endSectorId; i++)
+             HandleWriteSector(i, location);
+ 
+         if (gDamagedSaveSectors != 0) // skip the damaged sector.
+@@ -168,6 +202,27 @@ static u8 WriteSaveSectorOrSlot(u16 a1, const struct SaveSectionLocation *location)
+     return status;
+ }
+ 
++// https://www.reddit.com/r/C_Programming/comments/unqh5f/comment/i8ap0c3/
++u32 CountPokemonInBoxChunk(u32 sectorId)
++{
++    const struct BoxChunkPartition * boxChunkPartition = &sBoxChunkPartitions[sectorId - 5];
++    u8 * boxesAsU8 = (u8 *)&gPokemonStoragePtr->boxes[boxChunkPartition->startBoxId][boxChunkPartition->startBoxPos];
++    u8 * boxesEndAsU8 = (u8 *)&gPokemonStoragePtr->boxes[boxChunkPartition->endBoxId][boxChunkPartition->endBoxPos];
++    u32 count = 0;
++
++    while (boxesAsU8 < boxesEndAsU8) {
++        if (((struct BoxPokemon *)boxesAsU8)->language != 0) {
++            count++;
++            if (count >= 46) {
++                return count;
++            }
++        }
++        boxesAsU8 += sizeof(struct BoxPokemon);
++    }
++
++    return count;
++}
++
+ // gReadWriteSector initialized in HandleWriteIncrementalSector, WriteSaveSectorOrSlot
+ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectionLocation *location)
+ {
+@@ -175,6 +230,7 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectionLocation *loca
+     u16 sector;
+     u8 *data;
+     u16 size;
++    u32 compressedSize;
+ 
+     sector = sectorId + gLastWrittenSector;
+     sector %= NUM_SECTORS_PER_SLOT;
+@@ -184,29 +240,55 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectionLocation *loca
+     size = location[sectorId].size;
+ 
+     // clear save section.
+-    for (i = 0; i < sizeof(struct SaveSector); i++)
+-        ((char *)gReadWriteSector)[i] = 0;
++    CpuFastFill(0, gReadWriteSector, 0x1000);
+ 
+     gReadWriteSector->id = sectorId;
+     gReadWriteSector->security = UNKNOWN_CHECK_VALUE;
+     gReadWriteSector->counter = gSaveCounter;
+ 
+-    for (i = 0; i < size; i++)
+-        gReadWriteSector->data[i] = data[i];
++    if (sectorId >= SECTOR_ID_BOX_START && sectorId != SECTOR_ID_BOX_LAST) {
++        // try to optimize whether to compress boxes
++        // a box chunk can have either 48 or 49 pokemon (+ 2 overlaps)
++        // 46 is a good cutoff for whether to bother compressing or not
++        u32 boxCount = CountPokemonInBoxChunk(sectorId);
++        if (boxCount < 46) {
++            compressedSize = FastRLE0CompressUnsafe((u16 *)data, (u16 *)gReadWriteSector->data, size);
++        } else {
++            // don't bother compressing if the box chunk is almost full
++            compressedSize = 0xffffffff;
++        }
++    } else {
++        compressedSize = FastRLE0CompressUnsafe((u16 *)data, (u16 *)gReadWriteSector->data, size);
++    }
+ 
+-    gReadWriteSector->checksum = CalculateChecksum(data, size);
+-    return TryWriteSector(sector, gReadWriteSector->data);
++    if (compressedSize <= size) {
++        gReadWriteSector->isCompressed = TRUE;
++    } else {
++        u32 roundedSize;
++        gReadWriteSector->isCompressed = FALSE;
++        // should never overflow
++        roundedSize = (size * 0x20 + 0x1f) / 0x20;
++        CpuFastCopy(data, gReadWriteSector->data, roundedSize);
++        compressedSize = size;
++    }
++
++    gReadWriteSector->checksum = CalculateChecksum(gReadWriteSector->data, compressedSize);
++
++    return TryWriteSectorNBytesAndHeader(sector, gReadWriteSector->data, compressedSize);
+ }
+ 
+ static u8 HandleWriteSectorNBytes(u8 sector, u8 *data, u16 size)
+ {
+     u16 i;
+     u8 result;
+-    struct SaveSector *sector = AllocZeroed(0x1000);
++    struct SaveSector *sector = AllocZeroed(sizeof(struct SaveSector));
+ 
+-    //for (i = 0; i < sizeof(struct SaveSector); i++)
+-    //    ((char *)sector)[i] = 0;
++    for (i = 0; i < SAVE_SECTION_HEADER_POS; i++)
++        ((char *)sector)[i] = 0;
+ 
++    sector->isCompressed = FALSE;
++    sector->checksum = 0;
++    sector->counter = 0;
+     sector->security = UNKNOWN_CHECK_VALUE;
+ 
+     for (i = 0; i < size; i++)
+@@ -233,6 +315,21 @@ static u8 TryWriteSector(u8 sector, u8 *data)
+     }
+ }
+ 
++static u8 TryWriteSectorNBytesAndHeader(u8 sector, u8 *data, u32 n)
++{
++    if (ProgramFlashSectorNBytesAndHeaderAndVerify(sector, data, n) != 0) // is damaged?
++    {
++        SetDamagedSectorBits(ENABLE, sector); // set damaged sector bits.
++        return SAVE_STATUS_ERROR;
++    }
++    else
++    {
++        SetDamagedSectorBits(DISABLE, sector); // unset damaged sector bits. it's safe now.
++        return SAVE_STATUS_OK;
++    }
++}
++
++
+ static u32 RestoreSaveBackupVarsAndIncrement(const struct SaveSectionLocation *location) // location is unused
+ {
+     gLastKnownGoodSector = gLastWrittenSector;
+@@ -260,7 +357,7 @@ static u8 HandleWriteIncrementalSector(u16 sectorId, const struct SaveSectionLoc
+ 
+     if (gIncrementalSectorId < sectorId - 1)
+     {
+-        gReadWriteSector = AllocZeroed(0x1000);
++        gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+         status = SAVE_STATUS_OK;
+         HandleWriteSector(gIncrementalSectorId, location);
+         gIncrementalSectorId++;
+@@ -301,7 +398,7 @@ static u8 ClearSaveData_2(u16 sectorId, const struct SaveSectionLocation *locati
+ {
+     u8 result;
+ 
+-    gReadWriteSector = AllocZeroed(0x1000);
++    gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+     result = ClearSaveData_2_Helper(sectorId, location);
+     Free(gReadWriteSector);
+     return result;
+@@ -324,9 +421,10 @@ static u8 ClearSaveData_2_Helper(u16 sectorId, const struct SaveSectionLocation
+     size = location[sectorId].size;
+ 
+     // clear temp save section.
+-    for (i = 0; i < sizeof(struct SaveSector); i++)
++    for (i = 0; i < SAVE_SECTION_HEADER_POS; i++)
+         ((char *)gReadWriteSector)[i] = 0;
+ 
++    gReadWriteSector->isCompressed = FALSE;
+     gReadWriteSector->id = sectorId;
+     gReadWriteSector->security = UNKNOWN_CHECK_VALUE;
+     gReadWriteSector->counter = gSaveCounter;
+@@ -408,7 +506,7 @@ static u8 sav12_xor_get(u16 sectorId, const struct SaveSectionLocation *location
+ static u8 CopySectorSignatureByte(u16 sectorId, const struct SaveSectionLocation *location)
+ {
+     u16 sector;
+-    gReadWriteSector = AllocZeroed(0x1000);
++    gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+ 
+     sector = sectorId + gLastWrittenSector - 1;
+     sector %= NUM_SECTORS_PER_SLOT;
+@@ -457,7 +555,7 @@ static u8 WriteSectorSignatureByte(u16 sectorId, const struct SaveSectionLocatio
+ static u8 TryLoadSaveSlot(u16 a1, const struct SaveSectionLocation *location)
+ {
+     u8 status;
+-    gReadWriteSector = AllocZeroed(0x1000);
++    gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+     if (a1 != 0xFFFF)
+     {
+         status = SAVE_STATUS_ERROR;
+@@ -472,6 +570,18 @@ static u8 TryLoadSaveSlot(u16 a1, const struct SaveSectionLocation *location)
+     return status;
+ }
+ 
++static u32 CalculateChecksumAccountForCompressed(const struct SaveSectionLocation * location, u32 id)
++{
++    u32 size;
++    if (gReadWriteSector->isCompressed) {
++        size = (gReadWriteSector->data[0] | (gReadWriteSector->data[1] << 8)) & 0x7fff;
++    } else {
++        size = location[id].size;
++    }
++
++    return CalculateChecksum(gReadWriteSector->data, size);
++}
++
+ // gReadWriteSector initialized in TryLoadSaveSlot
+ static u8 CopySaveSlotData(u16 a1, const struct SaveSectionLocation *location)
+ {
+@@ -486,13 +596,15 @@ static u8 CopySaveSlotData(u16 a1, const struct SaveSectionLocation *location)
+         id = gReadWriteSector->id;
+         if (id == 0)
+             gLastWrittenSector = i;
+-        checksum = CalculateChecksum(gReadWriteSector->data, location[id].size);
++        checksum = CalculateChecksumAccountForCompressed(location, id);
+         if (gReadWriteSector->security == UNKNOWN_CHECK_VALUE
+          && gReadWriteSector->checksum == checksum)
+         {
+-            u16 j;
+-            for (j = 0; j < location[id].size; j++)
+-                ((u8 *)location[id].data)[j] = gReadWriteSector->data[j];
++            if (gReadWriteSector->isCompressed) {
++                FastRLE0Decompress((u16 *)gReadWriteSector->data, (u16 *)location[id].data, location[id].size);
++            } else {
++                CpuCopy32(gReadWriteSector->data, location[id].data, location[id].size);
++            }
+         }
+     }
+ 
+@@ -518,7 +630,7 @@ static u8 GetSaveValidStatus(const struct SaveSectionLocation *location)
+         if (gReadWriteSector->security == UNKNOWN_CHECK_VALUE)
+         {
+             securityPassed = TRUE;
+-            checksum = CalculateChecksum(gReadWriteSector->data, location[gReadWriteSector->id].size);
++            checksum = CalculateChecksumAccountForCompressed(location,gReadWriteSector->id);
+             if (gReadWriteSector->checksum == checksum)
+             {
+                 saveSlot1Counter = gReadWriteSector->counter;
+@@ -549,7 +661,7 @@ static u8 GetSaveValidStatus(const struct SaveSectionLocation *location)
+         if (gReadWriteSector->security == UNKNOWN_CHECK_VALUE)
+         {
+             securityPassed = TRUE;
+-            checksum = CalculateChecksum(gReadWriteSector->data, location[gReadWriteSector->id].size);
++            checksum = CalculateChecksumAccountForCompressed(location,gReadWriteSector->id);
+             if (gReadWriteSector->checksum == checksum)
+             {
+                 saveSlot2Counter = gReadWriteSector->counter;
+@@ -624,7 +736,7 @@ static u8 TryLoadSaveSector(u8 sectorId, u8 *data, u16 size)
+     u8 result;
+     struct SaveSector *section;
+ 
+-    section = AllocZeroed(0x1000);
++    section = AllocZeroed(sizeof(struct SaveSector));
+     result = TryLoadSaveSector_Helper(sectorId, data, size, section);
+     Free(section);
+     return result;
+@@ -655,10 +767,26 @@ static u8 TryLoadSaveSector_Helper(u8 sectorId, u8 *data, u16 size, struct SaveS
+     }
+ }
+ 
++static inline u32 ReadU32FromU8s(u8 * data, u32 offset)
++{
++    return data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
++}
++
++static inline u16 ReadU16FromU8s(u8 * data, u32 offset)
++{
++    return data[offset] | (data[offset + 1] << 8);
++}
++
+ // Return value always ignored
+ static bool8 DoReadFlashWholeSection(u8 sector, struct SaveSector *section)
+ {
+-    ReadFlash(sector, 0, section->data, sizeof(struct SaveSector));
++    ReadFlash(sector, 0, section->data, 0x1000);
++    section->isCompressed = ReadU32FromU8s(section->data, offsetof(struct SaveSector, isCompressed) - SAVE_SECTION_HEADER_POS/2);
++    section->id = ReadU16FromU8s(section->data, offsetof(struct SaveSector, id) - SAVE_SECTION_HEADER_POS/2);
++    section->checksum = ReadU16FromU8s(section->data, offsetof(struct SaveSector, checksum) - SAVE_SECTION_HEADER_POS/2);
++    section->security = ReadU32FromU8s(section->data, offsetof(struct SaveSector, security) - SAVE_SECTION_HEADER_POS/2);
++    section->counter = ReadU32FromU8s(section->data, offsetof(struct SaveSector, counter) - SAVE_SECTION_HEADER_POS/2);
++
+     return TRUE;
+ }
+ 
+@@ -726,10 +854,7 @@ u8 HandleSavingData(u8 saveType)
+     case SAVE_LINK:  // Link and Battle Frontier
+     case SAVE_LINK2: // Unused
+         SaveSerializedGame();
+-        for(i = SECTOR_ID_SAVEBLOCK2; i <= SECTOR_ID_SAVEBLOCK1_END; i++)
+-            ClearSaveData_2(i, gRamSaveSectionLocations);
+-        for(i = SECTOR_ID_SAVEBLOCK2; i <= SECTOR_ID_SAVEBLOCK1_END; i++)
+-            sav12_xor_get(i, gRamSaveSectionLocations);
++        WriteSaveSectorOrSlot_Common(0xFFFF, gRamSaveSectionLocations, SECTOR_ID_SAVEBLOCK2, SECTOR_ID_PKMN_STORAGE_START, FALSE);
+         break;
+     case SAVE_OVERWRITE_DIFFERENT_FILE:
+         for (i = SECTOR_ID_HOF_1; i < SECTORS_COUNT; i++)
+@@ -871,7 +996,7 @@ u16 GetSaveBlocksPointersBaseOffset(void)
+     if (gFlashMemoryPresent != TRUE)
+         return SAVE_STATUS_EMPTY;
+ 
+-    savSection = gReadWriteSector = AllocZeroed(0x1000);
++    savSection = gReadWriteSector = AllocZeroed(sizeof(struct SaveSector));
+ 
+     UpdateSaveAddresses();
+ 
+@@ -905,9 +1030,9 @@ u32 TryReadSpecialSaveSection(u8 sector, u8* dst)
+         return SAVE_STATUS_ERROR;
+     }
+ 
+-    savSection = AllocZeroed(0x1000);
++    savSection = AllocZeroed(sizeof(struct SaveSector));
+ 
+-    ReadFlash(sector, 0, (u8 *)savSection, sizeof(struct SaveSector));
++    ReadFlash(sector, 0, (u8 *)savSection, 0x1000);
+     if (*(u32*)(&savSection->data[0]) != SPECIAL_SECTION_SENTINEL)
+         return SAVE_STATUS_ERROR;
+     // copies whole save section except u32 counter
+@@ -934,7 +1059,7 @@ u32 TryWriteSpecialSaveSection(u8 sector, u8* src)
+     if (sector != SECTOR_ID_TRAINER_HILL && sector != SECTOR_ID_RECORDED_BATTLE)
+         return SAVE_STATUS_ERROR;
+ 
+-    savSection = AllocZeroed(0x1000);
++    savSection = AllocZeroed(sizeof(struct SaveSector));
+     savDataBuffer = savSection;
+     *(u32*)(savDataBuffer) = SPECIAL_SECTION_SENTINEL;
+ 
+diff --git a/src/start_menu.c b/src/start_menu.c
+index 3761bde09..3a54ed60a 100644
+--- a/src/start_menu.c
++++ b/src/start_menu.c
+@@ -129,6 +129,7 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
+ EWRAM_DATA static u8 sSaveDialogTimer = 0;
+ EWRAM_DATA static bool8 sSavingComplete = FALSE;
+ EWRAM_DATA static u8 sSaveInfoWindowId = 0;
++EWRAM_DATA static u8 sSaveStatusAndDontRunTextPrinters = 0;
+ 
+ // Menu action callbacks
+ static bool8 StartMenuPokedexCallback(u8 taskId);
+@@ -1253,7 +1254,7 @@ static void InitSave(void)
+ static u8 RunSaveCallback(void)
+ {
+     // True if text is still printing
+-    if (RunTextPrintersAndIsPrinter0Active() == TRUE)
++    if (!sSaveStatusAndDontRunTextPrinters && RunTextPrintersAndIsPrinter0Active() == TRUE)
+     {
+         return SAVE_IN_PROGRESS;
+     }
+@@ -1445,35 +1446,64 @@ static u8 SaveOverwriteInputCallback(void)
+     return SAVE_IN_PROGRESS;
+ }
+ 
++static void StartMenuSaveVBlankCB_RunTextPrinter(void);
++static u8 StartMenuSave_WaitTextPrinter0(void);
++
+ static u8 SaveSavingMessageCallback(void)
+ {
+-    ShowSaveMessage(gText_SavingDontTurnOff, SaveDoSaveCallback);
++    StringExpandPlaceholders(gStringVar4, gText_SavingDontTurnOff);
++    LoadMessageBoxAndFrameGfx(0, TRUE);
++    AddTextPrinterForMessage_2(TRUE);
++    sSaveDialogCallback = SaveDoSaveCallback;
++    sSaveStatusAndDontRunTextPrinters = TRUE;
++    SetVBlankCallback(StartMenuSaveVBlankCB_RunTextPrinter);
+     return SAVE_IN_PROGRESS;
+ }
+ 
++static void StartMenuSaveVBlankCB_RunTextPrinter(void)
++{
++    if (!RunTextPrintersAndIsPrinter0Active()) {
++        SetVBlankCallback(IntrDummy);
++    }
++}
++
+ static u8 SaveDoSaveCallback(void)
+ {
+-    u8 saveStatus;
++    gSoftResetDisabled = TRUE;
++    sSaveStatusAndDontRunTextPrinters = 0;
+ 
+     IncrementGameStat(GAME_STAT_SAVED_GAME);
+     PausePyramidChallenge();
+ 
+     if (gDifferentSaveFile == TRUE)
+     {
+-        saveStatus = TrySavingData(SAVE_OVERWRITE_DIFFERENT_FILE);
++        sSaveStatusAndDontRunTextPrinters = TrySavingData(SAVE_OVERWRITE_DIFFERENT_FILE);
+         gDifferentSaveFile = FALSE;
+     }
+     else
+     {
+-        saveStatus = TrySavingData(SAVE_NORMAL);
++        sSaveStatusAndDontRunTextPrinters = TrySavingData(SAVE_NORMAL);
+     }
+ 
+-    if (saveStatus == SAVE_STATUS_OK)
+-        ShowSaveMessage(gText_PlayerSavedGame, SaveSuccessCallback);
+-    else
+-        ShowSaveMessage(gText_SaveError, SaveErrorCallback);
++    sSaveDialogCallback = StartMenuSave_WaitTextPrinter0;
++    return StartMenuSave_WaitTextPrinter0();
++}
++
++static u8 StartMenuSave_WaitTextPrinter0(void)
++{
++    if (!IsTextPrinterActive(0)) {
++        u32 saveStatus = sSaveStatusAndDontRunTextPrinters;
++        sSaveStatusAndDontRunTextPrinters = 0;
++        SetVBlankCallback(VBlankCB_Field);
++        gSoftResetDisabled = FALSE;
+ 
+-    SaveStartTimer();
++        if (saveStatus == SAVE_STATUS_OK)
++            ShowSaveMessage(gText_PlayerSavedGame, SaveSuccessCallback);
++        else
++            ShowSaveMessage(gText_SaveError, SaveErrorCallback);
++    
++        SaveStartTimer();
++    }
+     return SAVE_IN_PROGRESS;
+ }
+ 
+-- 
+2.25.1
+

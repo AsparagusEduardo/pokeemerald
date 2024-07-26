@@ -1,5 +1,6 @@
 #include "gba/gba.h"
 #include "gba/flash_internal.h"
+#include "save.h"
 
 static u8 sTimerNum;
 static u16 sTimerCount;
@@ -10,6 +11,7 @@ u8 gFlashTimeoutFlag;
 u8 (*PollFlashStatus)(u8 *);
 u16 (*WaitForFlashWrite)(u8 phase, u8 *addr, u8 lastData);
 u16 (*ProgramFlashSector)(u16 sectorNum, u8 *src);
+u16 (*ProgramFlashSectorNBytesAndHeader)(u16 sectorNum, u8 *src, u32 size);
 const struct FlashType *gFlash;
 u16 (*ProgramFlashByte)(u16 sectorNum, u32 offset, u8 data);
 u16 gFlashNumRemainingBytes;
@@ -183,6 +185,30 @@ u32 VerifyFlashSector_Core(u8 *src, u8 *tgt, u32 size)
     return 0;
 }
 
+u32 VerifyFlashSectorNBytesAndHeader_Core(u8 *src, u8 *tgt, u32 size)
+{
+    u8 * unmodifiedSrc = src;
+    u8 * unmodifiedTgt = tgt;
+
+    while (size-- != 0)
+    {
+        if (*tgt++ != *src++)
+            return (u32)(tgt - 1);
+    }
+
+    unmodifiedSrc += offsetof(struct SaveSection, isCompressed);
+    unmodifiedTgt += SAVE_SECTION_HEADER_POS;
+    size = 0x1000 - SAVE_SECTION_HEADER_POS;
+    while (size-- != 0) {
+        if (*unmodifiedTgt++ != *unmodifiedSrc++) {
+            return (u32)(unmodifiedTgt - 1);
+        }
+    }
+
+    return 0;
+}
+
+
 u32 VerifyFlashSector(u16 sectorNum, u8 *src)
 {
     u16 i;
@@ -205,7 +231,7 @@ u32 VerifyFlashSector(u16 sectorNum, u8 *src)
     funcSrc = (vu16 *)((s32)funcSrc ^ 1);
     funcDest = verifyFlashSector_Core_Buffer;
 
-    i = ((s32)VerifyFlashSector - (s32)VerifyFlashSector_Core) >> 1;
+    i = ((s32)VerifyFlashSectorNBytesAndHeader_Core - (s32)VerifyFlashSector_Core) >> 1;
 
     while (i != 0)
     {
@@ -257,6 +283,42 @@ u32 VerifyFlashSectorNBytes(u16 sectorNum, u8 *src, u32 n)
     return verifyFlashSector_Core(src, tgt, n);
 }
 
+u32 VerifyFlashSectorNBytesAndHeader(u16 sectorNum, u8 *src, u32 n)
+{
+    u16 i;
+    vu16 verifyFlashSector_Core_Buffer[0x80];
+    vu16 *funcSrc;
+    vu16 *funcDest;
+    u8 *tgt;
+    u32 (*verifyFlashSector_Core)(u8 *, u8 *, u32);
+
+    if (gFlash->romSize == FLASH_ROM_SIZE_1M)
+    {
+        SwitchFlashBank(sectorNum / SECTORS_PER_BANK);
+        sectorNum %= SECTORS_PER_BANK;
+    }
+
+    REG_WAITCNT = (REG_WAITCNT & ~WAITCNT_SRAM_MASK) | WAITCNT_SRAM_8;
+
+    funcSrc = (vu16 *)VerifyFlashSectorNBytesAndHeader_Core;
+    funcSrc = (vu16 *)((s32)funcSrc ^ 1);
+    funcDest = verifyFlashSector_Core_Buffer;
+
+    i = ((s32)VerifyFlashSector - (s32)VerifyFlashSectorNBytesAndHeader_Core) >> 1;
+
+    while (i != 0)
+    {
+        *funcDest++ = *funcSrc++;
+        i--;
+    }
+
+    verifyFlashSector_Core = (u32 (*)(u8 *, u8 *, u32))((s32)verifyFlashSector_Core_Buffer + 1);
+
+    tgt = FLASH_BASE + (sectorNum << gFlash->sector.shift);
+
+    return verifyFlashSector_Core(src, tgt, n);
+}
+
 u32 ProgramFlashSectorAndVerify(u16 sectorNum, u8 *src)
 {
     u8 i;
@@ -288,6 +350,25 @@ u32 ProgramFlashSectorAndVerifyNBytes(u16 sectorNum, u8 *src, u32 n)
             continue;
 
         result = VerifyFlashSectorNBytes(sectorNum, src, n);
+        if (result == 0)
+            break;
+    }
+
+    return result;
+}
+
+u32 ProgramFlashSectorNBytesAndHeaderAndVerify(u16 sectorNum, u8 *src, u32 n)
+{
+    u32 i;
+    u32 result;
+
+    for (i = 0; i < 3; i++) {
+        result = ProgramFlashSectorNBytesAndHeader(sectorNum, src, n);
+        if (result != 0) {
+            continue;
+        }
+
+        result = VerifyFlashSectorNBytesAndHeader(sectorNum, src, n);
         if (result == 0)
             break;
     }

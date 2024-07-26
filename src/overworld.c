@@ -102,7 +102,6 @@ static void CB2_ReturnToFieldLocal(void);
 static void CB2_ReturnToFieldLink(void);
 static void CB2_LoadMapOnReturnToFieldCableClub(void);
 static void CB2_LoadMap2(void);
-static void VBlankCB_Field(void);
 static void SpriteCB_LinkPlayer(struct Sprite *);
 static void ChooseAmbientCrySpecies(void);
 static void DoMapLoadLoop(u8 *);
@@ -1832,7 +1831,7 @@ static void SetFieldVBlankCallback(void)
     SetVBlankCallback(VBlankCB_Field);
 }
 
-static void VBlankCB_Field(void)
+void VBlankCB_Field(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
