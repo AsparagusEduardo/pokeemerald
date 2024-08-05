@@ -449,4 +449,13 @@ Debug_EventScript_EWRAMCounters_Text::
 	.string "Follower Steps: {STR_VAR_1}.\n"
 	.string "Fishing Chain: {STR_VAR_2}.$"
 
+Debug_EventScript_CheckEnabledSpeciesCount::
+	callnative CheckEnabledSpeciesCount
+	msgbox Debug_EventScript_CheckEnabledSpeciesCount_Text, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_EventScript_CheckEnabledSpeciesCount_Text::
+	.string "{STR_VAR_1}/{STR_VAR_2} species enabled.$"
+
 .endif
