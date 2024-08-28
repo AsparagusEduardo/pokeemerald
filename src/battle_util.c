@@ -7316,7 +7316,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                 if (GetBattlerSide(battler) == B_SIDE_PLAYER && !gBattleStruct->moneyMultiplierItem)
                 {
                     gBattleStruct->moneyMultiplier *= 2;
-                    gBattleStruct->moneyMultiplierItem = 1;
+                    gBattleStruct->moneyMultiplierItem = TRUE;
                 }
                 break;
             case HOLD_EFFECT_RESTORE_STATS:

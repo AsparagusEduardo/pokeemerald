@@ -651,8 +651,8 @@ struct BattleStruct
     u8 focusPunchBattlers; // as bits
     u8 battlerPreventingSwitchout;
     u8 moneyMultiplier:6;
-    u8 moneyMultiplierItem:1;
-    u8 moneyMultiplierMove:1;
+    bool8 moneyMultiplierItem:1;
+    bool8 moneyMultiplierMove:1;
     u8 savedTurnActionNumber;
     u8 eventsBeforeFirstTurnState;
     u8 faintedActionsState;

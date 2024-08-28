@@ -3246,7 +3246,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER && !gBattleStruct->moneyMultiplierMove)
                 {
                     gBattleStruct->moneyMultiplier *= 2;
-                    gBattleStruct->moneyMultiplierMove = 1;
+                    gBattleStruct->moneyMultiplierMove = TRUE;
                 }
                 gBattlescriptCurrInstr++;
                 break;
