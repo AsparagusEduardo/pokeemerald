@@ -465,8 +465,8 @@ bool8 TryHandleLaunchBattleTableAnimation(u8 activeBattler, u8 atkBattler, u8 de
 
     if (tableId == B_ANIM_ILLUSION_OFF)
     {
-        gBattleStruct->illusion[activeBattler].broken = 1;
-        gBattleStruct->illusion[activeBattler].on = 0;
+        gBattleStruct->illusion[activeBattler].broken = TRUE;
+        gBattleStruct->illusion[activeBattler].on = FALSE;
     }
 
     gBattleAnimAttacker = atkBattler;

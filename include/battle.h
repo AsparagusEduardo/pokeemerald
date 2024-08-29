@@ -559,9 +559,9 @@ struct LinkBattlerHeader
 
 struct Illusion
 {
-    u8 on;
-    u8 set;
-    u8 broken;
+    bool8 on;
+    bool8 set;
+    bool8 broken;
     u8 partyId;
     struct Pokemon *mon;
 };

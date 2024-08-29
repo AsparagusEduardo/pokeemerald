@@ -10969,7 +10969,7 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battler)
     s32 i, id;
     u8 side, partyCount;
 
-    gBattleStruct->illusion[battler].set = 1;
+    gBattleStruct->illusion[battler].set = TRUE;
     if (GetMonAbility(mon) != ABILITY_ILLUSION)
         return FALSE;
 
@@ -10996,8 +10996,8 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battler)
             && &party[id] != mon
             && &party[id] != partnerMon)
         {
-            gBattleStruct->illusion[battler].on = 1;
-            gBattleStruct->illusion[battler].broken = 0;
+            gBattleStruct->illusion[battler].on = TRUE;
+            gBattleStruct->illusion[battler].broken = FALSE;
             gBattleStruct->illusion[battler].partyId = id;
             gBattleStruct->illusion[battler].mon = &party[id];
             return TRUE;
