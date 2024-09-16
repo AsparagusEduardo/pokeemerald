@@ -425,11 +425,13 @@ static void Task_MapNamePopUpWindow(u8 taskId)
     case STATE_WAIT:
         // Wait while the window is fully onscreen.
         UpdateSecondaryPopUpWindow(GetSecondaryPopUpWindowId());
+        /*
         if (++task->tOnscreenTimer > 120)
         {
             task->tOnscreenTimer = 0;
             task->tState = STATE_SLIDE_OUT;
         }
+        //*/
         break;
     case STATE_SLIDE_OUT:
         // Slide the window offscreen.

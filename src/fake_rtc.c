@@ -81,9 +81,10 @@ void FakeRtc_ManuallySetTime(u32 hour, u32 minute, u32 second)
 
 u32 FakeRtc_GetSecondsRatio(void)
 {
-    return (OW_ALTERED_TIME_RATIO == GEN_8_PLA) ? 60 :
-           (OW_ALTERED_TIME_RATIO == GEN_9)     ? 20 :
-                                                  1;
+    //return (OW_ALTERED_TIME_RATIO == GEN_8_PLA) ? 60 :
+    //       (OW_ALTERED_TIME_RATIO == GEN_9)     ? 20 :
+    //                                              1;
+    return 900;
 }
 
 STATIC_ASSERT((OW_FLAG_PAUSE_TIME == 0 || OW_USE_FAKE_RTC == TRUE), FakeRtcMustBeTrueToPauseTime);

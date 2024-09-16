@@ -1538,63 +1538,85 @@ const struct BlendSettings gTimeOfDayBlend[] =
     [TIME_NIGHT]   = {.coeff = 10, .blendColor = TINT_NIGHT, .isTint = TRUE},
 };
 
+#define TEMP_TIME_4    4    //  0-4:  Night
+#define TEMP_TIME_7    7    //  4-7:  Night -> Morning
+#define TEMP_TIME_10   10   //  7-10: Morning -> Day
+#define TEMP_TIME_18   18   // 10-18: Day
+#define TEMP_TIME_20   20   // 18-20: Day -> Evening
+#define TEMP_TIME_22   22   // 20-22: Evening -> Night
+
+#define DEFAULT_WEIGHT 256
+#define TIME_BLEND_WEIGHT(begin, end) (DEFAULT_WEIGHT - (DEFAULT_WEIGHT * ((hours - begin) * MINUTES_PER_HOUR + minutes) / ((end - begin) * MINUTES_PER_HOUR)))
+
+/*
+    RtcCalcLocalTime();
+    if (IsBetweenHours(gLocalTime.hours, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
+        return TIME_MORNING;
+    else if (IsBetweenHours(gLocalTime.hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END))
+        return TIME_EVENING;
+    else if (IsBetweenHours(gLocalTime.hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
+        return TIME_NIGHT;
+    return TIME_DAY;
+*/
+
 void UpdateTimeOfDay(void)
 {
     s32 hours, minutes;
     RtcCalcLocalTime();
     hours = gLocalTime.hours;
     minutes = gLocalTime.minutes;
-    if (hours < 4) // night
+    if (hours < TEMP_TIME_4) // night
     {
-        currentTimeBlend.weight = 256;
+        currentTimeBlend.weight = DEFAULT_WEIGHT;
         currentTimeBlend.altWeight = 0;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_NIGHT;
     }
-    else if (hours < 7) // night->morning
+    else if (hours < TEMP_TIME_7) // night->morning
     {
         currentTimeBlend.time0 = TIME_NIGHT;
         currentTimeBlend.time1 = TIME_MORNING;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 4) * 60 + minutes) / ((7-4)*60);
-        currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(TEMP_TIME_4, TEMP_TIME_7);
+        currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2;
         gTimeOfDay = TIME_MORNING;
     }
-    else if (hours < 10) // morning->day
+    else if (hours < TEMP_TIME_10) // morning->day
     {
         currentTimeBlend.time0 = TIME_MORNING;
         currentTimeBlend.time1 = TIME_DAY;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 7) * 60 + minutes) / ((10-7)*60);
-        currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2 + 128;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(TEMP_TIME_7, TEMP_TIME_10);
+        currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_DAY;
     }
-    else if (hours < 18) // day
+    else if (hours < TEMP_TIME_18) // day
     {
-        currentTimeBlend.weight = currentTimeBlend.altWeight = 256;
+        currentTimeBlend.weight = currentTimeBlend.altWeight = DEFAULT_WEIGHT;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_DAY;
     }
-    else if (hours < 20) // evening
+    else if (hours < TEMP_TIME_20) // evening
     {
         currentTimeBlend.time0 = TIME_DAY;
         currentTimeBlend.time1 = TIME_EVENING;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 18) * 60 + minutes) / ((20-18)*60);
-        currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + 128;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(TEMP_TIME_18, TEMP_TIME_20);
+        currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_EVENING;
     }
-    else if (hours < 22) // evening->night
+    else if (hours < TEMP_TIME_22) // evening->night
     {
         currentTimeBlend.time0 = TIME_EVENING;
         currentTimeBlend.time1 = TIME_NIGHT;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 20) * 60 + minutes) / ((22-20)*60);
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(TEMP_TIME_20, TEMP_TIME_22);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2;
         gTimeOfDay = TIME_NIGHT;
     }
     else // 22-24, night
     {
-        currentTimeBlend.weight = 256;
+        currentTimeBlend.weight = DEFAULT_WEIGHT;
         currentTimeBlend.altWeight = 0;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_NIGHT;
     }
-    return gTimeOfDay;
 }
+
+#undef TIME_BLEND_WEIGHT
 
 // Whether a map type is naturally lit/outside
 bool8 MapHasNaturalLight(u8 mapType)
