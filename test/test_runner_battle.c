@@ -5,7 +5,7 @@
 #include "battle_controllers.h"
 #include "battle_gimmick.h"
 #include "battle_z_move.h"
-#include "characters.h"
+#include "constants/characters.h"
 #include "event_data.h"
 #include "fieldmap.h"
 #include "item_menu.h"

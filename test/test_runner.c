@@ -1,6 +1,6 @@
 #include <stdarg.h>
 #include "global.h"
-#include "characters.h"
+#include "constants/characters.h"
 #include "gpu_regs.h"
 #include "load_save.h"
 #include "main.h"
