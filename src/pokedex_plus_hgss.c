@@ -5105,12 +5105,12 @@ static bool8 CalculateMoves(void)
         movesTotal++;
     }
 
-    for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
+    for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
     {
-        move = teachableLearnset[i];
-        for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
+        move = ItemIdToBattleMoveId(ITEM_TM01 + j);
+        for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
         {
-            if (ItemIdToBattleMoveId(ITEM_TM01 + j) == move)
+            if (teachableLearnset[i] == move)
             {
                 sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
                 numTMHMMoves++;
