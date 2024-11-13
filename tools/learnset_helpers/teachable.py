@@ -41,7 +41,7 @@ with open("./include/constants/tms_hms.h", 'r') as file:
 # look up universal moves to exclude them
 universal_moves = []
 with open("./src/pokemon.c", "r") as file:
-    for x in re.findall(r"static const u16 sUniversalMoves\[\] =(.|\n)*?{((.|\n)*?)};", file.read())[0]:
+    for x in re.findall(r"static const u16 gUniversalMoves\[\] =(.|\n)*?{((.|\n)*?)};", file.read())[0]:
         x = x.replace("\n", "")
         for y in x.split(","):
             y = y.strip()
@@ -174,7 +174,7 @@ for move in tm_moves + tutor_moves:
         longest_move_name = len(move)
 longest_move_name += 2 # + 2 for a hyphen and a space
 
-universal_title = "Near-universal moves found in sUniversalMoves:"
+universal_title = "Near-universal moves found in gUniversalMoves:"
 tmhm_title = "TM/HM moves found in \"include/constants/tms_hms.h\":"
 tutor_title = "Tutor moves found in map scripts:"
 

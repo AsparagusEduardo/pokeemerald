@@ -5081,11 +5081,8 @@ static bool8 CalculateMoves(void)
     u8 numTMHMMoves = 0;
     u8 numTutorMoves = 0;
     u16 movesTotal = 0;
-    u8 i,j;
-
-    // Mega pokemon don't have distinct learnsets from their base form; so use base species for calculation
-    if (species >= SPECIES_VENUSAUR_MEGA && species <= SPECIES_GROUDON_PRIMAL)
-        species = GetFormSpeciesId(species, 0);
+    u32 i, j;
+    bool32 found = FALSE;
 
     //Calculate amount of Egg and LevelUp moves
     numEggMoves = GetEggMovesBySpecies(species, statsMovesEgg);
@@ -5108,16 +5105,38 @@ static bool8 CalculateMoves(void)
     for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
     {
         move = ItemIdToBattleMoveId(ITEM_TM01 + j);
-        for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
-        {
-            if (teachableLearnset[i] == move)
-            {
-                sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
-                numTMHMMoves++;
+        found = FALSE;
 
-                sStatsMoves[movesTotal] = move;
-                movesTotal++;
-                break;
+        if (!gSpeciesInfo[species].tmIlliterate)
+        {
+            // Search in universal moves
+            for (i = 0; gUniversalMoves[i] != MOVE_UNAVAILABLE && !found; i++)
+            {
+                if (gUniversalMoves[i] == move)
+                {
+                    sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
+                    numTMHMMoves++;
+
+                    sStatsMoves[movesTotal] = move;
+                    movesTotal++;
+                    found = TRUE;
+                }
+            }
+        }
+
+        if (!found) // Didn't find it, search in the proper learnset.
+        {
+            for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
+            {
+                if (teachableLearnset[i] == move)
+                {
+                    sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
+                    numTMHMMoves++;
+
+                    sStatsMoves[movesTotal] = move;
+                    movesTotal++;
+                    break;
+                }
             }
         }
     }
