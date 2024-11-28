@@ -356,7 +356,7 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
 
     if (chosenMoveId == AI_CHOICE_SWITCH)
     {
-        BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, 0xFFFF);
+        BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_EXEC_SCRIPT, 0xFFFF);
     }
     else
     {
@@ -373,11 +373,11 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
          && !(gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_Z_MOVE
          && !ShouldUseZMove(battler, gBattlerTarget, moveInfo->moves[chosenMoveId])))
         {
-            BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (RET_GIMMICK) | (gBattlerTarget << 8));
+            BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_EXEC_SCRIPT, (chosenMoveId) | (RET_GIMMICK) | (gBattlerTarget << 8));
         }
         else
         {
-            BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
+            BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_EXEC_SCRIPT, (chosenMoveId) | (gBattlerTarget << 8));
         }
     }
 
