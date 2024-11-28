@@ -7473,7 +7473,7 @@ static void SetSpriteCoordsToAnimTargetCoords(struct Sprite *sprite)
 static void AnimBlastBurnTargetPlume(struct Sprite *sprite)
 {
     SetSpriteCoordsToAnimTargetCoords(sprite);
-    if (GetBattlerSide(gBattleAnimTarget))
+    if (IsBattlerShowingBackSprite(gBattleAnimTarget))
     {
         sprite->x -= gBattleAnimArgs[0];
         sprite->y += gBattleAnimArgs[1];
@@ -7562,13 +7562,13 @@ static void SpriteCB_SpriteOnMonForDuration(struct Sprite *sprite)
 
 static void SpriteCB_ToxicThreadWrap(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         sprite->x -= gBattleAnimArgs[0];
     else
         sprite->x += gBattleAnimArgs[0];
 
     sprite->y += gBattleAnimArgs[1];
-    if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+    if (IsBattlerShowingBackSprite(gBattleAnimTarget))
         sprite->y += 8;
 
     sprite->callback = AnimStringWrap_Step;
@@ -7681,7 +7681,7 @@ static void SpriteCB_TranslateAnimSpriteToTargetMonLocationDoubles(struct Sprite
         coordType = BATTLER_COORD_Y;
 
     InitSpritePosToAnimAttacker(sprite, v1);
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
     target = LoadBattleAnimTarget(6);
@@ -7718,7 +7718,7 @@ static void SpriteCB_FallingObject(struct Sprite *sprite)
         sprite->y = gBattleAnimArgs[1];
         sprite->y2 = -gBattleAnimArgs[1];
 
-        if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+        if (IsBattlerShowingBackSprite(gBattleAnimTarget))
         {
             sprite->y += 45;
             sprite->y2 -= 45;
@@ -7754,7 +7754,7 @@ static void SpriteCB_FallingObjectStep(struct Sprite *sprite)
 
 static void SpriteCB_SunsteelStrikeRings(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
     {
         sprite->x = 272;
         sprite->y = -32;
@@ -8039,7 +8039,7 @@ static void InitSpritePositionForPyroBall(struct Sprite *sprite)
     InitSpritePosToAnimAttacker(sprite, 0);
     sprite->y += 20; //Move closer to attacker's feet
 
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
+    if (IsBattlerShowingBackSprite(gBattleAnimAttacker))
         sprite->y += 20; //Move below the text box
 
 }
@@ -8064,7 +8064,7 @@ static void SpriteCB_PyroBallLaunch(struct Sprite *sprite)
 {
     InitSpritePositionForPyroBall(sprite);
 
-    if (GetBattlerSide(gBattleAnimAttacker))
+    if (IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
     sprite->data[0] = gBattleAnimArgs[4];
@@ -8087,7 +8087,7 @@ static void SpriteCB_AcidLaunchSingleTarget(struct Sprite *sprite)
     InitSpritePosToAnimTarget(sprite, TRUE);
     l1 = sprite->x; l2 = sprite->y;
     InitSpritePosToAnimAttacker(sprite, TRUE);
-    if (GetBattlerSide(gBattleAnimAttacker))
+    if (IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[4] = -gBattleAnimArgs[4];
 
     sprite->data[0] = gBattleAnimArgs[2];
@@ -8101,7 +8101,7 @@ static void SpriteCB_AcidLaunchSingleTarget(struct Sprite *sprite)
 //Causes acid to drip down a single target.
 static void SpriteCB_AcidDripSingleTarget(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[0] = -gBattleAnimArgs[0];
 
     sprite->x += gBattleAnimArgs[0];
@@ -8805,7 +8805,7 @@ void SpriteCB_HorizontalSliceStep(struct Sprite *sprite)
 //arg 2: flip
 static void SpriteCB_LashOutStrike(struct Sprite* sprite)
 {
-    bool8 flip = GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER;
+    bool8 flip = IsBattlerShowingBackSprite(gBattleAnimTarget);
 
     if (gBattleAnimArgs[2])
         flip ^= 1;
@@ -9170,7 +9170,7 @@ static void SpriteCB_GlacialLance_Step2(struct Sprite* sprite)
 {
     if (sprite->data[7]++ >= sprite->data[6])
     {
-        if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+        if (IsBattlerShowingBackSprite(gBattleAnimTarget))
             StartSpriteAffineAnim(sprite, 2);
         else
             StartSpriteAffineAnim(sprite, 1);

@@ -894,7 +894,7 @@ void AnimTask_SwitchOutBallEffect(u8 taskId)
     u32 selectedPalettes;
 
     spriteId = gBattlerSpriteIds[gBattleAnimAttacker];
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
+    if (IsBattlerShowingBackSprite(gBattleAnimAttacker))
         ball = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
     else
         ball = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
@@ -2375,7 +2375,7 @@ void AnimTask_SwapMonSpriteToFromSubstitute(u8 taskId)
     case 0:
         gTasks[taskId].data[11] = gBattleAnimArgs[0];
         gTasks[taskId].data[0] += 0x500;
-        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
             gSprites[spriteId].x2 += gTasks[taskId].data[0] >> 8;
         else
             gSprites[spriteId].x2 -= gTasks[taskId].data[0] >> 8;
@@ -2391,13 +2391,13 @@ void AnimTask_SwapMonSpriteToFromSubstitute(u8 taskId)
         break;
     case 2:
         gTasks[taskId].data[0] += 0x500;
-        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
             gSprites[spriteId].x2 -= gTasks[taskId].data[0] >> 8;
         else
             gSprites[spriteId].x2 += gTasks[taskId].data[0] >> 8;
 
         gTasks[taskId].data[0] &= 0xFF;
-        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         {
             if (gSprites[spriteId].x2 <= 0)
             {
@@ -2568,7 +2568,7 @@ static void Task_ShinyStars(u8 taskId)
         gSprites[spriteId].invisible = TRUE;
         if (gTasks[taskId].tStarIdx == 0)
         {
-            if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+            if (IsBattlerShowingBackSprite(battler))
                 pan = -64;
             else
                 pan = 63;

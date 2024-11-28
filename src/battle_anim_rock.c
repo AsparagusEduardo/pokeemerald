@@ -356,7 +356,7 @@ static void AnimStealthRock(struct Sprite *sprite)
     InitSpritePosToAnimAttacker(sprite, TRUE);
     SetAverageBattlerPositions(gBattleAnimTarget, FALSE, &x, &y);
 
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
     sprite->data[0] = gBattleAnimArgs[4];
@@ -432,7 +432,7 @@ void AnimRockFragment(struct Sprite *sprite)
     StartSpriteAnim(sprite, gBattleAnimArgs[5]);
     AnimateSprite(sprite);
 
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         sprite->x -= gBattleAnimArgs[0];
     else
         sprite->x += gBattleAnimArgs[0];
@@ -502,7 +502,7 @@ void AnimTask_LoadSandstormBackground(u8 taskId)
     AnimLoadCompressedBgTilemapHandleContest(&animBg, gBattleAnimBgTilemap_Sandstorm, FALSE);
     LoadCompressedPalette(gBattleAnimSpritePal_FlyingDirt, BG_PLTT_ID(animBg.paletteId), PLTT_SIZE_4BPP);
 
-    if (gBattleAnimArgs[0] && GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (gBattleAnimArgs[0] && !IsBattlerShowingBackSprite(gBattleAnimAttacker))
         var0 = 1;
 
     gTasks[taskId].data[0] = var0;
@@ -584,7 +584,7 @@ void AnimFlyingSandCrescent(struct Sprite *sprite)
 {
     if (sprite->data[0] == 0)
     {
-        if (gBattleAnimArgs[3] != 0 && GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (gBattleAnimArgs[3] != 0 && !IsBattlerShowingBackSprite(gBattleAnimAttacker))
         {
             sprite->x = DISPLAY_WIDTH + 64;
             gBattleAnimArgs[1] = -gBattleAnimArgs[1];

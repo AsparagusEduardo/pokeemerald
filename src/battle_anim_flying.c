@@ -424,7 +424,7 @@ static void AnimTask_AnimateGustTornadoPalette_Step(u8 taskId)
 static void AnimGustToTarget(struct Sprite *sprite)
 {
     InitSpritePosToAnimAttacker(sprite, TRUE);
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
     sprite->data[0] = gBattleAnimArgs[4];
@@ -445,7 +445,7 @@ static void AnimGustToTarget_Step(struct Sprite *sprite)
 
 void AnimAirWaveCrescent(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
     {
         gBattleAnimArgs[0] = -gBattleAnimArgs[0];
         gBattleAnimArgs[1] = -gBattleAnimArgs[1];
@@ -510,7 +510,7 @@ void AnimFlyBallUp_Step(struct Sprite *sprite)
 
 void AnimFlyBallAttack(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
     {
         sprite->x = DISPLAY_WIDTH + 32;
         sprite->y = -32;
@@ -598,7 +598,7 @@ static void AnimFallingFeather(struct Sprite *sprite)
     else
         battler = gBattleAnimTarget;
 
-    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+    if (IsBattlerShowingBackSprite(battler))
         gBattleAnimArgs[0] = -gBattleAnimArgs[0];
 
     sprite->x = GetBattlerSpriteCoord(battler, BATTLER_COORD_ATTR_HEIGHT) + gBattleAnimArgs[0];
@@ -927,8 +927,8 @@ static void AnimWhirlwindLine(struct Sprite * sprite)
     else
         InitSpritePosToAnimTarget(sprite, FALSE);
 
-    if ((gBattleAnimArgs[2] == ANIM_ATTACKER && GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-        || (gBattleAnimArgs[2] == ANIM_TARGET && GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER))
+    if ((gBattleAnimArgs[2] == ANIM_ATTACKER && IsBattlerShowingBackSprite(gBattleAnimAttacker))
+        || (gBattleAnimArgs[2] == ANIM_TARGET && IsBattlerShowingBackSprite(gBattleAnimTarget)))
     {
         sprite->x += 8;
     }
@@ -1276,7 +1276,7 @@ void AnimTask_LoadWindstormBackground(u8 taskId)
     AnimLoadCompressedBgTilemapHandleContest(&animBg, gBattleAnimBgTilemap_Sandstorm, 0);
     LoadCompressedPalette(gBattleAnimSpritePal_Windstorm, animBg.paletteId * 16, 32);
 
-    if (gBattleAnimArgs[0] && GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (gBattleAnimArgs[0] && !IsBattlerShowingBackSprite(gBattleAnimAttacker))
         var0 = 1;
 
     gTasks[taskId].data[0] = var0;

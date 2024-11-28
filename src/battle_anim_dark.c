@@ -497,7 +497,7 @@ void AnimTask_MoveAttackerMementoShadow(u8 taskId)
     task->data[14] = pos - 32;
     task->data[15] = pos + 32;
 
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
+    if (IsBattlerShowingBackSprite(gBattleAnimAttacker))
         task->data[8] = -12;
     else
         task->data[8] = -64;
@@ -667,7 +667,7 @@ void AnimTask_MoveTargetMementoShadow(u8 taskId)
         task->data[14] = x - 4;
         task->data[15] = x + 4;
 
-        if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+        if (IsBattlerShowingBackSprite(gBattleAnimTarget))
             task->data[8] = -12;
         else
             task->data[8] = -64;
@@ -933,7 +933,7 @@ void AnimTask_MetallicShine(u8 taskId)
     }
     else
     {
-        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
             species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
         else
             species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);

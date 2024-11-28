@@ -321,7 +321,7 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
     }
     else
     {
-        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        if (!IsBattlerShowingBackSprite(gBattleAnimAttacker))
             species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
         else
             species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
@@ -742,7 +742,7 @@ void AnimTask_StartSlidingBg(u8 taskId)
 
     UpdateAnimBg3ScreenSize(FALSE);
     newTaskId = CreateTask(AnimTask_UpdateSlidingBg, 5);
-    if (gBattleAnimArgs[2] && GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    if (gBattleAnimArgs[2] && !IsBattlerShowingBackSprite(gBattleAnimAttacker))
     {
         gBattleAnimArgs[0] = -gBattleAnimArgs[0];
         gBattleAnimArgs[1] = -gBattleAnimArgs[1];
