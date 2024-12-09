@@ -256,6 +256,8 @@ enum EvolutionConditions {
     IF_ATK_LT_DEF,                      // The Pokémon's Attack is lower than its Defense stat.
     IF_HOLD_ITEM,                       // The Pokémon is holding a specific item.
     // Gen 3
+    IF_ITEM_IN_BAG,                     // If the player has a specified amount of a specified item in their bag.
+    IF_EMPTY_PARTY_SLOT,                // If the player has at least one empty slot in their party.
     IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
     IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's upper personality value's modulo by 10 is equal than the defined value.
     IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's upper personality value's modulo by 10 is lower than the defined value.

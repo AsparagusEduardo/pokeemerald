@@ -356,6 +356,12 @@ struct Evolution
     const struct EvolutionParam *params;
 };
 
+struct MultiEvolution
+{
+    u16 targetSpecies;
+    const struct EvolutionParam* params;
+};
+
 struct SpeciesInfo /*0xC4*/
 {
     u8 baseHP;

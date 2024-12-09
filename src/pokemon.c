@@ -4493,6 +4493,14 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             }
             break;
         // Gen 3
+        case IF_EMPTY_PARTY_SLOT:
+            if (gPlayerPartyCount < PARTY_SIZE)
+                currentCondition = TRUE;
+            break;
+        case IF_ITEM_IN_BAG:
+            if (CountTotalItemQuantityInBag(params[i].arg) == params[i + 1].arg)
+                currentCondition = TRUE;
+            break;
         case IF_PID_UPPER_MODULO_10_GT:
             if ((upperPersonality % 10) > params[i].arg)
                 currentCondition = TRUE;

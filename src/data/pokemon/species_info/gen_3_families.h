@@ -3292,7 +3292,15 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggMoveLearnset = sNincadaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK},
                                 {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA}),
-    },
+        .evolutions2 = EVOLUTION(
+            {EVO_LEVEL, 20, SPECIES_NINJASK, MULTIEVOLUTION(
+                {SPECIES_SHEDINJA, CONDITIONS(
+                    {IF_EMPTY_PARTY_SLOT},
+                    #if P_SHEDINJA_BALL >= GEN4
+                    {IF_ITEM_IN_BAG, ITEM_POKE_BALL, 1}
+                )}
+            )
+        }),
 
     [SPECIES_NINJASK] =
     {
