@@ -449,7 +449,7 @@ Debug_EventScript_EWRAMCounters_Text::
 	.string "Fishing Chain: {STR_VAR_2}.$"
 
 Debug_EventScript_FontTest_Text_1::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Angel Adept Blind Bodice Clique\n"
 	.string "Coast Dunce Docile Enact Eosin\l"
 	.string "Furlong Focal Gnome Gondola Human\l"
@@ -463,7 +463,7 @@ Debug_EventScript_FontTest_Text_1::
 	.string "Zloty Zodiac.$"
 
 Debug_EventScript_FontTest_Text_2::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Angel angel adept for the nuance loads\n"
 	.string "of the arena cocoa and quaalude. Blind\l"
 	.string "blind bodice for the submit oboe of the\l"
@@ -474,7 +474,7 @@ Debug_EventScript_FontTest_Text_2::
 	.string "loud statehood and huddle.$"
 
 Debug_EventScript_FontTest_Text_3::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Enact enact eosin for the quench coed\n"
 	.string "of the pique canoe and bleep. Furlong\l"
 	.string "furlong focal for the genuflect\l"
@@ -486,7 +486,7 @@ Debug_EventScript_FontTest_Text_3::
 	.string "bathhouse.$"
 
 Debug_EventScript_FontTest_Text_4::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Inlet inlet iodine for the quince\n"
 	.string "champion of the ennui scampi and shiite.\l"
 	.string "Justin justin jocose for the djibouti\l"
@@ -498,7 +498,7 @@ Debug_EventScript_FontTest_Text_4::
 	.string "shallot.$"
 
 Debug_EventScript_FontTest_Text_5::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Milliner milliner modal for the alumna\n"
 	.string "solomon of the album custom and summon.\l"
 	.string "Number number nodule for the unmade\l"
@@ -510,7 +510,7 @@ Debug_EventScript_FontTest_Text_5::
 	.string "bishop and supplies.$"
 
 Debug_EventScript_FontTest_Text_6::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Quanta quanta qophs for the inquest\n"
 	.string "sheqel of the cinq coq and suqqu. Rhone\l"
 	.string "rhone roman for the burnt porous of the\l"
@@ -521,7 +521,7 @@ Debug_EventScript_FontTest_Text_6::
 	.string "of the peasant ingot and ottoman.$"
 
 Debug_EventScript_FontTest_Text_7::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Uncle uncle udder for the dunes cloud\n"
 	.string "of the hindu thou and continuum. Vulcan\l"
 	.string "vulcan vocal for the alluvial ovoid of\l"
@@ -533,11 +533,23 @@ Debug_EventScript_FontTest_Text_7::
 	.string "exxon.$"
 
 Debug_EventScript_FontTest_Text_8::
-	.string "{FONT_SHORT_NARROWER}"                 @ Edit this to test your font
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "Yunnan yunnan young for the dynamo\n"
 	.string "coyote of the obloquy employ and\l"
 	.string "sayyid. Zloty zloty zodiac for the gizmo\l"
 	.string "ozone of the franz laissez and buzzing.$"
+
+
+Debug_EventScript_FontTest_Text_9::                 @ Special thanks to Nintendo for this nice pangram to test other glyphs
+	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
+	.string "42 × 138 = 5796.\n"
+	.string "Mr Jock, TV quiz PhD: bags 20% fewer\l"
+	.string "lynx at a café; voilà, they're “worth”\l"
+	.string "♂1/♀1 = ¥1. That's 10 + 9 - 8 = 11\l"
+	.string "Nintendo GBA can connect to a Nintendo\l"
+	.string "GameCube console! He claimed-though I don't\l"
+	.string "believe him-to have done so in an eyes-shut\l"
+	.string "state…?$"
 
 Debug_PrintFontTest::
 	msgbox Debug_EventScript_FontTest_Text_1, MSGBOX_DEFAULT
@@ -548,6 +560,7 @@ Debug_PrintFontTest::
 	msgbox Debug_EventScript_FontTest_Text_6, MSGBOX_DEFAULT
 	msgbox Debug_EventScript_FontTest_Text_7, MSGBOX_DEFAULT
 	msgbox Debug_EventScript_FontTest_Text_8, MSGBOX_DEFAULT
+	msgbox Debug_EventScript_FontTest_Text_9, MSGBOX_DEFAULT
 	releaseall
 	end
 

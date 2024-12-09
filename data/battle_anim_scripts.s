@@ -5561,44 +5561,40 @@ GrassPledgeMiddleFountain:
 	delay 4
 	return
 
+@Credits to Skeli
 gBattleAnimMove_VoltSwitch::
-	loadspritegfx ANIM_TAG_SPARK
+	loadspritegfx ANIM_TAG_SHADOW_BALL
+	loadspritegfx ANIM_TAG_IONS
 	loadspritegfx ANIM_TAG_SPARK_2
-	loadspritegfx ANIM_TAG_THIN_RING
-	monbg ANIM_ATTACKER
-	setalpha 12, 8
-	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0, 0x3BDF, 8
-	playsewithpan SE_M_CHARGE, SOUND_PAN_ATTACKER
+	playsewithpan SE_M_THUNDERBOLT, SOUND_PAN_ATTACKER
+	createsprite gVoltSwitchSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 0, 32, 20
+	delay 30
+	createvisualtask AnimTask_ShakeMon2 2, ANIM_TARGET, 3, 0, 8, 1
+	call VoltSwitchElectricFlashes
+	delay 2
+	playsewithpan SE_M_THUNDERBOLT, SOUND_PAN_ATTACKER
+	createsprite gVoltSwitchSpriteTemplate ANIM_TARGET, 3, 0, 0, 0, 0, 32, -20
 	delay 4
-	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0, 0x3BDF, 8
-	delay 4
-	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 3, 45, 1
-	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0, 0x3BDF, 8
-	delay 4
-	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0, 0x3BDF, 8
-	delay 4
-	call ElectricityEffect
-	playsewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_CanBattlerSwitch, 1, ANIM_ATTACKER
-	jumpretfalse VoltSwitchContinue
-	createvisualtask AnimTask_IsTargetSameSide 1
-	jumprettrue VoltSwitchAgainstPartner
-	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_ATTACKER, -2
-VoltSwitchContinue:
+	call VoltSwitchElectricFlashes
+	delay 18
+	createvisualtask AnimTask_ShakeMon2 2, ANIM_TARGET, 3, 0, 8, 1
+	call VoltSwitchElectricFlashes
+	delay 6
+	call VoltSwitchElectricFlashes
 	waitforvisualfinish
-	clearmonbg ANIM_ATTACKER
-	blendoff
-	createvisualtask AnimTask_CanBattlerSwitch, 1, ANIM_ATTACKER
-	jumpretfalse VoltSwitchLast
-	invisible ANIM_ATTACKER
-VoltSwitchLast:
-	delay 8
 	end
-@ Attacking the same side requires a change of direction
-@ why would you attack your partner though?!
-VoltSwitchAgainstPartner:
-	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_ATTACKER, 2
-	goto VoltSwitchContinue
+
+VoltSwitchElectricFlashes:
+	playsewithpan SE_M_CHARGE, SOUND_PAN_TARGET
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 5, 0, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -5, 10, 5, 1
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 15, 20, 5, 2
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -15, -10, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 25, 0, 5, 1
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -8, 8, 5, 2
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 2, -8, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -20, 15, 5, 1
+	return
 
 gBattleAnimMove_StruggleBug::
 	loadspritegfx ANIM_TAG_MOVEMENT_WAVES

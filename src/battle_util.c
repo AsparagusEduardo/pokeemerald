@@ -119,6 +119,9 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
         || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
         return FALSE;
 
+    if (gMovesInfo[move].effect == EFFECT_PURSUIT && gBattleStruct->pursuitTarget)
+        return FALSE;
+
     if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk, TRUE)))
         return FALSE;
 
@@ -226,6 +229,7 @@ void HandleAction_UseMove(void)
     }
     else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
+           && !(gBattleStruct->pursuitTarget & (1u << *(gBattleStruct->moveTarget + gBattlerAttacker)))
            && (gMovesInfo[gCurrentMove].power != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
@@ -705,7 +709,7 @@ void HandleAction_ActionFinished(void)
     gBattleScripting.multihitMoveEffect = 0;
     gBattleResources->battleScriptsStack->size = 0;
 
-    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8 && !afterYouActive && !gBattleStruct->pledgeMove)
+    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8 && !afterYouActive && !gBattleStruct->pledgeMove && !gBattleStruct->pursuitTarget)
     {
         // i starts at `gCurrentTurnActionNumber` because we don't want to recalculate turn order for mon that have already
         // taken action. It's been previously increased, which we want in order to not recalculate the turn of the mon that just finished its action
@@ -2522,15 +2526,14 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_OCTOLOCK:
-        {
             if (gDisableStructs[battler].octolock)
             {
+                gBattlerAttacker = gDisableStructs[battler].battlerPreventingEscape;
                 gBattlerTarget = battler;
                 BattleScriptExecute(BattleScript_OctolockEndTurn);
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
-        }
             break;
         case ENDTURN_UPROAR:  // uproar
             if (gBattleMons[battler].status2 & STATUS2_UPROAR)
@@ -8961,7 +8964,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
             basePower *= 2;
         break;
     case EFFECT_PURSUIT:
-        if (gActionsByTurnOrder[GetBattlerTurnOrderNum(battlerDef)] == B_ACTION_SWITCH)
+        if (gBattleStruct->pursuitTarget & (1u << battlerDef))
             basePower *= 2;
         break;
     case EFFECT_NATURAL_GIFT:
@@ -11195,7 +11198,7 @@ u8 GetBattleMoveCategory(u32 moveId)
 
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
-    return gTypesInfo[GetMoveType(gCurrentMove)].damageCategory;
+    return gTypesInfo[GetMoveType(moveId)].damageCategory;
 }
 
 static bool32 TryRemoveScreens(u32 battler)

@@ -3114,6 +3114,9 @@ static void BattleStartClearSetData(void)
 
     gBattleStruct->swapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
     gBattleStruct->categoryOverride = FALSE; // used for Z-Moves and Max Moves
+    gBattleStruct->pursuitTarget = 0;
+    gBattleStruct->pursuitSwitchByMove = FALSE;
+    gBattleStruct->pursuitStoredSwitch = 0;
 
     gSelectedMonPartyId = PARTY_SIZE; // Revival Blessing
     gCategoryIconSpriteId = 0xFF;
@@ -3355,6 +3358,9 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->lastTakenMoveFrom[battler][1] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][2] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
+    gBattleStruct->pursuitTarget = 0;
+    gBattleStruct->pursuitSwitchByMove = FALSE;
+    gBattleStruct->pursuitStoredSwitch = 0;
 
     gBattleStruct->palaceFlags &= ~(1u << battler);
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
@@ -5164,6 +5170,9 @@ static void TurnValuesCleanUp(bool8 var0)
     gSideTimers[B_SIDE_OPPONENT].followmeTimer = 0;
 
     gBattleStruct->usedEjectItem = 0;
+    gBattleStruct->pursuitTarget = 0;
+    gBattleStruct->pursuitSwitchByMove = FALSE;
+    gBattleStruct->pursuitStoredSwitch = 0;
     gBattleStruct->pledgeMove = FALSE; // combined pledge move may not have been used due to a canceller
     ClearDamageCalcResults();
 }
@@ -5180,11 +5189,26 @@ static void PopulateArrayWithBattlers(u8 *battlers)
         battlers[i] = i;
 }
 
+static bool32 TryActivateGimmick(u32 battler)
+{
+    if ((gBattleStruct->gimmick.toActivate & (1u << battler)) && !(gProtectStructs[battler].noValidMoves))
+    {
+        gBattlerAttacker = gBattleScripting.battler = battler;
+        gBattleStruct->gimmick.toActivate &= ~(1u << battler);
+        if (gGimmicksInfo[gBattleStruct->gimmick.usableGimmick[battler]].ActivateGimmick != NULL)
+        {
+            gGimmicksInfo[gBattleStruct->gimmick.usableGimmick[battler]].ActivateGimmick(battler);
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 static bool32 TryDoGimmicksBeforeMoves(void)
 {
     if (!(gHitMarker & HITMARKER_RUN) && gBattleStruct->gimmick.toActivate)
     {
-        u32 i, battler;
+        u32 i;
         u8 order[MAX_BATTLERS_COUNT];
 
         PopulateArrayWithBattlers(order);
@@ -5192,16 +5216,8 @@ static bool32 TryDoGimmicksBeforeMoves(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             // Search through each battler and activate their gimmick if they have one prepared.
-            if ((gBattleStruct->gimmick.toActivate & (1u << order[i])) && !(gProtectStructs[order[i]].noValidMoves))
-            {
-                battler = gBattlerAttacker = gBattleScripting.battler = order[i];
-                gBattleStruct->gimmick.toActivate &= ~(1u << battler);
-                if (gGimmicksInfo[gBattleStruct->gimmick.usableGimmick[battler]].ActivateGimmick != NULL)
-                {
-                    gGimmicksInfo[gBattleStruct->gimmick.usableGimmick[battler]].ActivateGimmick(battler);
-                    return TRUE;
-                }
-            }
+            if (TryActivateGimmick(order[i]))
+                return TRUE;
         }
     }
 
@@ -5251,7 +5267,7 @@ static bool32 TryDoMoveEffectsBeforeMoves(void)
 static void TryChangeTurnOrder(void)
 {
     u32 i, j;
-    for (i = 0; i < gBattlersCount - 1; i++)
+    for (i = gCurrentTurnActionNumber; i < gBattlersCount - 1; i++)
     {
         for (j = i + 1; j < gBattlersCount; j++)
         {
@@ -5369,11 +5385,19 @@ static void RunTurnActionsFunctions(void)
     // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
     if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
     {
-        if (TryDoGimmicksBeforeMoves())
-            return;
-        else if (TryDoMoveEffectsBeforeMoves())
-            return;
-        gBattleStruct->effectsBeforeUsingMoveDone = TRUE;
+        if (!gBattleStruct->pursuitTarget)
+        {
+            if (TryDoGimmicksBeforeMoves())
+                return;
+            else if (TryDoMoveEffectsBeforeMoves())
+                return;
+            gBattleStruct->effectsBeforeUsingMoveDone = TRUE;
+        }
+        else
+        {
+            if (TryActivateGimmick(gBattlerByTurnOrder[gCurrentTurnActionNumber]))
+                return;
+        }
     }
 
     *(&gBattleStruct->savedTurnActionNumber) = gCurrentTurnActionNumber;

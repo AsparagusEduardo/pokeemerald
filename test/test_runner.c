@@ -490,6 +490,7 @@ static void Intr_Timer2(void)
             if (gTestRunnerState.state == STATE_RUN_TEST)
                 gTestRunnerState.state = STATE_REPORT_RESULT;
             gTestRunnerState.result = TEST_RESULT_TIMEOUT;
+            Test_MgbaPrintf(":L%s:%d - TIMEOUT", gTestRunnerState.test->filename, SourceLine(0));
             ReinitCallbacks();
             IRQ_LR = ((uintptr_t)JumpToAgbMainLoop & ~1) + 4;
         }
