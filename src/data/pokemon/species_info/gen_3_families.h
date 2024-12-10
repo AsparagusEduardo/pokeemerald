@@ -3298,6 +3298,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
                     {IF_EMPTY_PARTY_SLOT},
                     #if P_SHEDINJA_BALL >= GEN4
                     {IF_ITEM_IN_BAG, ITEM_POKE_BALL, 1}
+                    #endif
                 )}
             )
         }),
