@@ -3288,12 +3288,12 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gShinyOverworldPalette_Nincada
         )
         .levelUpLearnset = sNincadaLevelUpLearnset,
-        .teachableLearnset = sNincadaTeachableLearnset,
+        .teachableLearnset = sNincadaTeachableLearnset, 
         .eggMoveLearnset = sNincadaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK},
                                 {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA}),
         .evolutions2 = EVOLUTION(
-            {EVO_LEVEL, 20, SPECIES_NINJASK, MULTIEVOLUTION(
+            {EVO_LEVEL, 20, SPECIES_NINJASK, IS_MULTI_EVO, MULTIEVOLUTION(
                 {SPECIES_SHEDINJA, CONDITIONS(
                     {IF_EMPTY_PARTY_SLOT},
                     #if P_SHEDINJA_BALL >= GEN4
