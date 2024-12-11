@@ -147,6 +147,9 @@
 #define MIN_LEVEL 1
 #define MAX_LEVEL 100
 
+#define MAX_EVOLUTIONS 8
+#define MAX_EVOLUTION_PARAMS 12
+
 #define MAX_DYNAMAX_LEVEL 10
 
 #define OT_ID_PLAYER_ID       0
@@ -241,11 +244,14 @@
 #define BODY_COLOR_WHITE    8
 #define BODY_COLOR_PINK     9
 
-#define F_SUMMARY_SCREEN_FLIP_SPRITE 0x80
+#define F_SUMMARY_SCREEN_FLIP_SPRITE    0x80
 
-#define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
+#define EVOLUTIONS_END                  0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
+#define EVO_CONSUME_ITEM                TRUE // Whether evolutions that require items in the player's bag will consume them, ie Gimmighoul
 
-enum EvolutionConditions {
+enum EvolutionParameters {
+    // Gen 1
+    IF_LEVEL,                           // The Pokémon is at the specified level.
     // Gen 2
     IF_GENDER,                          // The Pokémon is of specific gender.
     IF_TIME,                            // It is currently the specific time of day.
@@ -256,6 +262,7 @@ enum EvolutionConditions {
     IF_ATK_LT_DEF,                      // The Pokémon's Attack is lower than its Defense stat.
     IF_HOLD_ITEM,                       // The Pokémon is holding a specific item.
     // Gen 3
+    IS_MULTIEVO,                        // Takes a SPECIES_* argument and PARAMETERS()
     IF_ITEM_IN_BAG,                     // If the player has a specified amount of a specified item in their bag.
     IF_EMPTY_PARTY_SLOT,                // If the player has at least one empty slot in their party.
     IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
@@ -309,6 +316,36 @@ enum EvolutionMode {
     EVO_MODE_BATTLE_SPECIAL,
     EVO_MODE_OVERWORLD_SPECIAL,
     EVO_MODE_BATTLE_ONLY,        // This mode is only used in battles to support Tandemaus' unique requirement
+};
+
+enum EvolutionsList {            // EVOLUTION_1 = 0
+    EVOLUTION_1,
+    EVOLUTION_2,
+    EVOLUTION_3,
+    EVOLUTION_4,
+    EVOLUTION_5,
+    EVOLUTION_6,
+    EVOLUTION_7,
+    EVOLUTION_8,
+    EVOLUTION_9,
+    EVOLUTION_10,
+    EVOLUTION_11,
+    EVOLUTION_12,
+};
+
+enum ConditionsList {            // CONDITION_1 = 0
+    CONDITION_1,
+    CONDITION_2,
+    CONDITION_3,
+    CONDITION_4,
+    CONDITION_5,
+    CONDITION_6,
+    CONDITION_7,
+    CONDITION_8,
+    CONDITION_9,
+    CONDITION_10,
+    CONDITION_11,
+    CONDITION_12,
 };
 
 #define MON_PIC_WIDTH 64

@@ -589,6 +589,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon *mon)
     }
 }
 
+/*
 static void CreateMultiEvoMon(u16 preEvoSpecies, struct Pokemon* mon)
 {
     u32 data = 0;
@@ -615,7 +616,7 @@ static void CreateMultiEvoMon(u16 preEvoSpecies, struct Pokemon* mon)
 
     // needs non-nincada code factored out
     // item logic should be removed and used elsewhere
-    if (preEvoSpecies == SPECIES_NINCADA && gPlayerPartyCount < PARTY_SIZE && (P_SHEDINJA_BALL < GEN_4 || CheckBagHasItem(ball, 1)))
+    if (preEvoSpecies == SPECIES_NINCADA)
     {
         if (P_SHEDINJA_BALL >= GEN_4)
         {
@@ -650,6 +651,7 @@ static void CreateMultiEvoMon(u16 preEvoSpecies, struct Pokemon* mon)
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(evolutions[1].targetSpecies), FLAG_SET_SEEN);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(evolutions[1].targetSpecies), FLAG_SET_CAUGHT);
 }
+*/
 
 // States for the main switch in Task_EvolutionScene
 enum {
