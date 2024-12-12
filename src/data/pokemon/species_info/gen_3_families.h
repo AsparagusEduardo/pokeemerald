@@ -3231,11 +3231,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #if P_FAMILY_NINCADA
     [SPECIES_NINCADA] =
     {
-        .baseHP = 31,
-        .baseAttack = 45,
-        .baseDefense = 90,
-        .baseSpeed = 40,
-        .baseSpAttack = 30,
+        .baseHP        = 31,
+        .baseAttack    = 45,
+        .baseDefense   = 90,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 30,
         .baseSpDefense = 30,
         .types = MON_TYPES(TYPE_BUG, TYPE_GROUND),
         .catchRate = 255,
@@ -3302,17 +3302,16 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             .targetSpecies = SPECIES_NINJASK,
             .multiEvo =
             {
-                .conditions[CONDITION_1] =
-                {
-                    .condition = IF_EMPTY_PARTY_SLOT,
-                },
+                .conditions[CONDITION_1] = 
+                    { .condition = IF_EMPTY_PARTY_SLOT },
+                
                 #if P_SHEDINJA_BALL >= GEN4
                 .conditions[CONDITION_2] =
                 {
                     .condition = IF_ITEM_IN_BAG,
                     .arg1 = ITEM_POKE_BALL,
                     .arg2 = 1,
-                },
+                }
                 #endif
                 .targetSpecies = SPECIES_SHEDINJA,
                 .evoConsumesItem = EVO_CONSUME_ITEM,
