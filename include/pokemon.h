@@ -356,25 +356,36 @@ struct Evolution
     const struct EvolutionParam *params;
 };
 
-struct EvolutionConditions_New
+typedef struct EvolutionConditions_New
 {
     u16 condition;
     u16 arg1;
     u16 arg2;
+} EvolutionConditions_New;
+
+typedef struct NEST_STRUCT
+{
+    u16 nest[MAX_EVOLUTIONS];
+} NEST_STRUCT;
+
+struct TEST_STRUCT
+{
+    u16 test;
+    NEST_STRUCT nestTest;
 };
 
-struct Evolution_New
+typedef struct Evolution_New
 {
-    struct EvolutionConditions_New *conditions[MAX_EVOLUTION_PARAMS];
+    EvolutionConditions_New conditions[MAX_EVOLUTION_PARAMS];
     u16 targetSpecies;
     struct MultiEvo
     {
-        struct EvolutionConditions_New *conditions[MAX_EVOLUTION_PARAMS];
+        EvolutionConditions_New conditions[MAX_EVOLUTION_PARAMS];
         u16 targetSpecies;
         u16 evoConsumesItem;
     } multiEvo;
     u16 evoConsumesItem;
-};
+} Evolution_New;
 
 struct SpeciesInfo /*0xC4*/
 {
@@ -488,7 +499,8 @@ struct SpeciesInfo /*0xC4*/
     const u16 *teachableLearnset;
     const u16 *eggMoveLearnset;
     const struct Evolution *evolutions;
-    const struct Evolution_New *evolutions2[MAX_EVOLUTIONS];
+    const struct Evolution_New evolutions2[MAX_EVOLUTIONS];
+    const struct TEST_STRUCT testSTRUCT;
     const u16 *formSpeciesIdTable;
     const struct FormChange *formChangeTable;
 #if OW_POKEMON_OBJECT_EVENTS

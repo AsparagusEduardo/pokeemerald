@@ -3292,29 +3292,24 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggMoveLearnset = sNincadaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK},
                                 {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA}),
-        .evolutions2[EVOLUTION_1] =
-        {
-            .conditions[CONDITION_1] =
-            {
+        .testSTRUCT = {.test = TRUE, .nestTest.nest[EVOLUTION_1] = TRUE},
+        .evolutions2[EVOLUTION_1] = {
+            .conditions[CONDITION_1] = {
                 .condition = IF_LEVEL,
                 .arg1 = 20,
             },
             .targetSpecies = SPECIES_NINJASK,
-            .multiEvo =
-            {
-                .conditions[CONDITION_1] = 
-                    { .condition = IF_EMPTY_PARTY_SLOT },
-                
-                #if P_SHEDINJA_BALL >= GEN4
-                .conditions[CONDITION_2] =
-                {
+            .multiEvo = {
+                .conditions[CONDITION_1].condition = IF_EMPTY_PARTY_SLOT,
+                #if P_SHEDINJA_BALL >= GEN_4
+                .conditions[CONDITION_2] = {
                     .condition = IF_ITEM_IN_BAG,
                     .arg1 = ITEM_POKE_BALL,
                     .arg2 = 1,
-                }
+                },
                 #endif
                 .targetSpecies = SPECIES_SHEDINJA,
-                .evoConsumesItem = EVO_CONSUME_ITEM,
+                .evoConsumesItem = TRUE,
             },
         },
     },
