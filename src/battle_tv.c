@@ -48,6 +48,7 @@ enum {
     PTS_STAT_DECREASE_SELF,
     PTS_STAT_DECREASE_1,
     PTS_STAT_DECREASE_2,
+    PTS_STAT_DECREASE_3,
     PTS_STAT_INCREASE_NOT_SELF,
 };
 
@@ -264,6 +265,16 @@ static const u16 sPoints_StatDecrease2[NUM_BATTLE_STATS - 1] =
     [STAT_ACC - 1]     = 4,
     [STAT_EVASION - 1] = 4
 };
+static const u16 sPoints_StatDecrease3[NUM_BATTLE_STATS - 1] =
+{
+    [STAT_ATK - 1]     = 6,
+    [STAT_DEF - 1]     = 6,
+    [STAT_SPEED - 1]   = 6,
+    [STAT_SPATK - 1]   = 6,
+    [STAT_SPDEF - 1]   = 6,
+    [STAT_ACC - 1]     = 6,
+    [STAT_EVASION - 1] = 6
+};
 static const u16 sPoints_StatIncreaseNotSelf[NUM_BATTLE_STATS - 1] =
 {
     [STAT_ATK - 1]     = -2,
@@ -303,6 +314,7 @@ static const u16 *const sPointsArray[] =
     [PTS_STAT_DECREASE_SELF]     = sPoints_StatDecreaseSelf,
     [PTS_STAT_DECREASE_1]        = sPoints_StatDecrease1,
     [PTS_STAT_DECREASE_2]        = sPoints_StatDecrease2,
+    [PTS_STAT_DECREASE_3]        = sPoints_StatDecrease3,
     [PTS_STAT_INCREASE_NOT_SELF] = sPoints_StatIncreaseNotSelf
 };
 
@@ -470,7 +482,9 @@ void BattleTv_SetDataBasedOnString(u16 stringId)
     case STRINGID_DEFENDERSSTATFELL:
         if (gBattleTextBuff1[2] != 0)
         {
-            if (*statStringId == STRINGID_STATHARSHLY)
+            if (*statStringId == STRINGID_SEVERELY)
+                AddMovePoints(PTS_STAT_DECREASE_3, moveSlot, gBattleTextBuff1[2] - 1, 0);
+            else if (*statStringId == STRINGID_STATHARSHLY)
                 AddMovePoints(PTS_STAT_DECREASE_2, moveSlot, gBattleTextBuff1[2] - 1, 0);
             else
                 AddMovePoints(PTS_STAT_DECREASE_1, moveSlot, gBattleTextBuff1[2] - 1, 0);
@@ -954,6 +968,7 @@ static void AddMovePoints(u8 caseId, u16 arg1, u8 arg2, u8 arg3)
     case PTS_STAT_DECREASE_SELF:
     case PTS_STAT_DECREASE_1:
     case PTS_STAT_DECREASE_2:
+    case PTS_STAT_DECREASE_3:
     case PTS_STAT_INCREASE_NOT_SELF:
         movePoints->points[atkSide][gBattlerPartyIndexes[gBattlerAttacker] * 4 + arg1] += sPointsArray[caseId][arg2];
         break;
