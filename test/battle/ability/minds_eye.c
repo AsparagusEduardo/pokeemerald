@@ -26,6 +26,8 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SCRAPPY); };
         OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); };
     } WHEN {

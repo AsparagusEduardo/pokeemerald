@@ -99,6 +99,15 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
         ASSUME(gMovesInfo[MOVE_ICY_WIND].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_THUNDERBOLT].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_SLAM].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_STRENGTH].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_MEGA_KICK].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_SWIFT].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].type == TYPE_ELECTRIC);
+        ASSUME(gMovesInfo[MOVE_ICY_WIND].type == TYPE_ICE);
+        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
+        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
         OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); SpAttack(50); } // Low Sp.Atk, so Swift deals less damage than Strength.
     } WHEN {
             switch (turns)
@@ -147,7 +156,9 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves which deal more damage instead of moves 
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_WATERFALL].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_WATERFALL].type == TYPE_WATER);
         ASSUME(gMovesInfo[MOVE_SCALD].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_SCALD].type == TYPE_WATER);
         ASSUME(gMovesInfo[MOVE_POISON_JAB].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_WATER_GUN].category == DAMAGE_CATEGORY_SPECIAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -176,7 +187,9 @@ AI_SINGLE_BATTLE_TEST("AI prefers Earthquake over Drill Run if both require the 
 {
     // Drill Run has less accuracy than E-quake, but can score a higher crit. However the chance is too small, so AI should ignore it.
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL); // Added because Geodude has to KO Typhlosion
+        ASSUME(gMovesInfo[MOVE_DRILL_RUN].type == TYPE_GROUND);
         ASSUME(gMovesInfo[MOVE_DRILL_RUN].category == DAMAGE_CATEGORY_PHYSICAL);  // Added because Geodude has to KO Typhlosion
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_TYPHLOSION);
@@ -202,7 +215,9 @@ AI_SINGLE_BATTLE_TEST("AI prefers a weaker move over a one with a downside effec
     PARAMETRIZE { move1 = MOVE_OVERHEAT; move2 = MOVE_FLAMETHROWER; hp = 250; expectedMove = MOVE_OVERHEAT; turns = 1; }
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FLAMETHROWER].type == TYPE_FIRE);
         ASSUME(gMovesInfo[MOVE_FLAMETHROWER].category == DAMAGE_CATEGORY_SPECIAL); // Added because Typhlosion has to KO Wobbuffet
+        ASSUME(gMovesInfo[MOVE_OVERHEAT].type == TYPE_FIRE);
         ASSUME(gMovesInfo[MOVE_OVERHEAT].category == DAMAGE_CATEGORY_SPECIAL);     // Added because Typhlosion has to KO Wobbuffet
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
@@ -242,6 +257,7 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with the best possible score, chosen ran
 AI_SINGLE_BATTLE_TEST("AI can choose a status move that boosts the attack by two")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_STRENGTH].type == TYPE_NORMAL);
         ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_HORN_ATTACK].category == DAMAGE_CATEGORY_PHYSICAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -355,6 +371,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use Solar Beam if there is no Sun up or the user
 AI_SINGLE_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL); // Otherwise, it doesn't KO Crobat
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_CROBAT);
@@ -651,6 +668,8 @@ AI_DOUBLE_BATTLE_TEST("AI will not choose Earthquake if it damages the partner")
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -683,6 +702,8 @@ AI_DOUBLE_BATTLE_TEST("AI will choose Earthquake if it kill an opposing mon and 
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }

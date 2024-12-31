@@ -78,6 +78,7 @@ SINGLE_BATTLE_TEST("Parental Bond converts multi-target moves into a two-strike 
 DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two-strike move in Double Battles, even if it only damages one")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].strikeCount < 2);
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(gSpeciesInfo[SPECIES_PIDGEY].types[1] == TYPE_FLYING);

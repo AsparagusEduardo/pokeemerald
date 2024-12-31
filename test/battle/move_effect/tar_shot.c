@@ -68,6 +68,7 @@ SINGLE_BATTLE_TEST("Tar Shot does affect Pokemon that Terastallized after Tar Sh
 {
     s16 damage[2];
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_WOBBUFFET) ;
     } WHEN {

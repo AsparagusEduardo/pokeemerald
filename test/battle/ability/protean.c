@@ -9,6 +9,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
         PLAYER(SPECIES_REGIROCK);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
         OPPONENT(SPECIES_WOBBUFFET);

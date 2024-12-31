@@ -3,6 +3,7 @@
 
 ASSUMPTIONS
 {
+    ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
     ASSUME(MoveHasAdditionalEffect(MOVE_PLASMA_FISTS, MOVE_EFFECT_ION_DELUGE) == TRUE);
 }
 

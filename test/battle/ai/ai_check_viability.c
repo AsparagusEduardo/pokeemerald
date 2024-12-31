@@ -120,6 +120,8 @@ AI_SINGLE_BATTLE_TEST("AI will only use Dream Eater if target is asleep")
     PARAMETRIZE { status1 = STATUS1_SLEEP; expectedMove = MOVE_DREAM_EATER; }
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_BODY_SLAM].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_DREAM_EATER].type == TYPE_PSYCHIC);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_MEGANIUM) { HP(38); Status1(status1); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_BODY_SLAM, MOVE_DREAM_EATER); }

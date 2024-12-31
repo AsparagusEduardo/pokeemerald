@@ -4,6 +4,7 @@
 SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {

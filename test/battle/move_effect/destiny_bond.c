@@ -35,6 +35,7 @@ TO_DO_BATTLE_TEST("Destiny Bond cannot be used in Raids");
 SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are not affected by Destiny Bond")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(50); };
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(100); }
     } WHEN {

@@ -30,6 +30,7 @@ SINGLE_BATTLE_TEST("Sonic Boom deals fixed damage", s16 damage)
 SINGLE_BATTLE_TEST("Sonic Boom doesn't affect ghost types")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SONIC_BOOM].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GASTLY);
     } WHEN {

@@ -52,6 +52,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type gives that type 
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_HEADBUTT].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -72,6 +73,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type gives that type 2x 
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_PSYCHIC].type == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -93,6 +95,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing boosts moves of the same type to 60 BP
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ABSORB].power == 20);
+        ASSUME(gMovesInfo[MOVE_ABSORB].type == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -114,6 +117,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
+        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].type == TYPE_GRASS);
         PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -154,6 +158,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to mult
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FURY_SWIPES].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -173,6 +178,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to prio
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -194,6 +200,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness", s16 dam
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -210,6 +217,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness", s16 dam
 SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_FLYING); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -224,6 +232,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness")
 SINGLE_BATTLE_TEST("(TERA) Terastallization persists across switches")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_FLYING); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -264,6 +273,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes the effect of Curse")
 SINGLE_BATTLE_TEST("(TERA) Roost does not remove the user's Flying type while Terastallized")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
         PLAYER(SPECIES_ZAPDOS) { HP(1); TeraType(TYPE_FLYING); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -338,6 +348,7 @@ SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if used by a Terastallized Pokemon"
 SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Type")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -477,6 +488,7 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type does not change the user's defensive pro
 SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Stellar-type Pokemon's base type")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
         PLAYER(SPECIES_BANETTE) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -532,6 +544,7 @@ SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move"
 SINGLE_BATTLE_TEST("(TERA) Roost does not remove Flying-type ground immunity when Terastallized into the Stellar type")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
         PLAYER(SPECIES_ZAPDOS) { HP(1); TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -609,7 +622,9 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
     s16 damage[4];
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
+        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].type == TYPE_GRASS);
         ASSUME(gMovesInfo[MOVE_BUBBLE].power == 40);
+        ASSUME(gMovesInfo[MOVE_BUBBLE].type == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -645,6 +660,8 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
 SINGLE_BATTLE_TEST("(TERA) Protean cannot change the type of a Terastallized Pokemon")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_BUBBLE].type == TYPE_WATER);
+        ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
         PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_PROTEAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

@@ -6,25 +6,6 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_ROOST].effect == EFFECT_ROOST);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FLYING);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FLYING);
-    // One attack of each type to verify typelessness
-    ASSUME(gMovesInfo[MOVE_POUND].type == TYPE_NORMAL);
-    ASSUME(gMovesInfo[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
-    ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
-    ASSUME(gMovesInfo[MOVE_POISON_STING].type == TYPE_POISON);
-    ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
-    ASSUME(gMovesInfo[MOVE_ROCK_THROW].type == TYPE_ROCK);
-    ASSUME(gMovesInfo[MOVE_LEECH_LIFE].type == TYPE_BUG);
-    ASSUME(gMovesInfo[MOVE_LICK].type == TYPE_GHOST);
-    ASSUME(gMovesInfo[MOVE_STEEL_WING].type == TYPE_STEEL);
-    ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
-    ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
-    ASSUME(gMovesInfo[MOVE_VINE_WHIP].type == TYPE_GRASS);
-    ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
-    ASSUME(gMovesInfo[MOVE_CONFUSION].type == TYPE_PSYCHIC);
-    ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
-    ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].type == TYPE_DRAGON);
-    ASSUME(gMovesInfo[MOVE_BITE].type == TYPE_DARK);
-    ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].type == TYPE_FAIRY);
 }
 
 SINGLE_BATTLE_TEST("Roost fails when user is at full HP")
@@ -87,6 +68,7 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[1] == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_STURDY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -133,6 +115,25 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
+        // One attack of each type to verify typelessness
+        ASSUME(gMovesInfo[MOVE_POUND].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
+        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_POISON_STING].type == TYPE_POISON);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
+        ASSUME(gMovesInfo[MOVE_ROCK_THROW].type == TYPE_ROCK);
+        ASSUME(gMovesInfo[MOVE_LEECH_LIFE].type == TYPE_BUG);
+        ASSUME(gMovesInfo[MOVE_LICK].type == TYPE_GHOST);
+        ASSUME(gMovesInfo[MOVE_STEEL_WING].type == TYPE_STEEL);
+        ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
+        ASSUME(gMovesInfo[MOVE_VINE_WHIP].type == TYPE_GRASS);
+        ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
+        ASSUME(gMovesInfo[MOVE_CONFUSION].type == TYPE_PSYCHIC);
+        ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
+        ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].type == TYPE_DRAGON);
+        ASSUME(gMovesInfo[MOVE_BITE].type == TYPE_DARK);
+        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].type == TYPE_FAIRY);
         PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -201,6 +202,25 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[0] == TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[1] == TYPE_FLYING);
+        // One attack of each type to verify typelessness
+        ASSUME(gMovesInfo[MOVE_POUND].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
+        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_POISON_STING].type == TYPE_POISON);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
+        ASSUME(gMovesInfo[MOVE_ROCK_THROW].type == TYPE_ROCK);
+        ASSUME(gMovesInfo[MOVE_LEECH_LIFE].type == TYPE_BUG);
+        ASSUME(gMovesInfo[MOVE_LICK].type == TYPE_GHOST);
+        ASSUME(gMovesInfo[MOVE_STEEL_WING].type == TYPE_STEEL);
+        ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
+        ASSUME(gMovesInfo[MOVE_VINE_WHIP].type == TYPE_GRASS);
+        ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
+        ASSUME(gMovesInfo[MOVE_CONFUSION].type == TYPE_PSYCHIC);
+        ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
+        ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].type == TYPE_DRAGON);
+        ASSUME(gMovesInfo[MOVE_BITE].type == TYPE_DARK);
+        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].type == TYPE_FAIRY);
         PLAYER(SPECIES_MOLTRES) { HP(300); MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -230,6 +250,8 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_KECLEON) { Speed(40); HP(150); Ability(ABILITY_COLOR_CHANGE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
         OPPONENT(SPECIES_PIDGEY) { Speed(30); }
@@ -256,6 +278,7 @@ SINGLE_BATTLE_TEST("Roost prevents a Flying-type user from being protected by De
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_RAYQUAZA].types[1] == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_ICE_BEAM].type == TYPE_ICE);
         PLAYER(SPECIES_RAYQUAZA) { HP(1); Ability(ABILITY_DELTA_STREAM); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -274,6 +297,7 @@ SINGLE_BATTLE_TEST("Roost does not undo other type-changing effects at the end o
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
+        ASSUME(gMovesInfo[MOVE_VINE_WHIP].type == TYPE_GRASS);
         PLAYER(SPECIES_SWELLOW) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -319,6 +343,7 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_SWELLOW) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -353,6 +378,7 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_FLYGON) { HP(1); Ability(ABILITY_LEVITATE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -372,6 +398,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Item(ITEM_AIR_BALLOON); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -391,6 +418,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -416,6 +444,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
