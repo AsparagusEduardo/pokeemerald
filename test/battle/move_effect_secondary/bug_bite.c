@@ -119,6 +119,7 @@ SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
     GIVEN {
         ASSUME(gItemsInfo[ITEM_TANGA_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
         ASSUME(gItemsInfo[ITEM_TANGA_BERRY].holdEffectParam == TYPE_BUG);
+        ASSUME(gMovesInfo[MOVE_BUG_BITE].type == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) {Item(ITEM_TANGA_BERRY); }
     } WHEN {

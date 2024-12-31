@@ -17,6 +17,7 @@ SINGLE_BATTLE_TEST("Stealth Rock damage on switch in based on typing")
     PARAMETRIZE { species = SPECIES_STEELIX; divisor = 32; } // Ground/Steel not very effective
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_STEALTH_ROCK].type == TYPE_ROCK);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(species);

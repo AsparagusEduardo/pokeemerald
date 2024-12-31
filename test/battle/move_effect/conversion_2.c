@@ -84,6 +84,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers status moves (Gen 5+)")
 SINGLE_BATTLE_TEST("Conversion 2's type change considers the type of moves called by other moves")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_OMINOUS_WIND].type == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -94,8 +95,8 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers the type of moves calle
         MESSAGE("The opposing Wobbuffet used Mirror Move!");
         // turn 2
         ONE_OF {
-         MESSAGE("Wobbuffet transformed into the Normal type!");
-         MESSAGE("Wobbuffet transformed into the Dark type!");
+            MESSAGE("Wobbuffet transformed into the Normal type!");
+            MESSAGE("Wobbuffet transformed into the Dark type!");
         }
     }
 }

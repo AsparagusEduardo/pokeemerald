@@ -14,6 +14,8 @@ SINGLE_BATTLE_TEST("Collision Course damage is increased by 33 Percent if super 
     PARAMETRIZE { move = MOVE_COLLISION_COURSE; }
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_HAMMER_ARM].type == TYPE_FIGHTING);
+        ASSUME(gMovesInfo[MOVE_COLLISION_COURSE].type == TYPE_FIGHTING);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KANGASKHAN);
     } WHEN {
@@ -34,6 +36,8 @@ SINGLE_BATTLE_TEST("Collision Course does normal damage if not super effective",
     PARAMETRIZE { move = MOVE_COLLISION_COURSE; }
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_HAMMER_ARM].type == TYPE_FIGHTING);
+        ASSUME(gMovesInfo[MOVE_COLLISION_COURSE].type == TYPE_FIGHTING);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
