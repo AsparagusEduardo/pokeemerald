@@ -49,6 +49,7 @@ SINGLE_BATTLE_TEST("Corrosion can poison or badly poison a Steel type with a sta
 SINGLE_BATTLE_TEST("Corrosion does not effect poison type damaging moves if the target is immune to it")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SLUDGE_BOMB].type == TYPE_POISON);
         ASSUME(MoveHasAdditionalEffect(MOVE_SLUDGE_BOMB, MOVE_EFFECT_POISON) == TRUE);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);

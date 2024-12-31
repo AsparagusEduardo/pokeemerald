@@ -754,6 +754,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Hailstorm sets up hail")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MAX_HAILSTORM].argument == MAX_EFFECT_HAIL);
+        ASSUME(gMovesInfo[MOVE_POWDER_SNOW].type == TYPE_ICE);
         OPPONENT(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
     } WHEN {
