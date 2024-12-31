@@ -75,6 +75,7 @@ DOUBLE_BATTLE_TEST("Ultra Burst happens after switching, but before Focus Punch-
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FOCUS_PUNCH) == EFFECT_FOCUS_PUNCH);
+        ASSUME(GetMoveType(MOVE_FOCUS_PUNCH) == TYPE_FIGHTING); //For some reason needed, otherwise "INVALID: MOVE not required" happens.
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_NECROZMA_DUSK_MANE) { Item(ITEM_ULTRANECROZIUM_Z); }
         OPPONENT(SPECIES_WYNAUT);

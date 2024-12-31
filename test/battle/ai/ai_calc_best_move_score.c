@@ -11,6 +11,7 @@ AI_SINGLE_BATTLE_TEST("AI will not further increase Attack / Sp. Atk stat if it 
 
     GIVEN {
         ASSUME(GetMovePower(MOVE_SKY_UPPERCUT) == 85);
+        ASSUME(GetMoveType(MOVE_SKY_UPPERCUT) == TYPE_FIGHTING);
         ASSUME(GetMoveEffect(MOVE_HOWL) == EFFECT_ATTACK_UP_USER_ALLY);
         ASSUME(GetMoveEffect(MOVE_CALM_MIND) == EFFECT_CALM_MIND);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);

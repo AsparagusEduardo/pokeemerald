@@ -14,6 +14,10 @@ ASSUMPTIONS
 AI_SINGLE_BATTLE_TEST("AI: Belch has nonzero score after eating a berry")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_MUD_SHOT].type == TYPE_GROUND);
+        ASSUME(gItemsInfo[ITEM_SHUCA_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_SHUCA_BERRY].holdEffectParam == TYPE_GROUND);
+        ASSUME(gItemsInfo[ITEM_SHUCA_BERRY].pocket == POCKET_BERRIES);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_BAYLEEF) { Level(18); Moves(MOVE_MUD_SHOT, MOVE_SCRATCH); }
         OPPONENT(SPECIES_PIKACHU) { Level(15); Item(ITEM_SHUCA_BERRY); Moves(MOVE_BELCH, MOVE_SCRATCH); }
@@ -31,6 +35,7 @@ SINGLE_BATTLE_TEST("Belch cannot be used if the user has not eaten a berry")
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_ORAN_BERRY; }
     GIVEN {
+        ASSUME(gItemsInfo[ITEM_ORAN_BERRY].pocket == POCKET_BERRIES);
         PLAYER(SPECIES_SKWOVET) { Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

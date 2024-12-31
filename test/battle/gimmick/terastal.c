@@ -581,6 +581,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar-type provides a one-t
 {
     s16 damage[3];
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_EXTRASENSORY].type == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -785,6 +786,7 @@ SINGLE_BATTLE_TEST("(TERA) Terapagos retains the Stellar type boost at all times
 SINGLE_BATTLE_TEST("(TERA) Terapagos retains its base defensive profile when Terastalizing")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_BRICK_BREAK].type == TYPE_FIGHTING);
         PLAYER(SPECIES_TERAPAGOS);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

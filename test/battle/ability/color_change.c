@@ -104,6 +104,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Futur
 SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom Desire")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_DOOM_DESIRE].type == TYPE_STEEL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {
