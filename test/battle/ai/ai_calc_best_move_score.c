@@ -33,6 +33,7 @@ AI_SINGLE_BATTLE_TEST("AI will not further increase Attack / Sp. Atk stat if it 
         ASSUME(GetMovePower(MOVE_SKY_UPPERCUT) == 85);
         ASSUME(GetMoveEffect(MOVE_HOWL) == EFFECT_ATTACK_UP_USER_ALLY);
         ASSUME(GetMoveEffect(MOVE_CALM_MIND) == EFFECT_CALM_MIND);
+        ASSUME(GetMoveType(MOVE_SWIFT) == TYPE_NORMAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_COMBUSKEN) { Speed(20); Moves(MOVE_DOUBLE_KICK, MOVE_CELEBRATE); };
         OPPONENT(SPECIES_KANGASKHAN) { Speed(15); Moves(MOVE_CHIP_AWAY, MOVE_SWIFT, move); }
@@ -62,6 +63,7 @@ AI_SINGLE_BATTLE_TEST("AI will correctly predict what move the opposing mon goin
     PARAMETRIZE { move = MOVE_CALM_MIND; }
 
     GIVEN {
+        ASSUME(GetMoveType(MOVE_SWIFT) == TYPE_NORMAL);
         ASSUME(GetMovePower(MOVE_SKY_UPPERCUT) == 85);
         ASSUME(GetMoveEffect(MOVE_HOWL) == EFFECT_ATTACK_UP_USER_ALLY);
         ASSUME(GetMoveEffect(MOVE_CALM_MIND) == EFFECT_CALM_MIND);

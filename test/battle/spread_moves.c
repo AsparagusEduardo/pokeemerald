@@ -120,6 +120,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
     s16 opponentRightDmg[2];
 
     GIVEN {
+        ASSUME(GetMoveType(MOVE_ROCK_SLIDE) == TYPE_ROCK);
         PLAYER(SPECIES_GARDEVOIR);
         PLAYER(SPECIES_RAYQUAZA) { Ability(ABILITY_AIR_LOCK); }
         PLAYER(SPECIES_RALTS);
@@ -148,6 +149,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
     s16 opponentRightDmg[2];
 
     GIVEN {
+        ASSUME(GetMoveType(MOVE_ROCK_SLIDE) == TYPE_ROCK);
         PLAYER(SPECIES_GARDEVOIR);
         PLAYER(SPECIES_RAYQUAZA) { Ability(ABILITY_AIR_LOCK); }
         PLAYER(SPECIES_RALTS);
@@ -250,6 +252,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Spread move, Gem Boosted, vs Resist Berries")
 DOUBLE_BATTLE_TEST("Spread Moves: Explosion, Gem Boosted, vs Resist Berries")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_EXPLOSION) == TYPE_NORMAL);
         ASSUME(GetMoveTarget(MOVE_EXPLOSION) == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_WOBBUFFET) { Speed(40); Item(ITEM_NORMAL_GEM); }
         PLAYER(SPECIES_MISDREAVUS) { Speed(30); }
@@ -416,6 +419,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Doesn't affect message on both opposing mons")
 DOUBLE_BATTLE_TEST("Spread Moves: Unless move hits every target user will not include partner in the target count")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_ROCK_SLIDE) == TYPE_ROCK);
         PLAYER(SPECIES_SANDSLASH);
         PLAYER(SPECIES_WYNAUT) { HP(1); }
         PLAYER(SPECIES_RALTS);

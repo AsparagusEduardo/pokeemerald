@@ -101,6 +101,7 @@ DOUBLE_BATTLE_TEST("Revival Blessing doesn't prevent revived battlers from losin
 DOUBLE_BATTLE_TEST("Revival Blessing correctly updates battler absent flags")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_EARTHQUAKE) == TYPE_GROUND);
         PLAYER(SPECIES_SALAMENCE) { Level(40); }
         PLAYER(SPECIES_PIDGEOT) { Level(40); }
         OPPONENT(SPECIES_GEODUDE) { Level(5); Ability(ABILITY_ROCK_HEAD); }

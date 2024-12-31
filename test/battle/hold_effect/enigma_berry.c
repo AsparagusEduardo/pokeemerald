@@ -9,6 +9,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Enigma Berry recovers 25% of HP if hit by super effective move")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_BITE) == TYPE_DARK);
         PLAYER(SPECIES_WYNAUT) { MaxHP(100); HP(2); Item(ITEM_ENIGMA_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

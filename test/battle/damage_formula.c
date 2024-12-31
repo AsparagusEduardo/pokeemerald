@@ -121,6 +121,7 @@ DOUBLE_BATTLE_TEST("A spread move will do correct damage to the second mon if th
 {
     s16 damage[6];
     GIVEN {
+        ASSUME(GetMoveType(MOVE_ROCK_SLIDE) == TYPE_ROCK);
         PLAYER(SPECIES_REGIROCK);
         PLAYER(SPECIES_REGIROCK);
         OPPONENT(SPECIES_WOBBUFFET) { HP(200); }

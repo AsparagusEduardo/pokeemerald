@@ -7,6 +7,7 @@ SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effect
     PARAMETRIZE { hp = 100; }
     PARAMETRIZE { hp = 99; }
     GIVEN {
+        ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); HP(hp); MaxHP(100);}
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -58,6 +59,7 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn 
     s16 firstHit;
     s16 secondHit;
     GIVEN {
+        ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -81,6 +83,7 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn 
 DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_BLIZZARD) == TYPE_ICE);
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

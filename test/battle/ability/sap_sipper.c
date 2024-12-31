@@ -4,6 +4,7 @@
 SINGLE_BATTLE_TEST("Sap Sipper negates damage from Grass-type moves")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_VINE_WHIP) == TYPE_GRASS);
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -16,6 +17,7 @@ SINGLE_BATTLE_TEST("Sap Sipper negates damage from Grass-type moves")
 SINGLE_BATTLE_TEST("Sap Sipper negates effects from Grass-type moves")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_SPORE) == TYPE_GRASS);
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -31,6 +33,7 @@ SINGLE_BATTLE_TEST("Sap Sipper negates effects from Grass-type moves")
 SINGLE_BATTLE_TEST("Sap Sipper increases Attack by one stage when hit by a Grass-type move")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_VINE_WHIP) == TYPE_GRASS);
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -45,6 +48,7 @@ SINGLE_BATTLE_TEST("Sap Sipper increases Attack by one stage when hit by a Grass
 SINGLE_BATTLE_TEST("Sap Sipper does not increase Attack if already maxed")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_VINE_WHIP) == TYPE_GRASS);
         PLAYER(SPECIES_MARILL) { Ability(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

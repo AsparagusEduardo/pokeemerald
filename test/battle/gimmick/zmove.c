@@ -78,6 +78,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_RESET_STATS clears a battler's negative st
 {
     GIVEN {
         ASSUME(GetMoveZEffect(MOVE_LEECH_SEED) == Z_EFFECT_RESET_STATS);
+        ASSUME(GetMoveType(MOVE_LEECH_SEED) == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_GRASSIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -261,6 +262,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Copycat raises the user's accuracy by one stage a
     GIVEN {
         ASSUME(GetMoveType(MOVE_COPYCAT) == TYPE_NORMAL);
         ASSUME(GetMoveZEffect(MOVE_COPYCAT) == Z_EFFECT_ACC_UP_1);
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -283,6 +285,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Me First raises the user's speed by two stages an
     GIVEN {
         ASSUME(GetMoveType(MOVE_ME_FIRST) == TYPE_NORMAL);
         ASSUME(GetMoveZEffect(MOVE_ME_FIRST) == Z_EFFECT_SPD_UP_2);
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -314,6 +317,10 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Nature Power transforms into different Z-Moves ba
     PARAMETRIZE { terrainMove = MOVE_MISTY_TERRAIN;     zMove = gTypesInfo[TYPE_FAIRY].zMove; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_NATURE_POWER) == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_MOONBLAST) == TYPE_FAIRY);
+        ASSUME(GetMoveType(MOVE_THUNDERBOLT) == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_ENERGY_BALL) == TYPE_GRASS);
+        ASSUME(GetMoveType(MOVE_PSYCHIC) == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -371,6 +378,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Sleep Talk transforms a used non-status move into
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_SLEEP_TALK) == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_ABSORB) == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); Status1(STATUS1_SLEEP); Moves(MOVE_SLEEP_TALK, MOVE_ABSORB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
