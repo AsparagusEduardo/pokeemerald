@@ -30,6 +30,7 @@ SINGLE_BATTLE_TEST("Blunder Policy will never trigger if the move fails due to a
     PASSES_RANDOMLY(10, 10, RNG_ACCURACY);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FOCUS_BLAST].accuracy == 70);
+        ASSUME(gMovesInfo[MOVE_FOCUS_BLAST].type == TYPE_FIGHTING);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_BLUNDER_POLICY); }
         OPPONENT(SPECIES_GASTLY);
     } WHEN {

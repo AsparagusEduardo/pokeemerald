@@ -160,7 +160,9 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves which deal more damage instead of moves 
         ASSUME(gMovesInfo[MOVE_SCALD].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_SCALD].type == TYPE_WATER);
         ASSUME(gMovesInfo[MOVE_POISON_JAB].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_POISON_JAB].type == TYPE_POISON);
         ASSUME(gMovesInfo[MOVE_WATER_GUN].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_TYPHLOSION) { Ability(abilityDef); }
         PLAYER(SPECIES_WOBBUFFET);

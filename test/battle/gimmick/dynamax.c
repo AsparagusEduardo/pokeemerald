@@ -681,6 +681,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) Max Knuckle raises both allies' attack")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_MAX_KNUCKLE].argument == MAX_EFFECT_RAISE_TEAM_ATTACK);
         ASSUME(gMovesInfo[MOVE_CLOSE_COMBAT].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_CLOSE_COMBAT].type == TYPE_FIGHTING);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
@@ -881,6 +882,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) G-Max Steelsurge sets up sharp steel")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_G_MAX_STEELSURGE].argument == MAX_EFFECT_STEELSURGE);
+        ASSUME(gMovesInfo[MOVE_IRON_HEAD].type == TYPE_STEEL);
         PLAYER(SPECIES_COPPERAJAH) { GigantamaxFactor(TRUE); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_HATTERENE);
@@ -1029,6 +1031,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Befuddle paralyzes, poisons, or sleeps both 
     PARAMETRIZE { statusAnim = B_ANIM_STATUS_SLP; rng = STATUS1_SLEEP; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_G_MAX_BEFUDDLE].argument == MAX_EFFECT_EFFECT_SPORE_FOES);
+        ASSUME(gMovesInfo[MOVE_BUG_BITE].type == TYPE_BUG);
         PLAYER(SPECIES_BUTTERFREE) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_CATERPIE);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -1157,20 +1160,21 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Meltdown torments both opponents for 3 turns
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_G_MAX_MELTDOWN].argument == MAX_EFFECT_TORMENT_FOES);
+        ASSUME(gMovesInfo[MOVE_IRON_HEAD].type == TYPE_STEEL);
         PLAYER(SPECIES_MELMETAL) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_MELTAN);
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_SPLASH, MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WYNAUT) { Moves(MOVE_SPLASH, MOVE_CELEBRATE); }
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_IRON_HEAD, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); \
+        TURN { MOVE(playerLeft, MOVE_IRON_HEAD, target: opponentLeft, gimmick: GIMMICK_DYNAMAX);
                MOVE(opponentLeft, MOVE_SPLASH); MOVE(opponentRight, MOVE_SPLASH); }
-        TURN { MOVE(playerLeft, MOVE_CELEBRATE, target: opponentLeft); \
-               MOVE(opponentLeft, MOVE_SPLASH, allowed: FALSE); \
-               MOVE(opponentLeft, MOVE_CELEBRATE); \
-               MOVE(opponentRight, MOVE_SPLASH, allowed: FALSE); \
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, target: opponentLeft);
+               MOVE(opponentLeft, MOVE_SPLASH, allowed: FALSE);
+               MOVE(opponentLeft, MOVE_CELEBRATE);
+               MOVE(opponentRight, MOVE_SPLASH, allowed: FALSE);
                MOVE(opponentRight, MOVE_CELEBRATE); }
-        TURN { MOVE(playerLeft, MOVE_CELEBRATE, target: opponentLeft); \
-               MOVE(opponentLeft, MOVE_SPLASH); \
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, target: opponentLeft);
+               MOVE(opponentLeft, MOVE_SPLASH);
                MOVE(opponentRight, MOVE_SPLASH); }
     } SCENE {
         // turn 1
@@ -1271,6 +1275,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Snooze makes only the target drowsy")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_G_MAX_SNOOZE].argument == MAX_EFFECT_YAWN_FOE);
         ASSUME(gMovesInfo[MOVE_DARK_PULSE].category == DAMAGE_CATEGORY_SPECIAL); // Otherwise, Blissey faints.
+        ASSUME(gMovesInfo[MOVE_DARK_PULSE].type == TYPE_DARK);
         PLAYER(SPECIES_GRIMMSNARL) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_IMPIDIMP);
         OPPONENT(SPECIES_BLISSEY);
@@ -1364,6 +1369,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Chi Strike boosts allies' crit chance")
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_6);
         ASSUME(gMovesInfo[MOVE_G_MAX_CHI_STRIKE].argument == MAX_EFFECT_CRIT_PLUS);
+        ASSUME(gMovesInfo[MOVE_FORCE_PALM].type == TYPE_FIGHTING);
         PLAYER(SPECIES_MACHAMP) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_MACHOP);
         OPPONENT(SPECIES_WOBBUFFET);

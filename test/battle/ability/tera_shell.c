@@ -36,6 +36,7 @@ SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapag
     s16 firstHit;
     s16 secondHit;
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_DOUBLE_HIT].type == TYPE_NORMAL);
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
