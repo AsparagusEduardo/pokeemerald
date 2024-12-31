@@ -86,6 +86,7 @@ SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a m
 SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Future Sight")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].type == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
     } WHEN {

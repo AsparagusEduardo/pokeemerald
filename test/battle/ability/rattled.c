@@ -1,18 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-    ASSUME(GetMoveType(MOVE_FURY_CUTTER) == TYPE_BUG);
-    ASSUME(!IsBattleMoveStatus(MOVE_FURY_CUTTER));
-    ASSUME(GetMoveType(MOVE_FEINT_ATTACK) == TYPE_DARK);
-    ASSUME(!IsBattleMoveStatus(MOVE_FEINT_ATTACK));
-    ASSUME(GetMoveType(MOVE_SHADOW_PUNCH) == TYPE_GHOST);
-    ASSUME(!IsBattleMoveStatus(MOVE_SHADOW_PUNCH));
-    ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
-    ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
-}
-
 SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost type move")
 {
     u16 move;
@@ -21,6 +9,14 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
     PARAMETRIZE { move = MOVE_SHADOW_PUNCH; }
     PARAMETRIZE { move = MOVE_SCRATCH; }
     GIVEN {
+        ASSUME(GetMoveType(MOVE_FURY_CUTTER) == TYPE_BUG);
+        ASSUME(!IsBattleMoveStatus(MOVE_FURY_CUTTER));
+        ASSUME(GetMoveType(MOVE_FEINT_ATTACK) == TYPE_DARK);
+        ASSUME(!IsBattleMoveStatus(MOVE_FEINT_ATTACK));
+        ASSUME(GetMoveType(MOVE_SHADOW_PUNCH) == TYPE_GHOST);
+        ASSUME(!IsBattleMoveStatus(MOVE_SHADOW_PUNCH));
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET) {Speed(42) ;}
         OPPONENT(SPECIES_SUDOWOODO) {Speed(40); Ability(ABILITY_RATTLED);}
     } WHEN {

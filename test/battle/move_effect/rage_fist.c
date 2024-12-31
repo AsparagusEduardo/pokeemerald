@@ -131,6 +131,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hi
 
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_CRUNCH) == DAMAGE_CATEGORY_PHYSICAL); // Substitute doesn't fade otherwise
+        ASSUME(GetMoveType(MOVE_CRUNCH) == TYPE_DARK);                    // Substitute doesn't fade otherwise
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {

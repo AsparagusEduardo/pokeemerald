@@ -72,6 +72,7 @@ SINGLE_BATTLE_TEST("Future Sight receives STAB from party mon")
     s16 futureSightDmg;
 
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].type == TYPE_PSYCHIC);
         PLAYER(SPECIES_RALTS);
         PLAYER(SPECIES_RAICHU);
         OPPONENT(SPECIES_REGICE);
@@ -94,6 +95,7 @@ SINGLE_BATTLE_TEST("Future Sight receives STAB from party mon")
 SINGLE_BATTLE_TEST("Future Sight is affected by type effectiveness")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].type == TYPE_PSYCHIC);
         PLAYER(SPECIES_PIKACHU);
         PLAYER(SPECIES_RAICHU);
         OPPONENT(SPECIES_HOUNDOOM);
