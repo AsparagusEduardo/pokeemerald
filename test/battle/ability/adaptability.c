@@ -49,6 +49,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability g
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_WATER_PULSE].type == TYPE_WATER);
         PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_ADAPTABILITY); TeraType(TYPE_WATER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

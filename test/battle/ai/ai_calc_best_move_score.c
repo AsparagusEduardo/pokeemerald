@@ -11,6 +11,7 @@ AI_SINGLE_BATTLE_TEST("AI will not further increase Attack / Sp. Atk stat if it 
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SKY_UPPERCUT].power == 85);
+        ASSUME(gMovesInfo[MOVE_SKY_UPPERCUT].type == TYPE_FIGHTING);
         ASSUME(gMovesInfo[MOVE_HOWL].effect == EFFECT_ATTACK_UP_USER_ALLY);
         ASSUME(gMovesInfo[MOVE_CALM_MIND].effect == EFFECT_CALM_MIND);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);

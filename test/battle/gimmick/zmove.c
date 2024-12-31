@@ -394,6 +394,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Sleep Talk turns Weather Ball into Breakneck Blit
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SLEEP_TALK].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_WEATHER_BALL].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); Status1(STATUS1_SLEEP); Moves(MOVE_SLEEP_TALK, MOVE_WEATHER_BALL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
