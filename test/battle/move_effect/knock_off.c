@@ -325,3 +325,20 @@ SINGLE_BATTLE_TEST("Knock Off doesn't knock off begin-battle form-change hold it
         NOT MESSAGE("Wobbuffet knocked off the opposing Zamazenta's Rusted Shield!");
     }
 }
+
+// This is true for all item-removing moves.
+SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are not immune to Knock Off")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POTION); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_KNOCK_OFF); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Max Strike!");
+        MESSAGE("The opposing Wobbuffet used Knock Off!");
+        MESSAGE("The opposing Wobbuffet knocked off Wobbuffet's Potion!");
+    } THEN {
+        EXPECT_EQ(player->item, ITEM_NONE);
+    }
+}

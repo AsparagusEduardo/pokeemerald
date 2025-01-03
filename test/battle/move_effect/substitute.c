@@ -70,3 +70,20 @@ SINGLE_BATTLE_TEST("Substitute's HP cost doesn't trigger effects that trigger on
 }
 
 TO_DO_BATTLE_TEST("Baton Pass passes Substitutes");
+
+SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon lose their substitutes upon Dynamaxing")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUBSTITUTE); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_TACKLE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Substitute!");
+        MESSAGE("Wobbuffet put in a substitute!");
+        MESSAGE("Wobbuffet used Max Strike!");
+        MESSAGE("The opposing Wobbuffet used Tackle!");
+        HP_BAR(player);
+    }
+}

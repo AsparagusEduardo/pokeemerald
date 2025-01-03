@@ -40,3 +40,19 @@ TO_DO_BATTLE_TEST("Fissure faints the target, skipping regular damage calculatio
 TO_DO_BATTLE_TEST("Fissure always fails if the target has a higher level than the user")
 TO_DO_BATTLE_TEST("Fissure's accuracy increases by 1% for every level the user has over the target")
 TO_DO_BATTLE_TEST("Fissure's ignores non-stage accuracy modifiers") // Gravity, Wide Lens, Compound Eyes
+
+SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon cannot be hit by OHKO moves")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_FISSURE].effect == EFFECT_OHKO);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_MACHAMP) { Ability(ABILITY_NO_GUARD); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_FISSURE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Max Strike!");
+        MESSAGE("The opposing Machamp used Fissure!");
+        MESSAGE("Wobbuffet is unaffected!");
+        NONE_OF { HP_BAR(player); }
+    }
+}

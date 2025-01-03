@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Torment prevents consecutive move uses")
     }
 }
 
-SINGLE_BATTLE_TEST("Torment forces Struggle if the only move is prevented")
+SINGLE_BATTLE_TEST("Torment forces Struggle every other turn if the only move is prevented")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -30,7 +30,11 @@ SINGLE_BATTLE_TEST("Torment forces Struggle if the only move is prevented")
     } WHEN {
         TURN { MOVE(player, MOVE_TORMENT); MOVE(opponent, MOVE_SPLASH); }
         TURN { MOVE(opponent, MOVE_SPLASH, allowed: FALSE); }
+        TURN { MOVE(opponent, MOVE_SPLASH); }
+        TURN { MOVE(opponent, MOVE_SPLASH, allowed: FALSE); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, opponent);
     }
@@ -49,5 +53,19 @@ SINGLE_BATTLE_TEST("Torment allows non-consecutive move uses")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are immune to Torment")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_TORMENT); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Max Strike!");
+        MESSAGE("The opposing Wobbuffet used Torment!");
+        MESSAGE("But it failed!");
     }
 }
