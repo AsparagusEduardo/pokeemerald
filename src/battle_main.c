@@ -1734,7 +1734,7 @@ static void CB2_HandleStartMultiBattle(void)
 
 void BattleMainCB2(void)
 {
-    u8 speedScale = 4;
+    u8 speedScale = 8;
 
     if(speedScale <= 1)
     {
