@@ -68,23 +68,6 @@
 
 #define BATTLE_BUFFER_LINK_SIZE 0x1000
 
-// Special indicator value for shellBellDmg in SpecialStatus
-#define IGNORE_SHELL_BELL 0xFFFF
-
-struct ResourceFlags
-{
-    u32 flags[MAX_BATTLERS_COUNT];
-};
-
-#define RESOURCE_FLAG_FLASH_FIRE        0x1
-#define RESOURCE_FLAG_ROOST             0x2
-#define RESOURCE_FLAG_UNBURDEN          0x4
-#define RESOURCE_FLAG_UNUSED            0x8
-#define RESOURCE_FLAG_UNUSED_2          0x10
-#define RESOURCE_FLAG_EMERGENCY_EXIT    0x20
-#define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
-#define RESOURCE_FLAG_ICE_FACE          0x80
-
 struct DisableStruct
 {
     u32 transformedMonPersonality;
@@ -121,6 +104,7 @@ struct DisableStruct
     u8 laserFocusTimer;
     u8 throatChopTimer;
     u8 wrapTurns;
+    u8 syrupBombTimer;
     u8 tormentTimer:4; // used for G-Max Meltdown
     u8 usedMoves:4;
     u8 truantCounter:1;
@@ -133,15 +117,23 @@ struct DisableStruct
     u8 toxicSpikesDone:1;
     u8 stickyWebDone:1;
     u8 stealthRockDone:1;
-    u8 syrupBombTimer;
-    u8 syrupBombIsShiny:1;
-    u8 steelSurgeDone:1;
     u8 weatherAbilityDone:1;
     u8 terrainAbilityDone:1;
+    u8 syrupBombIsShiny:1;
+    u8 steelSurgeDone:1;
     u8 usedProteanLibero:1;
+    u8 flashFireBoosted:1;
     u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
+    u8 boosterEnergyActivates:1;
+    u8 roostActive:1;
+    u8 unbrudenActive:1;
+    u8 startEmergencyExit:1;
+    u8 neutralizingGas:1;
+    u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
+    u8 padding:2;
 };
 
+// Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
 struct ProtectStruct
 {
     u32 protected:1;
@@ -195,12 +187,11 @@ struct ProtectStruct
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
-
 };
 
+// Cleared at the start of HandleAction_ActionFinished
 struct SpecialStatus
 {
-    s32 shellBellDmg;
     s32 physicalDmg;
     s32 specialDmg;
     u8 physicalBattlerId;
@@ -212,7 +203,8 @@ struct SpecialStatus
     u8 faintedHasReplacement:1;
     u8 focusBanded:1;
     u8 focusSashed:1;
-    u8 unused:2;
+    u8 emergencyExited:1;
+    u8 afterYou:1;
     // End of byte
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
@@ -231,16 +223,15 @@ struct SpecialStatus
     u8 neutralizingGasRemoved:1;    // See VARIOUS_TRY_END_NEUTRALIZING_GAS
     u8 affectionEndured:1;
     // End of byte
-    u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
     u8 dancerUsedMove:1;
     u8 dancerOriginalTarget:3;
-    // End of byte
-    u8 emergencyExited:1;
-    u8 afterYou:1;
     u8 preventLifeOrbDamage:1; // So that Life Orb doesn't activate various effects.
     u8 distortedTypeMatchups:1;
     u8 teraShellAbilityDone:1;
     u8 criticalHit:1;
+    // End of byte
+    u8 enduredDamage:1;
+    u8 padding:7;
 };
 
 struct SideTimer
@@ -418,7 +409,6 @@ struct StatsArray
 struct BattleResources
 {
     struct SecretBase* secretBase;
-    struct ResourceFlags *flags;
     struct BattleScriptsStack* battleScriptsStack;
     struct BattleCallbacksStack* battleCallbackStack;
     struct StatsArray* beforeLvlUp;
@@ -578,7 +568,6 @@ struct DynamaxData
     u8 dynamaxTurns[MAX_BATTLERS_COUNT];
     u16 baseMoves[MAX_BATTLERS_COUNT]; // base move of Max Move
     u16 lastUsedBaseMove;
-    u16 levelUpHP;
 };
 
 struct BattleGimmickData
@@ -627,8 +616,32 @@ enum BattleIntroStates
     BATTLE_INTRO_STATE_SET_DEX_AND_BATTLE_VARS
 };
 
+struct BattlerState
+{
+    u8 targetsDone[MAX_BATTLERS_COUNT];
+
+    u32 commandingDondozo:1;
+    u32 absentBattlerFlags:1;
+    u32 focusPunchBattlers:1;
+    u32 multipleSwitchInBattlers:1;
+    u32 alreadyStatusedMoveAttempt:1; // For example when using Thunder Wave on an already paralyzed Pokémon.
+    u32 activeAbilityPopUps:1;
+    u32 lastMoveFailed:1; // For Stomping Tantrum
+    u32 forcedSwitch:1;
+    u32 storedHealingWish:1;
+    u32 storedLunarDance:1;
+    u32 usedEjectItem:1;
+    u32 sleepClauseEffectExempt:1; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
+    u32 usedMicleBerry:1;
+    u32 pursuitTarget:1;
+    u32 padding:17;
+    // End of Word
+};
+
+// Cleared at the beginning of the battle. Fields need to be cleared when needed manually otherwise.
 struct BattleStruct
 {
+    struct BattlerState battlerState[MAX_BATTLERS_COUNT];
     u8 turnEffectsTracker;
     u8 turnEffectsBattlerId;
     u8 turnCountersTracker;
@@ -646,7 +659,6 @@ struct BattleStruct
     u8 wildVictorySong;
     u8 dynamicMoveType;
     u8 wrappedBy[MAX_BATTLERS_COUNT];
-    u8 focusPunchBattlers; // as bits
     u8 battlerPreventingSwitchout;
     u8 moneyMultiplier:6;
     u8 moneyMultiplierItem:1;
@@ -687,9 +699,9 @@ struct BattleStruct
     u8 hpScale;
     u16 synchronizeMoveEffect;
     u8 anyMonHasTransformed:1; // Only used in battle_tv.c
-    u8 multipleSwitchInBattlers:4; // One bit per battler
     u8 multipleSwitchInState:2;
     u8 multipleSwitchInCursor:3;
+    u8 padding1:2;
     u8 multipleSwitchInSortedBattlers[MAX_BATTLERS_COUNT];
     void (*savedCallback)(void);
     u16 usedHeldItems[PARTY_SIZE][NUM_BATTLE_SIDES]; // For each party member and side. For harvest, recycle
@@ -726,7 +738,6 @@ struct BattleStruct
     u16 arenaStartHp[2];
     u8 arenaLostPlayerMons; // Bits for party member, lost as in referee's decision, not by fainting.
     u8 arenaLostOpponentMons;
-    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
     u8 debugBattler;
     u8 magnitudeBasePower;
     u8 presentBasePower;
@@ -736,7 +747,6 @@ struct BattleStruct
     u8 savedTargetCount:4;
     u8 savedAttackerCount:4;
     bool8 ateBoost[MAX_BATTLERS_COUNT];
-    u8 activeAbilityPopUps; // as bits for each battler
     u8 abilityPopUpSpriteIds[MAX_BATTLERS_COUNT][2];    // two per battler
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
@@ -745,7 +755,6 @@ struct BattleStruct
     enum BattleIntroStates introState:8;
     u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
-    u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
     u16 tracedAbility[MAX_BATTLERS_COUNT];
     u16 hpBefore[MAX_BATTLERS_COUNT]; // Hp of battlers before using a move. For Berserk and Anger Shell.
@@ -760,8 +769,6 @@ struct BattleStruct
     u16 changedSpecies[NUM_BATTLE_SIDES][PARTY_SIZE]; // For forms when multiple mons can change into the same pokemon.
     u8 quickClawBattlerId;
     struct LostItem itemLost[NUM_BATTLE_SIDES][PARTY_SIZE];  // Pokemon that had items consumed or stolen (two bytes per party member per side)
-    u8 forcedSwitch:4; // For each battler
-    u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
     u8 blunderPolicy:1; // should blunder policy activate
     u8 swapDamageCategory:1; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
     u8 bouncedMoveIsUsed:1;
@@ -779,10 +786,7 @@ struct BattleStruct
     u8 hitSwitchTargetFailed:1;
     u8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
     u8 spriteIgnore0Hp:1;
-    u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
     u8 battleBondTransformed[NUM_BATTLE_SIDES]; // Bitfield for each party.
-    u8 storedHealingWish:4; // Each battler as a bit.
-    u8 storedLunarDance:4; // Each battler as a bit.
     u8 bonusCritStages[MAX_BATTLERS_COUNT]; // G-Max Chi Strike boosts crit stages of allies.
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
@@ -801,7 +805,6 @@ struct BattleStruct
     u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
     u32 aiDelayFrames; // Number of frames it took to choose an action.
     u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
-    u8 enduredDamage;
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 stickySyrupdBy[MAX_BATTLERS_COUNT];
     u8 intrepidSwordBoost[NUM_BATTLE_SIDES];
@@ -812,18 +815,13 @@ struct BattleStruct
     u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 shellSideArmCategory[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
     u8 speedTieBreaks; // MAX_BATTLERS_COUNT! values.
-    u8 boosterEnergyActivates;
     u8 categoryOverride; // for Z-Moves and Max Moves
-    u8 commandingDondozo;
     u16 commanderActive[MAX_BATTLERS_COUNT];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
-    u8 redCardActivates:1;
-    u8 padding1:7;
-    u8 usedEjectItem;
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
-    u8 sleepClauseEffectExempt:4; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
-    u8 usedMicleBerry:4;
-    u8 pursuitTarget:4; // Each battler as a bit.
+    u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
+    u8 redCardActivates:1;
+    u8 padding2:2; // padding in the middle so pursuit fields are together
     u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
@@ -839,7 +837,7 @@ struct BattleStruct
     u8 calculatedSpreadMoveAccuracy:1;
     u8 printedStrongWindsWeakenedAttack:1;
     u8 numSpreadTargets:2;
-    u8 padding2:2;
+    u8 padding3:2;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -1196,7 +1194,7 @@ static inline bool32 IsBattlerTurnDamaged(u32 battler)
 {
     return gSpecialStatuses[battler].physicalDmg != 0
         || gSpecialStatuses[battler].specialDmg != 0
-        || gBattleStruct->enduredDamage & (1u << battler);
+        || gSpecialStatuses[battler].enduredDamage;
 }
 
 static inline bool32 IsBattlerAtMaxHp(u32 battler)

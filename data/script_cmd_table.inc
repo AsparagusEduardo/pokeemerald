@@ -1,234 +1,245 @@
+@ 'requests_effects' should be set to 1 if the command contains a call
+@ to 'Script_RequestEffects', which allows it to be analyzed with
+@ 'RunScriptImmediatelyUntilEffect'.
+.macro cmd func:req, requests_effects=0
+	.if \requests_effects == 0
+	.4byte \func
+	.else
+	.4byte \func + ROM_SIZE
+	.endif
+.endm
+
 	.align 2
 gScriptCmdTable::
-	.4byte ScrCmd_nop      	                        @ 0x00
-	.4byte ScrCmd_nop1                              @ 0x01
-	.4byte ScrCmd_end      	                        @ 0x02
-	.4byte ScrCmd_return                            @ 0x03
-	.4byte ScrCmd_call                              @ 0x04
-	.4byte ScrCmd_goto                              @ 0x05
-	.4byte ScrCmd_goto_if                           @ 0x06
-	.4byte ScrCmd_call_if                           @ 0x07
-	.4byte ScrCmd_gotostd                           @ 0x08
-	.4byte ScrCmd_callstd                           @ 0x09
-	.4byte ScrCmd_gotostd_if                        @ 0x0a
-	.4byte ScrCmd_callstd_if                        @ 0x0b
-	.4byte ScrCmd_returnram                         @ 0x0c
-	.4byte ScrCmd_endram                            @ 0x0d
-	.4byte ScrCmd_setmysteryeventstatus             @ 0x0e
-	.4byte ScrCmd_loadword                          @ 0x0f
-	.4byte ScrCmd_loadbyte                          @ 0x10
-	.4byte ScrCmd_setptr                            @ 0x11
-	.4byte ScrCmd_loadbytefromptr                   @ 0x12
-	.4byte ScrCmd_setptrbyte                        @ 0x13
-	.4byte ScrCmd_copylocal                         @ 0x14
-	.4byte ScrCmd_copybyte                          @ 0x15
-	.4byte ScrCmd_setvar                            @ 0x16
-	.4byte ScrCmd_addvar                            @ 0x17
-	.4byte ScrCmd_subvar                            @ 0x18
-	.4byte ScrCmd_copyvar                           @ 0x19
-	.4byte ScrCmd_setorcopyvar                      @ 0x1a
-	.4byte ScrCmd_compare_local_to_local            @ 0x1b
-	.4byte ScrCmd_compare_local_to_value            @ 0x1c
-	.4byte ScrCmd_compare_local_to_ptr              @ 0x1d
-	.4byte ScrCmd_compare_ptr_to_local              @ 0x1e
-	.4byte ScrCmd_compare_ptr_to_value              @ 0x1f
-	.4byte ScrCmd_compare_ptr_to_ptr                @ 0x20
-	.4byte ScrCmd_compare_var_to_value              @ 0x21
-	.4byte ScrCmd_compare_var_to_var                @ 0x22
-	.4byte ScrCmd_callnative                        @ 0x23
-	.4byte ScrCmd_gotonative                        @ 0x24
-	.4byte ScrCmd_special                           @ 0x25
-	.4byte ScrCmd_specialvar                        @ 0x26
-	.4byte ScrCmd_waitstate                         @ 0x27
-	.4byte ScrCmd_delay                             @ 0x28
-	.4byte ScrCmd_setflag                           @ 0x29
-	.4byte ScrCmd_clearflag                         @ 0x2a
-	.4byte ScrCmd_checkflag                         @ 0x2b
-	.4byte ScrCmd_initclock                         @ 0x2c
-	.4byte ScrCmd_dotimebasedevents                 @ 0x2d
-	.4byte ScrCmd_gettime                           @ 0x2e
-	.4byte ScrCmd_playse                            @ 0x2f
-	.4byte ScrCmd_waitse                            @ 0x30
-	.4byte ScrCmd_playfanfare                       @ 0x31
-	.4byte ScrCmd_waitfanfare                       @ 0x32
-	.4byte ScrCmd_playbgm                           @ 0x33
-	.4byte ScrCmd_savebgm                           @ 0x34
-	.4byte ScrCmd_fadedefaultbgm                    @ 0x35
-	.4byte ScrCmd_fadenewbgm                        @ 0x36
-	.4byte ScrCmd_fadeoutbgm                        @ 0x37
-	.4byte ScrCmd_fadeinbgm                         @ 0x38
-	.4byte ScrCmd_warp                              @ 0x39
-	.4byte ScrCmd_warpsilent                        @ 0x3a
-	.4byte ScrCmd_warpdoor                          @ 0x3b
-	.4byte ScrCmd_warphole                          @ 0x3c
-	.4byte ScrCmd_warpteleport                      @ 0x3d
-	.4byte ScrCmd_setwarp                           @ 0x3e
-	.4byte ScrCmd_setdynamicwarp                    @ 0x3f
-	.4byte ScrCmd_setdivewarp                       @ 0x40
-	.4byte ScrCmd_setholewarp                       @ 0x41
-	.4byte ScrCmd_getplayerxy                       @ 0x42
-	.4byte ScrCmd_getpartysize                      @ 0x43
-	.4byte ScrCmd_additem                           @ 0x44
-	.4byte ScrCmd_removeitem                        @ 0x45
-	.4byte ScrCmd_checkitemspace                    @ 0x46
-	.4byte ScrCmd_checkitem                         @ 0x47
-	.4byte ScrCmd_checkitemtype                     @ 0x48
-	.4byte ScrCmd_addpcitem                         @ 0x49
-	.4byte ScrCmd_checkpcitem                       @ 0x4a
-	.4byte ScrCmd_adddecoration                     @ 0x4b
-	.4byte ScrCmd_removedecoration                  @ 0x4c
-	.4byte ScrCmd_checkdecor                        @ 0x4d
-	.4byte ScrCmd_checkdecorspace                   @ 0x4e
-	.4byte ScrCmd_applymovement                     @ 0x4f
-	.4byte ScrCmd_applymovementat                   @ 0x50
-	.4byte ScrCmd_waitmovement                      @ 0x51
-	.4byte ScrCmd_waitmovementat                    @ 0x52
-	.4byte ScrCmd_removeobject                      @ 0x53
-	.4byte ScrCmd_removeobjectat                    @ 0x54
-	.4byte ScrCmd_addobject                         @ 0x55
-	.4byte ScrCmd_addobjectat                       @ 0x56
-	.4byte ScrCmd_setobjectxy                       @ 0x57
-	.4byte ScrCmd_showobjectat                      @ 0x58
-	.4byte ScrCmd_hideobjectat                      @ 0x59
-	.4byte ScrCmd_faceplayer                        @ 0x5a
-	.4byte ScrCmd_turnobject                        @ 0x5b
-	.4byte ScrCmd_trainerbattle                     @ 0x5c
-	.4byte ScrCmd_dotrainerbattle                   @ 0x5d
-	.4byte ScrCmd_gotopostbattlescript              @ 0x5e
-	.4byte ScrCmd_gotobeatenscript                  @ 0x5f
-	.4byte ScrCmd_checktrainerflag                  @ 0x60
-	.4byte ScrCmd_settrainerflag                    @ 0x61
-	.4byte ScrCmd_cleartrainerflag                  @ 0x62
-	.4byte ScrCmd_setobjectxyperm                   @ 0x63
-	.4byte ScrCmd_copyobjectxytoperm                @ 0x64
-	.4byte ScrCmd_setobjectmovementtype             @ 0x65
-	.4byte ScrCmd_waitmessage                       @ 0x66
-	.4byte ScrCmd_message                           @ 0x67
-	.4byte ScrCmd_closemessage                      @ 0x68
-	.4byte ScrCmd_lockall                           @ 0x69
-	.4byte ScrCmd_lock                              @ 0x6a
-	.4byte ScrCmd_releaseall                        @ 0x6b
-	.4byte ScrCmd_release                           @ 0x6c
-	.4byte ScrCmd_waitbuttonpress                   @ 0x6d
-	.4byte ScrCmd_yesnobox                          @ 0x6e
-	.4byte ScrCmd_multichoice                       @ 0x6f
-	.4byte ScrCmd_multichoicedefault                @ 0x70
-	.4byte ScrCmd_multichoicegrid                   @ 0x71
-	.4byte ScrCmd_drawbox                           @ 0x72
-	.4byte ScrCmd_erasebox                          @ 0x73
-	.4byte ScrCmd_drawboxtext                       @ 0x74
-	.4byte ScrCmd_showmonpic                        @ 0x75
-	.4byte ScrCmd_hidemonpic                        @ 0x76
-	.4byte ScrCmd_showcontestpainting               @ 0x77
-	.4byte ScrCmd_braillemessage                    @ 0x78
-	.4byte ScrCmd_nop1                              @ 0x79
-	.4byte ScrCmd_giveegg                           @ 0x7a
-	.4byte ScrCmd_setmonmove                        @ 0x7b
-	.4byte ScrCmd_checkpartymove                    @ 0x7c
-	.4byte ScrCmd_bufferspeciesname                 @ 0x7d
-	.4byte ScrCmd_bufferleadmonspeciesname          @ 0x7e
-	.4byte ScrCmd_bufferpartymonnick                @ 0x7f
-	.4byte ScrCmd_bufferitemname                    @ 0x80
-	.4byte ScrCmd_bufferdecorationname              @ 0x81
-	.4byte ScrCmd_buffermovename                    @ 0x82
-	.4byte ScrCmd_buffernumberstring                @ 0x83
-	.4byte ScrCmd_bufferstdstring                   @ 0x84
-	.4byte ScrCmd_bufferstring                      @ 0x85
-	.4byte ScrCmd_pokemart                          @ 0x86
-	.4byte ScrCmd_pokemartdecoration                @ 0x87
-	.4byte ScrCmd_pokemartdecoration2               @ 0x88
-	.4byte ScrCmd_playslotmachine                   @ 0x89
-	.4byte ScrCmd_setberrytree                      @ 0x8a
-	.4byte ScrCmd_choosecontestmon                  @ 0x8b
-	.4byte ScrCmd_startcontest                      @ 0x8c
-	.4byte ScrCmd_showcontestresults                @ 0x8d
-	.4byte ScrCmd_contestlinktransfer               @ 0x8e
-	.4byte ScrCmd_random                            @ 0x8f
-	.4byte ScrCmd_addmoney                          @ 0x90
-	.4byte ScrCmd_removemoney                       @ 0x91
-	.4byte ScrCmd_checkmoney                        @ 0x92
-	.4byte ScrCmd_showmoneybox                      @ 0x93
-	.4byte ScrCmd_hidemoneybox                      @ 0x94
-	.4byte ScrCmd_updatemoneybox                    @ 0x95
-	.4byte ScrCmd_getpokenewsactive                 @ 0x96
-	.4byte ScrCmd_fadescreen                        @ 0x97
-	.4byte ScrCmd_fadescreenspeed                   @ 0x98
-	.4byte ScrCmd_setflashlevel                     @ 0x99
-	.4byte ScrCmd_animateflash                      @ 0x9a
-	.4byte ScrCmd_messageautoscroll                 @ 0x9b
-	.4byte ScrCmd_dofieldeffect                     @ 0x9c
-	.4byte ScrCmd_setfieldeffectargument            @ 0x9d
-	.4byte ScrCmd_waitfieldeffect                   @ 0x9e
-	.4byte ScrCmd_setrespawn                        @ 0x9f
-	.4byte ScrCmd_checkplayergender                 @ 0xa0
-	.4byte ScrCmd_playmoncry                        @ 0xa1
-	.4byte ScrCmd_setmetatile                       @ 0xa2
-	.4byte ScrCmd_resetweather                      @ 0xa3
-	.4byte ScrCmd_setweather                        @ 0xa4
-	.4byte ScrCmd_doweather                         @ 0xa5
-	.4byte ScrCmd_setstepcallback                   @ 0xa6
-	.4byte ScrCmd_setmaplayoutindex                 @ 0xa7
-	.4byte ScrCmd_setobjectsubpriority              @ 0xa8
-	.4byte ScrCmd_resetobjectsubpriority            @ 0xa9
-	.4byte ScrCmd_createvobject                     @ 0xaa
-	.4byte ScrCmd_turnvobject                       @ 0xab
-	.4byte ScrCmd_opendoor                          @ 0xac
-	.4byte ScrCmd_closedoor                         @ 0xad
-	.4byte ScrCmd_waitdooranim                      @ 0xae
-	.4byte ScrCmd_setdooropen                       @ 0xaf
-	.4byte ScrCmd_setdoorclosed                     @ 0xb0
-	.4byte ScrCmd_addelevmenuitem                   @ 0xb1
-	.4byte ScrCmd_showelevmenu                      @ 0xb2
-	.4byte ScrCmd_checkcoins                        @ 0xb3
-	.4byte ScrCmd_addcoins                          @ 0xb4
-	.4byte ScrCmd_removecoins                       @ 0xb5
-	.4byte ScrCmd_setwildbattle                     @ 0xb6
-	.4byte ScrCmd_dowildbattle                      @ 0xb7
-	.4byte ScrCmd_setvaddress                       @ 0xb8
-	.4byte ScrCmd_vgoto                             @ 0xb9
-	.4byte ScrCmd_vcall                             @ 0xba
-	.4byte ScrCmd_vgoto_if                          @ 0xbb
-	.4byte ScrCmd_vcall_if                          @ 0xbc
-	.4byte ScrCmd_vmessage                          @ 0xbd
-	.4byte ScrCmd_vbuffermessage                    @ 0xbe
-	.4byte ScrCmd_vbufferstring                     @ 0xbf
-	.4byte ScrCmd_showcoinsbox                      @ 0xc0
-	.4byte ScrCmd_hidecoinsbox                      @ 0xc1
-	.4byte ScrCmd_updatecoinsbox                    @ 0xc2
-	.4byte ScrCmd_incrementgamestat                 @ 0xc3
-	.4byte ScrCmd_setescapewarp                     @ 0xc4
-	.4byte ScrCmd_waitmoncry                        @ 0xc5
-	.4byte ScrCmd_bufferboxname                     @ 0xc6
-	.4byte ScrCmd_nop1                              @ 0xc7
-	.4byte ScrCmd_nop1                              @ 0xc8
-	.4byte ScrCmd_nop1                              @ 0xc9
-	.4byte ScrCmd_nop1                              @ 0xca
-	.4byte ScrCmd_nop1                              @ 0xcb
-	.4byte ScrCmd_nop1                              @ 0xcc
-	.4byte ScrCmd_setmodernfatefulencounter         @ 0xcd
-	.4byte ScrCmd_checkmodernfatefulencounter       @ 0xce
-	.4byte ScrCmd_trywondercardscript               @ 0xcf
-	.4byte ScrCmd_nop1                              @ 0xd0
-	.4byte ScrCmd_warpspinenter                     @ 0xd1
-	.4byte ScrCmd_setmonmetlocation                 @ 0xd2
-	.4byte ScrCmd_moverotatingtileobjects           @ 0xd3
-	.4byte ScrCmd_turnrotatingtileobjects           @ 0xd4
-	.4byte ScrCmd_initrotatingtilepuzzle            @ 0xd5
-	.4byte ScrCmd_freerotatingtilepuzzle            @ 0xd6
-	.4byte ScrCmd_warpmossdeepgym                   @ 0xd7
-	.4byte ScrCmd_selectapproachingtrainer          @ 0xd8
-	.4byte ScrCmd_lockfortrainer                    @ 0xd9
-	.4byte ScrCmd_closebraillemessage               @ 0xda
-	.4byte ScrCmd_messageinstant                    @ 0xdb
-	.4byte ScrCmd_fadescreenswapbuffers             @ 0xdc
-	.4byte ScrCmd_buffertrainerclassname            @ 0xdd
-	.4byte ScrCmd_buffertrainername                 @ 0xde
-	.4byte ScrCmd_pokenavcall                       @ 0xdf
-	.4byte ScrCmd_warpwhitefade                     @ 0xe0
-	.4byte ScrCmd_buffercontestname                 @ 0xe1
-	.4byte ScrCmd_bufferitemnameplural              @ 0xe2
-	.4byte ScrCmd_dynmultichoice                    @ 0xe3
-	.4byte ScrCmd_dynmultipush                      @ 0xe4
+	cmd ScrCmd_nop, requests_effects=1                         @ 0x00
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0x01
+	cmd ScrCmd_end, requests_effects=1                         @ 0x02
+	cmd ScrCmd_return, requests_effects=1                      @ 0x03
+	cmd ScrCmd_call, requests_effects=1                        @ 0x04
+	cmd ScrCmd_goto, requests_effects=1                        @ 0x05
+	cmd ScrCmd_goto_if, requests_effects=1                     @ 0x06
+	cmd ScrCmd_call_if, requests_effects=1                     @ 0x07
+	cmd ScrCmd_gotostd, requests_effects=1                     @ 0x08
+	cmd ScrCmd_callstd, requests_effects=1                     @ 0x09
+	cmd ScrCmd_gotostd_if, requests_effects=1                  @ 0x0a
+	cmd ScrCmd_callstd_if, requests_effects=1                  @ 0x0b
+	cmd ScrCmd_returnram, requests_effects=1                   @ 0x0c
+	cmd ScrCmd_endram, requests_effects=1                      @ 0x0d
+	cmd ScrCmd_setmysteryeventstatus, requests_effects=1       @ 0x0e
+	cmd ScrCmd_loadword, requests_effects=1                    @ 0x0f
+	cmd ScrCmd_loadbyte, requests_effects=1                    @ 0x10
+	cmd ScrCmd_setptr, requests_effects=1                      @ 0x11
+	cmd ScrCmd_loadbytefromptr, requests_effects=1             @ 0x12
+	cmd ScrCmd_setptrbyte, requests_effects=1                  @ 0x13
+	cmd ScrCmd_copylocal, requests_effects=1                   @ 0x14
+	cmd ScrCmd_copybyte, requests_effects=1                    @ 0x15
+	cmd ScrCmd_setvar, requests_effects=1                      @ 0x16
+	cmd ScrCmd_addvar, requests_effects=1                      @ 0x17
+	cmd ScrCmd_subvar, requests_effects=1                      @ 0x18
+	cmd ScrCmd_copyvar, requests_effects=1                     @ 0x19
+	cmd ScrCmd_setorcopyvar, requests_effects=1                @ 0x1a
+	cmd ScrCmd_compare_local_to_local, requests_effects=1      @ 0x1b
+	cmd ScrCmd_compare_local_to_value, requests_effects=1      @ 0x1c
+	cmd ScrCmd_compare_local_to_ptr, requests_effects=1        @ 0x1d
+	cmd ScrCmd_compare_ptr_to_local, requests_effects=1        @ 0x1e
+	cmd ScrCmd_compare_ptr_to_value, requests_effects=1        @ 0x1f
+	cmd ScrCmd_compare_ptr_to_ptr, requests_effects=1          @ 0x20
+	cmd ScrCmd_compare_var_to_value, requests_effects=1        @ 0x21
+	cmd ScrCmd_compare_var_to_var, requests_effects=1          @ 0x22
+	cmd ScrCmd_callnative, requests_effects=1                  @ 0x23
+	cmd ScrCmd_gotonative, requests_effects=1                  @ 0x24
+	cmd ScrCmd_special, requests_effects=1                     @ 0x25
+	cmd ScrCmd_specialvar, requests_effects=1                  @ 0x26
+	cmd ScrCmd_waitstate, requests_effects=1                   @ 0x27
+	cmd ScrCmd_delay, requests_effects=1                       @ 0x28
+	cmd ScrCmd_setflag, requests_effects=1                     @ 0x29
+	cmd ScrCmd_clearflag, requests_effects=1                   @ 0x2a
+	cmd ScrCmd_checkflag, requests_effects=1                   @ 0x2b
+	cmd ScrCmd_initclock, requests_effects=1                   @ 0x2c
+	cmd ScrCmd_dotimebasedevents, requests_effects=1           @ 0x2d
+	cmd ScrCmd_gettime, requests_effects=1                     @ 0x2e
+	cmd ScrCmd_playse, requests_effects=1                      @ 0x2f
+	cmd ScrCmd_waitse, requests_effects=1                      @ 0x30
+	cmd ScrCmd_playfanfare, requests_effects=1                 @ 0x31
+	cmd ScrCmd_waitfanfare, requests_effects=1                 @ 0x32
+	cmd ScrCmd_playbgm, requests_effects=1                     @ 0x33
+	cmd ScrCmd_savebgm, requests_effects=1                     @ 0x34
+	cmd ScrCmd_fadedefaultbgm, requests_effects=1              @ 0x35
+	cmd ScrCmd_fadenewbgm, requests_effects=1                  @ 0x36
+	cmd ScrCmd_fadeoutbgm, requests_effects=1                  @ 0x37
+	cmd ScrCmd_fadeinbgm, requests_effects=1                   @ 0x38
+	cmd ScrCmd_warp, requests_effects=1                        @ 0x39
+	cmd ScrCmd_warpsilent, requests_effects=1                  @ 0x3a
+	cmd ScrCmd_warpdoor, requests_effects=1                    @ 0x3b
+	cmd ScrCmd_warphole, requests_effects=1                    @ 0x3c
+	cmd ScrCmd_warpteleport, requests_effects=1                @ 0x3d
+	cmd ScrCmd_setwarp, requests_effects=1                     @ 0x3e
+	cmd ScrCmd_setdynamicwarp, requests_effects=1              @ 0x3f
+	cmd ScrCmd_setdivewarp, requests_effects=1                 @ 0x40
+	cmd ScrCmd_setholewarp, requests_effects=1                 @ 0x41
+	cmd ScrCmd_getplayerxy, requests_effects=1                 @ 0x42
+	cmd ScrCmd_getpartysize, requests_effects=1                @ 0x43
+	cmd ScrCmd_additem, requests_effects=1                     @ 0x44
+	cmd ScrCmd_removeitem, requests_effects=1                  @ 0x45
+	cmd ScrCmd_checkitemspace, requests_effects=1              @ 0x46
+	cmd ScrCmd_checkitem, requests_effects=1                   @ 0x47
+	cmd ScrCmd_checkitemtype, requests_effects=1               @ 0x48
+	cmd ScrCmd_addpcitem, requests_effects=1                   @ 0x49
+	cmd ScrCmd_checkpcitem, requests_effects=1                 @ 0x4a
+	cmd ScrCmd_adddecoration, requests_effects=1               @ 0x4b
+	cmd ScrCmd_removedecoration, requests_effects=1            @ 0x4c
+	cmd ScrCmd_checkdecor, requests_effects=1                  @ 0x4d
+	cmd ScrCmd_checkdecorspace, requests_effects=1             @ 0x4e
+	cmd ScrCmd_applymovement, requests_effects=1               @ 0x4f
+	cmd ScrCmd_applymovementat, requests_effects=1             @ 0x50
+	cmd ScrCmd_waitmovement, requests_effects=1                @ 0x51
+	cmd ScrCmd_waitmovementat, requests_effects=1              @ 0x52
+	cmd ScrCmd_removeobject, requests_effects=1                @ 0x53
+	cmd ScrCmd_removeobjectat, requests_effects=1              @ 0x54
+	cmd ScrCmd_addobject, requests_effects=1                   @ 0x55
+	cmd ScrCmd_addobjectat, requests_effects=1                 @ 0x56
+	cmd ScrCmd_setobjectxy, requests_effects=1                 @ 0x57
+	cmd ScrCmd_showobjectat, requests_effects=1                @ 0x58
+	cmd ScrCmd_hideobjectat, requests_effects=1                @ 0x59
+	cmd ScrCmd_faceplayer, requests_effects=1                  @ 0x5a
+	cmd ScrCmd_turnobject, requests_effects=1                  @ 0x5b
+	cmd ScrCmd_trainerbattle, requests_effects=1               @ 0x5c
+	cmd ScrCmd_dotrainerbattle, requests_effects=1             @ 0x5d
+	cmd ScrCmd_gotopostbattlescript, requests_effects=1        @ 0x5e
+	cmd ScrCmd_gotobeatenscript, requests_effects=1            @ 0x5f
+	cmd ScrCmd_checktrainerflag, requests_effects=1            @ 0x60
+	cmd ScrCmd_settrainerflag, requests_effects=1              @ 0x61
+	cmd ScrCmd_cleartrainerflag, requests_effects=1            @ 0x62
+	cmd ScrCmd_setobjectxyperm, requests_effects=1             @ 0x63
+	cmd ScrCmd_copyobjectxytoperm, requests_effects=1          @ 0x64
+	cmd ScrCmd_setobjectmovementtype, requests_effects=1       @ 0x65
+	cmd ScrCmd_waitmessage, requests_effects=1                 @ 0x66
+	cmd ScrCmd_message, requests_effects=1                     @ 0x67
+	cmd ScrCmd_closemessage, requests_effects=1                @ 0x68
+	cmd ScrCmd_lockall, requests_effects=1                     @ 0x69
+	cmd ScrCmd_lock, requests_effects=1                        @ 0x6a
+	cmd ScrCmd_releaseall, requests_effects=1                  @ 0x6b
+	cmd ScrCmd_release, requests_effects=1                     @ 0x6c
+	cmd ScrCmd_waitbuttonpress, requests_effects=1             @ 0x6d
+	cmd ScrCmd_yesnobox, requests_effects=1                    @ 0x6e
+	cmd ScrCmd_multichoice, requests_effects=1                 @ 0x6f
+	cmd ScrCmd_multichoicedefault, requests_effects=1          @ 0x70
+	cmd ScrCmd_multichoicegrid, requests_effects=1             @ 0x71
+	cmd ScrCmd_drawbox, requests_effects=1                     @ 0x72
+	cmd ScrCmd_erasebox, requests_effects=1                    @ 0x73
+	cmd ScrCmd_drawboxtext, requests_effects=1                 @ 0x74
+	cmd ScrCmd_showmonpic, requests_effects=1                  @ 0x75
+	cmd ScrCmd_hidemonpic, requests_effects=1                  @ 0x76
+	cmd ScrCmd_showcontestpainting, requests_effects=1         @ 0x77
+	cmd ScrCmd_braillemessage, requests_effects=1              @ 0x78
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0x79
+	cmd ScrCmd_giveegg, requests_effects=1                     @ 0x7a
+	cmd ScrCmd_setmonmove, requests_effects=1                  @ 0x7b
+	cmd ScrCmd_checkpartymove, requests_effects=1              @ 0x7c
+	cmd ScrCmd_bufferspeciesname, requests_effects=1           @ 0x7d
+	cmd ScrCmd_bufferleadmonspeciesname, requests_effects=1    @ 0x7e
+	cmd ScrCmd_bufferpartymonnick, requests_effects=1          @ 0x7f
+	cmd ScrCmd_bufferitemname, requests_effects=1              @ 0x80
+	cmd ScrCmd_bufferdecorationname, requests_effects=1        @ 0x81
+	cmd ScrCmd_buffermovename, requests_effects=1              @ 0x82
+	cmd ScrCmd_buffernumberstring, requests_effects=1          @ 0x83
+	cmd ScrCmd_bufferstdstring, requests_effects=1             @ 0x84
+	cmd ScrCmd_bufferstring, requests_effects=1                @ 0x85
+	cmd ScrCmd_pokemart, requests_effects=1                    @ 0x86
+	cmd ScrCmd_pokemartdecoration, requests_effects=1          @ 0x87
+	cmd ScrCmd_pokemartdecoration2, requests_effects=1         @ 0x88
+	cmd ScrCmd_playslotmachine, requests_effects=1             @ 0x89
+	cmd ScrCmd_setberrytree, requests_effects=1                @ 0x8a
+	cmd ScrCmd_choosecontestmon, requests_effects=1            @ 0x8b
+	cmd ScrCmd_startcontest, requests_effects=1                @ 0x8c
+	cmd ScrCmd_showcontestresults, requests_effects=1          @ 0x8d
+	cmd ScrCmd_contestlinktransfer, requests_effects=1         @ 0x8e
+	cmd ScrCmd_random, requests_effects=1                      @ 0x8f
+	cmd ScrCmd_addmoney, requests_effects=1                    @ 0x90
+	cmd ScrCmd_removemoney, requests_effects=1                 @ 0x91
+	cmd ScrCmd_checkmoney, requests_effects=1                  @ 0x92
+	cmd ScrCmd_showmoneybox, requests_effects=1                @ 0x93
+	cmd ScrCmd_hidemoneybox, requests_effects=1                @ 0x94
+	cmd ScrCmd_updatemoneybox, requests_effects=1              @ 0x95
+	cmd ScrCmd_getpokenewsactive, requests_effects=1           @ 0x96
+	cmd ScrCmd_fadescreen, requests_effects=1                  @ 0x97
+	cmd ScrCmd_fadescreenspeed, requests_effects=1             @ 0x98
+	cmd ScrCmd_setflashlevel, requests_effects=1               @ 0x99
+	cmd ScrCmd_animateflash, requests_effects=1                @ 0x9a
+	cmd ScrCmd_messageautoscroll, requests_effects=1           @ 0x9b
+	cmd ScrCmd_dofieldeffect, requests_effects=1               @ 0x9c
+	cmd ScrCmd_setfieldeffectargument, requests_effects=1      @ 0x9d
+	cmd ScrCmd_waitfieldeffect, requests_effects=1             @ 0x9e
+	cmd ScrCmd_setrespawn, requests_effects=1                  @ 0x9f
+	cmd ScrCmd_checkplayergender, requests_effects=1           @ 0xa0
+	cmd ScrCmd_playmoncry, requests_effects=1                  @ 0xa1
+	cmd ScrCmd_setmetatile, requests_effects=1                 @ 0xa2
+	cmd ScrCmd_resetweather, requests_effects=1                @ 0xa3
+	cmd ScrCmd_setweather, requests_effects=1                  @ 0xa4
+	cmd ScrCmd_doweather, requests_effects=1                   @ 0xa5
+	cmd ScrCmd_setstepcallback, requests_effects=1             @ 0xa6
+	cmd ScrCmd_setmaplayoutindex, requests_effects=1           @ 0xa7
+	cmd ScrCmd_setobjectsubpriority, requests_effects=1        @ 0xa8
+	cmd ScrCmd_resetobjectsubpriority, requests_effects=1      @ 0xa9
+	cmd ScrCmd_createvobject, requests_effects=1               @ 0xaa
+	cmd ScrCmd_turnvobject, requests_effects=1                 @ 0xab
+	cmd ScrCmd_opendoor, requests_effects=1                    @ 0xac
+	cmd ScrCmd_closedoor, requests_effects=1                   @ 0xad
+	cmd ScrCmd_waitdooranim, requests_effects=1                @ 0xae
+	cmd ScrCmd_setdooropen, requests_effects=1                 @ 0xaf
+	cmd ScrCmd_setdoorclosed, requests_effects=1               @ 0xb0
+	cmd ScrCmd_addelevmenuitem, requests_effects=1             @ 0xb1
+	cmd ScrCmd_showelevmenu, requests_effects=1                @ 0xb2
+	cmd ScrCmd_checkcoins, requests_effects=1                  @ 0xb3
+	cmd ScrCmd_addcoins, requests_effects=1                    @ 0xb4
+	cmd ScrCmd_removecoins, requests_effects=1                 @ 0xb5
+	cmd ScrCmd_setwildbattle, requests_effects=1               @ 0xb6
+	cmd ScrCmd_dowildbattle, requests_effects=1                @ 0xb7
+	cmd ScrCmd_setvaddress, requests_effects=1                 @ 0xb8
+	cmd ScrCmd_vgoto, requests_effects=1                       @ 0xb9
+	cmd ScrCmd_vcall, requests_effects=1                       @ 0xba
+	cmd ScrCmd_vgoto_if, requests_effects=1                    @ 0xbb
+	cmd ScrCmd_vcall_if, requests_effects=1                    @ 0xbc
+	cmd ScrCmd_vmessage, requests_effects=1                    @ 0xbd
+	cmd ScrCmd_vbuffermessage, requests_effects=1              @ 0xbe
+	cmd ScrCmd_vbufferstring, requests_effects=1               @ 0xbf
+	cmd ScrCmd_showcoinsbox, requests_effects=1                @ 0xc0
+	cmd ScrCmd_hidecoinsbox, requests_effects=1                @ 0xc1
+	cmd ScrCmd_updatecoinsbox, requests_effects=1              @ 0xc2
+	cmd ScrCmd_incrementgamestat, requests_effects=1           @ 0xc3
+	cmd ScrCmd_setescapewarp, requests_effects=1               @ 0xc4
+	cmd ScrCmd_waitmoncry, requests_effects=1                  @ 0xc5
+	cmd ScrCmd_bufferboxname, requests_effects=1               @ 0xc6
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xc7
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xc8
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xc9
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xca
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xcb
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xcc
+	cmd ScrCmd_setmodernfatefulencounter, requests_effects=1   @ 0xcd
+	cmd ScrCmd_checkmodernfatefulencounter, requests_effects=1 @ 0xce
+	cmd ScrCmd_trywondercardscript, requests_effects=1         @ 0xcf
+	cmd ScrCmd_nop1, requests_effects=1                        @ 0xd0
+	cmd ScrCmd_warpspinenter, requests_effects=1               @ 0xd1
+	cmd ScrCmd_setmonmetlocation, requests_effects=1           @ 0xd2
+	cmd ScrCmd_moverotatingtileobjects, requests_effects=1     @ 0xd3
+	cmd ScrCmd_turnrotatingtileobjects, requests_effects=1     @ 0xd4
+	cmd ScrCmd_initrotatingtilepuzzle, requests_effects=1      @ 0xd5
+	cmd ScrCmd_freerotatingtilepuzzle, requests_effects=1      @ 0xd6
+	cmd ScrCmd_warpmossdeepgym, requests_effects=1             @ 0xd7
+	cmd ScrCmd_selectapproachingtrainer, requests_effects=1    @ 0xd8
+	cmd ScrCmd_lockfortrainer, requests_effects=1              @ 0xd9
+	cmd ScrCmd_closebraillemessage, requests_effects=1         @ 0xda
+	cmd ScrCmd_messageinstant, requests_effects=1              @ 0xdb
+	cmd ScrCmd_fadescreenswapbuffers, requests_effects=1       @ 0xdc
+	cmd ScrCmd_buffertrainerclassname, requests_effects=1      @ 0xdd
+	cmd ScrCmd_buffertrainername, requests_effects=1           @ 0xde
+	cmd ScrCmd_pokenavcall, requests_effects=1                 @ 0xdf
+	cmd ScrCmd_warpwhitefade, requests_effects=1               @ 0xe0
+	cmd ScrCmd_buffercontestname, requests_effects=1           @ 0xe1
+	cmd ScrCmd_bufferitemnameplural, requests_effects=1        @ 0xe2
+	cmd ScrCmd_dynmultichoice, requests_effects=1              @ 0xe3
+	cmd ScrCmd_dynmultipush, requests_effects=1                @ 0xe4
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

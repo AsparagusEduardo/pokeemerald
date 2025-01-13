@@ -102,3 +102,22 @@ SINGLE_BATTLE_TEST("Eject Pack activates once intimidate mon switches in")
         MESSAGE("Wobbuffet is switched out with the Eject Pack!");
     }
 }
+
+SINGLE_BATTLE_TEST("Eject Pack will not activate if Parting Shot user can switch out")
+{
+    ASSUME(gItemsInfo[ITEM_EJECT_PACK].holdEffect == HOLD_EFFECT_EJECT_PACK);
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_PARTING_SHOT); SEND_OUT(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PARTING_SHOT, opponent);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+            MESSAGE("Wobbuffet is switched out with the Eject Pack!");
+        }
+    }
+}

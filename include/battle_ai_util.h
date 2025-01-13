@@ -123,7 +123,7 @@ bool32 HasMoveWithMoveEffectExcept(u32 battlerId, u32 moveEffect, u32 exception)
 bool32 HasMoveThatLowersOwnStats(u32 battlerId);
 bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool32 ignoreStatus, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect);
 bool32 HasAnyKnownMove(u32 battlerId);
-bool32 IsAromaVeilProtectedMove(u32 move);
+bool32 IsAromaVeilProtectedEffect(u32 moveEffect);
 bool32 IsNonVolatileStatusMoveEffect(u32 moveEffect);
 bool32 IsMoveRedirectionPrevented(u32 move, u32 atkAbility);
 bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move);
@@ -182,6 +182,7 @@ bool32 PartnerHasSameMoveEffectWithoutTarget(u32 battlerAtkPartner, u32 move, u3
 bool32 PartnerMoveEffectIsStatusSameTarget(u32 battlerAtkPartner, u32 battlerDef, u32 partnerMove);
 bool32 IsMoveEffectWeather(u32 move);
 bool32 PartnerMoveEffectIsTerrain(u32 battlerAtkPartner, u32 partnerMove);
+bool32 PartnerMoveEffectIs(u32 battlerAtkPartner, u32 partnerMove, u32 effectCheck);
 bool32 PartnerMoveIs(u32 battlerAtkPartner, u32 partnerMove, u32 moveCheck);
 bool32 PartnerMoveIsSameAsAttacker(u32 battlerAtkPartner, u32 battlerDef, u32 move, u32 partnerMove);
 bool32 PartnerMoveIsSameNoTarget(u32 battlerAtkPartner, u32 move, u32 partnerMove);

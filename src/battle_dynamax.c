@@ -123,22 +123,22 @@ bool32 CanDynamax(u32 battler)
 // Returns whether a battler is transformed into a Gigantamax form.
 bool32 IsGigantamaxed(u32 battler)
 {
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+    struct Pokemon *mon = GetPartyBattlerData(battler);
     if ((gSpeciesInfo[gBattleMons[battler].species].isGigantamax) && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
         return TRUE;
     return FALSE;
 }
 
 // Applies the HP Multiplier for Dynamaxed Pokemon and Raid Bosses.
-void ApplyDynamaxHPMultiplier(u32 battler, struct Pokemon* mon)
+void ApplyDynamaxHPMultiplier(struct Pokemon* mon)
 {
     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA)
         return;
     else
     {
-        u32 scale = 150 + 5 * GetMonData(mon, MON_DATA_DYNAMAX_LEVEL);
-        u32 hp = (GetMonData(mon, MON_DATA_HP) * scale + 99) / 100;
-        u32 maxHP = (GetMonData(mon, MON_DATA_MAX_HP) * scale + 99) / 100;
+        uq4_12_t multiplier = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), FALSE);
+        u32 hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * multiplier) + UQ_4_12_ROUND);
+        u32 maxHP = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_MAX_HP) * multiplier) + UQ_4_12_ROUND);
         SetMonData(mon, MON_DATA_HP, &hp);
         SetMonData(mon, MON_DATA_MAX_HP, &maxHP);
     }
@@ -151,8 +151,9 @@ u16 GetNonDynamaxHP(u32 battler)
         return gBattleMons[battler].hp;
     else
     {
-        u16 mult = UQ_4_12_FLOORED(1.0/1.5); // placeholder
-        u16 hp = UQ_4_12_TO_INT((gBattleMons[battler].hp * mult) + UQ_4_12_ROUND);
+        struct Pokemon *mon = GetPartyBattlerData(battler);
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
+        u32 hp = UQ_4_12_TO_INT((gBattleMons[battler].hp * mult) + UQ_4_12_ROUND);
         return hp;
     }
 }
@@ -164,8 +165,9 @@ u16 GetNonDynamaxMaxHP(u32 battler)
         return gBattleMons[battler].maxHP;
     else
     {
-        u16 mult = UQ_4_12_FLOORED(1.0/1.5); // placeholder
-        u16 maxHP = UQ_4_12_TO_INT((gBattleMons[battler].maxHP * mult) + UQ_4_12_ROUND);
+        struct Pokemon *mon = GetPartyBattlerData(battler);
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
+        u32 maxHP = UQ_4_12_TO_INT((gBattleMons[battler].maxHP * mult) + UQ_4_12_ROUND);
         return maxHP;
     }
 }
@@ -202,7 +204,7 @@ void UndoDynamax(u32 battler)
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
     {
         struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[monId] : &gEnemyParty[monId];
-        u16 mult = UQ_4_12_FLOORED(1.0/1.5); // placeholder
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
         gBattleMons[battler].hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * mult + 1) + UQ_4_12_ROUND); // round up
         SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
         CalculateMonStats(mon);
@@ -254,12 +256,12 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
     // Gigantamax check
     u32 i;
     u32 species = gBattleMons[battler].species;
-    u32 targetSpecies = SPECIES_NONE;
+    u32 targetSpecies = species;
 
     if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
-    if (targetSpecies != SPECIES_NONE)
+    if (targetSpecies != species)
         species = targetSpecies;
 
     if (gSpeciesInfo[species].isGigantamax)
@@ -510,10 +512,10 @@ void BS_UpdateDynamax(void)
 {
     NATIVE_ARGS();
     u32 battler = gBattleScripting.battler;
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
     if (!IsGigantamaxed(battler)) // RecalcBattlerStats will get called on form change.
-        RecalcBattlerStats(battler, mon);
+        RecalcBattlerStats(battler, mon, GetActiveGimmick(battler) == GIMMICK_DYNAMAX);
 
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -589,19 +591,19 @@ void BS_SetMaxMoveEffect(void)
             switch (maxEffect)
             {
                 case MAX_EFFECT_SUN:
-                    weather = ENUM_WEATHER_SUN;
+                    weather = BATTLE_WEATHER_SUN;
                     msg = B_MSG_STARTED_SUNLIGHT;
                     break;
                 case MAX_EFFECT_RAIN:
-                    weather = ENUM_WEATHER_RAIN;
+                    weather = BATTLE_WEATHER_RAIN;
                     msg = B_MSG_STARTED_RAIN;
                     break;
                 case MAX_EFFECT_SANDSTORM:
-                    weather = ENUM_WEATHER_SANDSTORM;
+                    weather = BATTLE_WEATHER_SANDSTORM;
                     msg = B_MSG_STARTED_SANDSTORM;
                     break;
                 case MAX_EFFECT_HAIL:
-                    weather = ENUM_WEATHER_HAIL;
+                    weather = BATTLE_WEATHER_HAIL;
                     msg = B_MSG_STARTED_HAIL;
                     break;
             }
