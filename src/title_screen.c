@@ -30,6 +30,7 @@ enum {
 };
 
 #define VERSION_BANNER_RIGHT_TILEOFFSET 64
+<<<<<<< HEAD
 
 #if FRENCH
 #define VERSION_BANNER_LEFT_X 98
@@ -42,10 +43,13 @@ enum {
 #define VERSION_BANNER_Y 6
 #define VERSION_BANNER_Y_GOAL 70
 #elif SPANISH
+=======
+>>>>>>> Egg/spanish
 #define VERSION_BANNER_LEFT_X 102
 #define VERSION_BANNER_RIGHT_X 166
 #define VERSION_BANNER_Y 4
 #define VERSION_BANNER_Y_GOAL 68
+<<<<<<< HEAD
 #else //ENGLISH
 #define VERSION_BANNER_LEFT_X 98
 #define VERSION_BANNER_RIGHT_X 162
@@ -53,6 +57,8 @@ enum {
 #define VERSION_BANNER_Y_GOAL 66
 #endif
 
+=======
+>>>>>>> Egg/spanish
 #define START_BANNER_X 128
 
 #define CLEAR_SAVE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_UP)

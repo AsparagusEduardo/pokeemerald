@@ -22,6 +22,7 @@ MossdeepCity_PokemonCenter_2F_EventScript_Woman5::
 	msgbox MossdeepCity_PokemonCenter_2F_Text_Woman5, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/MossdeepCity_PokemonCenter_2F/text_fr.inc"
 .else
@@ -35,3 +36,12 @@ MossdeepCity_PokemonCenter_2F_EventScript_Woman5::
 .endif
 .endif
 .endif
+=======
+MossdeepCity_PokemonCenter_2F_Text_Woman5:
+	.string "Si gano un montón de combates\n"
+	.string "en conexión y demuestro a todos\l"
+	.string "lo buena que soy…,\p"
+	.string "¡puede que consiga mi propio\n"
+	.string "club de fans!$"
+
+>>>>>>> Egg/spanish

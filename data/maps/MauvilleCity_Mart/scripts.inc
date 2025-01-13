@@ -35,6 +35,7 @@ MauvilleCity_Mart_EventScript_Man::
 	msgbox MauvilleCity_Mart_Text_DecisionsDetermineBattle, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/MauvilleCity_Mart/text_fr.inc"
 .else
@@ -48,3 +49,21 @@ MauvilleCity_Mart_EventScript_Man::
 .endif
 .endif
 .endif
+=======
+MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats:
+	.string "Hay objetos que aumentan\n"
+	.string "de forma temporal las habilidades\l"
+	.string "de los POKéMON.\p"
+	.string "Sé que durante el combate se puede\n"
+	.string "usar ATAQUE X y DEFENSA X…\p"
+	.string "Pero creo que hay más objetos\n"
+	.string "por el estilo.$"
+
+MauvilleCity_Mart_Text_DecisionsDetermineBattle:
+	.string "Usar un determinado movimiento\n"
+	.string "o algún objeto concreto…\p"
+	.string "Todas las decisiones que toman\n"
+	.string "los ENTRENADORES determinan\l"
+	.string "el resultado del combate.$"
+
+>>>>>>> Egg/spanish

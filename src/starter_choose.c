@@ -586,6 +586,7 @@ static void CreateStarterPokemonLabel(u8 selection)
     sStarterLabelWindowId = AddWindow(&winTemplate);
     FillWindowPixelBuffer(sStarterLabelWindowId, PIXEL_FILL(0));
 
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
     width = GetStringCenterAlignXOffset(FONT_NORMAL, speciesName, 104);
     AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 1, sTextColors, 0, speciesName);
@@ -599,6 +600,13 @@ static void CreateStarterPokemonLabel(u8 selection)
     width = GetStringCenterAlignXOffset(FONT_NORMAL, speciesName, 104);
     AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 17, sTextColors, 0, speciesName);
 #endif
+=======
+    width = GetStringCenterAlignXOffset(FONT_NORMAL, speciesName, 0x68);
+    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 1, sTextColors, 0, speciesName);
+
+    width = GetStringCenterAlignXOffset(FONT_NARROW, categoryText, 0x68);
+    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NARROW, width, 17, sTextColors, 0, categoryText);
+>>>>>>> Egg/spanish
 
     PutWindowTilemap(sStarterLabelWindowId);
     ScheduleBgCopyTilemapToVram(0);

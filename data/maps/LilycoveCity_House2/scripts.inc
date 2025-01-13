@@ -18,6 +18,7 @@ LilycoveCity_House2_EventScript_ReceivedRest::
 	release
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/LilycoveCity_House2/text_fr.inc"
 .else
@@ -31,3 +32,14 @@ LilycoveCity_House2_EventScript_ReceivedRest::
 .endif
 .endif
 .endif
+=======
+LilycoveCity_House2_Text_NotAwakeYetHaveThis:
+	.string "¿Eh? ¿Qué? ¿Cómo?\p"
+	.string "Estaba durmiendo…\n"
+	.string "Toma esto y déjame descansar…$"
+
+LilycoveCity_House2_Text_SleepIsEssential:
+	.string "Auaaaaa…\p"
+	.string "Dormir es muy bueno para la salud…\n"
+	.string "El cerebro tiene que descansar…$"
+>>>>>>> Egg/spanish

@@ -5070,7 +5070,7 @@ extern const u8 gMailTilemap_Retro[];
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
 
-#if FRENCH || ITALIAN
+#if EUROPE
 extern const u16 gPokeJumpBonuses_Pal[];
 extern const u32 gPokeJumpBonuses_Gfx[];
 extern const u32 gPokeJumpBonuses_Tilemap[];
@@ -5105,19 +5105,33 @@ extern const u32 gCreditsCopyrightEnd_Gfx[];
 extern const u32 gCreditsCopyrightEnd_Tilemap[];
 
 // pokenav match call gfx
+<<<<<<< HEAD
 extern const u16 gMatchCallUI_Pal[16];
+=======
+extern const u16 gMatchCallUI_Pal[];
+>>>>>>> Egg/spanish
 extern const u32 gMatchCallUI_Gfx[];
 extern const u32 gMatchCallUI_Tilemap[];
 
 // pokenav conditions search results
+<<<<<<< HEAD
 extern const u16 gConditionSearchResultFramePal[16];
+=======
+extern const u16 gConditionSearchResultFramePal[];
+>>>>>>> Egg/spanish
 extern const u32 gConditionSearchResultTiles[];
 extern const u32 gConditionSearchResultTilemap[];
 
 // pokenav ribbon list
+<<<<<<< HEAD
 extern const u16 gMonRibbonListFramePal[16];
 extern const u32 gMonRibbonListFrameTiles[];
 extern const u32 gMonRibbonListFrameTilemap[];
 #endif
+=======
+extern const u16 gMonRibbonListFramePal[];
+extern const u32 gMonRibbonListFrameTiles[];
+extern const u32 gMonRibbonListFrameTilemap[];
+>>>>>>> Egg/spanish
 
 #endif //GUARD_GRAPHICS_H

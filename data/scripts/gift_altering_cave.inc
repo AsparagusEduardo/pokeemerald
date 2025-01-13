@@ -34,6 +34,7 @@ sText_MysteryGiftAlteringCave:
 	.string "di persona?$"
 .else @ENGLISH
 sText_MysteryGiftAlteringCave:
+<<<<<<< HEAD
 	.string "Thank you for using the MYSTERY\n"
 	.string "GIFT System.\p"
 	.string "There appears to be a rumor about\n"
@@ -44,3 +45,13 @@ sText_MysteryGiftAlteringCave:
 	.string "you to investigate this rumor.$"
 .endif
 .endif
+=======
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Últimamente se ha comentado que\n"
+	.string "han aparecido POKéMON raros.\p"
+	.string "Dicen que ha sido por la CUEVA\n"
+	.string "CAMBIANTE, en la RUTA 103.\p"
+	.string "¿Por qué no te pasas por allí\n"
+	.string "y ves si los rumores son ciertos?$"
+>>>>>>> Egg/spanish

@@ -79,22 +79,24 @@ sText_MysteryGiftVisitingTrainerArrived:
 	.string "Cerca altre password valide!$"
 .else @ENGLISH
 sText_MysteryGiftVisitingTrainerInstructions:
-	.string "Thank you for using the MYSTERY\n"
-	.string "GIFT System.\p"
-	.string "By holding this WONDER CARD, you\n"
-	.string "may take part in a survey at a\l"
-	.string "POKéMON MART.\p"
-	.string "Use these surveys to invite\n"
-	.string "TRAINERS to SOOTOPOLIS CITY.\p"
-	.string "…Let me give you a secret\n"
-	.string "password for a survey:\p"
-	.string "“GIVE ME\n"
-	.string "AWESOME TRAINER”\p"
-	.string "Write that in on a survey and send\n"
-	.string "it to the WIRELESS\l"
-	.string "COMMUNICATION SYSTEM.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Al llevar la TARJETA MISTERIOSA,\n"
+	.string "podrás participar en una encuesta\l"
+	.string "en la TIENDA POKéMON.\p"
+	.string "Aprovecha las encuestas para\n"
+	.string "invitar a ENTRENADORES\l"
+	.string "a ARRECÍPOLIS.\p"
+	.string "Voy a darte una contraseña secreta\n"
+	.string "para la encuesta:\p"
+	.string "“QUIERO ENTRENADORES\n"
+	.string "MUY FUERTES”\p"
+	.string "Escríbela en un cuestionario y\n"
+	.string "envíala al sistema de comunicación\l"
+	.string "inalámbrica.$"
 
 sText_MysteryGiftVisitingTrainerArrived:
+<<<<<<< HEAD
 	.string "Thank you for using the MYSTERY\n"
 	.string "GIFT System.\p"
 	.string "A TRAINER has arrived in\n"
@@ -107,3 +109,16 @@ sText_MysteryGiftVisitingTrainerArrived:
 	.string "that may work.$"
 .endif
 .endif
+=======
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Ha llegado un ENTRENADOR\n"
+	.string "a ARRECÍPOLIS y te está buscando.\p"
+	.string "Esperamos que disfrutes del\n"
+	.string "combate con el ENTRENADOR.\p"
+	.string "Si quieres, puedes invitar a más\n"
+	.string "ENTRENADORES usando otras\l"
+	.string "contraseñas.\p"
+	.string "Busca otras contraseñas\n"
+	.string "que vayan bien.$"
+>>>>>>> Egg/spanish

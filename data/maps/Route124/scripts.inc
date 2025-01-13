@@ -99,6 +99,7 @@ Route124_EventScript_Isabella::
 	msgbox Route124_Text_IsabellaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/Route124/text_fr.inc"
 .else
@@ -112,3 +113,8 @@ Route124_EventScript_Isabella::
 .endif
 .endif
 .endif
+=======
+Route124_Text_HuntersHouse:
+	.string "CASA del BUSCATESOROS$"
+
+>>>>>>> Egg/spanish

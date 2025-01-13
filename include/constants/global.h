@@ -27,6 +27,7 @@
 #define NUM_LANGUAGES     7
 
 #define GAME_VERSION (VERSION_EMERALD)
+<<<<<<< HEAD
 
 #if FRENCH
 #define GAME_LANGUAGE (LANGUAGE_FRENCH)
@@ -35,6 +36,9 @@
 #else
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
 #endif
+=======
+#define GAME_LANGUAGE (LANGUAGE_SPANISH)
+>>>>>>> Egg/spanish
 
 // party sizes
 #define PARTY_SIZE 6

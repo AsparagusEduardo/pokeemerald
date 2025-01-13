@@ -23,6 +23,7 @@ EverGrandeCity_EventScript_SetVisitedEverGrande::
 	setvar VAR_TEMP_1, 1
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/EverGrandeCity/text_fr.inc"
 .else
@@ -36,4 +37,17 @@ EverGrandeCity_EventScript_SetVisitedEverGrande::
 .endif
 .endif
 .endif
+=======
+EverGrandeCity_Text_EnteringVictoryRoad:
+	.string "ENTRADA A LA CALLE VICTORIA$"
+
+EverGrandeCity_Text_EnteringPokemonLeague:
+	.string "ENTRADA A LA LIGA POKéMON\n"
+	.string "PUERTA PRINCIPAL$"
+
+EverGrandeCity_Text_CitySign:
+	.string "CIUDAD COLOSALIA\p"
+	.string "“El paraíso de las flores, el mar\n"
+	.string "y los POKéMON.”$"
+>>>>>>> Egg/spanish
 

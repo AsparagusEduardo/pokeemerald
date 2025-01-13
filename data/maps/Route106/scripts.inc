@@ -41,6 +41,7 @@ Route106_EventScript_Ned::
 	msgbox Route106_Text_NedPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/Route106/text_fr.inc"
 .else
@@ -54,3 +55,10 @@ Route106_EventScript_Ned::
 .endif
 .endif
 .endif
+=======
+Route106_Text_TrainerTips:
+	.string "PISTAS para ENTRENADORES\p"
+	.string "Cómo atrapar POKéMON con una CAÑA:\n"
+	.string "pulsa el Botón A cuando piquen.$"
+
+>>>>>>> Egg/spanish

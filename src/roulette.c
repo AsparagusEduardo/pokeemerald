@@ -462,16 +462,27 @@ static const struct BgTemplate sBgTemplates[] =
         .baseTile = 0
     }
 };
+
+// differnce FR
 static const struct WindowTemplate sWindowTemplates[] =
 {
     {
         .bg = 0,
+<<<<<<< HEAD
         .tilemapLeft = WIN_TILEMAP_LEFT,
         .tilemapTop = 15,
         .width = WIN_WIDTH,
         .height = 4,
         .paletteNum = 15,
         .baseBlock = WIN_BASEBLOCK
+=======
+        .tilemapLeft = 2,
+        .tilemapTop = 15,
+        .width = 26,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0xBD
+>>>>>>> Egg/spanish
     },
     #ifdef UBFIX
     DUMMY_WIN_TEMPLATE,
@@ -2333,6 +2344,7 @@ static void UpdateWheelPosition(void)
 }
 
 static const u8 sFiller[3] = {};
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
 #define SHADOW_PAL       gRouletteShadow_Pal
 #define BALL_PAL         gRouletteBall_Pal
@@ -2377,6 +2389,8 @@ static const u16 sUnused2_Pal[] = INCBIN_U16("graphics/roulette/unused_2.gbapal"
 static const u16 sUnused3_Pal[] = INCBIN_U16("graphics/roulette/unused_3.gbapal");
 static const u16 sUnused4_Pal[] = INCBIN_U16("graphics/roulette/unused_4.gbapal");
 #endif
+=======
+>>>>>>> Egg/spanish
 
 static const u32 sBall_Gfx[] = INCBIN_U32("graphics/roulette/ball.4bpp.lz");
 static const u32 sBallCounter_Gfx[] = INCBIN_U32("graphics/roulette/ball_counter.4bpp.lz");
@@ -2388,6 +2402,7 @@ static const u32 sCursor_Gfx[] = INCBIN_U32("graphics/roulette/cursor.4bpp.lz");
 
 static const struct SpritePalette sSpritePalettes[] =
 {
+<<<<<<< HEAD
     { .data = SHADOW_PAL,       .tag = PALTAG_SHADOW },
     { .data = BALL_PAL,         .tag = PALTAG_BALL },
     { .data = BALL_COUNTER_PAL, .tag = PALTAG_BALL_COUNTER },
@@ -2400,6 +2415,20 @@ static const struct SpritePalette sSpritePalettes[] =
     { .data = AZURILL_PAL,      .tag = PALTAG_AZURILL },
     { .data = SKITTY_PAL,       .tag = PALTAG_SKITTY },
     { .data = MAKUHITA_PAL,     .tag = PALTAG_MAKUHITA },
+=======
+    { .data = gRouletteShadow_Pal,      .tag = PALTAG_SHADOW },
+    { .data = gRouletteBall_Pal,        .tag = PALTAG_BALL },
+    { .data = gRouletteBallCounter_Pal, .tag = PALTAG_BALL_COUNTER },
+    { .data = gRouletteCursor_Pal,      .tag = PALTAG_CURSOR },
+    { .data = gRouletteCredit_Pal,      .tag = PALTAG_INTERFACE },
+    { .data = gRouletteShroomish_Pal,   .tag = PALTAG_SHROOMISH },
+    { .data = gRouletteTaillow_Pal,     .tag = PALTAG_TAILLOW },
+    { .data = gRouletteGridIcons_Pal,   .tag = PALTAG_GRID_ICONS },
+    { .data = gRouletteWynaut_Pal,      .tag = PALTAG_WYNAUT },
+    { .data = gRouletteAzurill_Pal,     .tag = PALTAG_AZURILL },
+    { .data = gRouletteSkitty_Pal,      .tag = PALTAG_SKITTY },
+    { .data = gRouletteMakuhita_Pal,    .tag = PALTAG_MAKUHITA },
+>>>>>>> Egg/spanish
     {}
 };
 

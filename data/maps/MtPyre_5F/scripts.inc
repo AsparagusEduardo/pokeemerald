@@ -8,6 +8,7 @@ MtPyre_4F_EventScript_Tasha::
 	msgbox MtPyre_4F_Text_TashaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/MtPyre_5F/text_fr.inc"
 .else
@@ -21,3 +22,20 @@ MtPyre_4F_EventScript_Tasha::
 .endif
 .endif
 .endif
+=======
+MtPyre_4F_Text_TashaIntro:
+	.string "Me encanta pasar miedo…\n"
+	.string "No puedo evitarlo.\p"
+	.string "Y estar en este lugar…\n"
+	.string "¡me pone la carne de gallina!$"
+
+MtPyre_4F_Text_TashaDefeat:
+	.string "Odio perder…$"
+
+MtPyre_4F_Text_TashaPostBattle:
+	.string "Quiero ver algo terrorífico…\n"
+	.string "No puedo irme de aquí todavía…\p"
+	.string "Pero mientras tanto…,\n"
+	.string "¿te quedarías a hacerme compañía?$"
+
+>>>>>>> Egg/spanish

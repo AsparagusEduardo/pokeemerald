@@ -18,6 +18,7 @@ SootopolisCity_House2_EventScript_DontKnowAboutOrbs::
 	msgbox SootopolisCity_House2_Text_OughtToVisitAndSee, MSGBOX_DEFAULT
 	return
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/SootopolisCity_House2/text_fr.inc"
 .else
@@ -31,3 +32,19 @@ SootopolisCity_House2_EventScript_DontKnowAboutOrbs::
 .endif
 .endif
 .endif
+=======
+SootopolisCity_House2_Text_DidYouKnowAboutMtPyreOrbs:
+	.string "El MONTE PÍRICO…\p"
+	.string "¿Sabías que en la cumbre hay\n"
+	.string "dos esferas, una al lado de otra?$"
+
+SootopolisCity_House2_Text_YesTwoOrbsSideBySide:
+	.string "Sí, dos esferas juntas…\p"
+	.string "Y cuando las ves te sientes mucho\n"
+	.string "más tranquila, no sé por qué.$"
+
+SootopolisCity_House2_Text_OughtToVisitAndSee:
+	.string "¿Sabes una cosa?\n"
+	.string "Quizás deberías ir a verlas tú.$"
+
+>>>>>>> Egg/spanish

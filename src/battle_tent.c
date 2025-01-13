@@ -390,7 +390,11 @@ static void GenerateOpponentMons(void)
     {
         sRandMonId = monSet[Random() % numMons];
 
+<<<<<<< HEAD
         // Ensure none of the opponent's Pokémon are the same as the potential rental Pokémon for the player
+=======
+        // Ensure none of the opponent's pokemon are the same as the potential rental pokemon for the player
+>>>>>>> Egg/spanish
         for (j = 0; j < (int)ARRAY_COUNT(gSaveBlock2Ptr->frontier.rentalMons); j++)
         {
             if (gFacilityTrainerMons[sRandMonId].species == gFacilityTrainerMons[gSaveBlock2Ptr->frontier.rentalMons[j].monId].species)

@@ -696,7 +696,7 @@ struct
 {
     u32 facilityClass;
     const u8 *const *strings;
-} static const sPartnerTrainerTextTables[] =
+} const sPartnerTrainerTextTables[] =
 {
     {FACILITY_CLASS_LASS,                  sPartnerTextsLass},
     {FACILITY_CLASS_YOUNGSTER,             sPartnerTextsYoungster},
@@ -778,7 +778,7 @@ struct
     u8 nature;
     u8 evs[NUM_STATS];
     u16 moves[MAX_MON_MOVES];
-} static const sStevenMons[MULTI_PARTY_SIZE] =
+} const sStevenMons[MULTI_PARTY_SIZE] =
 {
     {
         .species = SPECIES_METANG,
@@ -826,7 +826,7 @@ static void (* const sBattleTowerFuncs[])(void) =
     [BATTLE_TOWER_FUNC_TRY_CLOSE_LINK]      = TowerTryCloseLink,
     [BATTLE_TOWER_FUNC_SET_PARTNER_GFX]     = SetMultiPartnerGfx,
     [BATTLE_TOWER_FUNC_SET_INTERVIEW_DATA]  = SetTowerInterviewData,
-#if FRENCH || ITALIAN
+#if EUROPE
     [BATTLE_TOWER_FUNC_GET_OPPONENT_INTRO2] = GetOpponentIntroSpeech2,
 #endif
 };
@@ -905,6 +905,8 @@ static const u16 sRecordTrainerSpeechWon[] =
     EC_WORD_YAY, EC_WORD_EXCL_EXCL, EC_WORD_I_VE, EC_EMPTY_WORD, EC_WORD_WINS, EC_WORD_EXCL_EXCL
 #elif ITALIAN
     EC_WORD_PLAY, EC_WORD_IS_IT_QUES, EC_WORD_WON, EC_WORD_ISN_T_IT_QUES, EC_EMPTY_WORD, EC_EMPTY_WORD
+#elif SPANISH
+    EC_WORD_WAHAHAHA, EC_WORD_WAHAHAHA, EC_WORD_DASH_DASH_DASH, EC_WORD_HEHEHE, EC_EMPTY_WORD, EC_EMPTY_WORD
 #else //ENGLISH
     EC_WORD_YAY, EC_WORD_YAY, EC_WORD_EXCL_EXCL, EC_WORD_I_VE, EC_WORD_WON, EC_WORD_EXCL_EXCL
 #endif
@@ -916,6 +918,8 @@ static const u16 sRecordTrainerSpeechLost[] =
     EC_WORD_SLIMY, EC_WORD_ELLIPSIS, EC_WORD_TO_US, EC_WORD_EVEN_SO, EC_WORD_LOST, EC_WORD_EXCL
 #elif ITALIAN
     EC_WORD_SCARY, EC_WORD_IS_IT_QUES, EC_WORD_LOST, EC_WORD_LOST, EC_WORD_LOST, EC_WORD_EXCL, EC_POKEMON(NONE)
+#elif SPANISH
+    EC_WORD_CRIES, EC_WORD_CRIES, EC_WORD_UGLY, EC_WORD_COUNT_ON, EC_EMPTY_WORD, EC_EMPTY_WORD
 #else //ENGLISH
     EC_WORD_TOO, EC_WORD_BAD, EC_WORD_ELLIPSIS, EC_WORD_WE, EC_WORD_LOST, EC_WORD_ELLIPSIS
 #endif
@@ -1940,9 +1944,10 @@ static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
     }
 }
 
+// difference FR
 void FrontierSpeechToString(const u16 *words)
 {
-#if FRENCH || ITALIAN
+#if EUROPE
     UnusedConvertEasyChatWordsToString(gStringVar4, words, 2, 3);
 #else //ENGLISH
     ConvertEasyChatWordsToString(gStringVar4, words, 3, 2);
@@ -1981,7 +1986,7 @@ static void GetOpponentIntroSpeech(void)
         BufferApprenticeChallengeText(trainerId - TRAINER_RECORD_MIXING_APPRENTICE);
 }
 
-#if FRENCH || ITALIAN
+#if EUROPE
 void FrontierSpeechToString2(const u16 *words)
 {
     ConvertEasyChatWordsToString(gStringVar4, words, 3, 2);
@@ -2018,7 +2023,10 @@ static void GetOpponentIntroSpeech2(void)
     else
         BufferApprenticeChallengeText(trainerId - TRAINER_RECORD_MIXING_APPRENTICE);
 }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> Egg/spanish
 
 static void HandleSpecialTrainerBattleEnd(void)
 {
@@ -2745,9 +2753,13 @@ static void SetTowerInterviewData(void)
 
     GetFrontierTrainerName(text, gTrainerBattleOpponent_A);
     StripExtCtrlCodes(text);
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
     text[7] = EOS;
 #endif
+=======
+    text[7] = EOS; // difference FR added this line
+>>>>>>> Egg/spanish
     StringCopy(gSaveBlock2Ptr->frontier.towerInterview.opponentName, text);
     GetBattleTowerTrainerLanguage(&gSaveBlock2Ptr->frontier.towerInterview.opponentLanguage, gTrainerBattleOpponent_A);
     gSaveBlock2Ptr->frontier.towerInterview.opponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[1]], MON_DATA_SPECIES, NULL);

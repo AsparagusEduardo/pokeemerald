@@ -71,6 +71,7 @@ static EWRAM_DATA struct PokedexCryMeterNeedle *sCryMeterNeedle = NULL;
 static const u16 sCryMeterNeedle_Pal[] = INCBIN_U16("graphics/pokedex/cry_meter_needle.gbapal");
 static const u8 sCryMeterNeedle_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter_needle.4bpp");
 
+<<<<<<< HEAD
 static const u16 sCryMeter_Tilemap[] = INCBIN_U16("graphics/pokedex/cry_meter_map.bin"); // Unused
 #if FRENCH || ITALIAN
 #define CRY_METER_PAL gCryMeter_Pal
@@ -82,6 +83,9 @@ static const u8 sCryMeter_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz"
 #define CRY_METER_GFX sCryMeter_Gfx
 #endif
 
+=======
+const u16 gCryMeter_Tilemap[] = INCBIN_U16("graphics/pokedex/cry_meter_map.bin"); // Unused
+>>>>>>> Egg/spanish
 static const u16 sWaveformOffsets[][72] =
 {
     {
@@ -467,8 +471,13 @@ bool8 LoadCryMeter(struct CryScreenWindow *window, u8 windowId)
         if (!sCryMeterNeedle)
             sCryMeterNeedle = AllocZeroed(sizeof(*sCryMeterNeedle));
 
+<<<<<<< HEAD
         CopyToWindowPixelBuffer(windowId, CRY_METER_GFX, 0, 0);
         LoadPalette(CRY_METER_PAL, BG_PLTT_ID(window->paletteNo), PLTT_SIZE_4BPP);
+=======
+        CopyToWindowPixelBuffer(windowId, gCryMeter_Gfx, 0, 0);
+        LoadPalette(gCryMeter_Pal, window->paletteNo * 16, 32);
+>>>>>>> Egg/spanish
         gDexCryScreenState++;
         break;
     case 1:

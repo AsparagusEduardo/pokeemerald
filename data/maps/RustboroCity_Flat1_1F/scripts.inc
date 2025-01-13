@@ -9,6 +9,7 @@ RustboroCity_Flat1_1F_EventScript_Woman::
 	msgbox RustboroCity_Flat1_1F_Text_PokemonStrange, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/RustboroCity_Flat1_1F/text_fr.inc"
 .else
@@ -22,3 +23,12 @@ RustboroCity_Flat1_1F_EventScript_Woman::
 .endif
 .endif
 .endif
+=======
+RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility:
+	.string "Cada POKéMON tiene una habilidad\n"
+	.string "especial propia.$"
+
+RustboroCity_Flat1_1F_Text_PokemonStrange:
+	.string "Los POKéMON son criaturas extrañas.$"
+
+>>>>>>> Egg/spanish

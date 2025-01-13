@@ -87,6 +87,7 @@ int Intl_GetListMenuWidth(const struct ListMenuTemplate *listMenu)
 
 void CopyMonCategoryText(int dexNum, u8 *dest)
 {
+<<<<<<< HEAD
 #if FRENCH
     u8 *str = StringCopy(dest, gPokedexEntries[dexNum].categoryName);
 #elif ITALIAN
@@ -99,6 +100,14 @@ void CopyMonCategoryText(int dexNum, u8 *dest)
     *str = CHAR_SPACE;
     StringCopy(str + 1, gText_Pokemon);
 #endif
+=======
+    const u8 *categoryName = gPokedexEntries[dexNum].categoryName;
+    u8 *str = dest;
+
+    str = StringCopy(str, gText_Pokemon);
+    *str++ = CHAR_SPACE;
+    StringCopy(str, categoryName);
+>>>>>>> Egg/spanish
 }
 
 u8 *GetStringClearToWidth(u8 *dest, int fontId, const u8 *str, int totalStringWidth)
@@ -243,7 +252,11 @@ void FillWindowTilesByRow(int windowId, int columnStart, int rowStart, int numFi
     }
 }
 
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
+=======
+// These functions didn't exist in Emerald ENG
+>>>>>>> Egg/spanish
 u8 *StringAppendWithPlaceholder(u8 *dest, const u8 *src, u8 *placeholderStr)
 {
     u8 text[32], c;
@@ -268,11 +281,15 @@ u8 *StringAppendWithPlaceholder(u8 *dest, const u8 *src, u8 *placeholderStr)
     return dest;
 }
 
+<<<<<<< HEAD
 #if FRENCH
 const u8 gText_LevyTatia[] = _("LEVY&TATIA");
 #elif ITALIAN
 const u8 gText_LevyTatia[] = _("TELL & PAT");
 #endif
+=======
+const u8 gText_LevyTatia[] = _("VITO-LETI");
+>>>>>>> Egg/spanish
 
 const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGender, const u8 *trainerName)
 {
@@ -295,4 +312,7 @@ const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGende
     trainerName = gTrainerClassNames[trainerClassId];
     return trainerName;
 }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> Egg/spanish

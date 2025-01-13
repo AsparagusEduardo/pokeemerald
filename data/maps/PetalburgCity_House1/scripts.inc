@@ -9,6 +9,7 @@ PetalburgCity_House1_EventScript_Woman::
 	msgbox PetalburgCity_House1_Text_GoOnAdventure, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/PetalburgCity_House1/text_fr.inc"
 .else
@@ -22,3 +23,21 @@ PetalburgCity_House1_EventScript_Woman::
 .endif
 .endif
 .endif
+=======
+PetalburgCity_House1_Text_TravelingIsWonderful:
+	.string "¡Viajar es maravilloso!\p"
+	.string "Cuando era un pimpollo, me recorrí\n"
+	.string "el planeta de cabo a rabo…$"
+
+PetalburgCity_House1_Text_GoOnAdventure:
+	.string "Ay…\p"
+	.string "Ojalá pudiera irme de aventuras\n"
+	.string "con algunos POKéMON…\p"
+	.string "Atravesar húmedas praderas…\n"
+	.string "Escalar rocosas montañas…\p"
+	.string "Cruzar el mar embravecido…\n"
+	.string "Explorar oscuras cuevas…\p"
+	.string "Y, a veces, sentir morriña…\p"
+	.string "¡Qué bonito es viajar!$"
+
+>>>>>>> Egg/spanish

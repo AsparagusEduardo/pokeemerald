@@ -32,6 +32,7 @@ SlateportCity_Mart_EventScript_Man::
 	msgbox SlateportCity_Mart_Text_GreatBallIsBetter, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/SlateportCity_Mart/text_fr.inc"
 .else
@@ -45,3 +46,17 @@ SlateportCity_Mart_EventScript_Man::
 .endif
 .endif
 .endif
+=======
+SlateportCity_Mart_Text_SomeItemsOnlyAtMart:
+	.string "El MERCADO ofrece muchos artículos\n"
+	.string "muy interesantes.\p"
+	.string "Pero hay muchos otros que sólo se\n"
+	.string "venden en las TIENDAS POKéMON.$"
+
+SlateportCity_Mart_Text_GreatBallIsBetter:
+	.string "Una SUPERBALL es mejor que una\n"
+	.string "POKé BALL para atrapar POKéMON.\p"
+	.string "Si la usas, deberías poder hacerte\n"
+	.string "con los POKéMON escurridizos.$"
+
+>>>>>>> Egg/spanish

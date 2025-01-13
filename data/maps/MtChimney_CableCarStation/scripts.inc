@@ -85,6 +85,7 @@ MtChimney_CableCarStation_Movement_ExitCableCar:
 	delay_16
 	step_end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/MtChimney_CableCarStation/text_fr.inc"
 .else
@@ -98,3 +99,16 @@ MtChimney_CableCarStation_Movement_ExitCableCar:
 .endif
 .endif
 .endif
+=======
+MtChimney_CableCarStation_Text_CableCarReadyGetOn:
+	.string "El TELEFÉRICO está listo para bajar.\n"
+	.string "¿Quieres montarte?$"
+
+MtChimney_CableCarStation_Text_StepThisWay:
+	.string "Pasa por aquí.$"
+
+MtChimney_CableCarStation_Text_RideAnotherTime:
+	.string "Esperamos que vuelvas a utilizar\n"
+	.string "nuestros servicios.$"
+
+>>>>>>> Egg/spanish

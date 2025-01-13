@@ -185,6 +185,7 @@ FarawayIsland_Interior_EventScript_HideMewWhenGrassCut::
 	releaseall
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/FarawayIsland_Interior/text_fr.inc"
 .else
@@ -198,3 +199,8 @@ FarawayIsland_Interior_EventScript_HideMewWhenGrassCut::
 .endif
 .endif
 .endif
+=======
+FarawayIsland_Interior_Text_TheFeelingOfBeingWatchedFaded:
+	.string "La sensación de estar siendo observado\n"
+	.string "ha desaparecido…$"
+>>>>>>> Egg/spanish

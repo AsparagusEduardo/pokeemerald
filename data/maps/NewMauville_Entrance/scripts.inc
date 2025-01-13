@@ -46,6 +46,7 @@ NewMauville_Entrance_EventScript_DontOpenDoor::
 	releaseall
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/NewMauville_Entrance/text_fr.inc"
 .else
@@ -59,3 +60,15 @@ NewMauville_Entrance_EventScript_DontOpenDoor::
 .endif
 .endif
 .endif
+=======
+NewMauville_Entrance_Text_DoorIsLocked:
+	.string "La puerta está cerrada.$"
+
+NewMauville_Entrance_Text_UseBasementKey:
+	.string "¿Usas la LLAVE SÓTANO?$"
+
+NewMauville_Entrance_Text_UsedBasementKey:
+	.string "{PLAYER} usó la LLAVE SÓTANO.\p"
+	.string "¡La puerta se ha abierto!$"
+
+>>>>>>> Egg/spanish

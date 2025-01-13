@@ -302,6 +302,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_BUG_CATCHER,
         .species = {SPECIES_BEAUTIFLY, SPECIES_DUSTOX, SPECIES_ILLUMISE, SPECIES_SHIFTRY, SPECIES_BRELOOM, SPECIES_NINJASK, SPECIES_SHEDINJA, SPECIES_PINSIR, SPECIES_HERACROSS, SPECIES_VOLBEAT},
         .id = 0,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_NOT, EC_WORD_OF, EC_WORD_MYSTERY, EC_WORD_I_VE, EC_WORD_LOST, EC_WORD_EXCL},
     #elif ITALIAN
@@ -309,6 +310,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_NO, EC_WORD_MISTAKE, EC_WORD_EXCL, EC_WORD_I, EC_WORD_LOST, EC_WORD_BADLY},
     #endif
+=======
+        .speechLost = {EC_WORD_ARRGH, EC_WORD_AWW, EC_WORD_ACCEPT, EC_WORD_WHERE, EC_WORD_ISN_T_IT_QUES, EC_WORD_ANTICIPATION},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ヒロオ"), _("LIONEL"), _("LIONEL"), _("CAIO"), _("LUDWIG"), _("LEO")},
@@ -316,6 +320,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_YOUNGSTER,
         .species = {SPECIES_SWELLOW, SPECIES_SWALOT, SPECIES_SHUCKLE, SPECIES_MANECTRIC, SPECIES_TORKOAL, SPECIES_HARIYAMA, SPECIES_MIGHTYENA, SPECIES_LUDICOLO, SPECIES_CRAWDAUNT, SPECIES_WHISCASH},
         .id = 1,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_OKAY, EC_WORD_I_VE, EC_WORD_LOST, EC_WORD_ELLIPSIS, EC_WORD_I_AM, EC_WORD_TOO_WEAK},
     #elif ITALIAN
@@ -323,6 +328,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_OKAY, EC_WORD_I, EC_WORD_LOST, EC_WORD_YOU_RE, EC_WORD_A, EC_WORD_MASTER},
     #endif
+=======
+        .speechLost = {EC_WORD_AGREE, EC_WORD_AGREE, EC_WORD_AGREE, EC_WORD_YOU, EC_WORD_LET_S, EC_WORD_SPIRALING},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ケイジ"), _("SONNY"), _("HERVE"), _("FEDRO"), _("WENZEL"), _("SANTI")},
@@ -330,6 +338,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_SCHOOL_KID_M,
         .species = {SPECIES_LINOONE, SPECIES_MIGHTYENA, SPECIES_WHISCASH, SPECIES_ZANGOOSE, SPECIES_SEVIPER, SPECIES_NINETALES, SPECIES_KECLEON, SPECIES_SHUCKLE, SPECIES_MANECTRIC, SPECIES_MACHAMP},
         .id = 2,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_I_AM, EC_WORD_CAME, EC_WORD_AND, EC_WORD_I_VE, EC_WORD_LOST, EC_WORD_EXCL},
     #elif ITALIAN
@@ -337,6 +346,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_I, EC_WORD_WENT, EC_WORD_AND, EC_WORD_LOST, EC_WORD_AWW, EC_WORD_ELLIPSIS},
     #endif
+=======
+        .speechLost = {EC_WORD_FUFUFU, EC_WORD_FUFUFU, EC_WORD_FUFUFU, EC_WORD_LET_S, EC_WORD_LEFT, EC_WORD_INCREDIBLE},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ユラ"), _("LAYLA"), _("LAYLA"), _("ASTRID"), _("SONJA"), _("LOLA")},
@@ -344,6 +356,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_LASS,
         .species = {SPECIES_SWALOT, SPECIES_XATU, SPECIES_ALTARIA, SPECIES_GOLDUCK, SPECIES_FLYGON, SPECIES_ALAKAZAM, SPECIES_GARDEVOIR, SPECIES_WAILORD, SPECIES_GRUMPIG, SPECIES_MIGHTYENA},
         .id = 3,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_IT_S, EC_WORD_REALLY, EC_WORD_RECOMMEND, EC_WORD_QUES, EC_EMPTY_WORD, EC_EMPTY_WORD},
     #elif ITALIAN
@@ -351,6 +364,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_IS, EC_WORD_THIS, EC_WORD_TOO, EC_WORD_MUCH, EC_WORD_QUES, EC_EMPTY_WORD},
     #endif
+=======
+        .speechLost = {EC_WORD_WAAAH, EC_WORD_SIGH, EC_WORD_HUMPH, EC_WORD_AVANT_GARDE, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ヨウカ"), _("MACY"), _("AMELIE"), _("CLEO"), _("MARIA"), _("ELISA")},
@@ -358,6 +374,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_SCHOOL_KID_F,
         .species = {SPECIES_WIGGLYTUFF, SPECIES_LINOONE, SPECIES_KINGDRA, SPECIES_DELCATTY, SPECIES_RAICHU, SPECIES_FEAROW, SPECIES_STARMIE, SPECIES_MEDICHAM, SPECIES_SHIFTRY, SPECIES_BEAUTIFLY},
         .id = 4,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_SHADY, EC_WORD_EXCL, EC_WORD_I_VE, EC_WORD_LOST, EC_WORD_ARRGH, EC_WORD_EXCL},
     #elif ITALIAN
@@ -365,6 +382,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_THIS, EC_WORD_WON_T, EC_WORD_BE, EC_WORD_HAPPENING, EC_WORD_NEXT, EC_WORD_TIME},
     #endif
+=======
+        .speechLost = {EC_WORD_SOON, EC_WORD_WERE, EC_WORD_JUST, EC_WORD_DAY, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ヤスシ"), _("DONTE"), _("BRAHIM"), _("GLAUCO"), _("JOSEF"), _("ROQUE")},
@@ -372,6 +392,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_RUNNING_TRIATHLETE_M,
         .species = {SPECIES_STARMIE, SPECIES_DODRIO, SPECIES_AGGRON, SPECIES_MAGNETON, SPECIES_MACHAMP, SPECIES_ARMALDO, SPECIES_HERACROSS, SPECIES_NOSEPASS, SPECIES_EXPLOUD, SPECIES_MIGHTYENA},
         .id = 5,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_WHERE, EC_EMPTY_WORD, EC_WORD_HUSTLE, EC_WORD_EXCL, EC_WORD_HELLO, EC_WORD_EXCL},
     #elif ITALIAN
@@ -379,6 +400,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_I_AM, EC_WORD_GOING, EC_WORD_TO, EC_WORD_RUN, EC_WORD_BYE_BYE, EC_WORD_EXCL},
     #endif
+=======
+        .speechLost = {EC_WORD_ABSOLUTELY, EC_WORD_TALENT, EC_WORD_A_LOT, EC_WORD_PLUS, EC_WORD_GOOD_BYE, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ミサオ"), _("AMIRA"), _("LAURE"), _("DAFNE"), _("AMELIE"), _("LARA")},
@@ -386,6 +410,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_RUNNING_TRIATHLETE_F,
         .species = {SPECIES_STARMIE, SPECIES_DODRIO, SPECIES_MAGNETON, SPECIES_MEDICHAM, SPECIES_MIGHTYENA, SPECIES_GLALIE, SPECIES_GOLEM, SPECIES_ELECTRODE, SPECIES_PELIPPER, SPECIES_SHARPEDO},
         .id = 6,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_AN, EC_WORD_LOSS, EC_WORD_USELESS, EC_WORD_ELLIPSIS, EC_WORD_IT_S, EC_WORD_NOTHING},
     #elif ITALIAN
@@ -393,6 +418,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_AHAHA, EC_WORD_DEFEATED, EC_WORD_EXCL, EC_WORD_IT_S, EC_WORD_NOTHING, EC_WORD_EXCL},
     #endif
+=======
+        .speechLost = {EC_WORD_URGH, EC_WORD_MMM, EC_WORD_HERE_IT_IS, EC_WORD_GWAHAHAHA, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("カズサ"), _("KALI"), _("JODIE"), _("ILENIA"), _("KARO"), _("ELSA")},
@@ -400,6 +428,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_BEAUTY,
         .species = {SPECIES_NINETALES, SPECIES_ALAKAZAM, SPECIES_SCEPTILE, SPECIES_SALAMENCE, SPECIES_GOLDUCK, SPECIES_MAWILE, SPECIES_WEEZING, SPECIES_LANTURN, SPECIES_GARDEVOIR, SPECIES_MILOTIC},
         .id = 7,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_SHAKE, EC_WORD_YOU_RE, EC_WORD_BEAUTIFUL, EC_WORD_EXCL, EC_EMPTY_WORD, EC_EMPTY_WORD},
     #elif ITALIAN
@@ -407,6 +436,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_YOU_RE, EC_WORD_STRONG, EC_WORD_AREN_T, EC_WORD_YOU, EC_WORD_QUES, EC_EMPTY_WORD},
     #endif
+=======
+        .speechLost = {EC_WORD_LET_S, EC_WORD_APPROVED, EC_WORD_AROUND, EC_WORD_DOES, EC_WORD_VERY, EC_WORD_THING},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("スミレ"), _("ANNIE"), _("ANNIE"), _("IMELDA"), _("INES"), _("ROSA")},
@@ -414,6 +446,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_AROMA_LADY,
         .species = {SPECIES_SCEPTILE, SPECIES_VILEPLUME, SPECIES_BELLOSSOM, SPECIES_ROSELIA, SPECIES_CORSOLA, SPECIES_FLYGON, SPECIES_BRELOOM, SPECIES_MILOTIC, SPECIES_ALTARIA, SPECIES_CRADILY},
         .id = 8,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_YOUR, EC_WORD_POKEMON, EC_WORD_THAN, EC_WORD_FEELING, EC_WORD_ROUGH_SKIN, EC_WORD_EXCL},
     #elif ITALIAN
@@ -421,6 +454,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_WHAT, EC_WORD_TOUGH, EC_WORD_POKEMON, EC_WORD_YOU, EC_WORD_HAVE, EC_WORD_EXCL},
     #endif
+=======
+        .speechLost = {EC_WORD_HAVE, EC_WORD_POKEMON, EC_WORD_VERY, EC_WORD_FULL, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("アキノリ"), _("DILLEN"), _("RENE"), _("INDRO"), _("DETLEF"), _("PEDRO")},
@@ -428,6 +464,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_HIKER,
         .species = {SPECIES_SKARMORY, SPECIES_GOLEM, SPECIES_BLAZIKEN, SPECIES_CAMERUPT, SPECIES_DONPHAN, SPECIES_MUK, SPECIES_SALAMENCE, SPECIES_TROPIUS, SPECIES_SOLROCK, SPECIES_RHYDON},
         .id = 9,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_I_AM, EC_WORD_JUST, EC_WORD_SHREDDED, EC_EMPTY_WORD, EC_WORD_ARRGH, EC_WORD_EXCL},
     #elif ITALIAN
@@ -435,6 +472,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_WE, EC_WORD_WERE, EC_WORD_JUST, EC_WORD_SHREDDED, EC_WORD_ELLIPSIS, EC_EMPTY_WORD},
     #endif
+=======
+        .speechLost = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_IF_I_LOSE, EC_WORD_EVERY, EC_WORD_APPROVED, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("トウゾウ"), _("DALLAS"), _("BRUNO"), _("LEARCO"), _("ANSGAR"), _("MANOLO")},
@@ -442,6 +482,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_FISHERMAN,
         .species = {SPECIES_SEAKING, SPECIES_STARMIE, SPECIES_GOLDUCK, SPECIES_TENTACRUEL, SPECIES_OCTILLERY, SPECIES_GOREBYSS, SPECIES_GLALIE, SPECIES_WAILORD, SPECIES_SHARPEDO, SPECIES_KINGDRA},
         .id = 10,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_HER, EC_WORD_VICTORY, EC_WORD_WHO_WAS, EC_EMPTY_WORD, EC_WORD_GO_HOME, EC_WORD_EXCL},
     #elif ITALIAN
@@ -449,6 +490,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_YOUR, EC_WORD_WIN, EC_WORD_ANGERS, EC_WORD_ME, EC_WORD_EXCL, EC_EMPTY_WORD},
     #endif
+=======
+        .speechLost = {EC_WORD_WHOAH, EC_WORD_COUNT_ON, EC_WORD_MUFUFU, EC_WORD_YEAH, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("セイヤ"), _("FRANK"), _("FRANK"), _("OLINDO"), _("FRANK"), _("MAURO")},
@@ -456,6 +500,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_SAILOR,
         .species = {SPECIES_QUAGSIRE, SPECIES_STARMIE, SPECIES_PELIPPER, SPECIES_CRAWDAUNT, SPECIES_WAILORD, SPECIES_GYARADOS, SPECIES_SWAMPERT, SPECIES_LANTURN, SPECIES_WHISCASH, SPECIES_SHUCKLE},
         .id = 11,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_IT_S, EC_WORD_NOT, EC_WORD_NICE, EC_WORD_I_VE, EC_WORD_LOST, EC_WORD_EXCL},
     #elif ITALIAN
@@ -463,6 +508,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_LOSING, EC_WORD_DOESN_T, EC_MOVE(CUT), EC_WORD_ME, EC_WORD_DEEP, EC_WORD_OK_QUES},
     #endif
+=======
+        .speechLost = {EC_WORD_RECOMMEND, EC_WORD_JUST, EC_WORD_WHERE, EC_WORD_IS, EC_WORD_MATCH_UP, EC_WORD_LOSS},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("リュウジ"), _("LAMONT"), _("XAV"), _("ORFEO"), _("JÜRGEN"), _("JORGE")},
@@ -470,6 +518,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_GUITARIST,
         .species = {SPECIES_ABSOL, SPECIES_CROBAT, SPECIES_EXPLOUD, SPECIES_MAGNETON, SPECIES_SHARPEDO, SPECIES_MANECTRIC, SPECIES_METAGROSS, SPECIES_ELECTRODE, SPECIES_NOSEPASS, SPECIES_WEEZING},
         .id = 12,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_IF, EC_WORD_ELLIPSIS, EC_WORD_IT_S, EC_WORD_AN, EC_WORD_LOSS, EC_WORD_EXCL},
     #elif ITALIAN
@@ -477,6 +526,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_A, EC_WORD_LOSS, EC_WORD_IS, EC_WORD_WHAT, EC_WORD_THIS, EC_WORD_IS},
     #endif
+=======
+        .speechLost = {EC_WORD_LOSS, EC_WORD_WHERE, EC_WORD_IS, EC_WORD_PLUS, EC_WORD_NITWIT, EC_WORD_LOSS},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("カツアキ"), _("TYRESE"), _("ANDY"), _("PARIDE"), _("DAVID"), _("CHICHO")},
@@ -484,6 +536,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_BLACK_BELT,
         .species = {SPECIES_BLAZIKEN, SPECIES_GOLEM, SPECIES_MACHAMP, SPECIES_RHYDON, SPECIES_HARIYAMA, SPECIES_AGGRON, SPECIES_MEDICHAM, SPECIES_ZANGOOSE, SPECIES_VIGOROTH, SPECIES_SLAKING},
         .id = 13,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_I_AM, EC_WORD_RECOMMEND, EC_WORD_WEAK, EC_WORD_EXCL, EC_EMPTY_WORD, EC_EMPTY_WORD},
     #elif ITALIAN
@@ -491,6 +544,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_I_AM, EC_WORD_TOO_WEAK, EC_WORD_AND, EC_WORD_LOW, EC_WORD_OF, EC_WORD_POWER},
     #endif
+=======
+        .speechLost = {EC_WORD_WHERE, EC_WORD_WHOM, EC_WORD_A_LOT, EC_WORD_NITWIT, EC_WORD_GIVES, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("トシミツ"), _("DANTE"), _("DANTE"), _("RAOUL"), _("LOTHAR"), _("PABLO")},
@@ -498,6 +554,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_RUIN_MANIAC,
         .species = {SPECIES_SCEPTILE, SPECIES_SANDSLASH, SPECIES_FLYGON, SPECIES_CLAYDOL, SPECIES_ARMALDO, SPECIES_CROBAT, SPECIES_CRADILY, SPECIES_SOLROCK, SPECIES_LUNATONE, SPECIES_GOLEM},
         .id = 14,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_I, EC_WORD_ISN_T, EC_WORD_UNDERSTANDS, EC_WORD_NOT, EC_WORD_WHY, EC_WORD_ELLIPSIS},
     #elif ITALIAN
@@ -505,6 +562,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_I, EC_WORD_DON_T, EC_WORD_UNDERSTAND, EC_WORD_WHAT, EC_WORD_IS, EC_WORD_HAPPENING},
     #endif
+=======
+        .speechLost = {EC_WORD_SERIOUS, EC_WORD_AND, EC_WORD_SERIOUS, EC_WORD_BUT, EC_WORD_IS, EC_WORD_SIGH},
+>>>>>>> Egg/spanish
     },
     {
         .name = {_("ローウェン"), _("ARTURO"), _("ARTURO"), _("ROMOLO"), _("BRIAN"), _("ARTURO")},
@@ -512,6 +572,7 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
         .facilityClass = FACILITY_CLASS_GENTLEMAN,
         .species = {SPECIES_ABSOL, SPECIES_MIGHTYENA, SPECIES_ALAKAZAM, SPECIES_BANETTE, SPECIES_NINETALES, SPECIES_CLAYDOL, SPECIES_MUK, SPECIES_SALAMENCE, SPECIES_WALREIN, SPECIES_DUSCLOPS},
         .id = 15,
+<<<<<<< HEAD
     #if FRENCH
         .speechLost = {EC_WORD_IT_S, EC_WORD_NOT, EC_WORD_JUST, EC_EMPTY_WORD, EC_WORD_GWAH, EC_WORD_EXCL},
     #elif ITALIAN
@@ -519,6 +580,9 @@ const struct ApprenticeTrainer gApprentices[NUM_APPRENTICES] =
     #else //ENGLISH
         .speechLost = {EC_WORD_THIS, EC_WORD_HAS, EC_WORD_TO, EC_WORD_BE, EC_WORD_A, EC_WORD_LIE},
     #endif
+=======
+        .speechLost = {EC_WORD_INCREDIBLE, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
     },
 };
 

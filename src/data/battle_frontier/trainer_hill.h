@@ -387,11 +387,18 @@ static const struct TrainerHillFloor sFloors_Normal[] =
             #else //ENGLISH
                 .name = _("ALAINA"),
                 .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+<<<<<<< HEAD
                 .speechBefore = {EC_WORD_YOU, EC_WORD_CAN, EC_WORD_CHOOSE, EC_WORD_NOT, EC_WORD_TO, EC_WORD_BELIEVE},
                 .speechWin = {EC_WORD_A, EC_WORD_SUPER, EC_WORD_NATURAL, EC_WORD_POWER, EC_WORD_HAS, EC_WORD_COME},
                 .speechLose = {EC_WORD_THIS, EC_WORD_MUST_BE, EC_WORD_A, EC_MOVE(NIGHTMARE), EC_WORD_EXCL, EC_EMPTY_WORD},
                 .speechAfter = {EC_WORD_I, EC_WORD_WILL, EC_WORD_DISAPPEAR, EC_WORD_IN, EC_WORD_THE, EC_WORD_DARK},
             #endif
+=======
+                .speechBefore = {EC_WORD_WHOM, EC_WORD_FOR_NOW, EC_WORD_POWER, EC_WORD_LEFT, EC_WORD_INCREDIBLE, EC_EMPTY_WORD},
+                .speechWin = {EC_WORD_OK_QUES, EC_WORD_NITWIT, EC_WORD_ISN_T_IT_QUES, EC_WORD_A_LITTLE, EC_WORD_INCREDIBLE, EC_EMPTY_WORD},
+                .speechLose = {EC_WORD_THIS, EC_WORD_IS, EC_WORD_NATURALLY, EC_WORD_DESTROYED, EC_MOVE(NIGHTMARE), EC_EMPTY_WORD},
+                .speechAfter = {EC_WORD_WHERE, EC_WORD_SINCE, EC_WORD_FIGHTS, EC_WORD_PLUS, EC_WORD_WHERE, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -544,6 +551,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
             },
             [1] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("BARTH"),
                 .facilityClass = FACILITY_CLASS_CYCLING_TRIATHLETE_M,
@@ -566,6 +574,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_MY, EC_WORD_BIKE, EC_WORD_EXCL, EC_WORD_YOU_VE, EC_WORD_DESTROYED, EC_WORD_IT},
                 .speechAfter = {EC_WORD_A, EC_WORD_BIKE, EC_WORD_OVER, EC_WORD_ANY, EC_WORD_TRAIN, EC_WORD_EXCL},
             #endif
+=======
+                .name = _("ALFONSI"),
+                .facilityClass = FACILITY_CLASS_CYCLING_TRIATHLETE_M,
+                .speechBefore = {EC_WORD_WHERE, EC_WORD_ABSOLUTELY, EC_WORD_IT, EC_WORD_ONLY, EC_WORD_LOCOMOTIVE, EC_EMPTY_WORD},
+                .speechWin = {EC_WORD_TODAY, EC_WORD_ABSOLUTELY, EC_WORD_TIMES, EC_MOVE2(SUPERSONIC), EC_WORD_OH_YEAH, EC_EMPTY_WORD},
+                .speechLose = {EC_WORD_TIMES, EC_WORD_NITWIT, EC_WORD_ABSOLUTELY, EC_WORD_WHICH, EC_WORD_A_LITTLE, EC_EMPTY_WORD},
+                .speechAfter = {EC_WORD_EXCL_EXCL, EC_WORD_NITWIT, EC_WORD_WHERE, EC_WORD_SINCE, EC_WORD_LOCOMOTIVE, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -722,6 +738,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
         {
             [0] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("THEODORE"),
                 .facilityClass = FACILITY_CLASS_BLACK_BELT,
@@ -744,6 +761,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_I, EC_WORD_WENT, EC_WORD_AT, EC_WORD_IT, EC_WORD_TOO, EC_WORD_HARD},
                 .speechAfter = {EC_WORD_YES_SIR_EXCL, EC_WORD_YOU, EC_WORD_LOOK, EC_WORD_NICE, EC_WORD_AND, EC_WORD_GUTSY},
             #endif
+=======
+                .name = _("TEODORO"),
+                .facilityClass = FACILITY_CLASS_BLACK_BELT,
+                .speechBefore = {EC_WORD_LAY, EC_WORD_OR, EC_WORD_LISTEN, EC_WORD_PUSHOVER, EC_WORD_MISS, EC_WORD_PURE_POWER},
+                .speechWin = {EC_WORD_WOWEE, EC_WORD_WOWEE, EC_WORD_WOWEE, EC_WORD_WOWEE, EC_WORD_UH_HUH, EC_WORD_UH_HUH},
+                .speechLose = {EC_WORD_OK_QUES, EC_WORD_NITWIT, EC_WORD_A_TINY_BIT, EC_MOVE(ENDEAVOR), EC_WORD_WENT, EC_WORD_EXCITING},
+                .speechAfter = {EC_WORD_ABSOLUTELY, EC_WORD_LIKE, EC_WORD_AWFULLY, EC_MOVE(FACADE), EC_WORD_UP, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -894,6 +919,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
             },
             [1] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("LAETICIA"),
                 .facilityClass = FACILITY_CLASS_PKMN_BREEDER_F,
@@ -916,6 +942,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_WE, EC_WORD_COULDN_T, EC_WORD_WIN, EC_WORD_TOGETHER, EC_WORD_QUES, EC_EMPTY_WORD},
                 .speechAfter = {EC_WORD_MAYBE, EC_WORD_I, EC_WORD_NEED, EC_WORD_A, EC_WORD_BOY, EC_WORD_FRIEND},
             #endif
+=======
+                .name = _("JAIDA"),
+                .facilityClass = FACILITY_CLASS_PKMN_BREEDER_F,
+                .speechBefore = {EC_WORD_BELONGS_TO, EC_WORD_THINGS, EC_WORD_NITWIT, EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_HOBBY},
+                .speechWin = {EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_HOBBY, EC_WORD_MISS, EC_WORD_TOTALLY, EC_WORD_WHO_IS},
+                .speechLose = {EC_WORD_QUES_EXCL, EC_WORD_DIDN_T, EC_WORD_HOBBY, EC_WORD_A_LITTLE, EC_WORD_NEAR, EC_WORD_QUES},
+                .speechAfter = {EC_WORD_OK_QUES, EC_WORD_NITWIT, EC_WORD_A, EC_WORD_LISTEN, EC_WORD_FOR_NOW, EC_WORD_WHO_IS},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -1073,6 +1107,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
         {
             [0] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("ANGEL"),
                 .facilityClass = FACILITY_CLASS_PKMN_BREEDER_M,
@@ -1095,6 +1130,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_I, EC_WORD_WILL, EC_WORD_MAKE, EC_WORD_YOU, EC_WORD_SORRY, EC_WORD_FRIEND},
                 .speechAfter = {EC_WORD_HAVEN_T, EC_WORD_YOU, EC_WORD_DONE, EC_WORD_ENOUGH, EC_WORD_QUES, EC_EMPTY_WORD},
             #endif
+=======
+                .name = _("SALVA"),
+                .facilityClass = FACILITY_CLASS_PKMN_BREEDER_M,
+                .speechBefore = {EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_USING, EC_MOVE2(WRAP), EC_WORD_OH_QUES, EC_EMPTY_WORD},
+                .speechWin = {EC_WORD_QUES_EXCL, EC_WORD_DIDN_T, EC_WORD_USING, EC_WORD_JUST, EC_MOVE2(WRAP), EC_WORD_QUES},
+                .speechLose = {EC_WORD_HERE, EC_WORD_BELONGS_TO, EC_WORD_SOMEONE, EC_WORD_SHOULD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                .speechAfter = {EC_WORD_QUES_EXCL, EC_WORD_IF, EC_WORD_OK_QUES, EC_WORD_THE, EC_WORD_REALLY, EC_WORD_QUES},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -1241,6 +1284,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
             },
             [1] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("VERONICA"),
                 .facilityClass = FACILITY_CLASS_PKMN_BREEDER_F,
@@ -1263,6 +1307,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_I_AM, EC_WORD_TIRED, EC_WORD_TODAY, EC_WORD_THAT_S, EC_WORD_WHY, EC_WORD_EXCL},
                 .speechAfter = {EC_WORD_WHY, EC_WORD_YES, EC_WORD_I_AM, EC_WORD_ANGRY, EC_WORD_THANK_YOU, EC_WORD_EXCL},
             #endif
+=======
+                .name = _("VERO"),
+                .facilityClass = FACILITY_CLASS_PKMN_BREEDER_F,
+                .speechBefore = {EC_WORD_ISN_T_IT_QUES, EC_WORD_THAT_S, EC_MOVE(FACADE), EC_WORD_LIE, EC_WORD_THAT_S, EC_WORD_BEAUTY},
+                .speechWin = {EC_WORD_ISN_T_IT_QUES, EC_WORD_APPROVED, EC_WORD_AND, EC_WORD_WHOM, EC_WORD_BEAUTY, EC_EMPTY_WORD},
+                .speechLose = {EC_WORD_WHOM, EC_WORD_BEAUTY, EC_WORD_BUT, EC_WORD_WILL_BE_HERE, EC_WORD_IMPORTANT, EC_EMPTY_WORD},
+                .speechAfter = {EC_WORD_EXCL_EXCL, EC_WORD_WILL_BE_HERE, EC_WORD_VERY, EC_WORD_ANGER, EC_WORD_UP, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -1419,6 +1471,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
         {
             [0] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("ARTHUS"),
                 .facilityClass = FACILITY_CLASS_PSYCHIC_M,
@@ -1441,6 +1494,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_DOES, EC_WORD_THE, EC_WORD_TIME, EC_WORD_WORRY, EC_WORD_YOU, EC_WORD_QUES},
                 .speechAfter = {EC_WORD_YOU, EC_WORD_DON_T, EC_WORD_HAVE, EC_WORD_TIME, EC_WORD_TO, EC_WORD_CHAT},
             #endif
+=======
+                .name = _("GRUNO"),
+                .facilityClass = FACILITY_CLASS_PSYCHIC_M,
+                .speechBefore = {EC_WORD_THAN, EC_WORD_HAVE, EC_WORD_NITWIT, EC_WORD_FIGHTS, EC_WORD_GWAH, EC_EMPTY_WORD},
+                .speechWin = {EC_WORD_WENT, EC_WORD_FOR_NOW, EC_WORD_OBLIVIOUS, EC_WORD_INSTEAD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                .speechLose = {EC_WORD_WENT, EC_WORD_FOR_NOW, EC_WORD_OBLIVIOUS, EC_WORD_ANY, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                .speechAfter = {EC_WORD_WHERE, EC_WORD_SINCE, EC_WORD_CONVERSATION, EC_WORD_NOW, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -1579,6 +1640,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
             },
             [1] =
             {
+<<<<<<< HEAD
             #if FRENCH
                 .name = _("KRISTINA"),
                 .facilityClass = FACILITY_CLASS_AROMA_LADY,
@@ -1601,6 +1663,14 @@ static const struct TrainerHillFloor sFloors_Normal[] =
                 .speechLose = {EC_WORD_I, EC_MOVE2(COVET), EC_WORD_ANY, EC_WORD_STRONG, EC_WORD_STENCH, EC_EMPTY_WORD},
                 .speechAfter = {EC_WORD_MY, EC_WORD_SENSE, EC_WORD_OF, EC_WORD_SMELL, EC_WORD_ISN_T, EC_WORD_NORMAL},
             #endif
+=======
+                .name = _("CRISTILA"),
+                .facilityClass = FACILITY_CLASS_AROMA_LADY,
+                .speechBefore = {EC_WORD_A_TINY_BIT, EC_WORD_APPROVED, EC_WORD_STENCH, EC_WORD_WITHOUT, EC_WORD_A_LOT, EC_MOVE(OVERHEAT)},
+                .speechWin = {EC_WORD_ABSOLUTELY, EC_WORD_LIKE, EC_WORD_THAT_S, EC_WORD_OFFENSIVE, EC_WORD_MISS, EC_WORD_STENCH},
+                .speechLose = {EC_WORD_AIM, EC_WORD_A_TINY_BIT, EC_WORD_STENCH, EC_WORD_NITWIT, EC_WORD_TIMES, EC_WORD_HERE},
+                .speechAfter = {EC_WORD_STENCH, EC_WORD_WHERE, EC_WORD_IS, EC_WORD_MEAN, EC_MOVE(SWEET_SCENT), EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                 .mons =
                 {
                     [0] =
@@ -1765,6 +1835,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ANSELME"),
                             .facilityClass = FACILITY_CLASS_GENTLEMAN,
@@ -1787,6 +1858,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_THAT_WAS, EC_WORD_MY, EC_MOVE2(PRESENT), EC_WORD_TO, EC_WORD_YOU, EC_EMPTY_WORD},
                             .speechAfter = {EC_WORD_WELL_THEN, EC_WORD_CONGRATS, EC_WORD_MY, EC_WORD_FRIEND, EC_EMPTY_WORD, EC_EMPTY_WORD},
                         #endif
+=======
+                            .name = _("TIRENO"),
+                            .facilityClass = FACILITY_CLASS_GENTLEMAN,
+                            .speechBefore = {EC_WORD_FOR_NOW, EC_MOVE2(PRESENT), EC_WORD_ALWAYS, EC_WORD_LIKE, EC_WORD_OH_QUES, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_JUST, EC_WORD_VICTORY, EC_WORD_IS, EC_WORD_A_TINY_BIT, EC_WORD_SPIRALING, EC_MOVE2(PRESENT)},
+                            .speechLose = {EC_WORD_LOSS, EC_WORD_IS, EC_WORD_JUST, EC_MOVE2(PRESENT), EC_WORD_RECOMMEND, EC_WORD_REALLY},
+                            .speechAfter = {EC_WORD_ANTICIPATION, EC_WORD_JOKING, EC_WORD_JUST, EC_WORD_CONGRATS, EC_WORD_LIE, EC_WORD_THESE_WERE},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -1919,6 +1998,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ELIZABETH"),
                             .facilityClass = FACILITY_CLASS_LADY,
@@ -1941,6 +2021,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_THINGS, EC_WORD_DON_T, EC_WORD_ALWAYS, EC_WORD_WORK, EC_WORD_OUT, EC_EMPTY_WORD},
                             .speechAfter = {EC_WORD_I_AM, EC_WORD_FEELING, EC_WORD_LONESOME, EC_WORD_AND, EC_WORD_SAD, EC_WORD_NOW},
                         #endif
+=======
+                            .name = _("ELISIA"),
+                            .facilityClass = FACILITY_CLASS_LADY,
+                            .speechBefore = {EC_WORD_QUES_EXCL, EC_WORD_DIGITAL, EC_WORD_JUST, EC_WORD_LOLLING, EC_MOVE(FOCUS_ENERGY), EC_WORD_QUES},
+                            .speechWin = {EC_WORD_OK_QUES, EC_WORD_NITWIT, EC_WORD_ISN_T_IT_QUES, EC_WORD_HAPPILY, EC_WORD_THE, EC_WORD_BATTLE},
+                            .speechLose = {EC_WORD_JUST, EC_MOVE(FOCUS_ENERGY), EC_WORD_WENT, EC_WORD_VERY, EC_WORD_FUNNY, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_DISAPPOINTS, EC_WORD_NITWIT, EC_WORD_WILL_BE_HERE, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2100,6 +2188,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ANNABEL"),
                             .facilityClass = FACILITY_CLASS_PARASOL_LADY,
@@ -2122,6 +2211,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_I, EC_WORD_CAN, EC_WORD_SEE, EC_WORD_YOU_RE, EC_WORD_FEELING, EC_WORD_GREAT},
                             .speechAfter = {EC_WORD_YOUR, EC_WORD_POKEMON, EC_WORD_LOOK, EC_WORD_READY, EC_WORD_TO, EC_WORD_HUSTLE},
                         #endif
+=======
+                            .name = _("BELANA"),
+                            .facilityClass = FACILITY_CLASS_PARASOL_LADY,
+                            .speechBefore = {EC_WORD_QUES_EXCL, EC_WORD_HAVE, EC_WORD_STRONG, EC_WORD_RECOMMEND, EC_WORD_WIN, EC_WORD_QUES},
+                            .speechWin = {EC_WORD_UPBEAT, EC_WORD_NITWIT, EC_WORD_HAVE, EC_WORD_HAH, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_UPBEAT, EC_WORD_NITWIT, EC_WORD_WHOM, EC_WORD_SIGH, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_THAT_S, EC_WORD_WHY, EC_WORD_LIE, EC_WORD_AS_MUCH_AS, EC_WORD_POKEMON, EC_WORD_LIKE},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2282,6 +2379,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ARNAUD"),
                             .facilityClass = FACILITY_CLASS_COLLECTOR,
@@ -2304,6 +2402,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_YOU_RE, EC_WORD_LIKE, EC_WORD_A, EC_MOVE(HEAL_BELL), EC_WORD_TO_ME, EC_WORD_EXCL},
                             .speechAfter = {EC_WORD_I_VE, EC_WORD_DECIDED, EC_WORD_I_CHOOSE_YOU, EC_WORD_AS, EC_WORD_MY, EC_WORD_IDOL},
                         #endif
+=======
+                            .name = _("CELTO"),
+                            .facilityClass = FACILITY_CLASS_COLLECTOR,
+                            .speechBefore = {EC_WORD_A, EC_WORD_LISTEN, EC_WORD_TOTALLY, EC_WORD_IDOL, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_QUES_EXCL, EC_WORD_OR, EC_WORD_LISTEN, EC_WORD_AN, EC_WORD_IDOL, EC_WORD_QUES},
+                            .speechLose = {EC_WORD_LET_S, EC_WORD_MEAN, EC_WORD_NATURALLY, EC_MOVE(HEAL_BELL), EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_LAY, EC_WORD_SINCE, EC_WORD_LISTEN, EC_WORD_REALLY, EC_WORD_MEAN, EC_WORD_IDOL},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2461,6 +2567,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ADEMAR"),
                             .facilityClass = FACILITY_CLASS_RICH_BOY,
@@ -2483,6 +2590,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_AWW, EC_WORD_COULDN_T, EC_WORD_YOU, EC_WORD_LET_ME_WIN, EC_WORD_QUES, EC_EMPTY_WORD},
                             .speechAfter = {EC_WORD_DID, EC_WORD_YOU, EC_WORD_SEE, EC_WORD_MY, EC_WORD_SKILL, EC_WORD_QUES},
                         #endif
+=======
+                            .name = _("RIQUE"),
+                            .facilityClass = FACILITY_CLASS_RICH_BOY,
+                            .speechBefore = {EC_WORD_SINCE, EC_WORD_FOR_NOW, EC_WORD_BATTLE, EC_WORD_INCREDIBLE, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_JUST, EC_WORD_STRATEGY, EC_WORD_UP, EC_WORD_NITWIT, EC_WORD_WENT, EC_WORD_INCREDIBLE},
+                            .speechLose = {EC_WORD_AWW, EC_WORD_WHERE, EC_WORD_OR, EC_WORD_LISTEN, EC_WORD_WIN, EC_WORD_FOREVER},
+                            .speechAfter = {EC_WORD_QUES_EXCL, EC_WORD_NITWIT, EC_WORD_WHOM, EC_WORD_HAPPILY, EC_WORD_STRATEGY, EC_WORD_QUES},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2633,6 +2748,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("LUCETTE"),
                             .facilityClass = FACILITY_CLASS_LADY,
@@ -2655,6 +2771,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_GO_AHEAD, EC_WORD_AND, EC_WORD_CRUSH, EC_WORD_MY, EC_WORD_DREAM, EC_WORD_ELLIPSIS},
                             .speechAfter = {EC_WORD_I, EC_WORD_WANT, EC_WORD_TO, EC_WORD_GO, EC_WORD_WILD, EC_WORD_SOMETIME},
                         #endif
+=======
+                            .name = _("FENELA"),
+                            .facilityClass = FACILITY_CLASS_LADY,
+                            .speechBefore = {EC_WORD_A_TINY_BIT, EC_WORD_TYPE, EC_WORD_ROCK, EC_WORD_ABSOLUTELY, EC_WORD_LIKE, EC_WORD_QUITE},
+                            .speechWin = {EC_WORD_A_TINY_BIT, EC_WORD_TYPE, EC_WORD_ROCK, EC_WORD_IS, EC_WORD_FOR_NOW, EC_MOVE2(HELPING_HAND)},
+                            .speechLose = {EC_WORD_A, EC_WORD_FOR_NOW, EC_MOVE2(HELPING_HAND), EC_WORD_RECOMMEND, EC_WORD_TOO_LATE, EC_WORD_POKEMON},
+                            .speechAfter = {EC_WORD_A_TINY_BIT, EC_WORD_TYPE, EC_WORD_ROCK, EC_WORD_ABSOLUTELY, EC_WORD_PRAISE, EC_WORD_LONESOME},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2819,6 +2943,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("KIMBERLY"),
                             .facilityClass = FACILITY_CLASS_POKEFAN_F,
@@ -2841,6 +2966,14 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                             .speechLose = {EC_WORD_YOU_RE, EC_WORD_A, EC_WORD_MEAN, EC_WORD_KID, EC_WORD_IT, EC_WORD_SEEMS},
                             .speechAfter = {EC_WORD_MY, EC_WORD_OWN_TEMPO, EC_WORD_IS, EC_WORD_RIGHT, EC_WORD_FOR, EC_WORD_ME},
                         #endif
+=======
+                            .name = _("FINTIA"),
+                            .facilityClass = FACILITY_CLASS_POKEFAN_F,
+                            .speechBefore = {EC_WORD_I, EC_WORD_MAKE, EC_WORD_CASE, EC_WORD_LISTEN, EC_WORD_JUST, EC_WORD_OWN_TEMPO},
+                            .speechWin = {EC_WORD_QUES_EXCL, EC_WORD_NITWIT, EC_WORD_WHERE, EC_WORD_ISN_T_IT_QUES, EC_WORD_HARD, EC_WORD_QUES},
+                            .speechLose = {EC_WORD_OK_QUES, EC_WORD_NITWIT, EC_WORD_LET_S, EC_WORD_VERY, EC_WORD_FIGHTING, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_JUST, EC_WORD_OWN_TEMPO, EC_WORD_IS, EC_WORD_JUST, EC_WORD_SPIRALING, EC_MOVE2(BARRIER)},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -2999,11 +3132,18 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                         #else //ENGLISH
                             .name = _("FRANCISCO"),
                             .facilityClass = FACILITY_CLASS_POKEFAN_M,
+<<<<<<< HEAD
                             .speechBefore = {EC_WORD_I, EC_WORD_STUDY, EC_WORD_EVERY, EC_WORD_DAY, EC_WORD_TOO, EC_EMPTY_WORD},
                             .speechWin = {EC_WORD_SO, EC_WORD_THAT_S, EC_WORD_HOW, EC_WORD_YOU, EC_WORD_LOSE, EC_EMPTY_WORD},
                             .speechLose = {EC_WORD_NO, EC_WORD_WONDER, EC_WORD_I, EC_WORD_COULDN_T, EC_WORD_BEAT, EC_WORD_YOU},
                             .speechAfter = {EC_WORD_YES, EC_WORD_ELLIPSIS, EC_EMPTY_WORD, EC_WORD_THANK_YOU, EC_EMPTY_WORD, EC_EMPTY_WORD},
                         #endif
+=======
+                            .speechBefore = {EC_WORD_ABSOLUTELY, EC_WORD_LIKE, EC_WORD_HOBBY, EC_WORD_AND, EC_WORD_FIGHTS, EC_WORD_RIGHT},
+                            .speechWin = {EC_WORD_QUES_EXCL, EC_WORD_LET_S, EC_WORD_PERSON, EC_WORD_LIE, EC_WORD_LOSS, EC_WORD_QUES},
+                            .speechLose = {EC_WORD_I, EC_WORD_WHERE, EC_WORD_FAINTED, EC_WORD_WHERE, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_FUFUFU, EC_WORD_HUMPH, EC_WORD_FUFUFU, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -3171,6 +3311,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("MEREDITH"),
                             .facilityClass = FACILITY_CLASS_PKMN_RANGER_F,
@@ -3193,6 +3334,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_UM, EC_WORD_ELLIPSIS, EC_EMPTY_WORD, EC_WORD_WAAAH, EC_WORD_ELLIPSIS, EC_EMPTY_WORD},
                             .speechAfter = {EC_WORD_UM, EC_WORD_ELLIPSIS, EC_EMPTY_WORD, EC_WORD_I_AM, EC_WORD_SAD, EC_WORD_ELLIPSIS},
                         #endif
+=======
+                            .name = _("MELENIA"),
+                            .facilityClass = FACILITY_CLASS_PKMN_RANGER_F,
+                            .speechBefore = {EC_WORD_HMM, EC_WORD_HMM, EC_WORD_HMM, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_OH, EC_WORD_WAY, EC_WORD_WAY, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_AWW, EC_WORD_AWW, EC_WORD_AWW, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_CRIES, EC_WORD_WILL_BE_HERE, EC_WORD_PLUS, EC_WORD_NITWIT, EC_WORD_SAD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -3333,6 +3482,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("YVAN"),
                             .facilityClass = FACILITY_CLASS_KINDLER,
@@ -3355,6 +3505,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_AIYEEH, EC_WORD_EXCL, EC_WORD_YOU_RE, EC_WORD_A, EC_WORD_TERRIBLE, EC_WORD_PERSON},
                             .speechAfter = {EC_WORD_YOUR, EC_WORD_HEART, EC_WORD_MUST_BE, EC_WORD_ICE, EC_WORD_COLD, EC_WORD_ELLIPSIS},
                         #endif
+=======
+                            .name = _("BERNAR"),
+                            .facilityClass = FACILITY_CLASS_KINDLER,
+                            .speechBefore = {EC_WORD_WHERE, EC_WORD_CAN, EC_WORD_LOSS, EC_WORD_FOR_NOW, EC_WORD_NONE, EC_WORD_BATTLE},
+                            .speechWin = {EC_WORD_WENT, EC_WORD_NATURALLY, EC_WORD_VICTORY, EC_WORD_PREPOSTEROUS, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_LET_S, EC_WORD_NATURALLY, EC_WORD_PERSON, EC_WORD_SCATTER, EC_WORD_AND, EC_WORD_FIGHTING},
+                            .speechAfter = {EC_WORD_LET_S, EC_WORD_FIERY, EC_MOVE(SHEER_COLD), EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -3511,6 +3669,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ABRAHAM"),
                             .facilityClass = FACILITY_CLASS_RUIN_MANIAC,
@@ -3533,6 +3692,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_I, EC_WORD_CONFUSED, EC_WORD_A, EC_WORD_MOVE, EC_WORD_WITH, EC_WORD_ANOTHER},
                             .speechAfter = {EC_WORD_I, EC_WORD_WANT, EC_WORD_A, EC_MOVE(SKETCH), EC_WORD_OF, EC_WORD_YOU},
                         #endif
+=======
+                            .name = _("ARANO"),
+                            .facilityClass = FACILITY_CLASS_RUIN_MANIAC,
+                            .speechBefore = {EC_WORD_DOES, EC_WORD_NITWIT, EC_WORD_ISN_T_IT_QUES, EC_WORD_GOOD, EC_WORD_AROUND, EC_WORD_DOES},
+                            .speechWin = {EC_WORD_ISN_T_IT_QUES, EC_WORD_GOOD, EC_WORD_ALT_COLOR, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_WHOM, EC_WORD_A_LITTLE, EC_WORD_LIE, EC_MOVE2(CONFUSION), EC_WORD_NOW, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_LET_S, EC_WORD_BECOMES, EC_WORD_LIE, EC_WORD_CAUSE, EC_MOVE2(CONFUSION), EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -3683,6 +3850,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("LEOPOLD"),
                             .facilityClass = FACILITY_CLASS_TUBER_M,
@@ -3705,6 +3873,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_DIDN_T, EC_WORD_YOU, EC_WORD_SEE, EC_WORD_MY, EC_WORD_MOVE, EC_WORD_QUES},
                             .speechAfter = {EC_WORD_I_AM, EC_WORD_SMART, EC_WORD_BUT, EC_WORD_ALSO, EC_WORD_WEAK, EC_WORD_ELLIPSIS},
                         #endif
+=======
+                            .name = _("LUCA"),
+                            .facilityClass = FACILITY_CLASS_TUBER_M,
+                            .speechBefore = {EC_WORD_IF, EC_WORD_ATTACK, EC_WORD_WHOM, EC_WORD_A_LOT, EC_WORD_COOL, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_WHOM, EC_WORD_COOL, EC_WORD_AND, EC_WORD_QUITE, EC_WORD_THIS_IS_IT_EXCL, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_QUES_EXCL, EC_WORD_NITWIT, EC_WORD_WHERE, EC_WORD_WHOM, EC_WORD_COOL, EC_WORD_QUES},
+                            .speechAfter = {EC_WORD_WHOM, EC_WORD_COOL, EC_WORD_BUT, EC_WORD_ISN_T_IT_QUES, EC_WORD_VERY, EC_WORD_FUNNY},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -3869,6 +4045,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("AUGUSTIN"),
                             .facilityClass = FACILITY_CLASS_YOUNGSTER,
@@ -3891,6 +4068,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_IT_S, EC_WORD_NOT, EC_WORD_LIKE, EC_WORD_WE, EC_WORD_ALWAYS, EC_WORD_WIN},
                             .speechAfter = {EC_WORD_I, EC_WORD_LIKE, EC_WORD_THE, EC_WORD_BEGINNING, EC_WORD_POKEMON, EC_WORD_BEST},
                         #endif
+=======
+                            .name = _("BREIDEN"),
+                            .facilityClass = FACILITY_CLASS_YOUNGSTER,
+                            .speechBefore = {EC_WORD_THINKS, EC_WORD_A_LOT, EC_WORD_THE, EC_WORD_AS_MUCH_AS, EC_WORD_POKEMON, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_THINKS, EC_WORD_THE, EC_WORD_AS_MUCH_AS, EC_WORD_POKEMON, EC_WORD_RECOMMEND, EC_WORD_WIN},
+                            .speechLose = {EC_WORD_THINKS, EC_WORD_NITWIT, EC_WORD_WHERE, EC_WORD_ALWAYS, EC_WORD_SERIOUSLY, EC_WORD_WINS},
+                            .speechAfter = {EC_WORD_THINKS, EC_WORD_NITWIT, EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_HOBBY, EC_WORD_PLUS},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4057,11 +4242,18 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                         #else //ENGLISH
                             .name = _("ANIYA"),
                             .facilityClass = FACILITY_CLASS_TUBER_F,
+<<<<<<< HEAD
                             .speechBefore = {EC_WORD_SOMEONE, EC_WORD_GOT, EC_WORD_ME, EC_WORD_A_LITTLE, EC_WORD_POKEMON, EC_WORD_EGG},
                             .speechWin = {EC_WORD_I_AM, EC_WORD_NOT, EC_WORD_NEW, EC_WORD_AT, EC_WORD_THIS, EC_WORD_EXCL},
                             .speechLose = {EC_WORD_OH, EC_WORD_BUT, EC_WORD_ELLIPSIS, EC_WORD_WHY, EC_WORD_WHY, EC_WORD_QUES_EXCL},
                             .speechAfter = {EC_WORD_YOU_RE, EC_WORD_BUSY, EC_WORD_QUES, EC_WORD_DON_T, EC_WORD_GIVE_UP, EC_WORD_EXCL},
                         #endif
+=======
+                            .speechBefore = {EC_WORD_QUES_EXCL, EC_WORD_HAVE, EC_WORD_FOR_NOW, EC_WORD_EGG, EC_WORD_POKEMON, EC_WORD_QUES},
+                            .speechWin = {EC_WORD_I, EC_WORD_CHOICE, EC_WORD_WHOM, EC_WORD_THIS_IS_IT_EXCL, EC_WORD_THE, EC_WORD_THIS},
+                            .speechLose = {EC_WORD_A, EC_WORD_QUITE, EC_WORD_PLUS, EC_WORD_THIS_IS_IT_EXCL, EC_WORD_AND, EC_WORD_THOSE_ARE},
+                            .speechAfter = {EC_WORD_WHERE, EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_LOSS, EC_WORD_ALWAYS, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4232,11 +4424,18 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                         #else //ENGLISH
                             .name = _("DANE"),
                             .facilityClass = FACILITY_CLASS_BIRD_KEEPER,
+<<<<<<< HEAD
                             .speechBefore = {EC_WORD_I, EC_WORD_GOT, EC_WORD_MY, EC_WORD_POKEMON, EC_WORD_ON, EC_WORD_VACATION},
                             .speechWin = {EC_WORD_IT_S, EC_WORD_GREAT, EC_WORD_TO, EC_WORD_TRAVEL, EC_WORD_AND, EC_WORD_BATTLE},
                             .speechLose = {EC_WORD_WAAAH, EC_WORD_EXCL, EC_WORD_MY, EC_WORD_RARE, EC_WORD_POKEMON, EC_WORD_EXCL},
                             .speechAfter = {EC_WORD_OFF, EC_WORD_ON, EC_WORD_ANOTHER, EC_WORD_VACATION, EC_WORD_I, EC_WORD_GO},
                         #endif
+=======
+                            .speechBefore = {EC_WORD_A, EC_WORD_VACATION, EC_WORD_RECOMMEND, EC_WORD_TOO_LATE, EC_WORD_POKEMON, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_ABSOLUTELY, EC_WORD_LIKE, EC_WORD_A_LOT, EC_WORD_TRAVEL, EC_WORD_AND, EC_WORD_FIGHTS},
+                            .speechLose = {EC_WORD_EXCL_EXCL, EC_WORD_TOO_LATE, EC_WORD_POKEMON, EC_WORD_WHERE, EC_WORD_IT, EC_WORD_EXCL},
+                            .speechAfter = {EC_WORD_PROBABLY, EC_WORD_VACATION, EC_WORD_IT, EC_WORD_LISTEN, EC_WORD_TO_THEM, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4378,6 +4577,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("STEPHANIE"),
                             .facilityClass = FACILITY_CLASS_SWIMMING_TRIATHLETE_F,
@@ -4400,6 +4600,14 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                             .speechLose = {EC_WORD_YES, EC_WORD_THAT_S, EC_WORD_HOW, EC_WORD_YOU, EC_WORD_DO, EC_WORD_IT},
                             .speechAfter = {EC_WORD_YOU, EC_WORD_BEAT, EC_WORD_ME, EC_WORD_GOOD, EC_WORD_FOR, EC_WORD_YOU},
                         #endif
+=======
+                            .name = _("FANI"),
+                            .facilityClass = FACILITY_CLASS_SWIMMING_TRIATHLETE_F,
+                            .speechBefore = {EC_WORD_DOES, EC_WORD_WIN, EC_WORD_LIE, EC_WORD_NATURALLY, EC_WORD_WHY, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_RECOMMEND, EC_WORD_WIN, EC_WORD_ABSOLUTELY, EC_MOVE(ENDEAVOR), EC_WORD_MEAN, EC_WORD_YOURS},
+                            .speechLose = {EC_WORD_A, EC_WORD_PLUS, EC_MOVE(ENDEAVOR), EC_WORD_AND, EC_WORD_HAPPILY, EC_WORD_STRATEGY},
+                            .speechAfter = {EC_WORD_RECOMMEND, EC_WORD_PUSHOVER, EC_WORD_WHERE, EC_WORD_BELONGS_TO, EC_WORD_NITWIT, EC_WORD_SMACK},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4562,6 +4770,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ALBAN"),
                             .facilityClass = FACILITY_CLASS_COOLTRAINER_M,
@@ -4584,6 +4793,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_OUR, EC_WORD_STRATEGY, EC_WORD_ISN_T, EC_WORD_ANY, EC_WORD_GOOD, EC_WORD_ELLIPSIS},
                             .speechAfter = {EC_WORD_WE, EC_WORD_NEED, EC_WORD_TO, EC_WORD_TRAIN, EC_WORD_A_LOT, EC_WORD_MORE},
                         #endif
+=======
+                            .name = _("ALFI"),
+                            .facilityClass = FACILITY_CLASS_COOLTRAINER_M,
+                            .speechBefore = {EC_WORD_FIGHT, EC_WORD_MISS, EC_WORD_CASE, EC_WORD_TYPE, EC_WORD_LIE, EC_WORD_POKEMON},
+                            .speechWin = {EC_WORD_ALWAYS, EC_WORD_DOES, EC_WORD_FIGHTS, EC_WORD_I, EC_WORD_WHERE, EC_WORD_STORY},
+                            .speechLose = {EC_WORD_LOSS, EC_WORD_IS, EC_WORD_TICKLISH, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_AROUND, EC_WORD_TIMES, EC_WORD_A_LOT, EC_WORD_REAR, EC_WORD_POKEMON, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4730,6 +4947,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("SARRAH"),
                             .facilityClass = FACILITY_CLASS_PSYCHIC_F,
@@ -4752,6 +4970,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_NO, EC_WORD_NO, EC_WORD_ELLIPSIS, EC_WORD_THAT, EC_WORD_WON_T, EC_WORD_DO},
                             .speechAfter = {EC_WORD_THERE, EC_WORD_SHOULD, EC_WORD_BE, EC_WORD_A, EC_WORD_TRAINER, EC_WORD_SCHOOL},
                         #endif
+=======
+                            .name = _("EDI"),
+                            .facilityClass = FACILITY_CLASS_PSYCHIC_F,
+                            .speechBefore = {EC_WORD_A_TINY_BIT, EC_WORD_CHALLENGE, EC_WORD_WHERE, EC_WORD_MOOD, EC_WORD_WITHOUT, EC_WORD_HAS},
+                            .speechWin = {EC_WORD_JUST, EC_WORD_STRATEGY, EC_WORD_WENT, EC_WORD_CHALLENGE, EC_WORD_RECOMMEND, EC_WORD_REALLY},
+                            .speechLose = {EC_WORD_OH, EC_WORD_WHOAH, EC_WORD_HUMPH, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_SINCE, EC_WORD_HEARING, EC_WORD_LISTEN, EC_WORD_SOMEONE, EC_WORD_MISS, EC_WORD_THIS_IS_IT_EXCL},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -4909,6 +5135,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ALISTAIR"),
                             .facilityClass = FACILITY_CLASS_COOLTRAINER_M,
@@ -4931,6 +5158,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_LOSING, EC_WORD_HAS, EC_WORD_ME, EC_WORD_FEELING, EC_WORD_SMALL, EC_WORD_ELLIPSIS},
                             .speechAfter = {EC_WORD_YOU, EC_WORD_HAVE, EC_WORD_A, EC_WORD_GOOD, EC_WORD_TEACHER, EC_WORD_QUES},
                         #endif
+=======
+                            .name = _("RODI"),
+                            .facilityClass = FACILITY_CLASS_COOLTRAINER_M,
+                            .speechBefore = {EC_WORD_WHERE, EC_WORD_DOES, EC_WORD_WIN, EC_WORD_MISS, EC_MOVE2(HELPING_HAND), EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_I, EC_WORD_DOES, EC_WORD_WIN, EC_WORD_LIE, EC_WORD_WHY, EC_WORD_AWAY},
+                            .speechLose = {EC_MOVE2(HELPING_HAND), EC_WORD_IS, EC_WORD_GOOD, EC_WORD_WILD, EC_WORD_MATCH_UP, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_HEART, EC_WORD_LIE, EC_WORD_BATTLE, EC_WORD_BANG, EC_EMPTY_WORD, EC_EMPTY_WORD},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -5077,6 +5312,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("ISABELLE"),
                             .facilityClass = FACILITY_CLASS_COOLTRAINER_F,
@@ -5099,6 +5335,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_WHAT, EC_WORD_AN, EC_WORD_UNBELIEVABLE, EC_MOVE2(STRUGGLE), EC_WORD_THAT_WAS, EC_WORD_EXCL},
                             .speechAfter = {EC_WORD_I, EC_WORD_CAN, EC_WORD_BE, EC_WORD_YOUR, EC_WORD_POKEMON, EC_WORD_TEACHER},
                         #endif
+=======
+                            .name = _("CARLA"),
+                            .facilityClass = FACILITY_CLASS_COOLTRAINER_F,
+                            .speechBefore = {EC_WORD_I, EC_WORD_RECOMMEND, EC_WORD_WIN, EC_WORD_WHERE, EC_WORD_SINCE, EC_MOVE2(HELPING_HAND)},
+                            .speechWin = {EC_WORD_YOU, EC_WORD_UP, EC_WORD_HAVE, EC_WORD_NITWIT, EC_WORD_USING, EC_MOVE2(HELPING_HAND)},
+                            .speechLose = {EC_WORD_WENT, EC_WORD_FOR_NOW, EC_WORD_BATTLE, EC_WORD_LEFT, EC_WORD_HOPELESS, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_WHOM, EC_WORD_PLUS, EC_WORD_THIS_IS_IT_EXCL, EC_WORD_NITWIT, EC_WORD_AS_MUCH_AS, EC_WORD_POKEMON},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -5260,6 +5504,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("GREGOIRE"),
                             .facilityClass = FACILITY_CLASS_EXPERT_M,
@@ -5282,6 +5527,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_OH_DEAR, EC_WORD_I_AM, EC_WORD_SO, EC_WORD_SORRY, EC_EMPTY_WORD, EC_EMPTY_WORD},
                             .speechAfter = {EC_WORD_IS, EC_WORD_YOUR, EC_WORD_GRANDMOTHER, EC_WORD_STRONG, EC_WORD_QUES, EC_EMPTY_WORD},
                         #endif
+=======
+                            .name = _("TEREN"),
+                            .facilityClass = FACILITY_CLASS_EXPERT_M,
+                            .speechBefore = {EC_WORD_SORRY, EC_WORD_EEK, EC_WORD_GWAH, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_SORRY, EC_WORD_APOLOGIZE, EC_WORD_GOOD_BYE, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_SORRY, EC_WORD_PARDON, EC_WORD_FUFUFU, EC_WORD_WAAAH, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_QUES_EXCL, EC_WORD_IS, EC_WORD_APPROVED, EC_WORD_AWFULLY, EC_WORD_GRANDMOTHER, EC_WORD_QUES},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -5428,6 +5681,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("CARLOTTA"),
                             .facilityClass = FACILITY_CLASS_EXPERT_F,
@@ -5450,6 +5704,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_OH_DEAR, EC_WORD_I_AM, EC_WORD_SORRY, EC_WORD_TO, EC_WORD_DISAPPOINT, EC_WORD_YOU},
                             .speechAfter = {EC_WORD_IS, EC_WORD_YOUR, EC_WORD_GRANDFATHER, EC_WORD_COOL, EC_WORD_QUES, EC_EMPTY_WORD},
                         #endif
+=======
+                            .name = _("CARLOTA"),
+                            .facilityClass = FACILITY_CLASS_EXPERT_F,
+                            .speechBefore = {EC_WORD_SORRY, EC_WORD_FOE, EC_WORD_GWAH, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechWin = {EC_WORD_SORRY, EC_WORD_MUFUFU, EC_WORD_GOOD_BYE, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechLose = {EC_WORD_SORRY, EC_WORD_WAAAH, EC_WORD_FUFUFU, EC_WORD_WAAAH, EC_EMPTY_WORD, EC_EMPTY_WORD},
+                            .speechAfter = {EC_WORD_QUES_EXCL, EC_WORD_PRAISE, EC_WORD_COOL, EC_WORD_AWFULLY, EC_WORD_GRANDFATHER, EC_WORD_QUES},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -5607,6 +5869,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                 {
                     [0] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("JACKIE"),
                             .facilityClass = FACILITY_CLASS_PKMN_RANGER_F,
@@ -5629,6 +5892,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_WAAAH, EC_WORD_I_AM, EC_WORD_SO, EC_WORD_SAD, EC_WORD_I, EC_WORD_LOST},
                             .speechAfter = {EC_WORD_WAAAH, EC_WORD_EXCL, EC_EMPTY_WORD, EC_WORD_GO, EC_WORD_AWAY, EC_WORD_EXCL},
                         #endif
+=======
+                            .name = _("NORALA"),
+                            .facilityClass = FACILITY_CLASS_PKMN_RANGER_F,
+                            .speechBefore = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_THAT, EC_WORD_EVERY, EC_WORD_BEING, EC_WORD_EXCL},
+                            .speechWin = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_THAT, EC_WORD_EVERY, EC_WORD_LESS, EC_WORD_EXCL},
+                            .speechLose = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_THAT, EC_WORD_EVERY, EC_WORD_HARD, EC_WORD_EXCL},
+                            .speechAfter = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_THAT, EC_WORD_EVERY, EC_WORD_HOPELESS, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =
@@ -5771,6 +6042,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                         },
                     [1] =
                         {
+<<<<<<< HEAD
                         #if FRENCH
                             .name = _("IGNACE"),
                             .facilityClass = FACILITY_CLASS_PKMN_RANGER_M,
@@ -5793,6 +6065,14 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                             .speechLose = {EC_WORD_I_AM, EC_WORD_NOT, EC_WORD_COOL, EC_WORD_AT, EC_WORD_ALL, EC_WORD_EXCL},
                             .speechAfter = {EC_WORD_HEHEHE, EC_WORD_THAT_WAS, EC_WORD_AN, EC_WORD_AWESOME, EC_WORD_BATTLE, EC_WORD_EXCL},
                         #endif
+=======
+                            .name = _("GAB"),
+                            .facilityClass = FACILITY_CLASS_PKMN_RANGER_M,
+                            .speechBefore = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_THAT, EC_WORD_EVERY, EC_WORD_INCREDIBLE, EC_WORD_EXCL},
+                            .speechWin = {EC_WORD_EXCL_EXCL, EC_WORD_DOWN, EC_WORD_COOL, EC_WORD_NITWIT, EC_WORD_WHOM, EC_WORD_EXCL},
+                            .speechLose = {EC_WORD_EXCL_EXCL, EC_WORD_ABSOLUTELY, EC_WORD_WHICH, EC_WORD_A_LOT, EC_WORD_COOL, EC_WORD_EXCL},
+                            .speechAfter = {EC_WORD_EXCL_EXCL, EC_WORD_ABSOLUTELY, EC_WORD_WHICH, EC_WORD_QUITE, EC_WORD_SMART, EC_WORD_EXCL},
+>>>>>>> Egg/spanish
                             .mons =
                                 {
                                     [0] =

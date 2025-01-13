@@ -44,12 +44,16 @@ enum {
 };
 
 #define KBROW_COUNT 4
+<<<<<<< HEAD
 
 #if FRENCH
 #define KBCOL_COUNT 9
 #else //ENGLISH || ITALIAN
 #define KBCOL_COUNT 8
 #endif
+=======
+#define KBCOL_COUNT 8 // difference FR was 8 in EN
+>>>>>>> Egg/spanish
 
 enum {
     GFXTAG_BACK_BUTTON,
@@ -329,6 +333,7 @@ static const u8 sPageColumnCounts[KBPAGE_COUNT] = {
     [KEYBOARD_LETTERS_UPPER] = KBCOL_COUNT,
     [KEYBOARD_SYMBOLS]       = 6
 };
+<<<<<<< HEAD
 
 static const u8 sPageColumnXPos[KBPAGE_COUNT][KBCOL_COUNT] = {
 #if ENGLISH || ITALIAN
@@ -340,6 +345,12 @@ static const u8 sPageColumnXPos[KBPAGE_COUNT][KBCOL_COUNT] = {
     [KEYBOARD_LETTERS_UPPER] = {0, 12, 24, 36, 62, 74, 86, 98, 123},
     [KEYBOARD_SYMBOLS]       = {0, 22, 44, 66, 88, 110}
 #endif
+=======
+static const u8 sPageColumnXPos[KBPAGE_COUNT * KBCOL_COUNT] = {
+    0, 12, 24, 56, 68, 80, 92, 123, // KEYBOARD_LETTERS_LOWER
+    0, 12, 24, 56, 68, 80, 92, 123, // KEYBOARD_LETTERS_UPPER
+    0, 22, 44, 66, 88, 110              // KEYBOARD_SYMBOLS
+>>>>>>> Egg/spanish
 };
 
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[];
@@ -1741,8 +1752,10 @@ static void DrawNormalTextEntryBox(void)
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);
 }
 
-static void DrawMonTextEntryBox(void)
+// difference FR gStringVar1 is used as a buffer here
+void DrawMonTextEntryBox(void)
 {
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
     // StringVar1 is used as a buffer here
     u8 buffer[48];
@@ -1755,6 +1768,12 @@ static void DrawMonTextEntryBox(void)
     StringCopy(buffer, gSpeciesNames[sNamingScreen->monSpecies]);
     StringAppendN(buffer, sNamingScreen->template->title, 15);
 #endif
+=======
+    u8 buffer[48];
+
+    StringCopy(gStringVar1, gSpeciesNames[sNamingScreen->monSpecies]);
+    StringExpandPlaceholders(buffer, sNamingScreen->template->title);
+>>>>>>> Egg/spanish
     FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(1));
     AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, buffer, 8, 1, 0, 0);
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);

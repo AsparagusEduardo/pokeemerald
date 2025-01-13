@@ -39,6 +39,7 @@ MossdeepCity_House4_EventScript_Skitty::
 	release
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/MossdeepCity_House4/text_fr.inc"
 .else
@@ -52,3 +53,26 @@ MossdeepCity_House4_EventScript_Skitty::
 .endif
 .endif
 .endif
+=======
+MossdeepCity_House4_Text_BrotherLikesToFindBases:
+	.string "Mi hermano pequeño dice que quiere\n"
+	.string "encontrar las BASES SECRETAS\l"
+	.string "de otros ENTRENADORES.$"
+
+MossdeepCity_House4_Text_BrotherLikesToVisitBasesAndBattle:
+	.string "Mi hermano pequeño dice que le gusta\n"
+	.string "visitar las BASES SECRETAS de otros\l"
+	.string "ENTRENADORES y desafiarlos.$"
+
+MossdeepCity_House4_Text_YouMadeSecretBaseNearX:
+	.string "¿Tú tienes una BASE SECRETA\n"
+	.string "en la {STR_VAR_1}?$"
+
+MossdeepCity_House4_Text_MakeSecretBase:
+	.string "Deberías crear una BASE SECRETA\n"
+	.string "en alguna parte. ¡Yo iría a buscarla!$"
+
+MossdeepCity_House4_Text_Skitty:
+	.string "DELCATTY: ¿Delmiau?$"
+
+>>>>>>> Egg/spanish

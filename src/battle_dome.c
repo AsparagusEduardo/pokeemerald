@@ -4313,9 +4313,10 @@ static u8 Task_GetInfoCardInput(u8 taskId)
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
 #define ALLOC_ARRAY_SIZE max(NUM_STATS * FRONTIER_PARTY_SIZE, NUM_MOVE_POINT_TYPES)
 
+// difference FR
 static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 {
-#if FRENCH || ITALIAN
+#if EUROPE
     const u8 *trClassName;
     struct TextPrinterTemplate textPrinter;
     int i, j, k, trGender;
@@ -4417,15 +4418,21 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         gStringVar1[i] = *trClassName;
 #else //ENGLISH
     if (trainerId == TRAINER_PLAYER)
-        j = gFacilityClassToTrainerClass[FACILITY_CLASS_BRENDAN];
+        j = gFacilityClassToTrainerClass[FACILITY_CLASS_BRENDAN], trGender = gSaveBlock2Ptr->playerGender;
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
-        j = GetDomeBrainTrainerClass();
+        j = GetDomeBrainTrainerClass(), trGender = -1;
     else
-        j = GetFrontierOpponentClass(trainerId);
+        j = GetFrontierOpponentClass(trainerId), trGender = IsFrontierTrainerFemale(trainerId);
 
+<<<<<<< HEAD
     for (;gTrainerClassNames[j][i] != EOS; i++)
         gStringVar1[i] = gTrainerClassNames[j][i];
 #endif
+=======
+    trClassName = GetTrainerClassNameGenderSpecific(j, trGender, NULL);
+    for (; *trClassName != EOS; trClassName++, i++)
+        gStringVar1[i] = *trClassName;
+>>>>>>> Egg/spanish
     gStringVar1[i] = CHAR_SPACE;
     gStringVar1[i + 1] = EOS;
 

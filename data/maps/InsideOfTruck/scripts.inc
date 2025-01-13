@@ -51,6 +51,7 @@ InsideOfTruck_EventScript_MovingBox::
 	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/InsideOfTruck/text_fr.inc"
 .else
@@ -64,3 +65,10 @@ InsideOfTruck_EventScript_MovingBox::
 .endif
 .endif
 .endif
+=======
+InsideOfTruck_Text_BoxPrintedWithMonLogo:
+	.string "Una caja con un gran logotipo POKéMON.\p"
+	.string "Es un servicio POKéMON de mudanzas\n"
+	.string "y envíos.$"
+
+>>>>>>> Egg/spanish

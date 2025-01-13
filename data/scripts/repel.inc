@@ -3,6 +3,7 @@ EventScript_RepelWoreOff::
 	end
 
 Text_RepelWoreOff:
+<<<<<<< HEAD
 .ifdef FRENCH
 	.string "L’effet de REPOUSSE se dissipe…$"
 .else
@@ -12,3 +13,7 @@ Text_RepelWoreOff:
 	.string "REPEL's effect wore off…$"
 .endif
 .endif
+=======
+	.string "El REPELENTE ha dejado de hacer\n"
+	.string "efecto.$"
+>>>>>>> Egg/spanish

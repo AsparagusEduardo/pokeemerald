@@ -32,6 +32,7 @@ LavaridgeTown_Mart_EventScript_OldWoman::
 	msgbox LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/LavaridgeTown_Mart/text_fr.inc"
 .else
@@ -45,3 +46,17 @@ LavaridgeTown_Mart_EventScript_OldWoman::
 .endif
 .endif
 .endif
+=======
+LavaridgeTown_Mart_Text_XSpeedFirstStrike:
+	.string "Usa VELOCIDAD X para aumentar la\n"
+	.string "VELOCIDAD de tus POKéMON en combate.\p"
+	.string "Así podrán asestar el primer golpe.\n"
+	.string "¡Es una gran ventaja!$"
+
+LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney:
+	.string "En la cima del MONTE CENIZO puedes\n"
+	.string "comprar una especialidad local.\p"
+	.string "Dásela a un POKéMON: ¡se pondrá\n"
+	.string "loco de contento!$"
+
+>>>>>>> Egg/spanish

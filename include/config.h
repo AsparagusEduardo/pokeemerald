@@ -12,7 +12,11 @@
 // the various AGBPrint functions to be used. (See include/gba/isagbprint.h).
 // See below for enabling different pretty printing versions.
 
+<<<<<<< HEAD
 #ifndef NDEBUG
+=======
+#define FRENCH
+>>>>>>> Egg/spanish
 
 #define PRETTY_PRINT_MINI_PRINTF (0)
 #define PRETTY_PRINT_LIBC (1)
@@ -38,6 +42,8 @@
 #if !defined(ENGLISH) && !defined(FRENCH) && !defined(ITALIAN) && !defined(SPANISH)
 #define ENGLISH 1
 #endif
+
+#define EUROPE (FRENCH || ITALIAN || SPANISH)
 
 #if ENGLISH
 #define UNITS_IMPERIAL

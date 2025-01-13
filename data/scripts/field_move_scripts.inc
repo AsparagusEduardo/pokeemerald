@@ -68,18 +68,21 @@ Text_CantCut:
 	.string "L’albero si può abbattere con TAGLIO.$"
 .else
 Text_WantToCut:
-	.string "This tree looks like it can be\n"
-	.string "CUT down!\p"
-	.string "Would you like to CUT it?$"
+	.string "Parece que puedes CORTAR este árbol.\p"
+	.string "¿Usas CORTE?$"
 
 Text_MonUsedFieldMove:
-	.string "{STR_VAR_1} used {STR_VAR_2}!$"
+	.string "{STR_VAR_1} usó {STR_VAR_2}.$"
 
 Text_CantCut:
+<<<<<<< HEAD
 	.string "This tree looks like it can be\n"
 	.string "CUT down!$"
 .endif
 .endif
+=======
+	.string "Parece que puedes CORTAR este árbol.$"
+>>>>>>> Egg/spanish
 
 @ Interact with smashable rock
 EventScript_RockSmash::
@@ -156,14 +159,19 @@ Text_CantSmash:
 	.string "dovrebbe poterla frantumare.$"
 .else
 Text_WantToSmash:
-	.string "This rock appears to be breakable.\n"
-	.string "Would you like to use ROCK SMASH?$"
+	.string "Parece que se puede romper esta roca.\n"
+	.string "¿Usas GOLPE ROCA?$"
 
 Text_CantSmash:
+<<<<<<< HEAD
 	.string "It's a rugged rock, but a POKéMON\n"
 	.string "may be able to smash it.$"
 .endif
 .endif
+=======
+	.string "Es una roca muy dura, pero un\n"
+	.string "POKéMON podría hacerla añicos.$"
+>>>>>>> Egg/spanish
 
 EventScript_StrengthBoulder::
 	lockall
@@ -246,24 +254,29 @@ Text_StrengthActivated:
 	.string "i massi.$"
 .else
 Text_WantToStrength:
-	.string "It's a big boulder, but a POKéMON\n"
-	.string "may be able to push it aside.\p"
-	.string "Would you like to use STRENGTH?$"
+	.string "Es una roca enorme, pero un\n"
+	.string "POKéMON podría moverla.\p"
+	.string "¿Usas FUERZA?$"
 
 Text_MonUsedStrength:
-	.string "{STR_VAR_1} used STRENGTH!\p"
-	.string "{STR_VAR_1}'s STRENGTH made it\n"
-	.string "possible to move boulders around!$"
+	.string "{STR_VAR_1} usó FUERZA.\p"
+	.string "La FUERZA de {STR_VAR_1} logró\n"
+	.string "desplazar la roca a un lado.$"
 
 Text_CantStrength:
-	.string "It's a big boulder, but a POKéMON\n"
-	.string "may be able to push it aside.$"
+	.string "Es una roca enorme, pero un\n"
+	.string "POKéMON podría apartarla.$"
 
 Text_StrengthActivated:
+<<<<<<< HEAD
 	.string "STRENGTH made it possible to move\n"
 	.string "boulders around.$"
 .endif
 .endif
+=======
+	.string "Usar FUERZA ha permitido desplazar\n"
+	.string "la roca a un lado.$"
+>>>>>>> Egg/spanish
 
 EventScript_UseWaterfall::
 	lockall
@@ -312,17 +325,21 @@ Text_MonUsedWaterfall:
 	.string "{STR_VAR_1} usa CASCATA.$"
 .else
 Text_CantWaterfall:
-	.string "A wall of water is crashing down with\n"
-	.string "a mighty roar.$"
+	.string "Un muro de agua cae\n"
+	.string "con un estruendo estremecedor…$"
 
 Text_WantToWaterfall:
-	.string "It's a large waterfall.\n"
-	.string "Would you like to use WATERFALL?$"
+	.string "Es una gran catarata.\n"
+	.string "¿Usas CASCADA?$"
 
 Text_MonUsedWaterfall:
+<<<<<<< HEAD
 	.string "{STR_VAR_1} used WATERFALL.$"
 .endif
 .endif
+=======
+	.string "{STR_VAR_1} usó CASCADA.$"
+>>>>>>> Egg/spanish
 
 EventScript_UseDive::
 	lockall
@@ -426,29 +443,33 @@ Text_FailSweetScent:
 	.string "Pare non ci sia nulla qui…$"
 .else
 Text_CantDive:
-	.string "The sea is deep here. A POKéMON\n"
-	.string "may be able to go underwater.$"
+	.string "El mar es muy profundo en esta zona.\n"
+	.string "Un POKéMON podría bucear aquí.$"
 
 Text_WantToDive:
-	.string "The sea is deep here.\n"
-	.string "Would you like to use DIVE?$"
+	.string "El mar es muy profundo en esta zona.\n"
+	.string "¿Usas BUCEO?$"
 
 Text_MonUsedDive:
-	.string "{STR_VAR_1} used DIVE.$"
+	.string "{STR_VAR_1} usó BUCEO.$"
 
 Text_CantSurface:
-	.string "Light is filtering down from above.\n"
-	.string "A POKéMON may be able to surface.$"
+	.string "La luz se filtra desde la superficie.\n"
+	.string "Un POKéMON puede emerger aquí.$"
 
 Text_WantToSurface:
-	.string "Light is filtering down from above.\n"
-	.string "Would you like to use DIVE?$"
+	.string "La luz se filtra desde la superficie.\n"
+	.string "¿Usas BUCEO?$"
 
 EventScript_FailSweetScent::
 	msgbox Text_FailSweetScent, MSGBOX_SIGN
 	end
 
 Text_FailSweetScent:
+<<<<<<< HEAD
 	.string "Looks like there's nothing here…$"
 .endif
 .endif
+=======
+	.string "Parece que aquí no hay nada…$"
+>>>>>>> Egg/spanish

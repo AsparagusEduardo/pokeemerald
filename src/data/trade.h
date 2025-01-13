@@ -33,6 +33,7 @@ static const u8 sText_UnusedTextFormat[] = _("{COLOR WHITE}{HIGHLIGHT TRANSPAREN
 const u8 gText_MaleSymbol4[] = _("♂");
 const u8 gText_FemaleSymbol4[] = _("♀");
 const u8 gText_GenderlessSymbol[] = _("");
+<<<<<<< HEAD
 #if FRENCH
 static const u8 sText_SpaceMove[] = _(" CAPACITE"); // Unused
 static const u8 sText_NewLine[] = _("\n");
@@ -79,19 +80,23 @@ static const u8 sText_WaitingForYourFriend[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 
 static const u8 sText_YourFriendWantsToTrade[] = _("Il tuo amico vuole\nscambiare POKéMON.");
 #else //ENGLISH
 static const u8 sText_SpaceMove[] = _(" MOVE"); // Unused
+=======
+static const u8 sText_SpaceMove[] = _(" MOVER");
+>>>>>>> Egg/spanish
 static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Slash[] = _("/");
-static const u8 sText_Lv[] = _("Lv. ");
+static const u8 sText_Lv[] = _("Nv. ");
 static const u8 sText_ThreeDashes[] = _("---");
-static const u8 sText_FourQuestionMarks[] = _("????");
+static const u8 sText_FourQuestionMarks[] = _("(?)");
 static const u8 sText_UnusedEmpty[] = _("");
-static const u8 sText_IsThisTradeOkay[] = _("Is this trade okay?");
-static const u8 sText_Cancel[] = _("CANCEL");
-static const u8 sText_ChooseAPkmn[] = _("Choose a POKéMON.");
-static const u8 sText_Summary[] = _("SUMMARY");
-static const u8 sText_Trade[] = _("TRADE");
-static const u8 sText_CancelTrade[] = _("Cancel trade?");
+static const u8 sText_IsThisTradeOkay[] = _("¿Está bien así?");
+static const u8 sText_Cancel[] = _("SALIR");
+static const u8 sText_ChooseAPkmn[] = _("Elige un POKéMON.");
+static const u8 sText_Summary[] = _("RESUMEN");
+static const u8 sText_Trade[] = _("INTERCAMBIAR");
+static const u8 sText_CancelTrade[] = _("¿Cancelas el intercambio?");
 static const u8 sJPText_PressBButtonToQuit[] = _("Bボタン　で　もどります");
+<<<<<<< HEAD
 static const u8 sText_Summary2[] = _("SUMMARY");
 static const u8 sText_Trade2[] = _("TRADE");
 static const u8 sText_CommunicationStandby[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}Communication standby…\nPlease wait.");
@@ -100,6 +105,15 @@ static const u8 sText_OnlyPkmnForBattle[] = _("That's your only\nPOKéMON for ba
 static const u8 sText_WaitingForYourFriend[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}Waiting for your friend\nto finish…");
 static const u8 sText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade POKéMON.");
 #endif
+=======
+static const u8 sText_Summary2[] = _("RESUMEN");
+static const u8 sText_Trade2[] = _("INTERCAMBIAR");
+static const u8 sText_CommunicationStandby[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Esperando para\nrealizar conexión…");
+static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}El intercambio\nha sido cancelado.");
+static const u8 sText_OnlyPkmnForBattle[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Es el único con el\nque puedes luchar.");
+static const u8 sText_WaitingForYourFriend[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Espera un momento\na que termine.");
+static const u8 sText_YourFriendWantsToTrade[] = _("Quiere intercambiar POKéMON\ncontigo.");
+>>>>>>> Egg/spanish
 
 static const struct OamData sOamData_MenuText =
 {
@@ -1028,15 +1042,19 @@ static const union AffineAnimCmd *const sAffineAnims_CrossingMonPics[] =
     sAffineAnim_CrossingMonPic
 };
 
-static const struct InGameTrade sIngameTrades[] =
+const struct InGameTrade sIngameTrades[] =
 {
     [INGAME_TRADE_SEEDOT] =
     {
+<<<<<<< HEAD
     #if ENGLISH || ITALIAN
         .nickname = _("DOTS"),
     #elif FRENCH
         .nickname = _("PIPIO"),
     #endif
+=======
+        .nickname = _("SITOT"),
+>>>>>>> Egg/spanish
         .species = SPECIES_SEEDOT,
         .ivs = {5, 4, 5, 4, 4, 4},
         .abilityNum = 1,
@@ -1045,22 +1063,30 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x84,
         .heldItem = ITEM_CHESTO_BERRY,
         .mailNum = -1,
+<<<<<<< HEAD
     #if ENGLISH || FRENCH
         .otName = _("KOBE"),
     #elif ITALIAN
         .otName = _("KIKO"),
     #endif
+=======
+        .otName = _("QUICO"),
+>>>>>>> Egg/spanish
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
     },
     [INGAME_TRADE_PLUSLE] =
     {
+<<<<<<< HEAD
     #if ENGLISH || ITALIAN
         .nickname = _("PLUSES"),
     #elif FRENCH
         .nickname = _("SIPO"),
     #endif
+=======
+        .nickname = _("PUSLE"),
+>>>>>>> Egg/spanish
         .species = SPECIES_PLUSLE,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
@@ -1069,22 +1095,30 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x6F,
         .heldItem = ITEM_WOOD_MAIL,
         .mailNum = 0,
+<<<<<<< HEAD
     #if ENGLISH || ITALIAN
         .otName = _("ROMAN"),
     #elif FRENCH
         .otName = _("ALBAN"),
     #endif
+=======
+        .otName = _("RENATO"),
+>>>>>>> Egg/spanish
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_VOLBEAT
     },
     [INGAME_TRADE_HORSEA] =
     {
+<<<<<<< HEAD
     #if ENGLISH || ITALIAN
         .nickname = _("SEASOR"),
     #elif FRENCH
         .nickname = _("HYPY"),
     #endif
+=======
+        .nickname = _("HORSI"),
+>>>>>>> Egg/spanish
         .species = SPECIES_HORSEA,
         .ivs = {5, 4, 4, 4, 5, 4},
         .abilityNum = 0,
@@ -1093,6 +1127,7 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x7F,
         .heldItem = ITEM_WAVE_MAIL,
         .mailNum = 1,
+<<<<<<< HEAD
     #if FRENCH
         .otName = _("LUDOVIC"),
     #elif ITALIAN
@@ -1100,6 +1135,9 @@ static const struct InGameTrade sIngameTrades[] =
     #else //ENGLISH
         .otName = _("SKYLAR"),
     #endif
+=======
+        .otName = _("SERGIO"),
+>>>>>>> Egg/spanish
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_BAGON
@@ -1119,14 +1157,14 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x8B,
         .heldItem = ITEM_RETRO_MAIL,
         .mailNum = 2,
-        .otName = _("ISIS"),
+        .otName = _("ISA"),
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
     }
 };
 
-static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
+const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
 #if FRENCH
     {
@@ -1194,26 +1232,29 @@ static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
     }
 #else //ENGLISH
     {
-        EC_WORD_BE,
-        EC_WORD_NICE,
-        EC_WORD_TO,
-        EC_POKEMON(PLUSLE),
-        EC_WORD_EXCL,
-        EC_POKEMON(VOLBEAT),
-        EC_WORD_WILL,
-        EC_WORD_BE,
-        EC_WORD_FANTASTIC
+        EC_WORD_DOES,
+         EC_WORD_MUCH,
+         EC_WORD_MISS,
+         EC_POKEMON(PLUSLE),
+         EC_POKEMON(VOLBEAT),
+         EC_WORD_IS,
+         EC_WORD_VERY,
+         EC_WORD_ANTICIPATION,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
     }, {
-        EC_WORD_I,
-        EC_WORD_WILL,
-        EC_WORD_MAKE,
         EC_POKEMON(BAGON),
-        EC_WORD_TOUGH,
-        EC_WORD_PLEASE,
-        EC_WORD_TRAIN,
-        EC_POKEMON(HORSEA),
-        EC_WORD_WELL
+         EC_WORD_WERE,
+         EC_WORD_POINTS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(HORSEA),
+         EC_WORD_PRAISE,
+         EC_WORD_NITWIT,
+         EC_WORD_FORGETS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
     }, {
+<<<<<<< HEAD
         EC_WORD_THANK_YOU,
         EC_WORD_FOR,
         EC_POKEMON(SKITTY),
@@ -1225,6 +1266,19 @@ static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
         EC_WORD_WAY
     }
 #endif
+=======
+        EC_WORD_THANKS,
+         EC_WORD_HOWEVER,
+         EC_POKEMON(SKITTY),
+         EC_EMPTY_WORD,
+         EC_POKEMON_NATIONAL(MEOWTH),
+         EC_WORD_IS,
+         EC_WORD_VERY,
+         EC_WORD_CUTENESS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
+    },
+>>>>>>> Egg/spanish
 };
 
 static const struct WindowTemplate sTradeSequenceWindowTemplates[] =

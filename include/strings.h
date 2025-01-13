@@ -213,7 +213,7 @@ extern const u8 gMenuText_Walk[];
 extern const u8 gMenuText_Deselect[];
 extern const u8 gMenuText_CheckTag[];
 extern const u8 gMenuText_Confirm[];
-#if FRENCH || ITALIAN
+#if EUROPE
 extern const u8 gMenuText_Confirm2[];
 #endif
 extern const u8 gMenuText_Show[];
@@ -530,10 +530,18 @@ extern const u8 gText_NumberClear01[];
 extern const u8 gText_5MarksPokemon[];
 extern const u8 gText_UnkHeight[];
 extern const u8 gText_UnkWeight[];
+<<<<<<< HEAD
 #ifdef UNITS_METRIC
 extern const u8 gText_EmptyHeight[];
 extern const u8 gText_EmptyWeight[];
 #endif
+=======
+extern const u8 gText_EmptyPkmnCategory[];
+extern const u8 gText_EmptyHeight[];
+extern const u8 gText_EmptyWeight[];
+extern const u8 gText_EmptyPokedexInfo1[];
+extern const u8 gText_EmptyPokedexInfo2[];
+>>>>>>> Egg/spanish
 extern const u8 gText_HTHeight[];
 extern const u8 gText_WTWeight[];
 extern const u8 gText_SearchingPleaseWait[];
@@ -2487,7 +2495,7 @@ extern const u8 gText_MrStoneMatchCallDesc[];
 extern const u8 gText_MrStoneMatchCallName[];
 extern const u8 gText_StevenMatchCallDesc[];
 extern const u8 gText_StevenMatchCallName[];
-#if FRENCH || ITALIAN
+#if EUROPE
 extern const u8 gText_BrendanMatchCallDesc[];
 extern const u8 gText_MayMatchCallDesc[];
 #else //ENGLISH
@@ -3030,7 +3038,7 @@ extern const u8 gText_Summary2[];
 extern const u8 gText_PkmnForSwap[];
 extern const u8 gText_SamePkmnInPartyAlready[];
 extern const u8 gText_Cancel3[];
-#if FRENCH || ITALIAN
+#if EUROPE
 extern const u8 gText_Eleve[];
 extern const u8 gText_Dresseur[];
 extern const u8 gText_Champion[];
@@ -3042,5 +3050,10 @@ extern const u8 gText_YourName[];
 extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];
+
+// French specific
+extern const u8 gText_Eleve[];
+extern const u8 gText_Dresseur[];
+extern const u8 gText_Champion[];
 
 #endif // GUARD_STRINGS_H

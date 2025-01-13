@@ -30,9 +30,16 @@ sText_MysteryGiftStampCard:
 	.string "è {STR_VAR_1}.$"
 .else @ENGLISH
 sText_MysteryGiftStampCard:
+<<<<<<< HEAD
 	.string "Thank you for using the STAMP CARD\n"
 	.string "System.\p"
 	.string "You have {STR_VAR_1} more to collect to\n"
 	.string "fill your STAMP CARD.$"
 .endif
 .endif
+=======
+	.string "Gracias por usar el sistema\n"
+	.string "de SELLOS.\p"
+	.string "Para completar la TARJETA\n"
+	.string "de SELLOS, te faltan {STR_VAR_1}.$"
+>>>>>>> Egg/spanish

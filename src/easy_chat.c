@@ -1321,6 +1321,7 @@ static const u16 sDefaultProfileWords[EASY_CHAT_BATTLE_WORDS_COUNT - 2] = {
 #endif
 };
 
+<<<<<<< HEAD
 static const u16 sDefaultBattleStartWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
 #if FRENCH
     EC_WORD_APOLOGIZE,
@@ -1394,6 +1395,33 @@ static const u16 sDefaultBattleLostWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
     EC_WORD_LOST,
     EC_WORD_ELLIPSIS,
 #endif
+=======
+static const u16 sDefaultBattleStartWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
+    EC_WORD_QUES_EXCL,
+    EC_WORD_HAVE,
+    EC_WORD_THOSE_ARE,
+    EC_WORD_LIE,
+    EC_WORD_FIGHTS,
+    EC_WORD_QUES,
+};
+
+static const u16 sDefaultBattleWonWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
+    EC_WORD_WAHAHAHA,
+    EC_WORD_WAHAHAHA,
+    EC_WORD_DASH_DASH_DASH,
+    EC_WORD_HEHEHE,
+    EC_EMPTY_WORD,
+    EC_EMPTY_WORD,
+};
+
+static const u16 sDefaultBattleLostWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
+    EC_WORD_CRIES,
+    EC_WORD_CRIES,
+    EC_WORD_UGLY,
+    EC_WORD_COUNT_ON,
+    EC_EMPTY_WORD,
+    EC_EMPTY_WORD,
+>>>>>>> Egg/spanish
 };
 
 static const u16 sRestrictedWordSpecies[] = {

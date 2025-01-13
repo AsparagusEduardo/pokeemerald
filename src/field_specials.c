@@ -2910,17 +2910,23 @@ void FrontierGamblerSetWonOrLost(bool8 won)
 
 void UpdateBattlePointsWindow(void)
 {
-    u8 string[32];
+    u8 string[32], *strPtr;
     u32 x;
+<<<<<<< HEAD
 #if ITALIAN
     u8 *strPtr;
+=======
+>>>>>>> Egg/spanish
 
     strPtr = ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->frontier.battlePoints, STR_CONV_MODE_RIGHT_ALIGN, 4);
     *strPtr++ = CHAR_SPACE;
     StringCopy(strPtr, gText_BP);
+<<<<<<< HEAD
 #else // ENGLISH || FRENCH
     StringCopy(ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->frontier.battlePoints, STR_CONV_MODE_RIGHT_ALIGN, 4), gText_BP);
 #endif
+=======
+>>>>>>> Egg/spanish
     x = GetStringRightAlignXOffset(FONT_NORMAL, string, 48);
     AddTextPrinterParameterized(sBattlePointsWindowId, FONT_NORMAL, string, x, 1, 0, NULL);
 }

@@ -248,11 +248,14 @@ static s16 sDebug_GameTimeStage;
 
 COMMON_DATA u8 gInGameOpponentsNo = 0;
 
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
 static const u8 sBlenderCenter_Tilemap[] = INCBIN_U8("graphics/berry_blender/center_map.bin");
 static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/french/outer.gbapal");
 #else //ENGLISH
 static const u16 sBlenderCenter_Pal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
+=======
+>>>>>>> Egg/spanish
 static const u8 sBlenderCenter_Tilemap[] = INCBIN_U8("graphics/berry_blender/center_map.bin");
 static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/outer.gbapal");
 #endif
@@ -294,6 +297,23 @@ static const u8 sText_Lassie[] = _("MILLO");
 static const u8 sText_Master[] = _("MAESTRO");
 static const u8 sText_Dude[] = _("RAGAZZO");
 static const u8 sText_Miss[] = _("RAGAZZA");
+#elif SPANISH
+// unused text
+static const u8 sUnusedText_YesNo[] = _("SÍ\nNO");
+static const u8 sUnusedText_2[] = _("▶");
+static const u8 sUnusedText_Space[] = _(" ");
+static const u8 sUnusedText_Terminating[] = _("Terminando…");
+static const u8 sUnusedText_LinkPartnerNotFound[] = _("No se han encontrado otros jugadores.\nInténtalo de nuevo.\p");
+
+static const u8 sText_BerryBlenderStart[] = _("Encendiendo la LICUABAYAS…\pSaca una BAYA de la MOCHILA\ny échala en la LICUABAYAS.\p");
+static const u8 sText_NewParagraph[] = _("\p");
+static const u8 sText_WasMade[] = _("¡Has hecho un {STR_VAR_1}!");
+static const u8 sText_Mister[] = _("SEÑOR");
+static const u8 sText_Laddie[] = _("CHICO");
+static const u8 sText_Lassie[] = _("CHICA");
+static const u8 sText_Master[] = _("LICUÓLOGO");
+static const u8 sText_Dude[] = _("CHAVAL");
+static const u8 sText_Miss[] = _("SEÑORITA");
 #else //ENGLISH
 // unused text
 static const u8 sUnusedText_YesNo[] = _("YES\nNO");
@@ -322,6 +342,7 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_DUDE]   = sText_Dude,
     [BLENDER_MISS]   = sText_Miss
 };
+<<<<<<< HEAD
 #if FRENCH
 static const u8 sText_PressAToStart[] = _("Appuyez sur le bouton A pour démarrer.");
 static const u8 sText_PleaseWaitAWhile[] = _("Veuillez patientez.");
@@ -387,12 +408,31 @@ static const u8 sText_Min[] = _(" min. ");
 static const u8 sText_Sec[] = _(" sec.");
 static const u8 sText_MaximumSpeed[] = _("MAXIMUM SPEED");
 static const u8 sText_RPM[] = _(" RPM");
+=======
+
+static const u8 sText_PressAToStart[] = _("Pulsa el Botón A para empezar.");
+static const u8 sText_PleaseWaitAWhile[] = _("Espera un momento.");
+static const u8 sText_CommunicationStandby[] = _("Esperando conexión…");
+static const u8 sText_WouldLikeToBlendAnotherBerry[] = _("¿Quieres echar otra BAYA?");
+static const u8 sText_RunOutOfBerriesForBlending[] = _("Te has quedado sin BAYAS\npara echar en la LICUABAYAS.\p");
+static const u8 sText_YourPokeblockCaseIsFull[] = _("El TUBO de {POKEBLOCK}S está lleno.\p");
+static const u8 sText_HasNoBerriesToPut[] = _("{STR_VAR_1} no tiene BAYAS para echar\nen la LICUABAYAS.");
+static const u8 sText_ApostropheSPokeblockCaseIsFull[] = _("El TUBO de {POKEBLOCK}S de {STR_VAR_1} está lleno.\p");
+static const u8 sText_BlendingResults[] = _("RESULTADOS DE LA MEZCLA");
+static const u8 sText_BerryUsed[] = _("BAYA USADA");
+static const u8 sText_SpaceBerry[] = _("BAYA {STR_VAR_1}");
+static const u8 sText_Time[] = _("TIEMPO");
+static const u8 sText_Min[] = _(" min ");
+static const u8 sText_Sec[] = _(" s");
+static const u8 sText_MaximumSpeed[] = _("VELOC. MÁXIMA");
+static const u8 sText_RPM[] = _(" rpm");
+>>>>>>> Egg/spanish
 static const u8 sText_Dot[] = _(".");
 static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Space[] = _(" ");
-static const u8 sText_Ranking[] = _("RANKING");
-static const u8 sText_TheLevelIs[] = _("The level is ");
-static const u8 sText_TheFeelIs[] = _(", and the feel is ");
+static const u8 sText_Ranking[] = _("CLASIFICACIÓN");
+static const u8 sText_TheLevelIs[] = _("La eficacia es ");
+static const u8 sText_TheFeelIs[] = _(" y la masa es ");
 static const u8 sText_Dot2[] = _(".");
 #endif
 
@@ -1006,6 +1046,7 @@ static const u8 sBlackPokeblockFlavorFlags[] = {
     (1 << FLAVOR_SOUR)   | (1 << FLAVOR_SWEET)  | (1 << FLAVOR_SPICY),
 };
 
+<<<<<<< HEAD
 static const u8 sJPText_GoodTvReady[] = _("\nいいTVができました "); // Unused
 static const u8 sJPText_BadTvReady[] = _("\nダメTVができました "); // Unused
 static const u8 sJPText_Flavors[][5] = {_("からい"), _("しぶい"), _("あまい"), _("にがい"), _("すっぱい")}; // Unused
@@ -1027,6 +1068,16 @@ static const struct WindowTemplate sBlenderRecordWindowTemplate =
     .paletteNum = 15,
     .baseBlock = 8
 #endif
+=======
+static const u8 sUnused[] =
+{
+    0xfe, 0x02, 0x02, 0xce, 0xd0, 0x37, 0x44, 0x07, 0x1f, 0x0c, 0x10,
+    0x00, 0xff, 0xfe, 0x91, 0x72, 0xce, 0xd0, 0x37, 0x44, 0x07, 0x1f,
+    0x0c, 0x10, 0x00, 0xff, 0x06, 0x27, 0x02, 0xff, 0x00, 0x0c, 0x48,
+    0x02, 0xff, 0x00, 0x01, 0x1f, 0x02, 0xff, 0x00, 0x16, 0x37, 0x02,
+    0xff, 0x00, 0x0d, 0x50, 0x4b, 0x02, 0xff, 0x06, 0x06, 0x06, 0x06,
+    0x05, 0x03, 0x03, 0x03, 0x02, 0x02
+>>>>>>> Egg/spanish
 };
 
 static void UpdateHitPitch(void)
@@ -1058,7 +1109,7 @@ static bool8 LoadBerryBlenderGfx(void)
     case 1:
         CopyToBgTilemapBuffer(2, sBlenderCenter_Tilemap, 0x400, 0);
         CopyBgTilemapBufferToVram(2);
-    #if FRENCH || ITALIAN
+    #if EUROPE
         LoadPalette(gBlenderCenter_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
     #else //ENGLISH
         LoadPalette(sBlenderCenter_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
@@ -2943,7 +2994,7 @@ static void CB2_CheckPlayAgainLink(void)
     case 1:
         sBerryBlender->gameEndState = 3;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-    #if FRENCH || ITALIAN
+    #if EUROPE
         StringAppendWithPlaceholder(gStringVar4, sText_ApostropheSPokeblockCaseIsFull, gStringVar4);
     #else //ENGLISH
         StringAppend(gStringVar4, sText_ApostropheSPokeblockCaseIsFull);
@@ -2952,7 +3003,7 @@ static void CB2_CheckPlayAgainLink(void)
     case 2:
         sBerryBlender->gameEndState++;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-    #if FRENCH || ITALIAN
+    #if EUROPE
         StringAppendWithPlaceholder(gStringVar4, sText_HasNoBerriesToPut, gStringVar4);
     #else //ENGLISH
         StringAppend(gStringVar4, sText_HasNoBerriesToPut);
@@ -3615,7 +3666,7 @@ static bool8 PrintBlendingResults(void)
 
                 StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
                 ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
-            #if FRENCH || ITALIAN
+            #if EUROPE
                 StringAppendWithPlaceholder(sBerryBlender->stringVar, sText_SpaceBerry, sBerryBlender->stringVar);
             #else //ENGLISH
                 StringAppend(sBerryBlender->stringVar, sText_SpaceBerry);
@@ -3625,7 +3676,7 @@ static bool8 PrintBlendingResults(void)
 
             Blender_AddTextPrinter(WIN_RESULTS, sText_MaximumSpeed, 0, 0x51, TEXT_SKIP_DRAW, 3);
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->maxRPM / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        #if FRENCH || ITALIAN
+        #if EUROPE
             {
                 u8 comma[] = _(",");
                 StringAppend(sBerryBlender->stringVar, comma);
@@ -3704,7 +3755,7 @@ static bool8 PrintBlendingResults(void)
     return FALSE;
 }
 
-#if FRENCH || ITALIAN
+#if EUROPE
 static const u8 sUnused2[] = {0x03, 0x03, 0x03, 0x03, 0x02};
 #endif
 
@@ -3715,7 +3766,7 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
 
     dst[0] = EOS;
     StringCopy(dst, gPokeblockNames[pokeblock->color]);
-#if FRENCH || ITALIAN
+#if EUROPE
     StringAppendWithPlaceholder(dst, sText_WasMade, dst);
 #else //ENGLISH
     StringAppend(dst, sText_WasMade);
@@ -3879,7 +3930,7 @@ void ShowBerryBlenderRecordWindow(void)
 {
     s32 i;
     s32 xPos, yPos;
-#if FRENCH || ITALIAN
+#if EUROPE
     struct WindowTemplate winTemplate =
     {
         .bg = 0,
@@ -3913,7 +3964,7 @@ void ShowBerryBlenderRecordWindow(void)
         record = gSaveBlock1Ptr->berryBlenderRecords[i];
 
         txtPtr = ConvertIntToDecimalStringN(text, record / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    #if FRENCH || ITALIAN
+    #if EUROPE
         *txtPtr++ = CHAR_COMMA;
         *txtPtr = EOS;
     #else //ENGLISH

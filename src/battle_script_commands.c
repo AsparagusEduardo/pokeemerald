@@ -10164,7 +10164,11 @@ void BattleCreateYesNoCursorAt(u8 cursorPosition)
     src[0] = 1;
     src[1] = 2;
 
+<<<<<<< HEAD
     CopyToBgTilemapBufferRect_ChangePalette(0, src, YESNOBOX_CURSOR_RECT_X, 9 + (2 * cursorPosition), 1, 2, 0x11);
+=======
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x18, 9 + (2 * cursorPosition), 1, 2, 0x11);
+>>>>>>> Egg/spanish
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -10174,7 +10178,11 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
     src[0] = 0x1016;
     src[1] = 0x1016;
 
+<<<<<<< HEAD
     CopyToBgTilemapBufferRect_ChangePalette(0, src, YESNOBOX_CURSOR_RECT_X, 9 + (2 * cursorPosition), 1, 2, 0x11);
+=======
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x18, 9 + (2 * cursorPosition), 1, 2, 0x11);
+>>>>>>> Egg/spanish
     CopyBgTilemapBufferToVram(0);
 }
 

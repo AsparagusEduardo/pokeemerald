@@ -38,8 +38,12 @@ const u32 gSlotMachineDigitalDisplay_Gfx[] = INCBIN_U32("graphics/slot_machine/f
 const u8 gSlotMachineReelSymbol6Tiles[] = INCBIN_U8("graphics/slot_machine/reel_symbols/6.4bpp");
 const u8 gSlotMachineReelSymbol7Tiles[] = INCBIN_U8("graphics/slot_machine/reel_symbols/7.4bpp");
 
+<<<<<<< HEAD
 const u32 gSlotMachineDigitalDisplay_Gfx[] = INCBIN_U32("graphics/slot_machine/digital_display.4bpp.lz");
 #endif
+=======
+const u32 gSlotMachineDigitalDisplay_Gfx[] = INCBIN_U32("graphics/slot_machine/digital_display.4bpp.lz"); // The 'REG' text is missing in the FR version.
+>>>>>>> Egg/spanish
 
 const u8 gSlotMachineNumber0Tiles[] = INCBIN_U8("graphics/slot_machine/numbers/0.4bpp");
 const u8 gSlotMachineNumber1Tiles[] = INCBIN_U8("graphics/slot_machine/numbers/1.4bpp");

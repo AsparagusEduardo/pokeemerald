@@ -180,6 +180,7 @@ SkyPillar_Top_Movement_CameraPanDown:
 	walk_slow_down
 	step_end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/SkyPillar_Top/text_fr.inc"
 .else
@@ -193,3 +194,8 @@ SkyPillar_Top_Movement_CameraPanDown:
 .endif
 .endif
 .endif
+=======
+SkyPillar_Top_Text_RayquazaFlewOff:
+	.string "RAYQUAZA despertó y salió volando…$"
+
+>>>>>>> Egg/spanish

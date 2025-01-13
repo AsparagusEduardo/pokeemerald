@@ -9,6 +9,7 @@ OldaleTown_House2_EventScript_Man::
 	msgbox OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon, MSGBOX_NPC
 	end
 
+<<<<<<< HEAD
 .ifdef FRENCH
 	.include "data/maps/OldaleTown_House2/text_fr.inc"
 .else
@@ -22,3 +23,13 @@ OldaleTown_House2_EventScript_Man::
 .endif
 .endif
 .endif
+=======
+OldaleTown_House2_Text_PokemonLevelUp:
+	.string "Cuando los POKéMON luchan,\n"
+	.string "suben de nivel y se hacen más fuertes.$"
+
+OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon:
+	.string "Si los POKéMON que tienes se vuelven\n"
+	.string "más fuertes, podrás viajar más lejos.$"
+
+>>>>>>> Egg/spanish

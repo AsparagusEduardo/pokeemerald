@@ -81,26 +81,32 @@ sText_MysteryGiftOldSeaMapBagFull:
 	.string "depositato qualcosa nel PC.$"
 .else @ENGLISH
 sText_MysteryGiftOldSeaMapForYou:
-	.string "Thank you for using the MYSTERY\n"
-	.string "GIFT System.\p"
-	.string "Let me confirm--you are {PLAYER}?\p"
-	.string "We received this OLD SEA MAP\n"
-	.string "addressed to you.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Debes de ser {PLAYER}, ¿no?\p"
+	.string "Pues tenemos una CARTA MARINA para ti.$"
 
 sText_MysteryGiftOldSeaMapUseAtPort:
-	.string "It appears to be for use at the\n"
-	.string "LILYCOVE CITY port.\p"
-	.string "Why not give it a try and see what\n"
-	.string "it is about?$"
+	.string "Parece que puedes usarlo en el\n"
+	.string "puerto de CIUDAD CALAGUA.\p"
+	.string "¿Por qué no curioseas un poco\n"
+	.string "para ver de qué va la cosa?$"
 
 sText_MysteryGiftOldSeaMapThankYou:
-	.string "Thank you for using the MYSTERY\n"
-	.string "GIFT System.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.$"
 
 sText_MysteryGiftOldSeaMapBagFull:
+<<<<<<< HEAD
 	.string "Oh, I'm sorry, {PLAYER}.\n"
 	.string "Your BAG's KEY ITEMS POCKET is full.\p"
 	.string "Please store something on your PC,\n"
 	.string "then come back for this.$"
 .endif
 .endif
+=======
+	.string "Lo siento, {PLAYER}. El BOLSILLO\n"
+	.string "de los OBJETOS CLAVE está lleno.\p"
+	.string "Guarda algo en el PC y vuelve más\n"
+	.string "tarde.$"
+>>>>>>> Egg/spanish

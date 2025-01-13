@@ -209,65 +209,73 @@ MauvilleCity_PokemonCenter_1F_Text_CantTradeThatOne:
 .else
 @ Trader
 MauvilleCity_PokemonCenter_1F_Text_WantToTradeDecor:
-	.string "Hi, I'm the TRADER.\n"
-	.string "Want to trade decorations with me?$"
+	.string "Hola, soy el CANJEADOR.\n"
+	.string "¿Quieres intercambiar objetos\l"
+	.string "de decoración conmigo?$"
 
 MauvilleCity_PokemonCenter_1F_Text_TraderFeelingTheBlues:
-	.string "Oh…\n"
-	.string "You've left me feeling the blues…$"
+	.string "Ay…\n"
+	.string "Nadie me quiere…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WeveAlreadyTraded:
-	.string "But we've traded decorations already,\n"
-	.string "you and I.$"
+	.string "Un momento… ¡Si tú y yo ya hemos\n"
+	.string "intercambiado adornos!$"
 
 MauvilleCity_PokemonCenter_1F_Text_PickADecorItem:
-	.string "If you see any decorative item that\n"
-	.string "you want of mine, speak up.$"
+	.string "Si entre mis objetos ves alguno\n"
+	.string "que te guste, habla sin miedo.$"
 
 MauvilleCity_PokemonCenter_1F_Text_YouDontWantAnything:
-	.string "You don't want anything?\n"
-	.string "I feel unwanted…$"
+	.string "¡¿Que no quieres nada?!\n"
+	.string "Nadie me quiere…$"
 
 MauvilleCity_PokemonCenter_1F_Text_OnceBelongedToPlayerDoYouWantIt:
-	.string "That decorative item once belonged\n"
-	.string "to {STR_VAR_1}.\p"
-	.string "Do you want it?$"
+	.string "Ese objeto de decoración solía\n"
+	.string "pertenecer a {STR_VAR_1}.\p"
+	.string "¿Lo quieres?$"
 
 MauvilleCity_PokemonCenter_1F_Text_YouDontHaveAnyDecor:
-	.string "Uh… Wait a second. You don't have a\n"
-	.string "single piece of decoration!$"
+	.string "Eh… Un momento… ¡Si tú no tienes\n"
+	.string "ni un solo objeto de decoración!$"
 
 MauvilleCity_PokemonCenter_1F_Text_PickTheDecorToTrade:
-	.string "Okay, pick the decoration that you'll\n"
-	.string "trade to me.$"
+	.string "Vale, escoge el adorno que quieres\n"
+	.string "intercambiar conmigo…$"
 
 MauvilleCity_PokemonCenter_1F_Text_YouDontWantToTrade:
-	.string "You won't trade with me?\n"
-	.string "I feel unwanted…$"
+	.string "¡¿Que no quieres intercambiar nada?!\n"
+	.string "Nadie me quiere…$"
 
 MauvilleCity_PokemonCenter_1F_Text_YouveNoRoomForThis:
-	.string "You've got all the {STR_VAR_2}S that can\n"
-	.string "be stored. You've no room for this.$"
+	.string "Tienes de esto para aburrir…\n"
+	.string "No te queda sitio para más.$"
 
 MauvilleCity_PokemonCenter_1F_Text_SoWellTradeTheseDecor:
-	.string "Okay, so we'll trade my {STR_VAR_3}\n"
-	.string "for your {STR_VAR_2}?$"
+	.string "Vale, cambiamos mi {STR_VAR_3}\n"
+	.string "por tu {STR_VAR_2}, ¿no?$"
 
 MauvilleCity_PokemonCenter_1F_Text_ThatDecorIsInUse:
-	.string "That piece of decoration is in use.\n"
-	.string "You can't trade it.$"
+	.string "¡Pero si estás usando ese objeto!\n"
+	.string "¡¿Cómo vas a intercambiarlo?!$"
 
 MauvilleCity_PokemonCenter_1F_Text_SendDecorToYourPC:
-	.string "Then we'll trade!\n"
-	.string "I'll send my decoration to your PC.$"
+	.string "¡Trato hecho!\n"
+	.string "Te enviaré el adorno a tu PC.$"
 
 MauvilleCity_PokemonCenter_1F_Text_CantTradeThatOne:
+<<<<<<< HEAD
 	.string "Oops! Sorry! That's a really rare\n"
 	.string "piece of decoration.\l"
 	.string "I can't trade that one away!\p"
 	.string "Can I interest you in something else?$"
 .endif
 .endif
+=======
+	.string "¡Huy, huy, huy, lo siento!\n"
+	.string "Ese adorno es muy poco común.\l"
+	.string "¡No lo puedo intercambiar!\p"
+	.string "¿No te interesa ninguna otra cosa?$"
+>>>>>>> Egg/spanish
 
 MauvilleCity_PokemonCenter_1F_EventScript_Trader::
 	lock
@@ -1481,42 +1489,42 @@ MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory::
 .else
 @ Storyteller
 MauvilleCity_PokemonCenter_1F_Text_WillYouHearMyTale:
-	.string "I'm the STORYTELLER.\n"
-	.string "I'll tell you tales of legendary\l"
-	.string "TRAINERS.\p"
-	.string "Will you hear my tale?$"
+	.string "Soy el CUENTALEYENDAS.\n"
+	.string "Te contaré historias sobre\l"
+	.string "ENTRENADORES legendarios.\p"
+	.string "¿Quieres oír una?$"
 
 MauvilleCity_PokemonCenter_1F_Text_StorytellerFeelingTheBlues:
-	.string "Oh…\n"
-	.string "You've left me feeling the blues…$"
+	.string "No tienes ninguna consideración…\n"
+	.string "Ay, qué sofoco…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WhichTaleToTell:
-	.string "I know of these legends.\n"
-	.string "Which tale will you have me tell?$"
+	.string "Sé todas estas leyendas.\n"
+	.string "¿Cuál quieres oír?$"
 
 MauvilleCity_PokemonCenter_1F_Text_IKnowNoTales:
-	.string "But, I know of no legendary TRAINERS.\n"
-	.string "Hence, I know no tales.\p"
-	.string "Where does one find a TRAINER worthy\n"
-	.string "of a legendary tale?$"
+	.string "El caso es que en realidad no sé nada\n"
+	.string "sobre ENTRENADORES legendarios, je…\p"
+	.string "Porque ¿dónde se puede encontrar a\n"
+	.string "un ENTRENADOR de leyenda, a ver?$"
 
 MauvilleCity_PokemonCenter_1F_Text_YouDidStatXTimes:
-	.string "What's that?!\n"
-	.string "You… You…\p"
+	.string "¡Andaaa!\n"
+	.string "¿Tú? ¿De verdad?\p"
 	.string "{STR_VAR_2}\n"
-	.string "{STR_VAR_1} time(s)?!\p"
-	.string "That is indeed magnificent!\n"
-	.string "It's the birth of a new legend!$"
+	.string "¿Cuántas veces? ¡¿{STR_VAR_1}?!\p"
+	.string "¡Es magnífico!\n"
+	.string "¡El nacimiento de una leyenda!$"
 
 MauvilleCity_PokemonCenter_1F_Text_CouldThereBeOtherLegends:
-	.string "It gets me thinking, could there be\n"
-	.string "other TRAINERS with more impressive\l"
-	.string "legends awaiting discovery?$"
+	.string "Ahora que lo pienso… ¿Habrá otros\n"
+	.string "ENTRENADORES con leyendas aún\l"
+	.string "más impresionantes por descubrir?$"
 
 MauvilleCity_PokemonCenter_1F_Text_HaveYouAnyLegendaryTales:
-	.string "Are you a TRAINER?\p"
-	.string "Then tell me, have you any tales that\n"
-	.string "are even remotely legendary?$"
+	.string "¿Tú entrenas POKéMON?\p"
+	.string "Pues dime, ¿tienes alguna historia\n"
+	.string "que suene remotamente legendaria?$"
 
 @ Unused
 MauvilleCity_PokemonCenter_1F_Text_HearAnotherLegendaryTale:
@@ -1524,511 +1532,487 @@ MauvilleCity_PokemonCenter_1F_Text_HearAnotherLegendaryTale:
 	.string "another legendary tale?$"
 
 MauvilleCity_PokemonCenter_1F_Text_NotWorthyOfLegend:
-	.string "Hmm…\n"
-	.string "I'm not satisfied…\p"
-	.string "I wish you would bring me news worthy\n"
-	.string "of being called a legend.$"
+	.string "Mmmm…\n"
+	.string "No me gusta del todo…\p"
+	.string "Espero que puedas contarme pronto\n"
+	.string "algo mucho más emocionante que eso…$"
 
 MauvilleCity_PokemonCenter_1F_Text_IWishMorePeopleWereInterested:
-	.string "I wish more people would be interested\n"
-	.string "in hearing my epic tales of legendary\l"
-	.string "TRAINERS.$"
+	.string "Ojalá que la gente se interese cada\n"
+	.string "vez más por oír mis épicas historias\l"
+	.string "sobre ENTRENADORES legendarios…$"
 
 MauvilleCity_PokemonCenter_1F_Text_SavedGameTitle::
-	.string "The Save-Happy TRAINER$"
+	.string "“El ENTRENADOR guardador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_SavedGameAction::
-	.string "Saved the game$"
+	.string "Guardaste la partida…$"
 
 MauvilleCity_PokemonCenter_1F_Text_SavedGameStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER saved the game\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "A more cautious TRAINER than\n"
-	.string "{STR_VAR_3} one will never find!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} guardó la partida…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "tuviera tanto cuidado como {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrendsStartedTitle::
-	.string "The Trendsetter TRAINER$"
+	.string "“El ENTRENADOR molón”$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrendsStartedAction::
-	.string "Started trends$"
+	.string "Creaste tendencias…$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrendsStartedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER started new trends\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is setting trends for all\n"
-	.string "the HOENN region!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} creó modas…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "más a la última que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedTitle::
+<<<<<<< HEAD
 	.string "The BERRY-Planting TRAINER$"
+=======
+	.string "“El ENTRENADOR plantabayas”$"
+>>>>>>> Egg/spanish
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedAction::
-	.string "Planted BERRIES$"
+	.string "Plantaste BAYAS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER planted BERRIES\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a legendary lover of\n"
-	.string "BERRIES!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} plantó BAYAS…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "amante de las BAYAS que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BikeTradesTitle::
-	.string "The BIKE-Loving TRAINER$"
+	.string "“El ENTRENADOR sobre ruedas”$"
 
 MauvilleCity_PokemonCenter_1F_Text_BikeTradesAction::
-	.string "Traded BIKES$"
+	.string "Cambiaste de BICI…$"
 
 MauvilleCity_PokemonCenter_1F_Text_BikeTradesStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER swapped BIKES\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must love BIKES deeply\n"
-	.string "and passionately!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} cambió de BICI…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "amante de las BICIS que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_InterviewsTitle::
-	.string "The Interviewed TRAINER$"
+	.string "“El ENTRENADOR estrella”$"
 
 MauvilleCity_PokemonCenter_1F_Text_InterviewsAction::
-	.string "Got interviewed$"
+	.string "Concediste entrevistas…$"
 
 MauvilleCity_PokemonCenter_1F_Text_InterviewsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER got interviewed\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a TRAINER who's\n"
-	.string "attracting much attention!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "A {STR_VAR_3} le entrevistaron…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "llamara más la atención que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesTitle::
-	.string "The Battle-Happy TRAINER$"
+	.string "“El ENTRENADOR peleón”$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesAction::
-	.string "Battled$"
+	.string "Entablaste combate…$"
 
 MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER battled {STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a TRAINER who can\n"
-	.string "never refuse a chance to battle!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} combatió…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "aceptara más combates que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtTitle::
-	.string "The POKéMON-Catching TRAINER$"
+	.string "“El ENTRENADOR cazador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtAction::
-	.string "Caught POKéMON$"
+	.string "Atrapaste POKéMON…$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER caught\n"
-	.string "{STR_VAR_1} POKéMON!\p"
-	.string "{STR_VAR_3} is a legendary catcher of\n"
-	.string "wild POKéMON!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "¡{STR_VAR_3} atrapó {STR_VAR_1} POKéMON!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "cazara tantos POKéMON salvajes\l"
+	.string "como {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtTitle::
-	.string "The Fishing TRAINER$"
+	.string "“El ENTRENADOR pescador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtAction::
-	.string "Caught POKéMON with a ROD$"
+	.string "Pescaste POKéMON con CAÑA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER caught\n"
-	.string "{STR_VAR_1} POKéMON while fishing!\p"
-	.string "{STR_VAR_3} is a legendary fishing\n"
-	.string "expert!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "¡{STR_VAR_3} atrapó {STR_VAR_1} POKéMON\n"
+	.string "pescando!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "manejara mejor la CAÑA que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_EggsHatchedTitle::
-	.string "The EGG-Warming TRAINER$"
+	.string "“El ENTRENADOR empollón”$"
 
 MauvilleCity_PokemonCenter_1F_Text_EggsHatchedAction::
-	.string "Hatched EGGS$"
+	.string "Lograste incubar HUEVOS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_EggsHatchedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER hatched {STR_VAR_1} POKéMON\n"
-	.string "from EGGS!\p"
-	.string "{STR_VAR_3} is a legendary warmer\n"
-	.string "of EGGS!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "¡{STR_VAR_3} se hizo con {STR_VAR_1}\n"
+	.string "POKéMON incubando HUEVOS!\p"
+	.string "¡Nunca se supo de nadie que rompiera\n"
+	.string "cascarones mejor que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedTitle::
-	.string "The Evolver TRAINER$"
+	.string "“El ENTRENADOR evolutivo”$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedAction::
-	.string "Evolved POKéMON$"
+	.string "Hiciste evolucionar POKéMON…$"
 
 MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER made {STR_VAR_1} POKéMON\n"
-	.string "evolve!\p"
-	.string "{STR_VAR_3} is the ultimate evolver\n"
-	.string "of POKéMON!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "¡{STR_VAR_3} logró hacer evolucionar\n"
+	.string "{STR_VAR_1} POKéMON!\p"
+	.string "¡Nunca se supo de nadie que supiera\n"
+	.string "más de evolución que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterTitle::
-	.string "The POKéMON CENTER-Loving TRAINER$"
+	.string "“El ENTRENADOR curandero”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterAction::
-	.string "Used POKéMON CENTERS$"
+	.string "Usaste los CENTROS POKéMON…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER healed POKéMON\n"
-	.string "{STR_VAR_1} times at POKéMON CENTERS!\p"
-	.string "There could be no greater lover of\n"
-	.string "POKéMON CENTERS than {STR_VAR_3}!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} curó POKéMON en los\n"
+	.string "CENTROS POKéMON…\l"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "amante de estos sitios que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeTitle::
-	.string "The Homebody TRAINER$"
+	.string "“El ENTRENADOR casero”$"
 
 MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeAction::
-	.string "Rested POKéMON at home$"
+	.string "Curaste POKéMON en casa…$"
 
 MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER healed POKéMON\n"
-	.string "{STR_VAR_1} times at home!\p"
-	.string "There could be no more of a homebody\n"
-	.string "than {STR_VAR_3}!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} curó POKéMON en su casa…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "amante de su hogar que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_SafariGamesTitle::
-	.string "The SAFARI-Loving TRAINER$"
+	.string "“El ENTRENADOR aventurero”$"
 
 MauvilleCity_PokemonCenter_1F_Text_SafariGamesAction::
-	.string "Entered the SAFARI ZONE$"
+	.string "Entraste en la ZONA SAFARI…$"
 
 MauvilleCity_PokemonCenter_1F_Text_SafariGamesStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER went into the SAFARI ZONE\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a TRAINER whose wild side\n"
-	.string "must come out in the SAFARI ZONE!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} fue a la ZONA SAFARI…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie con\n"
+	.string "un lado más salvaje que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedCutTitle::
-	.string "The CUT-Frenzy TRAINER$"
+	.string "“El ENTRENADOR leñador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedCutAction::
-	.string "Used CUT$"
+	.string "Usaste CORTE…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedCutStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER used CUT\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a TRAINER who just must\n"
-	.string "love to CUT!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó CORTE…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "“cortante” que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashTitle::
-	.string "The ROCK-SMASHING TRAINER$"
+	.string "“El ENTRENADOR picapedrero”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashAction::
-	.string "Smashed rocks$"
+	.string "Usaste GOLPE ROCA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER used ROCK SMASH\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a TRAINER who\n"
-	.string "can't leave a stone unsmashed!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó GOLPE ROCA…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie más\n"
+	.string "tritura-rocas que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_MovedBasesTitle::
-	.string "The Move-Loving TRAINER$"
+	.string "“El ENTRENADOR nómada”$"
 
 MauvilleCity_PokemonCenter_1F_Text_MovedBasesAction::
-	.string "Moved the SECRET BASE$"
+	.string "Te mudaste de BASE SECRETA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_MovedBasesStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER moved the SECRET BASE\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a TRAINER who loves\n"
-	.string "to move houses often!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} cambió de BASE SECRETA…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "se mudara más que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedSplashTitle::
-	.string "The SPLASH-Happy TRAINER$"
+	.string "“El ENTRENADOR salpicón”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedSplashAction::
-	.string "Used SPLASH$"
+	.string "Usaste SALPICADURA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedSplashStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER used SPLASH\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a TRAINER who must love\n"
-	.string "SPLASHING around!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó SALPICADURA…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "que salpicara más que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedStruggleTitle::
-	.string "The Tenacious TRAINER$"
+	.string "“El ENTRENADOR tenaz”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedStruggleAction::
-	.string "Resorted to using STRUGGLE$"
+	.string "Usaste COMBATE…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedStruggleStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER had to rely on STRUGGLE\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a tenacious TRAINER\n"
-	.string "who never gives in to adversity!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó COMBATE…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "más perseverante que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsTitle::
-	.string "The SLOT Champ$"
+	.string "“El rey de las TRAGAPERRAS”$"
 
 MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsAction::
-	.string "Won the jackpot on the SLOTS$"
+	.string "Ganaste el premio gordo…$"
 
 MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER won the jackpot on\n"
-	.string "the SLOTS {STR_VAR_1} times.\p"
-	.string "{STR_VAR_3} is a TRAINER who was lucky\n"
-	.string "on the SLOTS!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} ganó el premio gordo\n"
+	.string "en las TRAGAPERRAS…\l"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie con\n"
+	.string "más suerte en el juego que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_RouletteWinsTitle::
-	.string "The ROULETTE Champ$"
+	.string "“El rey de las RULETAS”$"
 
 MauvilleCity_PokemonCenter_1F_Text_RouletteWinsAction::
-	.string "Had consecutive ROULETTE wins of$"
+	.string "Ganaste en la RULETA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_RouletteWinsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER won in ROULETTE\n"
-	.string "{STR_VAR_1} times in a row.\p"
-	.string "{STR_VAR_3} was lucky when the ball\n"
-	.string "bounced in ROULETTE!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "¡{STR_VAR_3} ganó en la RULETA\n"
+	.string "{STR_VAR_1} veces seguidas!\p"
+	.string "¡En HOENN nunca se supo de nadie con\n"
+	.string "más mano en el juego que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesTitle::
-	.string "The BATTLE TOWER Challenger$"
+	.string "“El paladín de la TORRE BATALLA”$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesAction::
-	.string "Took the BATTLE TOWER challenge$"
+	.string "Luchaste en la TORRE BATALLA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER took the BATTLE TOWER\n"
-	.string "challenge {STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} is a TRAINER who aspires\n"
-	.string "for excellence in the BATTLE TOWER!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} aceptó el desafío de la\n"
+	.string "TORRE BATALLA…\l"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie con más\n"
+	.string "espíritu de superación que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksTitle::
-	.string "The Blend-Loving TRAINER$"
+	.string "“El ENTRENADOR licuador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksAction::
-	.string "Made {POKEBLOCK}S$"
+	.string "Hiciste {POKEBLOCK}S…$"
 
 MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER made {POKEBLOCK}S\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "There is none better at using a BERRY\n"
-	.string "BLENDER than {STR_VAR_3}!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} hizo {POKEBLOCK}S…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie que usara la\n"
+	.string "LICUABAYAS mejor que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_EnteredContestsTitle::
-	.string "The CONTEST-Loving TRAINER$"
+	.string "“El ENTRENADOR concursante”$"
 
 MauvilleCity_PokemonCenter_1F_Text_EnteredContestsAction::
-	.string "Entered CONTESTS$"
+	.string "Participaste en los CONCURSOS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_EnteredContestsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER entered CONTESTS\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must love showing off\n"
-	.string "POKéMON to others!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} participó en CONCURSOS…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie con más\n"
+	.string "afán de protagonismo que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonContestsTitle::
-	.string "The CONTEST Master$"
+	.string "“El rey de los CONCURSOS”$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonContestsAction::
-	.string "Won CONTESTS$"
+	.string "Ganaste en los CONCURSOS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonContestsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER won CONTESTS\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be an incredible\n"
-	.string "CONTEST master!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} ganó CONCURSOS…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "se exhibiera mejor que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesShoppedTitle::
-	.string "The Happy Shopper$"
+	.string "“El ENTRENADOR consumista”$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesShoppedAction::
-	.string "Shopped$"
+	.string "Te fuiste de compras…$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesShoppedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER bought items in shops\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be one of those\n"
-	.string "people who are born to shop.$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} compró cosas en tiendas…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "que gastara más que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderTitle::
-	.string "The Item-Finding TRAINER$"
+	.string "“El ENTRENADOR detective”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderAction::
-	.string "Used an ITEMFINDER$"
+	.string "Usaste un BUSCAOBJETOS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER used an ITEMFINDER\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must enjoy scouring the\n"
-	.string "ground for hidden items!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó un BUSCAOBJETOS…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie que escarbara\n"
+	.string "y hurgara más que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesRainedTitle::
-	.string "The Rain-Soaked TRAINER$"
+	.string "“El ENTRENADOR empapado”$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesRainedAction::
-	.string "Got rained on$"
+	.string "Te cayó un chaparrón…$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesRainedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER got soaked by rain\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3}'s charisma must even\n"
-	.string "attract rain!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} se mojó bajo la lluvia…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie que atrajera\n"
+	.string "más nubarrones que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexTitle::
-	.string "The Avid POKéDEX Reader$"
+	.string "“El lector de POKéDEX”$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexAction::
-	.string "Checked a POKéDEX$"
+	.string "Consultaste la POKéDEX…$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER checked a POKéDEX\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must love inspecting\n"
-	.string "POKéMON in a POKéDEX!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} consultó la POKéDEX…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie más amante de\n"
+	.string "las listas de POKéMON que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsTitle::
-	.string "The RIBBON Collector$"
+	.string "“El coleccionista de CINTAS”$"
 
 MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsAction::
-	.string "Received RIBBONS$"
+	.string "Recibiste CINTAS…$"
 
 MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER received RIBBONS\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a TRAINER who\n"
-	.string "loves to collect RIBBONS!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} recibió CINTAS…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "las coleccionara más que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedTitle::
-	.string "The Ledge-Jumping TRAINER$"
+	.string "“El ENTRENADOR saltarín”$"
 
 MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedAction::
-	.string "Jumped down ledges$"
+	.string "Saltaste los desniveles…$"
 
 MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER jumped down ledges\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "If there's a ledge to be jumped,\n"
-	.string "{STR_VAR_3} can't ignore it!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} saltó desniveles…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie que\n"
+	.string "saltara más y mejor que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TVWatchedTitle::
-	.string "The Legendary TV Viewer$"
+	.string "“El ENTRENADOR teleadicto”$"
 
 MauvilleCity_PokemonCenter_1F_Text_TVWatchedAction::
-	.string "Watched TV$"
+	.string "Viste la tele…$"
 
 MauvilleCity_PokemonCenter_1F_Text_TVWatchedStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER watched TV\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must love watching TV!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} vio la tele…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie más amante\n"
+	.string "de la caja tonta que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedClockTitle::
-	.string "The Time-Conscious TRAINER$"
+	.string "“El ENTRENADOR relojero”$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedClockAction::
-	.string "Checked the time$"
+	.string "Miraste la hora…$"
 
 MauvilleCity_PokemonCenter_1F_Text_CheckedClockStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER checked the time\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a punctual TRAINER\n"
-	.string "who's conscious of the time.$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} miró la hora…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "más puntual que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonLotteryTitle::
-	.string "The POKéMON LOTTERY Wizard$"
+	.string "“El rey de la LOTERÍA POKéMON”$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonLotteryAction::
-	.string "Won POKéMON LOTTERIES$"
+	.string "Ganaste a la LOTERÍA POKéMON…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonLotteryStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER won POKéMON LOTTERIES\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must have many friends\n"
-	.string "to trade POKéMON with!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} ganó a la LOTERÍA POKéMON…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡Nunca se supo de nadie que cambiara\n"
+	.string "tantos POKéMON como {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedDaycareTitle::
-	.string "The DAY CARE-Using Trainer$"
+	.string "“El ENTRENADOR impaciente”$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedDaycareAction::
-	.string "Left POKéMON at the DAY CARE$"
+	.string "Dejaste POKéMON en la GUARDERÍA…$"
 
 MauvilleCity_PokemonCenter_1F_Text_UsedDaycareStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER left POKéMON with the\n"
-	.string "DAY CARE {STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a real go-getter\n"
-	.string "who raises POKéMON aggressively!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} dejó POKéMON en la\n"
+	.string "GUARDERÍA…\l"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "con más ambición que {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_RodeCableCarTitle::
-	.string "The CABLE CAR-Loving TRAINER$"
+	.string "“El ENTRENADOR escalador”$"
 
 MauvilleCity_PokemonCenter_1F_Text_RodeCableCarAction::
-	.string "Rode the CABLE CAR$"
+	.string "Te montaste en el TELEFÉRICO…$"
 
 MauvilleCity_PokemonCenter_1F_Text_RodeCableCarStory::
-	.string "This is a tale of a TRAINER\n"
-	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER rode the CABLE CAR\n"
-	.string "{STR_VAR_1} times!\p"
-	.string "{STR_VAR_3} must be a busy TRAINER\n"
-	.string "who's up and down all the time!$"
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} se montó en el TELEFÉRICO…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie\n"
+	.string "tan incansable como {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_HotSpringsTitle::
-	.string "The Hot Spring-Loving TRAINER$"
+	.string "“El ENTRENADOR bañista”$"
 
 MauvilleCity_PokemonCenter_1F_Text_HotSpringsAction::
-	.string "Bathed in hot springs$"
+	.string "Usaste los baños termales…$"
 
 MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory::
+<<<<<<< HEAD
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
 	.string "This TRAINER bathed in hot springs\n"
@@ -2037,6 +2021,14 @@ MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory::
 	.string "baby-smooth skin!$"
 .endif
 .endif
+=======
+	.string "Érase una vez {STR_VAR_3}.\p"
+	.string "{STR_VAR_3} usó los baños termales…\n"
+	.string "¿Sabes cuántas veces? ¡{STR_VAR_1}!\p"
+	.string "¡En HOENN nunca se supo de nadie con\n"
+	.string "una piel más suave que {STR_VAR_3}!$"
+
+>>>>>>> Egg/spanish
 
 MauvilleCity_PokemonCenter_1F_EventScript_Storyteller::
 	lock
@@ -2140,23 +2132,29 @@ MauvilleCity_PokemonCenter_1F_Text_WeShouldChatAgain:
 	.string "Ciao, ciao!$"
 .else
 MauvilleCity_PokemonCenter_1F_Text_HearMyStory:
-	.string "I'm GIDDY!\n"
-	.string "I have a scintillating story for you!\p"
-	.string "Would you like to hear my story?$"
+	.string "¡Soy CHARLATÁN!\n"
+	.string "¡Y tengo algo que contarte!\p"
+	.string "¿Quieres oírlo?$"
 
 MauvilleCity_PokemonCenter_1F_Text_GiddyFeelingTheBlues:
-	.string "Oh…\n"
-	.string "You've left me feeling the blues…$"
+	.string "Pues vaya…\n"
+	.string "Me has dejado chafado…$"
 
 MauvilleCity_PokemonCenter_1F_Text_AlsoIWasThinking:
-	.string "Also, I was thinking…$"
+	.string "Estaba pensando que…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WeShouldChatAgain:
+<<<<<<< HEAD
 	.string "That's about it, I think…\p"
 	.string "We should chat again!\n"
 	.string "Bye-bye!$"
 .endif
 .endif
+=======
+	.string "Pues eso, estaba pensando que…\p"
+	.string "¡Que tendríamos que seguir\n"
+	.string "charlando otro día! ¡Hasta lueguito!$"
+>>>>>>> Egg/spanish
 
 MauvilleCity_PokemonCenter_1F_EventScript_Giddy::
 	lock
@@ -2317,56 +2315,57 @@ MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfWord:
 	.string "mamma o al papà, va bene?$"
 .else
 MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToHearMySong:
-	.string "Hi, I'm the BARD.\n"
-	.string "Would you like to hear my song?$"
+	.string "Hola, soy el BARDO.\n"
+	.string "¿Quieres oír mi canción?$"
 
 MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues1:
-	.string "Oh…\n"
-	.string "You've left me feeling the blues…$"
+	.string "Oh… Me has dejado más\n"
+	.string "triste que el alpiste…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WishICouldPlaySongForOthers:
-	.string "Oh, what a moving song…\n"
-	.string "I wish I could play it for others…$"
+	.string "Es una canción tan conmovedora…\n"
+	.string "Podría cantarla sin parar…$"
 
 MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToWriteSomeLyrics:
-	.string "So?\n"
-	.string "How do you like my song?\p"
-	.string "But I'm none too happy about\n"
-	.string "the lyrics.\p"
-	.string "How would you like to write some\n"
-	.string "new lyrics for me?$"
+	.string "¿Y…?\n"
+	.string "¿Te gusta mi canción?\p"
+	.string "Pero la letra no me acaba de\n"
+	.string "convencer. Le falta algo…\p"
+	.string "¿Querrías escribir otra letra\n"
+	.string "para mí, por favor?$"
 
 MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues2:
-	.string "Oh…\n"
-	.string "You've left me feeling the blues…$"
+	.string "Oh… Me has dejado más\n"
+	.string "triste que el alpiste…$"
 
 MauvilleCity_PokemonCenter_1F_Text_LetMeSingItForYou:
-	.string "Thank you kindly!\n"
-	.string "Let me sing it for you.$"
+	.string "¡Qué inspiración!\n"
+	.string "Déjame que te la cante…$"
 
 MauvilleCity_PokemonCenter_1F_Text_ThatHowYouWantedSongToGo:
-	.string "Was that how you wanted your song\n"
-	.string "to go?$"
+	.string "¿Es así como querías que sonara\n"
+	.string "tu canción?$"
 
 MauvilleCity_PokemonCenter_1F_Text_IllSingThisSongForAWhile:
-	.string "Okay! That's it, then.\n"
-	.string "I'll sing this song for a while.$"
+	.string "Vale, pues ya está.\n"
+	.string "Cantaré esta canción un rato.$"
 
 MauvilleCity_PokemonCenter_1F_Text_TeachWhatsHipAndHappening:
-	.string "Hey, yo! They call me the HIPSTER.\n"
-	.string "I'll teach you what's hip and happening.$"
+	.string "¡Hola! ¡Soy el FARDÓN!\n"
+	.string "Te voy a enseñar lo que más mola.$"
 
 MauvilleCity_PokemonCenter_1F_Text_IAlreadyTaughtYou:
-	.string "But, hey, I taught you what's hip and\n"
-	.string "happening already.\p"
-	.string "I'd like to spread the good word to\n"
-	.string "other folks.$"
+	.string "Eh, si ya te he enseñado lo\n"
+	.string "que más molaba…\p"
+	.string "¡Yo quiero compartir las modas\n"
+	.string "con más gente, no sólo contigo!$"
 
 MauvilleCity_PokemonCenter_1F_Text_IveGotNothingNewToTeach:
-	.string "But, hey, you already know a lot about\n"
-	.string "what's hip and happening.\p"
-	.string "I've got nothing new to teach you!$"
+	.string "Eh, pero si tú ya sabes mogollón de\n"
+	.string "todo lo que está a la última…\p"
+	.string "¡No puedo enseñarte nada!$"
 
+<<<<<<< HEAD
 MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfWord:
 	.string "Hey, have you heard about\n"
 	.string "“{STR_VAR_1}”?\p"
@@ -2374,3 +2373,10 @@ MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfWord:
 	.string "Ask your daddy or mommy, okay?$"
 .endif
 .endif
+=======
+MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfPhrase:
+	.string "Eh, ¿has oído hablar de\n"
+	.string "“{STR_VAR_1}”?\p"
+	.string "¿Que qué significa? Si no lo sabes…,\n"
+	.string "¡pregúntaselo a tus amigos!$"
+>>>>>>> Egg/spanish

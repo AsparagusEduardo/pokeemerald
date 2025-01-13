@@ -490,6 +490,7 @@ const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
     [TYPE_DARK] = _("BUIO"),
 #else //ENGLISH
     [TYPE_NORMAL] = _("NORMAL"),
+<<<<<<< HEAD
     [TYPE_FIGHTING] = _("FIGHT"),
     [TYPE_FLYING] = _("FLYING"),
     [TYPE_POISON] = _("POISON"),
@@ -508,6 +509,25 @@ const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
     [TYPE_DRAGON] = _("DRAGON"),
     [TYPE_DARK] = _("DARK"),
 #endif
+=======
+    [TYPE_FIGHTING] = _("LUCHA"),
+    [TYPE_FLYING] = _("VOLAD."),
+    [TYPE_POISON] = _("VENENO"),
+    [TYPE_GROUND] = _("TIERRA"),
+    [TYPE_ROCK] = _("ROCA"),
+    [TYPE_BUG] = _("BICHO"),
+    [TYPE_GHOST] = _("FANT."),
+    [TYPE_STEEL] = _("ACERO"),
+    [TYPE_MYSTERY] = _("(?)"),
+    [TYPE_FIRE] = _("FUEGO"),
+    [TYPE_WATER] = _("AGUA"),
+    [TYPE_GRASS] = _("PLANTA"),
+    [TYPE_ELECTRIC] = _("ELÉCT."),
+    [TYPE_PSYCHIC] = _("PSÍQ."),
+    [TYPE_ICE] = _("HIELO"),
+    [TYPE_DRAGON] = _("DRAGÓN"),
+    [TYPE_DARK] = _("SINIE."),
+>>>>>>> Egg/spanish
 };
 
 // This is a factor in how much money you get for beating a trainer.

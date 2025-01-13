@@ -87,6 +87,7 @@ static EWRAM_DATA bool8 sUsedSpeedUp = 0; // Never read
 static EWRAM_DATA struct CreditsData *sCreditsData = {0};
 
 static const u16 sCredits_Pal[] = INCBIN_U16("graphics/credits/credits.gbapal");
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
 #define CREDITS_COPYRIGHT_END_GFX gCreditsCopyrightEnd_Gfx
 #define CREDITS_COPYRIGHT_END_TILE_OFFSET 0
@@ -103,6 +104,8 @@ static const u32 sCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_e
 #define SHOW_MONS_DELAY 50
 #define CATCH_RIVAL_TIMER 584
 #endif
+=======
+>>>>>>> Egg/spanish
 
 static void SpriteCB_CreditsMonBg(struct Sprite *);
 static void Task_WaitPaletteFade(u8);
@@ -133,6 +136,7 @@ static void SpriteCB_Rival(struct Sprite *);
 static u8 CreateCreditsMonSprite(u16, s16, s16, u16);
 static void DeterminePokemonToShow(void);
 
+<<<<<<< HEAD
 #if !defined(FRENCH) && !defined(ITALIAN)
 static const u8 sTheEnd_LetterMap_T[] =
 {
@@ -180,6 +184,8 @@ static const u8 sTheEnd_LetterMap_D[] =
 };
 #endif
 
+=======
+>>>>>>> Egg/spanish
 #include "data/credits.h"
 
 static const struct BgTemplate sBackgroundTemplates[] =
@@ -801,7 +807,11 @@ static void Task_UpdatePage(u8 taskId)
     case 3:
         if (!gPaletteFade.active)
         {
+<<<<<<< HEAD
             gTasks[taskId].tDelay = UPDATE_PAGE_DELAY;
+=======
+            gTasks[taskId].tDelay = 121;
+>>>>>>> Egg/spanish
             gTasks[taskId].tState++;
         }
         return;
@@ -935,7 +945,11 @@ static void Task_ShowMons(u8 taskId)
         if (sCreditsData->currShownMon < sCreditsData->numMonToShow - 1)
         {
             sCreditsData->currShownMon++;
+<<<<<<< HEAD
             gSprites[spriteId].data[3] = SHOW_MONS_SPRITE_DATA_3;
+=======
+            gSprites[spriteId].data[3] = 52;
+>>>>>>> Egg/spanish
         }
         else
         {
@@ -949,7 +963,11 @@ static void Task_ShowMons(u8 taskId)
         else
             sCreditsData->nextImgPos++;
 
+<<<<<<< HEAD
         gTasks[taskId].tDelay = SHOW_MONS_DELAY;
+=======
+        gTasks[taskId].tDelay = 52;
+>>>>>>> Egg/spanish
         gTasks[taskId].tState++;
         break;
     case 3:
@@ -1094,7 +1112,12 @@ static void Task_CycleSceneryPalette(u8 taskId)
     case SCENE_FOREST_CATCH_RIVAL:
         if (gTasks[taskId].tTimer != TIMER_STOP)
         {
+<<<<<<< HEAD
             if (gTasks[taskId].tTimer == CATCH_RIVAL_TIMER)
+=======
+
+            if (gTasks[taskId].tTimer == 620)
+>>>>>>> Egg/spanish
             {
                 gTasks[gTasks[gTasks[taskId].tMainTaskId].tTaskId_BikeScene].tState = 10;
                 gTasks[taskId].tTimer = TIMER_STOP;
@@ -1306,12 +1329,17 @@ static void LoadTheEndScreen(u16 tileOffsetLoad, u16 tileOffsetWrite, u16 palOff
     u16 baseTile;
     u16 i;
 
+<<<<<<< HEAD
     LZ77UnCompVram(CREDITS_COPYRIGHT_END_GFX, (void *)(VRAM + tileOffsetLoad));
+=======
+    LZ77UnCompVram(gCreditsCopyrightEnd_Gfx, (void *)(VRAM + tileOffsetLoad));
+>>>>>>> Egg/spanish
     LoadPalette(gIntroCopyright_Pal, palOffset, sizeof(gIntroCopyright_Pal));
 
     baseTile = (palOffset / 16) << 12;
 
     for (i = 0; i < 32 * 32; i++)
+<<<<<<< HEAD
         ((u16 *) (VRAM + tileOffsetWrite))[i] = baseTile + CREDITS_COPYRIGHT_END_TILE_OFFSET;
 }
 
@@ -1321,6 +1349,13 @@ static void DrawTheEnd(u16 offset, u16 palette)
     LZ77UnCompVram(gCreditsCopyrightEnd_Tilemap, ((u16 *) (VRAM + offset)));
 }
 #else //ENGLISH
+=======
+        ((u16 *) (VRAM + tileOffsetWrite))[i] = baseTile; // difference FR
+}
+
+// difference FR
+/*
+>>>>>>> Egg/spanish
 static u16 GetLetterMapTile(u8 baseTiles)
 {
     u16 out = (baseTiles & 0x3F) + 80;
@@ -1347,21 +1382,12 @@ static void DrawLetterMapTiles(const u8 baseTiles[], u8 baseX, u8 baseY, u16 off
             ((u16 *) (VRAM + offset + (baseY + y) * 64))[baseX + x] = tileOffset + GetLetterMapTile(baseTiles[y * 3 + x]);
     }
 }
+*/
 
+// difference FR
 static void DrawTheEnd(u16 offset, u16 palette)
 {
-    u16 pos;
-    u16 baseTile = (palette / 16) << 12;
-
-    for (pos = 0; pos < 32 * 32; pos++)
-        ((u16 *) (VRAM + offset))[pos] = baseTile + 1;
-
-    DrawLetterMapTiles(sTheEnd_LetterMap_T, 3, 7, offset, palette);
-    DrawLetterMapTiles(sTheEnd_LetterMap_H, 7, 7, offset, palette);
-    DrawLetterMapTiles(sTheEnd_LetterMap_E, 11, 7, offset, palette);
-    DrawLetterMapTiles(sTheEnd_LetterMap_E, 16, 7, offset, palette);
-    DrawLetterMapTiles(sTheEnd_LetterMap_N, 20, 7, offset, palette);
-    DrawLetterMapTiles(sTheEnd_LetterMap_D, 24, 7, offset, palette);
+    LZ77UnCompVram(gCreditsCopyrightEnd_Tilemap, ((u16 *) (VRAM + offset)));
 }
 #endif
 

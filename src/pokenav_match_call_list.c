@@ -493,12 +493,14 @@ u16 GetMatchCallOptionId(int optionId)
     return state->matchCallOptions[optionId];
 }
 
+// difference FR
 void BufferMatchCallNameAndDesc(struct PokenavMatchCallEntry *matchCallEntry, u8 *str)
 {
     const u8 *trainerName;
     const u8 *className;
     if (!matchCallEntry->isSpecialTrainer)
     {
+<<<<<<< HEAD
     #if FRENCH || ITALIAN
         const struct Trainer *trainer = &gTrainers[GetTrainerIdxByRematchIdx(matchCallEntry->headerId)];
         int class = trainer->trainerClass;
@@ -508,8 +510,12 @@ void BufferMatchCallNameAndDesc(struct PokenavMatchCallEntry *matchCallEntry, u8
     #else //ENGLISH
         int index = GetTrainerIdxByRematchIdx(matchCallEntry->headerId);
         const struct Trainer *trainer = &gTrainers[index];
+=======
+        const struct Trainer *trainer = &gTrainers[GetTrainerIdxByRematchIdx(matchCallEntry->headerId)];
+>>>>>>> Egg/spanish
         int class = trainer->trainerClass;
-        className = gTrainerClassNames[class];
+        int gender = trainer->encounterMusic_gender;
+        className = GetTrainerClassNameGenderSpecific(class, gender, trainer->trainerName);
         trainerName = trainer->trainerName;
     #endif
     }
@@ -521,11 +527,19 @@ void BufferMatchCallNameAndDesc(struct PokenavMatchCallEntry *matchCallEntry, u8
     if (className && trainerName)
     {
         u8 *str2 = GetStringClearToWidth(str, FONT_NARROW, className, 69);
+<<<<<<< HEAD
         GetStringClearToWidth(str2, FONT_NARROW, trainerName, FULL_TRAINER_STRING_CLEAR_WIDTH_1);
     }
     else
     {
         GetStringClearToWidth(str, FONT_NARROW, NULL, FULL_TRAINER_STRING_CLEAR_WIDTH_2);
+=======
+        GetStringClearToWidth(str2, FONT_NARROW, trainerName, 57);
+    }
+    else
+    {
+        GetStringClearToWidth(str, FONT_NARROW, NULL, 126);
+>>>>>>> Egg/spanish
     }
 }
 

@@ -428,14 +428,14 @@ static void TextSpeed_DrawChoices(u8 selection)
     styles[2] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_TextSpeedSlow, 104, YPOS_TEXTSPEED, styles[0]);
+    DrawOptionMenuChoice(gText_TextSpeedSlow, 88, YPOS_TEXTSPEED, styles[0]);
 
     widthSlow = GetStringWidth(FONT_NORMAL, gText_TextSpeedSlow, 0);
     widthMid = GetStringWidth(FONT_NORMAL, gText_TextSpeedMid, 0);
     widthFast = GetStringWidth(FONT_NORMAL, gText_TextSpeedFast, 0);
 
-    widthMid -= 94;
-    xMid = (widthSlow - widthMid - widthFast) / 2 + 104;
+    widthMid -= 110;
+    xMid = (widthSlow - widthMid - widthFast) / 2 + 88;
     DrawOptionMenuChoice(gText_TextSpeedMid, xMid, YPOS_TEXTSPEED, styles[1]);
 
     DrawOptionMenuChoice(gText_TextSpeedFast, GetStringRightAlignXOffset(FONT_NORMAL, gText_TextSpeedFast, 198), YPOS_TEXTSPEED, styles[2]);
@@ -460,7 +460,7 @@ static void BattleScene_DrawChoices(u8 selection)
     styles[1] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_BATTLESCENE, styles[0]);
+    DrawOptionMenuChoice(gText_BattleSceneOn, 88, YPOS_BATTLESCENE, styles[0]);
     DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_BATTLESCENE, styles[1]);
 }
 
@@ -483,7 +483,7 @@ static void BattleStyle_DrawChoices(u8 selection)
     styles[1] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_BattleStyleShift, 104, YPOS_BATTLESTYLE, styles[0]);
+    DrawOptionMenuChoice(gText_BattleStyleShift, 88, YPOS_BATTLESTYLE, styles[0]);
     DrawOptionMenuChoice(gText_BattleStyleSet, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleStyleSet, 198), YPOS_BATTLESTYLE, styles[1]);
 }
 
@@ -507,7 +507,7 @@ static void Sound_DrawChoices(u8 selection)
     styles[1] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_SoundMono, 104, YPOS_SOUND, styles[0]);
+    DrawOptionMenuChoice(gText_SoundMono, 88, YPOS_SOUND, styles[0]);
     DrawOptionMenuChoice(gText_SoundStereo, GetStringRightAlignXOffset(FONT_NORMAL, gText_SoundStereo, 198), YPOS_SOUND, styles[1]);
 }
 
@@ -543,9 +543,13 @@ static void FrameType_DrawChoices(u8 selection)
     u8 text[16];
     u8 n = selection + 1;
     u16 i;
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
     u32 width;
 #endif
+=======
+    u32 width;
+>>>>>>> Egg/spanish
 
     for (i = 0; gText_FrameTypeNumber[i] != EOS && i <= 5; i++)
         text[i] = gText_FrameTypeNumber[i];
@@ -568,6 +572,7 @@ static void FrameType_DrawChoices(u8 selection)
 
     text[i] = EOS;
 
+<<<<<<< HEAD
 #if FRENCH || ITALIAN
     width = GetStringWidth(FONT_NORMAL, gText_FrameType, 0);
     DrawOptionMenuChoice(gText_FrameType, 104, YPOS_FRAMETYPE, 0);
@@ -576,6 +581,12 @@ static void FrameType_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_FrameType, 104, YPOS_FRAMETYPE, 0);
     DrawOptionMenuChoice(text, 128, YPOS_FRAMETYPE, 1);
 #endif
+=======
+    // difference FR
+    width = GetStringWidth(1, gText_FrameType, 0);
+    DrawOptionMenuChoice(gText_FrameType, 88, YPOS_FRAMETYPE, 0);
+    DrawOptionMenuChoice(text, width + 91, YPOS_FRAMETYPE, 1);
+>>>>>>> Egg/spanish
 }
 
 static u8 ButtonMode_ProcessInput(u8 selection)
@@ -611,14 +622,14 @@ static void ButtonMode_DrawChoices(u8 selection)
     styles[2] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_ButtonTypeNormal, 104, YPOS_BUTTONMODE, styles[0]);
+    DrawOptionMenuChoice(gText_ButtonTypeNormal, 88, YPOS_BUTTONMODE, styles[0]);
 
     widthNormal = GetStringWidth(FONT_NORMAL, gText_ButtonTypeNormal, 0);
     widthLR = GetStringWidth(FONT_NORMAL, gText_ButtonTypeLR, 0);
     widthLA = GetStringWidth(FONT_NORMAL, gText_ButtonTypeLEqualsA, 0);
 
-    widthLR -= 94;
-    xLR = (widthNormal - widthLR - widthLA) / 2 + 104;
+    widthLR -= 110;
+    xLR = (widthNormal - widthLR - widthLA) / 2 + 88;
     DrawOptionMenuChoice(gText_ButtonTypeLR, xLR, YPOS_BUTTONMODE, styles[1]);
 
     DrawOptionMenuChoice(gText_ButtonTypeLEqualsA, GetStringRightAlignXOffset(FONT_NORMAL, gText_ButtonTypeLEqualsA, 198), YPOS_BUTTONMODE, styles[2]);
