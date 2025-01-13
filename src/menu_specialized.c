@@ -26,7 +26,7 @@
 #include "constants/songs.h"
 #include "gba/io_reg.h"
 
-#if FRENCH || ITALIAN
+#if EUROPE
 #define MAILBOXWIN_TITLE_WIDTH             24
 #define MAILBOXWIN_LISTOPTIONS_BASEBLOCK   0x38
 #else //ENGLISH
@@ -217,6 +217,7 @@ bool8 MailboxMenu_Alloc(u8 count)
     return TRUE;
 }
 
+// difference FR
 u8 MailboxMenu_AddWindow(u8 windowIdx)
 {
     if (sMailboxWindowIds[windowIdx] == WINDOW_NONE)
@@ -227,7 +228,7 @@ u8 MailboxMenu_AddWindow(u8 windowIdx)
             template.width = GetMaxWidthInMenuTable(&gMailboxMailOptions[0], 4);
             sMailboxWindowIds[windowIdx] = AddWindow(&template);
         }
-    #if FRENCH || ITALIAN
+    #if EUROPE
         else if (windowIdx == MAILBOXWIN_TITLE)
         {
             struct WindowTemplate template = sWindowTemplates_MailboxMenu[windowIdx];
@@ -236,7 +237,7 @@ u8 MailboxMenu_AddWindow(u8 windowIdx)
             sMailboxWindowIds[windowIdx] = AddWindow(&template);
         }
     #endif
-        else // MAILBOXWIN_TITLE or MAILBOXWIN_LIST in English. MAILBOXWIN_LIST in French and Italian.
+        else // MAILBOXWIN_LIST. Also MAILBOXWIN_TITLE in English
         {
             sMailboxWindowIds[windowIdx] = AddWindow(&sWindowTemplates_MailboxMenu[windowIdx]);
         }

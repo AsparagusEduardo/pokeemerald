@@ -21,7 +21,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAWYER",
             "EMILIEN",
-            "DOROTEO"),
+            "DOROTEO",
+            "SOREN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -36,7 +37,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -51,7 +53,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -66,7 +69,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -81,7 +85,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -96,7 +101,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -111,7 +117,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -126,7 +133,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -141,7 +149,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABRIELLE",
             "LARA",
-            "GABRY"),
+            "GABRY",
+            "GABILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -156,7 +165,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -171,7 +181,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARCEL",
             "MARCEL",
-            "MARCEL"),
+            "MARCEL",
+            "MARCE"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -186,7 +197,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALBERTO",
             "HUBERT",
-            "ALBERTINO"),
+            "ALBERTINO",
+            "ALBER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -201,7 +213,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ED",
             "ED",
-            "ED"),
+            "ED",
+            "MANU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -216,7 +229,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -231,7 +245,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DECLAN",
             "ARNO",
-            "DECLAN"),
+            "DECLAN",
+            "DERO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -246,7 +261,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -261,7 +277,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -276,7 +293,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -291,7 +309,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -306,7 +325,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -321,7 +341,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -336,7 +357,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -351,7 +373,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -366,7 +389,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -381,7 +405,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -396,7 +421,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -411,7 +437,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -426,7 +453,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -441,7 +469,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FREDRICK",
             "FLORIAN",
-            "FREDRICK"),
+            "FREDRICK",
+            "FREDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -456,7 +485,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MATT",
             "MATTHIEU",
-            "ALAN"),
+            "ALAN",
+            "TOLO"),
         .items = {ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -486,7 +516,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELLY",
             "SARAH",
-            "ADA"),
+            "ADA",
+            "SILVINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -501,7 +532,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELLY",
             "SARAH",
-            "ADA"),
+            "ADA",
+            "SILVINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -516,7 +548,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ARCHIE",
             "ARTHUR",
-            "IVAN"),
+            "IVAN",
+            "AQUILES"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -531,7 +564,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEAH",
             "ERIN",
-            "LEAH"),
+            "LEAH",
+            "LEA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -546,7 +580,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DAISY",
             "NINA",
-            "MARGI"),
+            "MARGI",
+            "AZUCENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -561,7 +596,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROSE",
             "ROSE",
-            "ROSITA"),
+            "ROSITA",
+            "ROSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -576,7 +612,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FELIX",
             "NIELS",
-            "EDMONDO"),
+            "EDMONDO",
+            "FEDI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -591,7 +628,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VIOLET",
             "VIOLETTE",
-            "VIOLA"),
+            "VIOLA",
+            "VIOLETA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -606,7 +644,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROSE",
             "ROSE",
-            "ROSITA"),
+            "ROSITA",
+            "ROSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -621,7 +660,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROSE",
             "ROSE",
-            "ROSITA"),
+            "ROSITA",
+            "ROSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -636,7 +676,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROSE",
             "ROSE",
-            "ROSITA"),
+            "ROSITA",
+            "ROSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -651,7 +692,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROSE",
             "ROSE",
-            "ROSITA"),
+            "ROSITA",
+            "ROSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -666,7 +708,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUSTY",
             "ARMAND",
-            "ELIO"),
+            "ELIO",
+            "DACIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -681,7 +724,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHIP",
             "ALPHONSE",
-            "BORIS"),
+            "BORIS",
+            "CHICHO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -696,7 +740,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FOSTER",
             "EMILE",
-            "ALESSANDRO"),
+            "ALESSANDRO",
+            "FAUSTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -711,7 +756,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUSTY",
             "ARMAND",
-            "ELIO"),
+            "ELIO",
+            "DACIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -726,7 +772,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUSTY",
             "ARMAND",
-            "ELIO"),
+            "ELIO",
+            "DACIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -741,7 +788,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUSTY",
             "ARMAND",
-            "ELIO"),
+            "ELIO",
+            "DACIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -756,7 +804,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUSTY",
             "ARMAND",
-            "ELIO"),
+            "ELIO",
+            "DACIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -771,7 +820,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -786,7 +836,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -801,7 +852,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -816,7 +868,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -831,7 +884,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -846,7 +900,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABBY & TY",
             "INES & GUY",
-            "TEA & TEO"),
+            "TEA & TEO",
+            "GABI-TEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -876,7 +931,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AUSTINA",
             "AURELIA",
-            "FELICITA"),
+            "FELICITA",
+            "AGUSTINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -891,7 +947,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GWEN",
             "GWENAELLE",
-            "CHICCA"),
+            "CHICCA",
+            "GEMA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -966,7 +1023,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICKY",
             "RACHID",
-            "RICKY"),
+            "RICKY",
+            "RICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -981,7 +1039,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SIMON",
             "SIMON",
-            "EDOARDO"),
+            "EDOARDO",
+            "JANDRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -996,7 +1055,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHARLIE",
             "CHARLES",
-            "CHARLIE"),
+            "CHARLIE",
+            "CARMELO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1011,7 +1071,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICKY",
             "RACHID",
-            "RICKY"),
+            "RICKY",
+            "RICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1026,7 +1087,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICKY",
             "RACHID",
-            "RICKY"),
+            "RICKY",
+            "RICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1041,7 +1103,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICKY",
             "RACHID",
-            "RICKY"),
+            "RICKY",
+            "RICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1056,7 +1119,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICKY",
             "RACHID",
-            "RICKY"),
+            "RICKY",
+            "RICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1071,7 +1135,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RANDALL",
             "RAPHAEL",
-            "CARLETTO"),
+            "CARLETTO",
+            "ANTONIO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1086,7 +1151,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PARKER",
             "PATRICK",
-            "CARLO"),
+            "CARLO",
+            "PASCUAL"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1101,7 +1167,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GEORGE",
             "GEORGES",
-            "GIORGINO"),
+            "GIORGINO",
+            "JORGE"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1116,7 +1183,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERKE",
             "BERTRAND",
-            "ALDO"),
+            "ALDO",
+            "BLAS"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1131,7 +1199,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAXTON",
             "MAXENCE",
-            "VITTORIO"),
+            "VITTORIO",
+            "PERICO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1146,7 +1215,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VINCENT",
             "VINCENT",
-            "VINCENT"),
+            "VINCENT",
+            "VICENTE"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1161,7 +1231,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEROY",
             "LEON",
-            "PINO"),
+            "PINO",
+            "LORENZO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1176,7 +1247,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILTON",
             "WILFRIED",
-            "EGIDIO"),
+            "EGIDIO",
+            "VALENO"),
         .items = {ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1191,7 +1263,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDGAR",
             "EDGARD",
-            "EMILIANO"),
+            "EMILIANO",
+            "EFRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1206,7 +1279,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALBERT",
             "ALBERT",
-            "ALBERT"),
+            "ALBERT",
+            "ALBERTO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1236,7 +1310,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VITO",
             "VITO",
-            "ENRICO"),
+            "ENRICO",
+            "MANUEL"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1251,7 +1326,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "OWEN",
             "OLIVER",
-            "MARCELLO"),
+            "MARCELLO",
+            "ODI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1266,7 +1342,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILTON",
             "WILFRIED",
-            "EGIDIO"),
+            "EGIDIO",
+            "VALENO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1281,7 +1358,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILTON",
             "WILFRIED",
-            "EGIDIO"),
+            "EGIDIO",
+            "VALENO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1296,7 +1374,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILTON",
             "WILFRIED",
-            "EGIDIO"),
+            "EGIDIO",
+            "VALENO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1311,7 +1390,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILTON",
             "WILFRIED",
-            "EGIDIO"),
+            "EGIDIO",
+            "VALENO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1326,7 +1406,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WARREN",
             "WOLFGANG",
-            "PIERO"),
+            "PIERO",
+            "VALERIO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1341,7 +1422,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARY",
             "MARIE",
-            "MARY"),
+            "MARY",
+            "MARI"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1371,7 +1453,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JODY",
             "JOELLE",
-            "DELIA"),
+            "DELIA",
+            "JIMENA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -1386,7 +1469,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WENDY",
             "WENDY",
-            "BIANCA"),
+            "BIANCA",
+            "BRAULIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -1416,7 +1500,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BROOKE",
             "BLANCHE",
-            "GEMMA"),
+            "GEMMA",
+            "BERTA"),
         .items = {ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1431,7 +1516,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNIFER",
             "JENNIFER",
-            "LUCIANA"),
+            "LUCIANA",
+            "JULIANA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1446,7 +1532,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HOPE",
             "HORTENSE",
-            "FLAVIA"),
+            "FLAVIA",
+            "ESPE"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1461,7 +1548,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHANNON",
             "SAMIA",
-            "CHIARA"),
+            "CHIARA",
+            "SABRINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1476,7 +1564,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MICHELLE",
             "MICHELLE",
-            "MICHELLE"),
+            "MICHELLE",
+            "MICAELA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1491,7 +1580,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAROLINE",
             "CAROLINE",
-            "CATERINA"),
+            "CATERINA",
+            "CAROLINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1506,7 +1596,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JULIE",
             "JULIE",
-            "FRANCESCA"),
+            "FRANCESCA",
+            "JULIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1521,7 +1612,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BROOKE",
             "BLANCHE",
-            "GEMMA"),
+            "GEMMA",
+            "BERTA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1536,7 +1628,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BROOKE",
             "BLANCHE",
-            "GEMMA"),
+            "GEMMA",
+            "BERTA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1551,7 +1644,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BROOKE",
             "BLANCHE",
-            "GEMMA"),
+            "GEMMA",
+            "BERTA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1566,7 +1660,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BROOKE",
             "BLANCHE",
-            "GEMMA"),
+            "GEMMA",
+            "BERTA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -1596,7 +1691,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KINDRA",
             "SELENA",
-            "ELVIRA"),
+            "ELVIRA",
+            "CLEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1611,6 +1707,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TAMMY",
             "NINON",
+            "TAMARA",
             "TAMARA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -1626,7 +1723,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VALERIE",
             "VALERIA",
-            "VANIA"),
+            "VANIA",
+            "MARIAU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1641,7 +1739,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TASHA",
             "TATIANA",
-            "GISELDA"),
+            "GISELDA",
+            "TIRSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1656,7 +1755,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VALERIE",
             "VALERIA",
-            "VANIA"),
+            "VANIA",
+            "MARIAU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1671,7 +1771,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VALERIE",
             "VALERIA",
-            "VANIA"),
+            "VANIA",
+            "MARIAU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1686,7 +1787,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VALERIE",
             "VALERIA",
-            "VANIA"),
+            "VANIA",
+            "MARIAU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1701,7 +1803,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VALERIE",
             "VALERIA",
-            "VANIA"),
+            "VANIA",
+            "MARIAU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1716,7 +1819,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1731,7 +1835,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DAPHNE",
             "DAPHNEE",
-            "DUNIA"),
+            "DUNIA",
+            "DAFNE"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1746,7 +1851,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1761,7 +1867,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1776,7 +1883,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRIANNA",
             "VIVIANE",
-            "CRISTINA"),
+            "CRISTINA",
+            "EVA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1791,7 +1899,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NAOMI",
             "NAOMI",
-            "NAOMI"),
+            "NAOMI",
+            "CLAUDIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1806,7 +1915,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1821,7 +1931,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1836,7 +1947,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1851,7 +1963,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CINDY",
             "SANDY",
-            "DALIA"),
+            "DALIA",
+            "CINTIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1866,7 +1979,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MELISSA",
             "MELISSA",
-            "CARLETTA"),
+            "CARLETTA",
+            "MELISA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1881,7 +1995,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHEILA",
             "SHEILA",
-            "CLAUDIA"),
+            "CLAUDIA",
+            "SOL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1896,7 +2011,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHIRLEY",
             "SHIRLEY",
-            "DARIA"),
+            "DARIA",
+            "SILVIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1911,7 +2027,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JESSICA",
             "JESSICA",
-            "MARILENA"),
+            "MARILENA",
+            "GLORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1926,7 +2043,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CONNIE",
             "CONSTANCE",
-            "DANIELA"),
+            "DANIELA",
+            "CORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1941,7 +2059,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRIDGET",
             "ELODIE",
-            "STEFANIA"),
+            "STEFANIA",
+            "BRIGI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1971,7 +2090,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIFFANY",
             "SABRINA",
-            "CLELIA"),
+            "CLELIA",
+            "TIZIANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -1986,7 +2106,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JESSICA",
             "JESSICA",
-            "MARILENA"),
+            "MARILENA",
+            "GLORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2001,7 +2122,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JESSICA",
             "JESSICA",
-            "MARILENA"),
+            "MARILENA",
+            "GLORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2016,7 +2138,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JESSICA",
             "JESSICA",
-            "MARILENA"),
+            "MARILENA",
+            "GLORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2031,7 +2154,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JESSICA",
             "JESSICA",
-            "MARILENA"),
+            "MARILENA",
+            "GLORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2046,7 +2170,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINSTON",
             "JEAN-MARIE",
-            "GABRIELE"),
+            "GABRIELE",
+            "DANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2061,7 +2186,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MOLLIE",
             "MATHILDE",
-            "MOLLY"),
+            "MOLLY",
+            "MANUELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2076,7 +2202,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GARRET",
             "PAUL-ALAIN",
-            "GAETANO"),
+            "GAETANO",
+            "GABRIEL"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2091,7 +2218,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINSTON",
             "JEAN-MARIE",
-            "GABRIELE"),
+            "GABRIELE",
+            "DANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2106,7 +2234,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINSTON",
             "JEAN-MARIE",
-            "GABRIELE"),
+            "GABRIELE",
+            "DANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2121,7 +2250,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINSTON",
             "JEAN-MARIE",
-            "GABRIELE"),
+            "GABRIELE",
+            "DANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2136,7 +2266,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINSTON",
             "JEAN-MARIE",
-            "GABRIELE"),
+            "GABRIELE",
+            "DANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2151,7 +2282,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVE",
             "STEPHANE",
-            "JACOPO"),
+            "JACOPO",
+            "ESTEBAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2166,7 +2298,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THALIA",
             "THALIA",
-            "NEREA"),
+            "NEREA",
+            "TALI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2181,7 +2314,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARK",
             "ACHILLE",
-            "GILBERTO"),
+            "GILBERTO",
+            "MARCO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2196,7 +2330,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2211,7 +2346,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVE",
             "STEPHANE",
-            "JACOPO"),
+            "JACOPO",
+            "ESTEBAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2226,7 +2362,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVE",
             "STEPHANE",
-            "JACOPO"),
+            "JACOPO",
+            "ESTEBAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2241,7 +2378,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVE",
             "STEPHANE",
-            "JACOPO"),
+            "JACOPO",
+            "ESTEBAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2256,7 +2394,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVE",
             "STEPHANE",
-            "JACOPO"),
+            "JACOPO",
+            "ESTEBAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2286,7 +2425,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DOMINIK",
             "AURELIEN",
-            "MANUEL"),
+            "MANUEL",
+            "AGUS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2301,7 +2441,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DOUGLAS",
             "DOMINIQUE",
-            "VALERIO"),
+            "VALERIO",
+            "DOMINGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2316,7 +2457,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DARRIN",
             "DANIEL",
-            "FULVIO"),
+            "FULVIO",
+            "DARI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2331,7 +2473,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TONY",
             "ANTOINE",
-            "TONY"),
+            "TONY",
+            "TONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2346,7 +2489,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEROME",
             "JEROME",
-            "MASSIMO"),
+            "MASSIMO",
+            "JEROMO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2361,7 +2505,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MATTHEW",
             "MATTEO",
-            "MATTHEW"),
+            "MATTHEW",
+            "MATEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2391,7 +2536,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SPENCER",
             "SYLVAIN",
-            "PATRIZIO"),
+            "PATRIZIO",
+            "SERGIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2406,7 +2552,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROLAND",
             "PACOME",
-            "ROLAND"),
+            "ROLAND",
+            "ROMEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2421,7 +2568,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOLEN",
             "CHRISTIAN",
-            "MATTIA"),
+            "MATTIA",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2436,7 +2584,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STAN",
             "STANISLAS",
-            "TRISTAN"),
+            "TRISTAN",
+            "EUSEBIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2451,7 +2600,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BARRY",
             "BENOIT",
-            "TOBIA"),
+            "TOBIA",
+            "BORIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2466,7 +2616,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DEAN",
             "JEAN",
-            "UMBERTO"),
+            "UMBERTO",
+            "DINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2481,7 +2632,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RODNEY",
             "RODOLPHE",
-            "AMEDEO"),
+            "AMEDEO",
+            "RODOLFO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2496,7 +2648,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICHARD",
             "RICHARD",
-            "RICHARD"),
+            "RICHARD",
+            "RICARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2511,7 +2664,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HERMAN",
             "HERVE",
-            "RAFFAELE"),
+            "RAFFAELE",
+            "HERNANDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2526,7 +2680,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SANTIAGO",
             "AMAURY",
-            "SANTIAGO"),
+            "SANTIAGO",
+            "CHANTI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2541,7 +2696,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GILBERT",
             "GILBERT",
-            "GILBERT"),
+            "GILBERT",
+            "GILBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2556,7 +2712,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FRANKLIN",
             "MARIO",
-            "MIMMO"),
+            "MIMMO",
+            "FRANCIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2571,7 +2728,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KEVIN",
             "KEVIN",
-            "KEVIN"),
+            "KEVIN",
+            "QUIQUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2586,7 +2744,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACK",
             "JACQUES",
-            "MARINO"),
+            "MARINO",
+            "OMAR"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2601,7 +2760,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUDLEY",
             "DORIAN",
-            "MIRCO"),
+            "MIRCO",
+            "DINIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2616,7 +2776,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHAD",
             "CEDRIC",
-            "TOBIAS"),
+            "TOBIAS",
+            "CIRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2631,7 +2792,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TONY",
             "ANTOINE",
-            "TONY"),
+            "TONY",
+            "TONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2646,7 +2808,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TONY",
             "ANTOINE",
-            "TONY"),
+            "TONY",
+            "TONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2661,7 +2824,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TONY",
             "ANTOINE",
-            "TONY"),
+            "TONY",
+            "TONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2676,7 +2840,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TONY",
             "ANTOINE",
-            "TONY"),
+            "TONY",
+            "TONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2721,7 +2886,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIYO",
             "AKIRA",
-            "KIYO"),
+            "KIYO",
+            "HIRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2751,7 +2917,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOB",
             "HIRO",
-            "NOB"),
+            "NOB",
+            "NOBORU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2766,7 +2933,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOB",
             "HIRO",
-            "NOB"),
+            "NOB",
+            "NOBORU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2781,7 +2949,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOB",
             "HIRO",
-            "NOB"),
+            "NOB",
+            "NOBORU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2796,7 +2965,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOB",
             "HIRO",
-            "NOB"),
+            "NOB",
+            "NOBORU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2811,7 +2981,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOB",
             "HIRO",
-            "NOB"),
+            "NOB",
+            "NOBORU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2871,7 +3042,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRK",
             "CHRIS",
-            "KIRK"),
+            "KIRK",
+            "ALEGRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2886,7 +3058,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2901,7 +3074,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2916,7 +3090,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHAWN",
             "ROBERT",
-            "SHAWN"),
+            "SHAWN",
+            "ISMA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2931,7 +3106,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FERNANDO",
             "FERNAND",
-            "FERNANDO"),
+            "FERNANDO",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2946,7 +3122,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALTON",
             "BIBOU",
-            "DALTON"),
+            "DALTON",
+            "RODRIGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2961,7 +3138,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALTON",
             "BIBOU",
-            "DALTON"),
+            "DALTON",
+            "RODRIGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2976,7 +3154,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALTON",
             "BIBOU",
-            "DALTON"),
+            "DALTON",
+            "RODRIGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -2991,7 +3170,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALTON",
             "BIBOU",
-            "DALTON"),
+            "DALTON",
+            "RODRIGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3006,7 +3186,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALTON",
             "BIBOU",
-            "DALTON"),
+            "DALTON",
+            "RODRIGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3021,7 +3202,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "COLE",
             "CYRIL",
-            "VALENTINO"),
+            "VALENTINO",
+            "CAMILO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3036,7 +3218,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFF",
             "ANTONIO",
-            "FLAVIO"),
+            "FLAVIO",
+            "GENARO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3051,7 +3234,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AXLE",
             "AXEL",
-            "UGO"),
+            "UGO",
+            "ALEJO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3081,7 +3265,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KEEGAN",
             "IVAN",
-            "KEEGAN"),
+            "KEEGAN",
+            "FUGUI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3096,7 +3281,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERNIE",
             "BERNARD",
-            "GRAZIANO"),
+            "GRAZIANO",
+            "BERNARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3111,7 +3297,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERNIE",
             "BERNARD",
-            "GRAZIANO"),
+            "GRAZIANO",
+            "BERNARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3126,7 +3313,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERNIE",
             "BERNARD",
-            "GRAZIANO"),
+            "GRAZIANO",
+            "BERNARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3141,7 +3329,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERNIE",
             "BERNARD",
-            "GRAZIANO"),
+            "GRAZIANO",
+            "BERNARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3156,7 +3345,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BERNIE",
             "BERNARD",
-            "GRAZIANO"),
+            "GRAZIANO",
+            "BERNARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3171,7 +3361,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DREW",
             "TRISTAN",
-            "RINALDO"),
+            "RINALDO",
+            "DOROTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3186,7 +3377,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BEAU",
             "YANIS",
-            "GIANFRANCO"),
+            "GIANFRANCO",
+            "BENITO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3201,7 +3393,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LARRY",
             "LAURENT",
-            "LARRY"),
+            "LARRY",
+            "LEANDRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3216,7 +3409,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHANE",
             "DJAMEL",
-            "FRANCO"),
+            "FRANCO",
+            "CHANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3231,7 +3425,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUSTIN",
             "JUSTIN",
-            "MISHA"),
+            "MISHA",
+            "JUSTI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3246,7 +3441,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ETHAN",
             "DIEGO",
-            "MAURO"),
+            "MAURO",
+            "EZEQUIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3261,7 +3457,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AUTUMN",
             "NATHY",
-            "ERMINIA"),
+            "ERMINIA",
+            "OTI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3276,7 +3473,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRAVIS",
             "THIERRY",
-            "PHILIP"),
+            "PHILIP",
+            "DUDU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3291,7 +3489,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ETHAN",
             "DIEGO",
-            "MAURO"),
+            "MAURO",
+            "EZEQUIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3306,7 +3505,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ETHAN",
             "DIEGO",
-            "MAURO"),
+            "MAURO",
+            "EZEQUIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3321,7 +3521,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ETHAN",
             "DIEGO",
-            "MAURO"),
+            "MAURO",
+            "EZEQUIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3336,7 +3537,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ETHAN",
             "DIEGO",
-            "MAURO"),
+            "MAURO",
+            "EZEQUIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3351,7 +3553,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENT",
             "BRAD",
-            "MARTINO"),
+            "MARTINO",
+            "BERNI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3366,7 +3569,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DONALD",
             "DONALD",
-            "PAOLINO"),
+            "PAOLINO",
+            "DONATO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3381,7 +3585,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TAYLOR",
             "THIBAULT",
-            "ERMANNO"),
+            "ERMANNO",
+            "TIRSO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3396,7 +3601,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFFREY",
             "FLORENT",
-            "MAT"),
+            "MAT",
+            "BARTOLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3411,7 +3617,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DEREK",
             "DIDIER",
-            "LEOPOLDO"),
+            "LEOPOLDO",
+            "DANTE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3426,7 +3633,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFFREY",
             "FLORENT",
-            "MAT"),
+            "MAT",
+            "BARTOLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3441,7 +3649,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFFREY",
             "FLORENT",
-            "MAT"),
+            "MAT",
+            "BARTOLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3456,7 +3665,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFFREY",
             "FLORENT",
-            "MAT"),
+            "MAT",
+            "BARTOLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3471,7 +3681,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JEFFREY",
             "FLORENT",
-            "MAT"),
+            "MAT",
+            "BARTOLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3486,7 +3697,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWARD",
             "EDOUARD",
-            "FABIANO"),
+            "FABIANO",
+            "EDUARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3501,7 +3713,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PRESTON",
             "POLO",
-            "ALEXANDER"),
+            "ALEXANDER",
+            "PATRICIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3516,7 +3729,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VIRGIL",
             "VIRGILE",
-            "MAURIZIO"),
+            "MAURIZIO",
+            "VIRGILIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3546,7 +3760,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WILLIAM",
             "WILLIAM",
-            "FIORENZO"),
+            "FIORENZO",
+            "GUILLERMO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3561,7 +3776,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOSHUA",
             "JOSEPH",
-            "FORTUNATO"),
+            "FORTUNATO",
+            "JOSU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3576,7 +3792,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMERON",
             "PROSPER",
-            "MASSIMINO"),
+            "MASSIMINO",
+            "SILVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3591,7 +3808,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMERON",
             "PROSPER",
-            "MASSIMINO"),
+            "MASSIMINO",
+            "SILVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3606,7 +3824,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMERON",
             "PROSPER",
-            "MASSIMINO"),
+            "MASSIMINO",
+            "SILVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3621,7 +3840,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMERON",
             "PROSPER",
-            "MASSIMINO"),
+            "MASSIMINO",
+            "SILVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3636,7 +3856,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMERON",
             "PROSPER",
-            "MASSIMINO"),
+            "MASSIMINO",
+            "SILVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3651,7 +3872,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACLYN",
             "JACQUELINE",
-            "GRETA"),
+            "GRETA",
+            "JACINTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3666,7 +3888,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HANNAH",
             "SABINE",
-            "ANNINA"),
+            "ANNINA",
+            "ANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3681,7 +3904,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAMANTHA",
             "SAMANTHA",
-            "ERIKA"),
+            "ERIKA",
+            "SAMANTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3696,7 +3920,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAURA",
             "MYRIAM",
-            "ANNALISA"),
+            "ANNALISA",
+            "MAGDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3711,7 +3936,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAYLA",
             "KARINE",
-            "LETIZIA"),
+            "LETIZIA",
+            "CELIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3726,7 +3952,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALEXIS",
             "CLAUDIE",
-            "RAMONA"),
+            "RAMONA",
+            "ALEXA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3741,7 +3968,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKI",
             "NORA",
-            "LIVIA"),
+            "LIVIA",
+            "JADE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3756,7 +3984,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKI",
             "NORA",
-            "LIVIA"),
+            "LIVIA",
+            "JADE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3771,7 +4000,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKI",
             "NORA",
-            "LIVIA"),
+            "LIVIA",
+            "JADE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3786,7 +4016,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKI",
             "NORA",
-            "LIVIA"),
+            "LIVIA",
+            "JADE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3801,7 +4032,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKI",
             "NORA",
-            "LIVIA"),
+            "LIVIA",
+            "JADE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3816,7 +4048,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALTER",
             "WALTER",
-            "GIANLUIGI"),
+            "GIANLUIGI",
+            "GABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3831,7 +4064,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MICAH",
             "ANATOLE",
-            "PIERLUIGI"),
+            "PIERLUIGI",
+            "TITO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3846,7 +4080,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THOMAS",
             "TONY",
-            "PIERLUCA"),
+            "PIERLUCA",
+            "TOMEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3861,7 +4096,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALTER",
             "WALTER",
-            "GIANLUIGI"),
+            "GIANLUIGI",
+            "GABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3876,7 +4112,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALTER",
             "WALTER",
-            "GIANLUIGI"),
+            "GIANLUIGI",
+            "GABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3891,7 +4128,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALTER",
             "WALTER",
-            "GIANLUIGI"),
+            "GIANLUIGI",
+            "GABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3906,7 +4144,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALTER",
             "WALTER",
-            "GIANLUIGI"),
+            "GIANLUIGI",
+            "GABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -3921,7 +4160,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SIDNEY",
             "DAMIEN",
-            "FOSCO"),
+            "FOSCO",
+            "SIXTO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -3936,7 +4176,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PHOEBE",
             "SPECTRA",
-            "ESTER"),
+            "ESTER",
+            "FÁTIMA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -3951,7 +4192,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GLACIA",
             "GLACIA",
-            "FRIDA"),
+            "FRIDA",
+            "NÍVEA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -3966,7 +4208,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DRAKE",
             "ARAGON",
-            "DRAKE"),
+            "DRAKE",
+            "DRACÓN"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -3981,6 +4224,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROXANNE",
             "ROXANNE",
+            "PETRA",
             "PETRA"),
         .items = {ITEM_POTION, ITEM_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
@@ -3996,7 +4240,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAWLY",
             "BASTIEN",
-            "RUDI"),
+            "RUDI",
+            "MARCIAL"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4011,7 +4256,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WATTSON",
             "VOLTERE",
-            "WALTER"),
+            "WALTER",
+            "ERICO"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4026,7 +4272,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLANNERY",
             "ADRIANE",
-            "FIAMMETTA"),
+            "FIAMMETTA",
+            "CANDELA"),
         .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4056,7 +4303,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINONA",
             "ALIZEE",
-            "ALICE"),
+            "ALICE",
+            "ALANA"),
         .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_RISKY,
@@ -4071,7 +4319,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TATE&LIZA",
             "LEVY&TATIA",
-            "TELL & PAT"),
+            "TELL & PAT",
+            "VITO-LETI"),
         .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_HYPER_POTION},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4086,7 +4335,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUAN",
             "JUAN",
-            "RODOLFO"),
+            "RODOLFO",
+            "GALANO"),
         .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4101,7 +4351,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JERRY",
             "JULIEN",
-            "JERRY"),
+            "JERRY",
+            "JERONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4116,7 +4367,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TED",
             "THEO",
-            "TED"),
+            "TED",
+            "TICO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4131,7 +4383,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PAUL",
             "PAUL",
-            "AGOSTINO"),
+            "AGOSTINO",
+            "PAULINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4146,7 +4399,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JERRY",
             "JULIEN",
-            "JERRY"),
+            "JERRY",
+            "JERONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4161,7 +4415,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JERRY",
             "JULIEN",
-            "JERRY"),
+            "JERRY",
+            "JERONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4176,7 +4431,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JERRY",
             "JULIEN",
-            "JERRY"),
+            "JERRY",
+            "JERONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4191,7 +4447,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JERRY",
             "JULIEN",
-            "JERRY"),
+            "JERRY",
+            "JERONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4206,7 +4463,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAREN",
             "KARENE",
-            "KAREN"),
+            "KAREN",
+            "CORINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4221,7 +4479,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GEORGIA",
             "GWENDOLINE",
-            "FLORIANA"),
+            "FLORIANA",
+            "GREGORIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4236,7 +4495,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAREN",
             "KARENE",
-            "KAREN"),
+            "KAREN",
+            "CORINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4251,7 +4511,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAREN",
             "KARENE",
-            "KAREN"),
+            "KAREN",
+            "CORINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4266,7 +4527,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAREN",
             "KARENE",
-            "KAREN"),
+            "KAREN",
+            "CORINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4281,7 +4543,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAREN",
             "KARENE",
-            "KAREN"),
+            "KAREN",
+            "CORINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4296,7 +4559,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATE & JOY",
             "VIVI & BEA",
-            "KATE & JOY"),
+            "KATE & JOY",
+            "CATI-FELI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4311,7 +4575,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNA & MEG",
             "ANNA & EVA",
-            "ANNA & IDA"),
+            "ANNA & IDA",
+            "ANI-MATI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4326,7 +4591,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNA & MEG",
             "ANNA & EVA",
-            "ANNA & IDA"),
+            "ANNA & IDA",
+            "ANI-MATI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4341,7 +4607,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNA & MEG",
             "ANNA & EVA",
-            "ANNA & IDA"),
+            "ANNA & IDA",
+            "ANI-MATI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4356,7 +4623,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNA & MEG",
             "ANNA & EVA",
-            "ANNA & IDA"),
+            "ANNA & IDA",
+            "ANI-MATI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4371,7 +4639,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNA & MEG",
             "ANNA & EVA",
-            "ANNA & IDA"),
+            "ANNA & IDA",
+            "ANI-MATI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4386,7 +4655,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VICTOR",
             "VICTOR",
-            "VINCENZO"),
+            "VINCENZO",
+            "VITORIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4416,7 +4686,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "COLTON",
             "PIOTR",
-            "RENATO"),
+            "RENATO",
+            "CORNELIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4506,7 +4777,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VANESSA",
             "VANESSA",
-            "VANESSA"),
+            "VANESSA",
+            "VANESA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4521,6 +4793,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BETHANY",
             "MARISSA",
+            "MARISA",
             "MARISA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -4611,7 +4884,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMOTHY",
             "TIMOTHEE",
-            "TIMOTHY"),
+            "TIMOTHY",
+            "TIMOTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4626,7 +4900,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMOTHY",
             "TIMOTHEE",
-            "TIMOTHY"),
+            "TIMOTHY",
+            "TIMOTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4641,7 +4916,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMOTHY",
             "TIMOTHEE",
-            "TIMOTHY"),
+            "TIMOTHY",
+            "TIMOTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4656,7 +4932,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMOTHY",
             "TIMOTHEE",
-            "TIMOTHY"),
+            "TIMOTHY",
+            "TIMOTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4671,7 +4948,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMOTHY",
             "TIMOTHEE",
-            "TIMOTHY"),
+            "TIMOTHY",
+            "TIMOTEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4701,7 +4979,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELBY",
             "ALIX",
-            "LIA"),
+            "LIA",
+            "SERAFINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4716,7 +4995,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELBY",
             "ALIX",
-            "LIA"),
+            "LIA",
+            "SERAFINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4731,7 +5011,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELBY",
             "ALIX",
-            "LIA"),
+            "LIA",
+            "SERAFINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4746,7 +5027,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELBY",
             "ALIX",
-            "LIA"),
+            "LIA",
+            "SERAFINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4761,7 +5043,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHELBY",
             "ALIX",
-            "LIA"),
+            "LIA",
+            "SERAFINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4776,7 +5059,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALVIN",
             "CALVIN",
-            "MATTEO"),
+            "MATTEO",
+            "CALIXTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4791,7 +5075,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BILLY",
             "WILLY",
-            "BILLY"),
+            "BILLY",
+            "BERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4806,7 +5091,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOSH",
             "JOHN",
-            "ELIA"),
+            "ELIA",
+            "JOSEMA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4821,7 +5107,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TOMMY",
             "TOM",
-            "TOMMY"),
+            "TOMMY",
+            "TOMI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4836,7 +5123,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOEY",
             "JO",
-            "JOEY"),
+            "JOEY",
+            "PEPE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4866,7 +5154,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "QUINCY",
             "QUENTIN",
-            "QUINCY"),
+            "QUINCY",
+            "GUYO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4881,7 +5170,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYNN",
             "KAREN",
-            "KATELYNN"),
+            "KATELYNN",
+            "GUYA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -4896,7 +5186,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAYLEN",
             "GILLES",
-            "EDGARDO"),
+            "EDGARDO",
+            "JAILO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4911,7 +5202,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DILLON",
             "DENDEN",
-            "FLORIANO"),
+            "FLORIANO",
+            "DIONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4926,7 +5218,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALVIN",
             "CALVIN",
-            "MATTEO"),
+            "MATTEO",
+            "CALIXTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4941,7 +5234,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALVIN",
             "CALVIN",
-            "MATTEO"),
+            "MATTEO",
+            "CALIXTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4956,7 +5250,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALVIN",
             "CALVIN",
-            "MATTEO"),
+            "MATTEO",
+            "CALIXTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4971,7 +5266,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALVIN",
             "CALVIN",
-            "MATTEO"),
+            "MATTEO",
+            "CALIXTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -4986,7 +5282,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDDIE",
             "EDDIE",
-            "EMANUELE"),
+            "EMANUELE",
+            "EDU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5001,7 +5298,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALLEN",
             "ALAIN",
-            "ALLEN"),
+            "ALLEN",
+            "ALFREDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5016,7 +5314,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIMMY",
             "TIM",
-            "TIMMY"),
+            "TIMMY",
+            "TINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5031,7 +5330,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLACE",
             "MARC",
-            "ADRIANO"),
+            "ADRIANO",
+            "PLUBIO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -5046,7 +5346,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDREW",
             "ALI",
-            "MARCUS"),
+            "MARCUS",
+            "ANDONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5061,7 +5362,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "IVAN",
             "YVAN",
-            "FLAVIANO"),
+            "FLAVIANO",
+            "IVANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5076,6 +5378,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CLAUDE",
             "CLAUDE",
+            "CLAUDIO",
             "CLAUDIO"),
         .items = {},
         .doubleBattle = FALSE,
@@ -5091,7 +5394,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELLIOT",
             "ELLIOT",
-            "STEFANO"),
+            "STEFANO",
+            "ELOY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5106,7 +5410,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NED",
             "ERWAN",
-            "NED"),
+            "NED",
+            "NESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5121,7 +5426,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DALE",
             "FABIO",
-            "RICCARDO"),
+            "RICCARDO",
+            "DANIEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5136,7 +5442,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOLAN",
             "NOEL",
-            "CHRISTIAN"),
+            "CHRISTIAN",
+            "NARCISO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5151,7 +5458,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BARNY",
             "BARNEY",
-            "GUGLIELMO"),
+            "GUGLIELMO",
+            "BENICIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5166,7 +5474,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WADE",
             "ARISTIDE",
-            "ERMES"),
+            "ERMES",
+            "GUIDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5181,7 +5490,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CARTER",
             "FRANCIS",
-            "FRANCESCO"),
+            "FRANCESCO",
+            "CAYETANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5196,7 +5506,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELLIOT",
             "ELLIOT",
-            "STEFANO"),
+            "STEFANO",
+            "ELOY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5211,7 +5522,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELLIOT",
             "ELLIOT",
-            "STEFANO"),
+            "STEFANO",
+            "ELOY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5226,7 +5538,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELLIOT",
             "ELLIOT",
-            "STEFANO"),
+            "STEFANO",
+            "ELOY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5241,7 +5554,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELLIOT",
             "ELLIOT",
-            "STEFANO"),
+            "STEFANO",
+            "ELOY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT,
@@ -5256,7 +5570,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RONALD",
             "FABIEN",
-            "AMBROGIO"),
+            "AMBROGIO",
+            "RONALDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5271,7 +5586,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACOB",
             "JACOB",
-            "JACOB"),
+            "JACOB",
+            "JACOBO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5286,7 +5602,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANTHONY",
             "ANTHONY",
-            "ANTHONY"),
+            "ANTHONY",
+            "ANTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5301,7 +5618,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENJAMIN",
             "BENJAMIN",
-            "BENJAMIN"),
+            "BENJAMIN",
+            "BENINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5316,7 +5634,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENJAMIN",
             "BENJAMIN",
-            "BENJAMIN"),
+            "BENJAMIN",
+            "BENINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5331,7 +5650,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENJAMIN",
             "BENJAMIN",
-            "BENJAMIN"),
+            "BENJAMIN",
+            "BENINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5346,7 +5666,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENJAMIN",
             "BENJAMIN",
-            "BENJAMIN"),
+            "BENJAMIN",
+            "BENINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5361,7 +5682,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENJAMIN",
             "BENJAMIN",
-            "BENJAMIN"),
+            "BENJAMIN",
+            "BENINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5376,7 +5698,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ABIGAIL",
             "GAELLE",
-            "LARA"),
+            "LARA",
+            "ADELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5391,7 +5714,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JASMINE",
             "YASMINA",
-            "JASMINE"),
+            "JASMINE",
+            "JAZMI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5406,7 +5730,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ABIGAIL",
             "GAELLE",
-            "LARA"),
+            "LARA",
+            "ADELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5421,7 +5746,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ABIGAIL",
             "GAELLE",
-            "LARA"),
+            "LARA",
+            "ADELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5436,7 +5762,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ABIGAIL",
             "GAELLE",
-            "LARA"),
+            "LARA",
+            "ADELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5451,7 +5778,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ABIGAIL",
             "GAELLE",
-            "LARA"),
+            "LARA",
+            "ADELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5466,7 +5794,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DYLAN",
             "REGIS",
-            "NICOLA"),
+            "NICOLA",
+            "DAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5481,7 +5810,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DYLAN",
             "REGIS",
-            "NICOLA"),
+            "NICOLA",
+            "DAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5496,7 +5826,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DYLAN",
             "REGIS",
-            "NICOLA"),
+            "NICOLA",
+            "DAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5511,7 +5842,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DYLAN",
             "REGIS",
-            "NICOLA"),
+            "NICOLA",
+            "DAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5526,7 +5858,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DYLAN",
             "REGIS",
-            "NICOLA"),
+            "NICOLA",
+            "DAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5541,7 +5874,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARIA",
             "MARIA",
-            "MARIA"),
+            "MARIA",
+            "MIRIAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5556,7 +5890,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARIA",
             "MARIA",
-            "MARIA"),
+            "MARIA",
+            "MIRIAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5571,7 +5906,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARIA",
             "MARIA",
-            "MARIA"),
+            "MARIA",
+            "MIRIAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5586,7 +5922,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARIA",
             "MARIA",
-            "MARIA"),
+            "MARIA",
+            "MIRIAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5601,7 +5938,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARIA",
             "MARIA",
-            "MARIA"),
+            "MARIA",
+            "MIRIAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5616,7 +5954,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMDEN",
             "JACKY",
-            "LALO"),
+            "LALO",
+            "CAMU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5631,7 +5970,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DEMETRIUS",
             "CHARLIE",
-            "DEMETRIUS"),
+            "DEMETRIUS",
+            "DIMITRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5646,7 +5986,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISAIAH",
             "JEOFFREY",
-            "ISAIA"),
+            "ISAIA",
+            "ISIDORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5676,7 +6017,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHASE",
             "FERNANDO",
-            "LIBERO"),
+            "LIBERO",
+            "CONRADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5691,7 +6033,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISAIAH",
             "JEOFFREY",
-            "ISAIA"),
+            "ISAIA",
+            "ISIDORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5706,7 +6049,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISAIAH",
             "JEOFFREY",
-            "ISAIA"),
+            "ISAIA",
+            "ISIDORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5721,7 +6065,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISAIAH",
             "JEOFFREY",
-            "ISAIA"),
+            "ISAIA",
+            "ISIDORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5736,7 +6081,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISAIAH",
             "JEOFFREY",
-            "ISAIA"),
+            "ISAIA",
+            "ISIDORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5751,7 +6097,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISOBEL",
             "ISABEL",
-            "ISOBEL"),
+            "ISOBEL",
+            "MARULI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5766,7 +6113,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DONNY",
             "DONNA",
-            "DONNY"),
+            "DONNY",
+            "DANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5781,7 +6129,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TALIA",
             "TALIA",
-            "TALIA"),
+            "TALIA",
+            "TANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5796,7 +6145,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYN",
             "KATELYN",
-            "MARIELLA"),
+            "MARIELLA",
+            "CATALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5811,7 +6161,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALLISON",
             "ALLY",
-            "BRUNELLA"),
+            "BRUNELLA",
+            "ARACELI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5826,7 +6177,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYN",
             "KATELYN",
-            "MARIELLA"),
+            "MARIELLA",
+            "CATALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5841,7 +6193,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYN",
             "KATELYN",
-            "MARIELLA"),
+            "MARIELLA",
+            "CATALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5856,7 +6209,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYN",
             "KATELYN",
-            "MARIELLA"),
+            "MARIELLA",
+            "CATALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5871,7 +6225,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATELYN",
             "KATELYN",
-            "MARIELLA"),
+            "MARIELLA",
+            "CATALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5886,7 +6241,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICOLAS",
             "NICOLAS",
-            "DYLAN"),
+            "DYLAN",
+            "RAFAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5901,7 +6257,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICOLAS",
             "NICOLAS",
-            "DYLAN"),
+            "DYLAN",
+            "RAFAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5916,7 +6273,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICOLAS",
             "NICOLAS",
-            "DYLAN"),
+            "DYLAN",
+            "RAFAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5931,7 +6289,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICOLAS",
             "NICOLAS",
-            "DYLAN"),
+            "DYLAN",
+            "RAFAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5946,7 +6305,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICOLAS",
             "NICOLAS",
-            "DYLAN"),
+            "DYLAN",
+            "RAFAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5961,7 +6321,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AARON",
             "IGOR",
-            "GIACOMO"),
+            "GIACOMO",
+            "JORDI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5976,7 +6337,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PERRY",
             "PEDRO",
-            "NICOLINO"),
+            "NICOLINO",
+            "PASTOR"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -5991,7 +6353,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HUGH",
             "HUGUES",
-            "CRISTIANO"),
+            "CRISTIANO",
+            "HUGO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6006,7 +6369,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PHIL",
             "PHIL",
-            "PHIL"),
+            "PHIL",
+            "PEDRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6021,7 +6385,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JARED",
             "BORIS",
-            "GEROLAMO"),
+            "GEROLAMO",
+            "JAVIER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6036,7 +6401,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HUMBERTO",
             "HUMBERT",
-            "CASIMIRO"),
+            "CASIMIRO",
+            "HUMBI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6051,7 +6417,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PRESLEY",
             "ELVIS",
-            "PRESLEY"),
+            "PRESLEY",
+            "LUSPI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6066,7 +6433,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWARDO",
             "JOACHIM",
-            "MANRICO"),
+            "MANRICO",
+            "JUANPI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6081,7 +6449,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "COLIN",
             "GINO",
-            "OSVALDO"),
+            "OSVALDO",
+            "CAYO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6096,7 +6465,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBERT",
             "BOB",
-            "ROBERT"),
+            "ROBERT",
+            "ROBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6111,7 +6481,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BENNY",
             "FREDO",
-            "BENNY"),
+            "BENNY",
+            "BENI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6126,7 +6497,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHESTER",
             "JUSTE",
-            "PRIMO"),
+            "PRIMO",
+            "CELSO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6141,7 +6513,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBERT",
             "BOB",
-            "ROBERT"),
+            "ROBERT",
+            "ROBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6156,7 +6529,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBERT",
             "BOB",
-            "ROBERT"),
+            "ROBERT",
+            "ROBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6171,7 +6545,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBERT",
             "BOB",
-            "ROBERT"),
+            "ROBERT",
+            "ROBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6186,7 +6561,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBERT",
             "BOB",
-            "ROBERT"),
+            "ROBERT",
+            "ROBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6201,7 +6577,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALEX",
             "ALEX",
-            "ALEX"),
+            "ALEX",
+            "SANDRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6216,7 +6593,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BECK",
             "LADISLAS",
-            "NANDO"),
+            "NANDO",
+            "BALDOMERO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6261,7 +6639,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DIANNE",
             "DIANA",
-            "BRITTA"),
+            "BRITTA",
+            "DIANI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -6276,7 +6655,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JANI",
             "MEGAN",
-            "MEGAN"),
+            "MEGAN",
+            "VEVA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -6381,7 +6761,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOCELYN",
             "CHRISTINE",
-            "MATILDE"),
+            "MATILDE",
+            "CESARINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6411,7 +6792,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CYNDY",
             "SANDRINE",
-            "LORI"),
+            "LORI",
+            "CECILIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6426,7 +6808,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORA",
             "MANON",
-            "DOREEN"),
+            "DOREEN",
+            "CORAL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6456,7 +6839,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CYNDY",
             "SANDRINE",
-            "LORI"),
+            "LORI",
+            "CECILIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6471,7 +6855,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CYNDY",
             "SANDRINE",
-            "LORI"),
+            "LORI",
+            "CECILIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6486,7 +6871,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CYNDY",
             "SANDRINE",
-            "LORI"),
+            "LORI",
+            "CECILIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6501,7 +6887,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CYNDY",
             "SANDRINE",
-            "LORI"),
+            "LORI",
+            "CECILIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6516,7 +6903,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MADELINE",
             "MADELEINE",
-            "BEATA"),
+            "BEATA",
+            "MIRANDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6531,7 +6919,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CLARISSA",
             "CLARISSE",
-            "CARLOTTA"),
+            "CARLOTTA",
+            "CLARISA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6546,7 +6935,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANGELICA",
             "ANGELIQUE",
-            "NICOLETTA"),
+            "NICOLETTA",
+            "ANGELINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6561,7 +6951,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MADELINE",
             "MADELEINE",
-            "BEATA"),
+            "BEATA",
+            "MIRANDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6576,7 +6967,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MADELINE",
             "MADELEINE",
-            "BEATA"),
+            "BEATA",
+            "MIRANDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6591,7 +6983,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MADELINE",
             "MADELEINE",
-            "BEATA"),
+            "BEATA",
+            "MIRANDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6606,7 +6999,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MADELINE",
             "MADELEINE",
-            "BEATA"),
+            "BEATA",
+            "MIRANDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6621,7 +7015,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BEVERLY",
             "MARIE-ANGE",
-            "DAMIANA"),
+            "DAMIANA",
+            "BELINDA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6636,7 +7031,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "IMANI",
             "MURIEL",
-            "DILETTA"),
+            "DILETTA",
+            "ALBA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6651,7 +7047,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KYLA",
             "IRINA",
-            "KYLA"),
+            "KYLA",
+            "NORA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6666,7 +7063,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DENISE",
             "DENISE",
-            "EMANUELA"),
+            "EMANUELA",
+            "DELISA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6681,7 +7079,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BETH",
             "BETTY",
-            "EMMA"),
+            "EMMA",
+            "BEATRIZ"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6696,7 +7095,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TARA",
             "TARA",
-            "LIANA"),
+            "LIANA",
+            "TRINI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6711,7 +7111,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MISSY",
             "CLO",
-            "LORELLA"),
+            "LORELLA",
+            "MERCE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6726,7 +7127,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALICE",
             "ALICE",
-            "MARIKA"),
+            "MARIKA",
+            "ALICIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6741,7 +7143,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNY",
             "JENNY",
-            "MIRELLA"),
+            "MIRELLA",
+            "GENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6756,7 +7159,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRACE",
             "GRACE",
-            "NELLA"),
+            "NELLA",
+            "GRACIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6771,7 +7175,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TANYA",
             "TANYA",
-            "SILVANA"),
+            "SILVANA",
+            "TANIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6786,7 +7191,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHARON",
             "MORGANE",
-            "SOFIA"),
+            "SOFIA",
+            "SILVANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6801,7 +7207,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NIKKI",
             "MYLENE",
-            "TANIA"),
+            "TANIA",
+            "MONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6831,7 +7238,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATIE",
             "SEGOLENE",
-            "VINCENZA"),
+            "VINCENZA",
+            "CHIQUI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6846,7 +7254,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SUSIE",
             "SUZY",
-            "SUSIE"),
+            "SUSIE",
+            "SUSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6861,7 +7270,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KARA",
             "EDWIGE",
-            "ALLEGRA"),
+            "ALLEGRA",
+            "CIRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6876,7 +7286,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DANA",
             "CHRISTELLE",
-            "BEA"),
+            "BEA",
+            "DORA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6891,7 +7302,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SIENNA",
             "ROSALIE",
-            "CONCETTA"),
+            "CONCETTA",
+            "SIENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6906,7 +7318,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DEBRA",
             "LILIANE",
-            "DANILA"),
+            "DANILA",
+            "DEBO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6936,7 +7349,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAYLEE",
             "INGRID",
-            "FABIOLA"),
+            "FABIOLA",
+            "CELESTE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6951,7 +7365,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LAUREL",
             "GRAZIELLA",
-            "GABRIELLA"),
+            "GABRIELLA",
+            "LORENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6966,7 +7381,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CARLEE",
             "CARLA",
-            "MARILINA"),
+            "MARILINA",
+            "CARLI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6981,7 +7397,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNY",
             "JENNY",
-            "MIRELLA"),
+            "MIRELLA",
+            "GENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -6996,7 +7413,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNY",
             "JENNY",
-            "MIRELLA"),
+            "MIRELLA",
+            "GENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7011,7 +7429,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNY",
             "JENNY",
-            "MIRELLA"),
+            "MIRELLA",
+            "GENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7026,7 +7445,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNY",
             "JENNY",
-            "MIRELLA"),
+            "MIRELLA",
+            "GENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7041,7 +7461,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HEIDI",
             "HEIDI",
-            "AMATA"),
+            "AMATA",
+            "HILARIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7056,7 +7477,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BECKY",
             "GENEVIEVE",
-            "BEATRICE"),
+            "BEATRICE",
+            "BETINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7071,7 +7493,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAROL",
             "GRETA",
-            "CARMEN"),
+            "CARMEN",
+            "CARLETA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7086,7 +7509,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NANCY",
             "NANCY",
-            "DOMENICA"),
+            "DOMENICA",
+            "NEREA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7101,7 +7525,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARTHA",
             "MARTHE",
-            "ELEONORA"),
+            "ELEONORA",
+            "MARTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7221,7 +7646,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7236,7 +7662,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7251,7 +7678,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GINA & MIA",
             "GINA & MIA",
-            "GINA & MIA"),
+            "GINA & MIA",
+            "GINA-MINI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7266,7 +7694,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MIU & YUKI",
             "MIU & YUKI",
-            "MIU & YUKI"),
+            "MIU & YUKI",
+            "MARU-YOLA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7281,7 +7710,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7296,7 +7726,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GINA & MIA",
             "GINA & MIA",
-            "GINA & MIA"),
+            "GINA & MIA",
+            "GINA-MINI"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7311,7 +7742,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7326,7 +7758,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7341,7 +7774,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AMY & LIV",
             "EVE & AWA",
-            "AMY & LIV"),
+            "AMY & LIV",
+            "ALI-MAR"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7356,7 +7790,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HUEY",
             "HENRI",
-            "ARMANDO"),
+            "ARMANDO",
+            "HUMBERTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7371,7 +7806,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDMOND",
             "EDMOND",
-            "ARRIGO"),
+            "ARRIGO",
+            "EDMUNDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7386,7 +7822,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERNEST",
             "ERNEST",
-            "ERNEST"),
+            "ERNEST",
+            "ERNESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7401,7 +7838,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DWAYNE",
             "HAROLD",
-            "AURELIO"),
+            "AURELIO",
+            "DIMAS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7416,7 +7854,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PHILLIP",
             "PHILIPPE",
-            "PHILLIP"),
+            "PHILLIP",
+            "FELIPE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7431,7 +7870,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEONARD",
             "LEONARD",
-            "LEONARD"),
+            "LEONARD",
+            "LEONARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7446,7 +7886,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DUNCAN",
             "LUDOVIC",
-            "BENIAMINO"),
+            "BENIAMINO",
+            "DATO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7461,7 +7902,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERNEST",
             "ERNEST",
-            "ERNEST"),
+            "ERNEST",
+            "ERNESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7476,7 +7918,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERNEST",
             "ERNEST",
-            "ERNEST"),
+            "ERNEST",
+            "ERNESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7491,7 +7934,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERNEST",
             "ERNEST",
-            "ERNEST"),
+            "ERNEST",
+            "ERNESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7506,7 +7950,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERNEST",
             "ERNEST",
-            "ERNEST"),
+            "ERNEST",
+            "ERNESTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7521,7 +7966,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELI",
             "ELIE",
-            "LANFRANCO"),
+            "LANFRANCO",
+            "ELORE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7536,7 +7982,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANNIKA",
             "COLETTE",
-            "COLETTE"),
+            "COLETTE",
+            "CONCHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7551,7 +7998,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAZMYN",
             "ASTRID",
-            "PALMIRA"),
+            "PALMIRA",
+            "JUAYA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7566,7 +8014,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JONAS",
             "JUSTIN",
-            "YANNIK"),
+            "YANNIK",
+            "JORECO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7581,7 +8030,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAYLEY",
             "AGATHE",
-            "KAYLEY"),
+            "KAYLEY",
+            "LARITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7596,7 +8046,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AURON",
             "GASPARD",
-            "ONOFRIO"),
+            "ONOFRIO",
+            "AURELIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7611,7 +8062,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KELVIN",
             "PATRICE",
-            "ALESSIO"),
+            "ALESSIO",
+            "COQUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7626,7 +8078,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARLEY",
             "MARGAUX",
-            "MADDALENA"),
+            "MADDALENA",
+            "MARLUYA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7641,7 +8094,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "REYNA",
             "VERENA",
-            "CELESTINA"),
+            "CELESTINA",
+            "REIRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7656,7 +8110,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HUDSON",
             "VALENTIN",
-            "VIDIGULFO"),
+            "VIDIGULFO",
+            "TOREL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7671,7 +8126,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CONOR",
             "YVES",
-            "CONOR"),
+            "CONOR",
+            "FERIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7686,7 +8142,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWIN",
             "MARTIN",
-            "CESARE"),
+            "CESARE",
+            "EDGARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7701,7 +8158,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HECTOR",
             "HECTOR",
-            "ETTORE"),
+            "ETTORE",
+            "HENRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7716,7 +8174,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TABITHA",
             "KELVIN",
-            "OTTAVIO"),
+            "OTTAVIO",
+            "TATIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7731,7 +8190,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWIN",
             "MARTIN",
-            "CESARE"),
+            "CESARE",
+            "EDGARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7746,7 +8206,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWIN",
             "MARTIN",
-            "CESARE"),
+            "CESARE",
+            "EDGARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7761,7 +8222,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWIN",
             "MARTIN",
-            "CESARE"),
+            "CESARE",
+            "EDGARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7776,7 +8238,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EDWIN",
             "MARTIN",
-            "CESARE"),
+            "CESARE",
+            "EDGARDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -7791,7 +8254,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7806,7 +8270,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7821,7 +8286,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7836,7 +8302,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7851,7 +8318,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -7866,7 +8334,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7881,7 +8350,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7896,7 +8366,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7911,7 +8382,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7926,7 +8398,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7941,7 +8414,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7956,7 +8430,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7971,7 +8446,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -7986,7 +8462,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8001,7 +8478,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8016,7 +8494,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8031,7 +8510,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8046,7 +8526,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8061,7 +8542,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8091,7 +8573,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DAVIS",
             "KARIM",
-            "DAVIS"),
+            "DAVIS",
+            "DAVISO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8106,7 +8589,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MITCHELL",
             "GAULTIER",
-            "MANFREDI"),
+            "MANFREDI",
+            "MIQUELE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8181,6 +8665,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYDIA",
             "CLOTILDE",
+            "LIDIA",
             "LIDIA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8196,7 +8681,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALLE",
             "OPHELIE",
-            "AURA"),
+            "AURA",
+            "ALIA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8211,7 +8697,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GARRISON",
             "RENAUD",
-            "GARRISON"),
+            "GARRISON",
+            "RUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8226,6 +8713,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYDIA",
             "CLOTILDE",
+            "LIDIA",
             "LIDIA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8241,6 +8729,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYDIA",
             "CLOTILDE",
+            "LIDIA",
             "LIDIA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8256,6 +8745,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYDIA",
             "CLOTILDE",
+            "LIDIA",
             "LIDIA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8271,6 +8761,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYDIA",
             "CLOTILDE",
+            "LIDIA",
             "LIDIA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8286,7 +8777,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKSON",
             "MICHAEL",
-            "GUIDO"),
+            "GUIDO",
+            "JUACU"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8301,7 +8793,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LORENZO",
             "LUIS",
-            "LORENZO"),
+            "LORENZO",
+            "LORENO"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8316,7 +8809,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SEBASTIAN",
             "SEBASTIEN",
-            "SEBASTIANO"),
+            "SEBASTIANO",
+            "SEB"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8331,7 +8825,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKSON",
             "MICHAEL",
-            "GUIDO"),
+            "GUIDO",
+            "JUACU"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8346,7 +8841,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKSON",
             "MICHAEL",
-            "GUIDO"),
+            "GUIDO",
+            "JUACU"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8361,7 +8857,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKSON",
             "MICHAEL",
-            "GUIDO"),
+            "GUIDO",
+            "JUACU"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8376,7 +8873,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JACKSON",
             "MICHAEL",
-            "GUIDO"),
+            "GUIDO",
+            "JUACU"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8391,7 +8889,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CATHERINE",
             "CATHERINE",
-            "SONIA"),
+            "SONIA",
+            "CRISTINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8406,7 +8905,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JENNA",
             "JENNA",
-            "SILVIA"),
+            "SILVIA",
+            "GUADA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8421,7 +8921,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SOPHIA",
             "SOFIA",
-            "KATIA"),
+            "KATIA",
+            "SOFI"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8436,7 +8937,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CATHERINE",
             "CATHERINE",
-            "SONIA"),
+            "SONIA",
+            "CRISTINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8451,7 +8953,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CATHERINE",
             "CATHERINE",
-            "SONIA"),
+            "SONIA",
+            "CRISTINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8466,7 +8969,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CATHERINE",
             "CATHERINE",
-            "SONIA"),
+            "SONIA",
+            "CRISTINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8481,7 +8985,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CATHERINE",
             "CATHERINE",
-            "SONIA"),
+            "SONIA",
+            "CRISTINA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8496,7 +9001,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JULIO",
             "NATHAN",
-            "JULIO"),
+            "JULIO",
+            "JULNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8511,7 +9017,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8526,7 +9033,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8541,7 +9049,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8556,7 +9065,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8601,7 +9111,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILITH",
             "CAMILLE",
-            "GELINDA"),
+            "GELINDA",
+            "LILITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8616,7 +9127,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CRISTIAN",
             "ENRIQUE",
-            "GERVASO"),
+            "GERVASO",
+            "KATO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8631,7 +9143,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SYLVIA",
             "SYLVIA",
-            "SYLVIA"),
+            "SYLVIA",
+            "CHISPI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8646,7 +9159,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEONARDO",
             "LEO",
-            "LEONARDO"),
+            "LEONARDO",
+            "LEONARDI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8661,7 +9175,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ATHENA",
             "ADELINE",
-            "ATHENA"),
+            "ATHENA",
+            "YAGUA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8676,7 +9191,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HARRISON",
             "HARRY",
-            "HARRISON"),
+            "HARRISON",
+            "RISONO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8691,7 +9207,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8706,7 +9223,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CLARENCE",
             "CLARENCE",
-            "GASPARE"),
+            "GASPARE",
+            "CLARO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8721,7 +9239,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TERRY",
             "TERRY",
-            "TERESIO"),
+            "TERESIO",
+            "TERRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8736,7 +9255,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NATE",
             "VICENTE",
-            "ADI"),
+            "ADI",
+            "NANDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8751,7 +9271,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KATHLEEN",
             "ANNICK",
-            "KATHLEEN"),
+            "KATHLEEN",
+            "CATLIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8766,7 +9287,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CLIFFORD",
             "BLAISE",
-            "CLIFFORD"),
+            "CLIFFORD",
+            "CLIFO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8781,7 +9303,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NICHOLAS",
             "NICHOLAS",
-            "NICHOLAS"),
+            "NICHOLAS",
+            "NICONO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8796,7 +9319,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8811,7 +9335,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8826,7 +9351,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8841,7 +9367,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8856,7 +9383,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8871,7 +9399,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MACEY",
             "MACEY",
-            "MACEY"),
+            "MACEY",
+            "MACEI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8886,7 +9415,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8901,7 +9431,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8916,7 +9447,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "PAXTON",
             "KEVIN",
-            "PAXTON"),
+            "PAXTON",
+            "GUILLE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8931,7 +9463,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISABELLA",
             "ISABELLA",
-            "CAROLA"),
+            "CAROLA",
+            "BELIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8946,7 +9479,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -8961,7 +9495,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TABITHA",
             "KELVIN",
-            "OTTAVIO"),
+            "OTTAVIO",
+            "TATIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -8976,7 +9511,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JONATHAN",
             "JONATHAN",
-            "JONATHAN"),
+            "JONATHAN",
+            "GUADO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -8991,7 +9527,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9006,7 +9543,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -9021,7 +9559,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAXIE",
             "MAX",
-            "MAX"),
+            "MAX",
+            "MAGNO"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9036,7 +9575,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAXIE",
             "MAX",
-            "MAX"),
+            "MAX",
+            "MAGNO"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9051,7 +9591,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TIANA",
             "MARIANNE",
-            "SIMONA"),
+            "SIMONA",
+            "TINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9066,7 +9607,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALEY",
             "AUDE",
-            "ELISABETTA"),
+            "ELISABETTA",
+            "HERMINIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9081,7 +9623,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JANICE",
             "PERRINE",
-            "ANTONELLA"),
+            "ANTONELLA",
+            "LUCRECIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9111,7 +9654,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALEY",
             "AUDE",
-            "ELISABETTA"),
+            "ELISABETTA",
+            "HERMINIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9126,7 +9670,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALEY",
             "AUDE",
-            "ELISABETTA"),
+            "ELISABETTA",
+            "HERMINIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9141,7 +9686,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALEY",
             "AUDE",
-            "ELISABETTA"),
+            "ELISABETTA",
+            "HERMINIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9156,7 +9702,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HALEY",
             "AUDE",
-            "ELISABETTA"),
+            "ELISABETTA",
+            "HERMINIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9171,7 +9718,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SALLY",
             "SALLY",
-            "SERENA"),
+            "SERENA",
+            "SUSANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9186,7 +9734,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROBIN",
             "SUZETTE",
-            "DOMINIQUE"),
+            "DOMINIQUE",
+            "ROBERTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9216,7 +9765,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CRISSY",
             "RACHEL",
-            "SUSANNA"),
+            "SUSANNA",
+            "CRISTI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9231,7 +9781,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RICK",
             "OMAR",
-            "RICK"),
+            "RICK",
+            "JANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9246,7 +9797,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LYLE",
             "FELIX",
-            "RUGGERO"),
+            "RUGGERO",
+            "LALO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9276,7 +9828,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DOUG",
             "ALFRED",
-            "SILVIO"),
+            "SILVIO",
+            "DOMIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9291,7 +9844,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GREG",
             "GREGORY",
-            "GREG"),
+            "GREG",
+            "GREGORIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9306,7 +9860,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KENT",
             "KEN",
-            "MIRO"),
+            "MIRO",
+            "CASIMIRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9321,7 +9876,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAMES",
             "JAMES",
-            "JAMES"),
+            "JAMES",
+            "JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9336,7 +9892,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAMES",
             "JAMES",
-            "JAMES"),
+            "JAMES",
+            "JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9351,7 +9908,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAMES",
             "JAMES",
-            "JAMES"),
+            "JAMES",
+            "JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9366,7 +9924,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAMES",
             "JAMES",
-            "JAMES"),
+            "JAMES",
+            "JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9381,7 +9940,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JAMES",
             "JAMES",
-            "JAMES"),
+            "JAMES",
+            "JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9396,7 +9956,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRICE",
             "BASILE",
-            "MINO"),
+            "MINO",
+            "BALTASAR"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9411,7 +9972,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRENT",
             "GUILLAUME",
-            "GIUSEPPE"),
+            "GIUSEPPE",
+            "TARSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9426,7 +9988,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LENNY",
             "JEAN-LUC",
-            "GIORDANO"),
+            "GIORDANO",
+            "LUCIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9456,7 +10019,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALAN",
             "AL",
-            "ALAIN"),
+            "ALAIN",
+            "ALFONSO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9471,7 +10035,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CLARK",
             "LUIGI",
-            "NATHAN"),
+            "NATHAN",
+            "CARLO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9486,7 +10051,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ERIC",
             "ERIC",
-            "ERIC"),
+            "ERIC",
+            "EVARISTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9516,7 +10082,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MIKE",
             "MAXIME",
-            "MIKE"),
+            "MIKE",
+            "MIGUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9531,7 +10098,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MIKE",
             "MAXIME",
-            "MIKE"),
+            "MIKE",
+            "MIGUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9546,7 +10114,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRENT",
             "GUILLAUME",
-            "GIUSEPPE"),
+            "GIUSEPPE",
+            "TARSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9561,7 +10130,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRENT",
             "GUILLAUME",
-            "GIUSEPPE"),
+            "GIUSEPPE",
+            "TARSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9576,7 +10146,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRENT",
             "GUILLAUME",
-            "GIUSEPPE"),
+            "GIUSEPPE",
+            "TARSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9591,7 +10162,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TRENT",
             "GUILLAUME",
-            "GIUSEPPE"),
+            "GIUSEPPE",
+            "TARSI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9606,7 +10178,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DEZ & LUKE",
             "ANNIE&KARL",
-            "DESI & KEN"),
+            "DESI & KEN",
+            "DULCE-LEO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9621,7 +10194,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEA & JED",
             "LISE & ALI",
-            "LEA & JED"),
+            "LEA & JED",
+            "LIZ-JOEL"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9636,7 +10210,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRA & DAN",
             "RITA & JOE",
-            "CIRA & DAN"),
+            "CIRA & DAN",
+            "LUCI-FITO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9651,7 +10226,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRA & DAN",
             "RITA & JOE",
-            "CIRA & DAN"),
+            "CIRA & DAN",
+            "LUCI-FITO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9666,7 +10242,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRA & DAN",
             "RITA & JOE",
-            "CIRA & DAN"),
+            "CIRA & DAN",
+            "LUCI-FITO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9681,7 +10258,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRA & DAN",
             "RITA & JOE",
-            "CIRA & DAN"),
+            "CIRA & DAN",
+            "LUCI-FITO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9696,7 +10274,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIRA & DAN",
             "RITA & JOE",
-            "CIRA & DAN"),
+            "CIRA & DAN",
+            "LUCI-FITO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9711,7 +10290,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHANNA",
             "FLAVIE",
-            "LILIANA"),
+            "LILIANA",
+            "JUANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9726,7 +10306,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GERALD",
             "GERALD",
-            "GERALD"),
+            "GERALD",
+            "GERARDO"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9741,7 +10322,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "VIVIAN",
             "VIVIANNE",
-            "SELENE"),
+            "SELENE",
+            "VIVIANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9756,7 +10338,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DANIELLE",
             "DANIELLE",
-            "SABRINA"),
+            "SABRINA",
+            "DANIELA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9801,7 +10384,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RILEY",
             "MARCEL",
-            "GIULIANO"),
+            "GIULIANO",
+            "ROCO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT,
@@ -9816,7 +10400,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLINT",
             "FREDERIC",
-            "TIM"),
+            "TIM",
+            "FIDEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9831,7 +10416,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ASHLEY",
             "CONNIE",
-            "ASHLEY"),
+            "ASHLEY",
+            "ALIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -9846,7 +10432,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9861,7 +10448,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9876,7 +10464,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9891,7 +10480,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9906,7 +10496,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WALLY",
             "TIMMY",
-            "LINO"),
+            "LINO",
+            "BLASCO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9921,7 +10512,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9936,7 +10528,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9951,7 +10544,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9966,7 +10560,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9981,7 +10576,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -9996,7 +10592,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10011,7 +10608,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JONAH",
             "JONAS",
-            "JONAH"),
+            "JONAH",
+            "JONI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10026,7 +10624,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HENRY",
             "HENRY",
-            "HENRY"),
+            "HENRY",
+            "ENRIQUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10041,7 +10640,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROGER",
             "ROGER",
-            "ROGER"),
+            "ROGER",
+            "ROGE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10056,7 +10656,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALEXA",
             "ALEXIA",
-            "ALEXA"),
+            "ALEXA",
+            "ALEJANDRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10071,7 +10672,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RUBEN",
             "STEVEN",
-            "RUBEN"),
+            "RUBEN",
+            "RUBE"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10101,7 +10703,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WAYNE",
             "JEREMY",
-            "MANOLO"),
+            "MANOLO",
+            "UBALDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10116,7 +10719,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "AIDAN",
             "LUC",
-            "SIMONE"),
+            "SIMONE",
+            "ADRIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10131,7 +10735,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "REED",
             "ALBIN",
-            "ORLANDO"),
+            "ORLANDO",
+            "REMO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10146,7 +10751,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TISHA",
             "KATIA",
-            "CAROLINA"),
+            "CAROLINA",
+            "TALINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10161,7 +10767,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TORI & TIA",
             "LILA&NELLY",
-            "TINA & TIA"),
+            "TINA & TIA",
+            "TEA-BEA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10176,7 +10783,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KIM & IRIS",
             "KIM & IRIS",
-            "KIM & IRIS"),
+            "KIM & IRIS",
+            "BETH-IRIS"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10191,7 +10799,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TYRA & IVY",
             "TYRA & IVY",
-            "AVA & ADA"),
+            "AVA & ADA",
+            "TULA-ILDA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10206,7 +10815,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MEL & PAUL",
             "MEL & PAUL",
-            "EVA & PAUL"),
+            "EVA & PAUL",
+            "MELI-LINO"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10221,7 +10831,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHN & JAY",
             "JOHN & JAY",
-            "IVO & IVA"),
+            "IVO & IVA",
+            "JULI-NELA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10236,7 +10847,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHN & JAY",
             "JOHN & JAY",
-            "IVO & IVA"),
+            "IVO & IVA",
+            "JULI-NELA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10251,7 +10863,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHN & JAY",
             "JOHN & JAY",
-            "IVO & IVA"),
+            "IVO & IVA",
+            "JULI-NELA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10266,7 +10879,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHN & JAY",
             "JOHN & JAY",
-            "IVO & IVA"),
+            "IVO & IVA",
+            "JULI-NELA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
@@ -10281,7 +10895,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHN & JAY",
             "JOHN & JAY",
-            "IVO & IVA"),
+            "IVO & IVA",
+            "JULI-NELA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -10296,7 +10911,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RELI & IAN",
             "IAN & LANA",
-            "MELY & IAN"),
+            "MELY & IAN",
+            "IGOR-RUTH"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10311,7 +10927,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILA & ROY",
             "RITA & SAM",
-            "LILA & ROY"),
+            "LILA & ROY",
+            "SARO-RITA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10326,7 +10943,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILA & ROY",
             "RITA & SAM",
-            "LILA & ROY"),
+            "LILA & ROY",
+            "SARO-RITA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10341,7 +10959,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILA & ROY",
             "RITA & SAM",
-            "LILA & ROY"),
+            "LILA & ROY",
+            "SARO-RITA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10356,7 +10975,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILA & ROY",
             "RITA & SAM",
-            "LILA & ROY"),
+            "LILA & ROY",
+            "SARO-RITA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10371,7 +10991,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LILA & ROY",
             "RITA & SAM",
-            "LILA & ROY"),
+            "LILA & ROY",
+            "SARO-RITA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10386,7 +11007,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LISA & RAY",
             "RAY & LISA",
-            "LISA & RAY"),
+            "LISA & RAY",
+            "ROY-LISA"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10401,7 +11023,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHRIS",
             "CHRISTOPHE",
-            "IGOR"),
+            "IGOR",
+            "CRIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10416,7 +11039,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DAWSON",
             "ADRIEN",
-            "DAWSON"),
+            "DAWSON",
+            "ISRAEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10431,7 +11055,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SARAH",
             "PAOLA",
-            "SARAH"),
+            "SARAH",
+            "SARITA"),
         .items = {ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10461,7 +11086,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HAILEY",
             "VERO",
-            "HAILEY"),
+            "HAILEY",
+            "MARITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10476,7 +11102,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHANDLER",
             "JEANNOT",
-            "AURELIANO"),
+            "AURELIANO",
+            "NARIM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10491,7 +11118,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KALEB",
             "KALEB",
-            "KALEB"),
+            "KALEB",
+            "FANIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10506,7 +11134,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOSEPH",
             "JOSEPH",
-            "JOSEPH"),
+            "JOSEPH",
+            "FREDI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10521,7 +11150,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALYSSA",
             "ALYSSA",
-            "ALYSSA"),
+            "ALYSSA",
+            "ALISA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10536,7 +11166,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MARCOS",
             "JEREMIA",
-            "MARCOS"),
+            "MARCOS",
+            "MARCHO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10551,7 +11182,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RHETT",
             "YORICK",
-            "LIVIO"),
+            "LIVIO",
+            "RET"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10566,7 +11198,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TYRON",
             "JIM",
-            "TYRON"),
+            "TYRON",
+            "TIRTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10581,7 +11214,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CELINA",
             "CELINA",
-            "CELINA"),
+            "CELINA",
+            "ANABEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10611,7 +11245,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HAYDEN",
             "JERRY",
-            "GREGORIO"),
+            "GREGORIO",
+            "AIRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10626,7 +11261,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SOPHIE",
             "SOPHIA",
-            "SOPHIE"),
+            "SOPHIE",
+            "FIFI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10641,7 +11277,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "COBY",
             "WALTER",
-            "COBY"),
+            "COBY",
+            "BUTRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10656,7 +11293,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LAWRENCE",
             "ZACHARIE",
-            "LAWRENCE"),
+            "LAWRENCE",
+            "LAURENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10671,7 +11309,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WYATT",
             "KERWIN",
-            "OLIVIERO"),
+            "OLIVIERO",
+            "GUANE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10686,7 +11325,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANGELINA",
             "ANGELINA",
-            "ANGELINA"),
+            "ANGELINA",
+            "ANGELITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10701,7 +11341,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KAI",
             "KAI",
-            "KRISTOFER"),
+            "KRISTOFER",
+            "POL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10716,7 +11357,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CHARLOTTE",
             "CHARLEEN",
-            "CHARLOTTE"),
+            "CHARLOTTE",
+            "LOTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10746,7 +11388,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10761,7 +11404,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10776,7 +11420,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10791,7 +11436,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10806,7 +11452,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10821,7 +11468,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10836,7 +11484,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10851,7 +11500,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10866,7 +11516,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10881,7 +11532,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10896,7 +11548,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10911,7 +11564,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10926,7 +11580,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10941,7 +11596,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10956,7 +11612,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10971,7 +11628,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRUNT",
             "SBIRE",
-            "RECLUTA"),
+            "RECLUTA",
+            "SOLDADO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -10986,7 +11644,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TABITHA",
             "KELVIN",
-            "OTTAVIO"),
+            "OTTAVIO",
+            "TATIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11001,7 +11660,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DARCY",
             "SEVERINE",
-            "ILARIA"),
+            "ILARIA",
+            "DORIS"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11016,7 +11676,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAXIE",
             "MAX",
-            "MAX"),
+            "MAX",
+            "MAGNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11046,7 +11707,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ISABELLE",
             "ISABEAU",
-            "BELLA"),
+            "BELLA",
+            "CHABELI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11061,7 +11723,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDRES",
             "LENI",
-            "ANDRES"),
+            "ANDRES",
+            "ANDRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11076,7 +11739,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOSUE",
             "JOSHUA",
-            "ASTOLFO"),
+            "ASTOLFO",
+            "JOCHU"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11091,7 +11755,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAMRON",
             "YANN",
-            "CAMRON"),
+            "CAMRON",
+            "CADEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11106,7 +11771,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORY",
             "LAMBERT",
-            "CARONTE"),
+            "CARONTE",
+            "CORENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11121,7 +11787,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CAROLINA",
             "CAROLINA",
-            "CONNY"),
+            "CONNY",
+            "CAROLI"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11136,7 +11803,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ELIJAH",
             "ELLIAH",
-            "ADELMO"),
+            "ADELMO",
+            "ELIDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11166,7 +11834,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRYAN",
             "KENZO",
-            "BRYAN"),
+            "BRYAN",
+            "BRIAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11196,7 +11865,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRYANT",
             "RAOUL",
-            "SATURNINO"),
+            "SATURNINO",
+            "BRIANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11211,7 +11881,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SHAYLA",
             "LEONIE",
-            "SHAYLA"),
+            "SHAYLA",
+            "SHAILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11226,7 +11897,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "KYRA",
             "KYRA",
-            "KYRA"),
+            "KYRA",
+            "QUIRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11271,7 +11943,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "HELENE",
             "EMILIE",
-            "HELENE"),
+            "HELENE",
+            "ELINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11316,7 +11989,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JOHNSON",
             "BRYAN",
-            "JOHNSON"),
+            "JOHNSON",
+            "FLAVIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11346,7 +12020,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRANDI",
             "ANAIS",
-            "FIORELLA"),
+            "FIORELLA",
+            "BRANI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11376,7 +12051,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAKAYLA",
             "ANGELE",
-            "SIMONETTA"),
+            "SIMONETTA",
+            "NORINA"),
         .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11391,7 +12067,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FABIAN",
             "FABIAN",
-            "FABIAN"),
+            "FABIAN",
+            "MUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11406,7 +12083,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DAYTON",
             "MELVIL",
-            "DAYTON"),
+            "DAYTON",
+            "DAREO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11421,7 +12099,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RACHEL",
             "ARLETTE",
-            "RACHELE"),
+            "RACHELE",
+            "RURITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11451,7 +12130,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALLIE",
             "ARMELLE",
-            "APOLLONIA"),
+            "APOLLONIA",
+            "CALIRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11466,7 +12146,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CALE",
             "AYMERIC",
-            "FAUSTO"),
+            "FAUSTO",
+            "BUDI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11481,7 +12162,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MYLES",
             "NORBERT",
-            "MYLES"),
+            "MYLES",
+            "MILO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11526,7 +12208,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11541,7 +12224,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11556,6 +12240,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROXANNE",
             "ROXANNE",
+            "PETRA",
             "PETRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -11571,6 +12256,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROXANNE",
             "ROXANNE",
+            "PETRA",
             "PETRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -11586,6 +12272,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROXANNE",
             "ROXANNE",
+            "PETRA",
             "PETRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -11601,6 +12288,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ROXANNE",
             "ROXANNE",
+            "PETRA",
             "PETRA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -11616,7 +12304,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAWLY",
             "BASTIEN",
-            "RUDI"),
+            "RUDI",
+            "MARCIAL"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11631,7 +12320,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAWLY",
             "BASTIEN",
-            "RUDI"),
+            "RUDI",
+            "MARCIAL"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11646,7 +12336,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAWLY",
             "BASTIEN",
-            "RUDI"),
+            "RUDI",
+            "MARCIAL"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11661,7 +12352,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRAWLY",
             "BASTIEN",
-            "RUDI"),
+            "RUDI",
+            "MARCIAL"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11676,7 +12368,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WATTSON",
             "VOLTERE",
-            "WALTER"),
+            "WALTER",
+            "ERICO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11691,7 +12384,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WATTSON",
             "VOLTERE",
-            "WALTER"),
+            "WALTER",
+            "ERICO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11706,7 +12400,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WATTSON",
             "VOLTERE",
-            "WALTER"),
+            "WALTER",
+            "ERICO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11721,7 +12416,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WATTSON",
             "VOLTERE",
-            "WALTER"),
+            "WALTER",
+            "ERICO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11736,7 +12432,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLANNERY",
             "ADRIANE",
-            "FIAMMETTA"),
+            "FIAMMETTA",
+            "CANDELA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11751,7 +12448,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLANNERY",
             "ADRIANE",
-            "FIAMMETTA"),
+            "FIAMMETTA",
+            "CANDELA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11766,7 +12464,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLANNERY",
             "ADRIANE",
-            "FIAMMETTA"),
+            "FIAMMETTA",
+            "CANDELA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11781,7 +12480,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FLANNERY",
             "ADRIANE",
-            "FIAMMETTA"),
+            "FIAMMETTA",
+            "CANDELA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11856,7 +12556,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINONA",
             "ALIZEE",
-            "ALICE"),
+            "ALICE",
+            "ALANA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_RISKY,
@@ -11871,7 +12572,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINONA",
             "ALIZEE",
-            "ALICE"),
+            "ALICE",
+            "ALANA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_RISKY,
@@ -11886,7 +12588,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINONA",
             "ALIZEE",
-            "ALICE"),
+            "ALICE",
+            "ALANA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_RISKY,
@@ -11901,7 +12604,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "WINONA",
             "ALIZEE",
-            "ALICE"),
+            "ALICE",
+            "ALANA"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_RISKY,
@@ -11916,7 +12620,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TATE&LIZA",
             "LEVY&TATIA",
-            "TELL & PAT"),
+            "TELL & PAT",
+            "VITO-LETI"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11931,7 +12636,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TATE&LIZA",
             "LEVY&TATIA",
-            "TELL & PAT"),
+            "TELL & PAT",
+            "VITO-LETI"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11946,7 +12652,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TATE&LIZA",
             "LEVY&TATIA",
-            "TELL & PAT"),
+            "TELL & PAT",
+            "VITO-LETI"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11961,7 +12668,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TATE&LIZA",
             "LEVY&TATIA",
-            "TELL & PAT"),
+            "TELL & PAT",
+            "VITO-LETI"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11976,7 +12684,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUAN",
             "JUAN",
-            "RODOLFO"),
+            "RODOLFO",
+            "GALANO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -11991,7 +12700,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUAN",
             "JUAN",
-            "RODOLFO"),
+            "RODOLFO",
+            "GALANO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12006,7 +12716,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUAN",
             "JUAN",
-            "RODOLFO"),
+            "RODOLFO",
+            "GALANO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12021,7 +12732,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "JUAN",
             "JUAN",
-            "RODOLFO"),
+            "RODOLFO",
+            "GALANO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12036,7 +12748,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANGELO",
             "OLIVIERO",
-            "ANGELO"),
+            "ANGELO",
+            "ANTULO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12051,7 +12764,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "DARIUS",
             "PLACIDE",
-            "DARIUS"),
+            "DARIUS",
+            "DARERO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12066,7 +12780,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "STEVEN",
             "PIERRE",
-            "ROCCO"),
+            "ROCCO",
+            "MÁXIMO"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12081,7 +12796,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANABEL",
             "CATHY",
-            "ALBERTA"),
+            "ALBERTA",
+            "DESTRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12096,7 +12812,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "TUCKER",
             "TAKIM",
-            "TOLOMEO"),
+            "TOLOMEO",
+            "TACTIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12111,7 +12828,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SPENSER",
             "ESTEBAN",
-            "SPARTACO"),
+            "SPARTACO",
+            "ANICETO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12126,7 +12844,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GRETA",
             "CAROLE",
-            "VALENTINA"),
+            "VALENTINA",
+            "CORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12141,7 +12860,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "NOLAND",
             "SAM",
-            "SAVINO"),
+            "SAVINO",
+            "SABINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12156,7 +12876,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LUCY",
             "CHARLINE",
-            "FORTUNATA"),
+            "FORTUNATA",
+            "FORTUNIA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12171,7 +12892,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRANDON",
             "BAYAR",
-            "BALDO"),
+            "BALDO",
+            "VALENTE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12186,7 +12908,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDRES",
             "LENI",
-            "ANDRES"),
+            "ANDRES",
+            "ANDRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12201,7 +12924,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDRES",
             "LENI",
-            "ANDRES"),
+            "ANDRES",
+            "ANDRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12216,7 +12940,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDRES",
             "LENI",
-            "ANDRES"),
+            "ANDRES",
+            "ANDRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12231,7 +12956,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ANDRES",
             "LENI",
-            "ANDRES"),
+            "ANDRES",
+            "ANDRI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12246,7 +12972,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORY",
             "LAMBERT",
-            "CARONTE"),
+            "CARONTE",
+            "CORENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12261,7 +12988,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORY",
             "LAMBERT",
-            "CARONTE"),
+            "CARONTE",
+            "CORENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12276,7 +13004,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORY",
             "LAMBERT",
-            "CARONTE"),
+            "CARONTE",
+            "CORENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12291,7 +13020,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "CORY",
             "LAMBERT",
-            "CARONTE"),
+            "CARONTE",
+            "CORENO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12486,7 +13216,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FERNANDO",
             "FERNAND",
-            "FERNANDO"),
+            "FERNANDO",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12501,7 +13232,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FERNANDO",
             "FERNAND",
-            "FERNANDO"),
+            "FERNANDO",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12516,7 +13248,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FERNANDO",
             "FERNAND",
-            "FERNANDO"),
+            "FERNANDO",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12531,7 +13264,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "FERNANDO",
             "FERNAND",
-            "FERNANDO"),
+            "FERNANDO",
+            "MUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12546,7 +13280,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAWYER",
             "EMILIEN",
-            "DOROTEO"),
+            "DOROTEO",
+            "SOREN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12561,7 +13296,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAWYER",
             "EMILIEN",
-            "DOROTEO"),
+            "DOROTEO",
+            "SOREN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12576,7 +13312,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAWYER",
             "EMILIEN",
-            "DOROTEO"),
+            "DOROTEO",
+            "SOREN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12591,7 +13328,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "SAWYER",
             "EMILIEN",
-            "DOROTEO"),
+            "DOROTEO",
+            "SOREN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
@@ -12606,7 +13344,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABRIELLE",
             "LARA",
-            "GABRY"),
+            "GABRY",
+            "GABILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12621,7 +13360,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABRIELLE",
             "LARA",
-            "GABRY"),
+            "GABRY",
+            "GABILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12636,7 +13376,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABRIELLE",
             "LARA",
-            "GABRY"),
+            "GABRY",
+            "GABILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12651,7 +13392,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "GABRIELLE",
             "LARA",
-            "GABRY"),
+            "GABRY",
+            "GABILA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12666,7 +13408,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THALIA",
             "THALIA",
-            "NEREA"),
+            "NEREA",
+            "TALI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12681,7 +13424,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THALIA",
             "THALIA",
-            "NEREA"),
+            "NEREA",
+            "TALI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12696,7 +13440,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THALIA",
             "THALIA",
-            "NEREA"),
+            "NEREA",
+            "TALI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12711,7 +13456,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "THALIA",
             "THALIA",
-            "NEREA"),
+            "NEREA",
+            "TALI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -12741,7 +13487,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "ALVARO",
             "ALVARO",
-            "ALVARO"),
+            "ALVARO",
+            "ARANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -12756,7 +13503,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "EVERETT",
             "LAZARE",
-            "METELLO"),
+            "METELLO",
+            "ERISTO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -12771,7 +13519,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "RED",
             "RED",
-            "ROSSO"),
+            "ROSSO",
+            "JORO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -12786,7 +13535,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "LEAF",
             "LEAF",
-            "LEAF"),
+            "LEAF",
+            "JAHO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -12801,7 +13551,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "BRENDAN",
             "BRICE",
-            "BRENDON"),
+            "BRENDON",
+            "BRUNO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
@@ -12816,7 +13567,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = LANGUAGE_STRING(
             "MAY",
             "FLORA",
-            "VERA"),
+            "VERA",
+            "AURA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,

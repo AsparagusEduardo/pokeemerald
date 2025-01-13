@@ -35,7 +35,7 @@ const u8 gGameVersion = GAME_VERSION;
 
 const u8 gGameLanguage = GAME_LANGUAGE;
 
-#if FRENCH
+#if FRENCH || SPANISH
 const char BuildDateTime[] = "2005 07 01 18:30";
 #elif ITALIAN
 const char BuildDateTime[] = "2005 07 07 18:00";

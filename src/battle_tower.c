@@ -56,7 +56,7 @@ static void SetTowerBattleWon(void);
 static void AwardBattleTowerRibbons(void);
 static void SaveTowerChallenge(void);
 static void GetOpponentIntroSpeech(void);
-#if FRENCH || ITALIAN
+#if EUROPE
 static void GetOpponentIntroSpeech2(void);
 #endif
 static void BattleTowerNop1(void);

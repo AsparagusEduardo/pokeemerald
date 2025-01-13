@@ -13,7 +13,7 @@
 #include "constants/trainers.h"
 
 
-#if FRENCH || ITALIAN
+#if EUROPE
 #define MAY_MATCH_CALL_DESC gText_MayMatchCallDesc
 #define BRENDAN_MATCH_CALL_DESC gText_BrendanMatchCallDesc
 #else //ENGLISH
@@ -1094,10 +1094,11 @@ static void MatchCall_GetNameAndDesc_Birch(match_call_t matchCall, const u8 **de
     *name = matchCall.birch->name;
 }
 
+// difference FR
 static void MatchCall_GetNameAndDescByRematchIdx(u32 idx, const u8 **desc, const u8 **name)
 {
     const struct Trainer *trainer = gTrainers + GetTrainerIdxByRematchIdx(idx);
-#if FRENCH || ITALIAN
+#if EUROPE
     *desc = GetTrainerClassNameGenderSpecific(trainer->trainerClass, trainer->encounterMusic_gender, trainer->trainerName);
 #else //ENGLISH
     *desc = gTrainerClassNames[trainer->trainerClass];

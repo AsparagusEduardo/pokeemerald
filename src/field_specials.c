@@ -2213,7 +2213,7 @@ void BufferBattleTowerElevatorFloors(void)
     u16 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     u8 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
 
-#if FRENCH || ITALIAN
+#if EUROPE
     if (battleMode == FRONTIER_MODE_LINK_MULTIS)
     {
         gSpecialVar_0x8005 = 4;

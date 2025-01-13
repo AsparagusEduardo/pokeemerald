@@ -73,7 +73,7 @@ static const LoopedTask sMonRibbonListLoopTaskFuncs[] =
     BuildBoxMonRibbonList
 };
 
-#if !defined(FRENCH) && !defined(ITALIAN)
+#if !EUROPE
 static const u16 sMonRibbonListFramePal[] = INCBIN_U16("graphics/pokenav/ribbons/list_bg.gbapal");
 static const u32 sMonRibbonListFrameTiles[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.4bpp.lz");
 static const u32 sMonRibbonListFrameTilemap[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.bin.lz");
@@ -430,7 +430,7 @@ static u32 LoopedTask_OpenRibbonsMonList(s32 state)
     {
     case 0:
         InitBgTemplates(sMonRibbonListBgTemplates, ARRAY_COUNT(sMonRibbonListBgTemplates));
-    #if FRENCH || ITALIAN
+    #if EUROPE
         DecompressAndCopyTileDataToVram(1, gMonRibbonListFrameTiles, 0, 0, 0);
         SetBgTilemapBuffer(1, menu->buff);
         CopyToBgTilemapBuffer(1, gMonRibbonListFrameTilemap, 0, 0);

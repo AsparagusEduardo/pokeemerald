@@ -651,4 +651,3 @@ DewfordTown_EventScript_PhraseNotTrendyEnough::
 .endif
 .endif
 .endif
-
