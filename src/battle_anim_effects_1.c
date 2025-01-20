@@ -6695,7 +6695,7 @@ static void TrySwapWishBattlerIds(u32 battlerAtk, u32 battlerPartner)
     // if used future sight on opposing side, properly track who used it
     if (gSideStatuses[oppSide] & SIDE_STATUS_FUTUREATTACK) {
         for (i = 0; i < gBattlersCount; i++) {
-            if (IsAlly(i,battlerAtk))
+            if (IsBattlerAlly(i,battlerAtk))
                 continue;   // only on opposing side
             if (gWishFutureKnock.futureSightBattlerIndex[i] == battlerAtk) {
                 // if target was attacked with future sight from us, now they'll be the partner slot
