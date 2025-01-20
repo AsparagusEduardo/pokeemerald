@@ -1057,7 +1057,7 @@ void AnimTask_SetAnimAttackerAndTargetForEffectTgt(u8 taskId)
 
 void AnimTask_IsTargetSameSide(u8 taskId)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
+    if (IsBattlerAlly(gBattleAnimAttacker, gBattleAnimTarget))
         gBattleAnimArgs[ARG_RET_ID] = TRUE;
     else
         gBattleAnimArgs[ARG_RET_ID] = FALSE;

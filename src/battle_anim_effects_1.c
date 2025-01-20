@@ -4020,7 +4020,7 @@ void AnimTranslateLinearSingleSineWave(struct Sprite *sprite)
 
     sprite->data[5] = gBattleAnimArgs[5];
     InitAnimArcTranslation(sprite);
-    if (GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
+    if (IsBattlerAlly(gBattleAnimAttacker, gBattleAnimTarget))
         sprite->data[0] = 1;
     else
         sprite->data[0] = 0;
