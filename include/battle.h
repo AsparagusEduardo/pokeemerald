@@ -139,8 +139,6 @@ struct DisableStruct
 struct ProtectStruct
 {
     u32 protectionType;
-    u32 protected:1;
-    u32 spikyShielded:1;
     u32 kingsShielded:1;
     u32 banefulBunkered:1;
     u32 obstructed:1;
@@ -910,7 +908,6 @@ static inline bool32 IsBattleMoveRecoil(u32 move)
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
-                                        || gProtectStructs[battlerId].spikyShielded                                    \
                                         || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \
                                         || gProtectStructs[battlerId].burningBulwarked                                 \

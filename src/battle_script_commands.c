@@ -3860,7 +3860,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_MAT_BLOCK;
-                    gProtectStructs[gBattlerTarget].spikyShielded = FALSE;
                     gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
                     gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
                     gProtectStructs[gBattlerTarget].obstructed = FALSE;
@@ -5924,20 +5923,27 @@ static void Cmd_moveend(void)
         case MOVEEND_PROTECT_LIKE_EFFECT:
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
-                if (gProtectStructs[gBattlerTarget].spikyShielded
-                 && moveEffect != EFFECT_COUNTER
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                switch ((enum ProtectionType)gProtectStructs[gBattlerTarget].protectionType)
                 {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
-                    if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
-                        gBattleStruct->moveDamage[gBattlerAttacker] = 1;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SPIKY_SHIELD);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_SpikyShieldEffect;
-                    effect = 1;
+                case PROTECTION_NONE:
+                case PROTECTION_BASIC:
+                    break;
+                case PROTECTION_SPIKY_SHIELD:
+                    if (moveEffect != EFFECT_COUNTER && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
+                        if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
+                            gBattleStruct->moveDamage[gBattlerAttacker] = 1;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, gLastResultingMoves[gBattlerTarget]);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_SpikyShieldEffect;
+                        effect = 1;
+                    }
+                    break;
                 }
-                else if (gProtectStructs[gBattlerTarget].kingsShielded)
+
+                if (gProtectStructs[gBattlerTarget].kingsShielded)
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -11344,11 +11350,6 @@ static void Cmd_setprotectlike(void)
             else if (gMovesInfo[gCurrentMove].argument.protect.type != PROTECTION_NONE)
             {
                 gProtectStructs[gBattlerAttacker].protectionType = gMovesInfo[gCurrentMove].argument.protect.type;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_SPIKY_SHIELD)
-            {
-                gProtectStructs[gBattlerAttacker].spikyShielded = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
             }
             else if (gCurrentMove == MOVE_KINGS_SHIELD)

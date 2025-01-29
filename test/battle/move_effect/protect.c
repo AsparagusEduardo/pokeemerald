@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making cont
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); MaxHP(maxHp); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_CHESNAUGHT);
     } WHEN {
         if (hp == 1) {
             TURN { MOVE(opponent, MOVE_SPIKY_SHIELD); MOVE(player, usedMove); SEND_OUT(player, 1); }
@@ -148,12 +148,13 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making cont
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("The opposing Chesnaught protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("The opposing Chesnaught protected itself!");
         NOT HP_BAR(opponent);
         if (usedMove == MOVE_TACKLE) {
             HP_BAR(player, maxHp / 8);
+            MESSAGE("Wobbuffet was hurt by the opposing Chesnaught's Spiky Shield!");
             if (hp == 1) {
                 MESSAGE("Wobbuffet fainted!");
                 SEND_IN_MESSAGE("Wobbuffet");
