@@ -3860,7 +3860,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_MAT_BLOCK;
-                    gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
                     gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
                     gProtectStructs[gBattlerTarget].obstructed = FALSE;
                     gProtectStructs[gBattlerTarget].silkTrapped = FALSE;
@@ -5941,9 +5940,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                }
-
-                if (gProtectStructs[gBattlerTarget].kingsShielded)
+                case PROTECTION_KINGS_SHIELD:
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -5956,8 +5953,11 @@ static void Cmd_moveend(void)
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
                     effect = 1;
+                    break;
                 }
-                else if (gProtectStructs[gBattlerTarget].banefulBunkered)
+                }
+
+                if (gProtectStructs[gBattlerTarget].banefulBunkered)
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
@@ -11350,11 +11350,6 @@ static void Cmd_setprotectlike(void)
             else if (gMovesInfo[gCurrentMove].argument.protect.type != PROTECTION_NONE)
             {
                 gProtectStructs[gBattlerAttacker].protectionType = gMovesInfo[gCurrentMove].argument.protect.type;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_KINGS_SHIELD)
-            {
-                gProtectStructs[gBattlerAttacker].kingsShielded = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
             }
             else if (gCurrentMove == MOVE_BANEFUL_BUNKER)

@@ -135,11 +135,16 @@ struct DisableStruct
     u8 padding:2;
 };
 
+struct ProtectionInfo
+{
+    u32 statusMoves:1;
+    u32 padding:31;
+};
+
 // Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
 struct ProtectStruct
 {
     u32 protectionType;
-    u32 kingsShielded:1;
     u32 banefulBunkered:1;
     u32 obstructed:1;
     u32 endured:1;
@@ -908,7 +913,6 @@ static inline bool32 IsBattleMoveRecoil(u32 move)
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
-                                        || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \
                                         || gProtectStructs[battlerId].burningBulwarked                                 \
                                         || gProtectStructs[battlerId].obstructed                                       \

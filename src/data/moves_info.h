@@ -14640,6 +14640,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument.protect = { .type = PROTECTION_KINGS_SHIELD, },
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,

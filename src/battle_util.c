@@ -8772,6 +8772,13 @@ bool32 IsMoveMakingContact(u32 move, u32 battlerAtk)
     }
 }
 
+const struct ProtectionInfo gProtectionInfo[] =
+{
+    [PROTECTION_BASIC]        = { .statusMoves = TRUE, },
+    [PROTECTION_SPIKY_SHIELD] = { .statusMoves = TRUE, },
+    [PROTECTION_KINGS_SHIELD] = { .statusMoves = FALSE, },
+};
+
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     bool32 isProtected = FALSE;
@@ -8789,8 +8796,8 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = TRUE;
     else if (MoveIgnoresProtect(move))
         isProtected = FALSE;
-    else if (gProtectStructs[battlerDef].protectionType == PROTECTION_BASIC
-          || gProtectStructs[battlerDef].protectionType == PROTECTION_SPIKY_SHIELD)
+    else if (gProtectStructs[battlerDef].protectionType != PROTECTION_NONE
+        && (gProtectionInfo[gProtectStructs[battlerDef].protectionType].statusMoves == TRUE || !IsBattleMoveStatus(move)))
         isProtected = TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
@@ -8800,8 +8807,6 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
     else if (gProtectStructs[battlerDef].burningBulwarked)
         isProtected = TRUE;
     else if ((gProtectStructs[battlerDef].obstructed || gProtectStructs[battlerDef].silkTrapped) && !IsBattleMoveStatus(move))
-        isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].kingsShielded && !IsBattleMoveStatus(move))
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].maxGuarded)
         isProtected = TRUE;
