@@ -3265,11 +3265,7 @@ const u8* FaintClearSetData(u32 battler)
     memset(&gDisableStructs[battler], 0, sizeof(struct DisableStruct));
 
     gProtectStructs[battler].protectionType = PROTECTION_NONE;
-    gProtectStructs[battler].banefulBunkered = FALSE;
     gProtectStructs[battler].quash = FALSE;
-    gProtectStructs[battler].obstructed = FALSE;
-    gProtectStructs[battler].silkTrapped = FALSE;
-    gProtectStructs[battler].burningBulwarked = FALSE;
     gProtectStructs[battler].endured = FALSE;
     gProtectStructs[battler].noValidMoves = FALSE;
     gProtectStructs[battler].helpingHand = FALSE;
@@ -5101,7 +5097,6 @@ static void TurnValuesCleanUp(bool8 var0)
         if (var0)
         {
             gProtectStructs[i].protectionType = PROTECTION_NONE;
-            gProtectStructs[i].banefulBunkered = FALSE;
             gProtectStructs[i].quash = FALSE;
             gProtectStructs[i].usedCustapBerry = FALSE;
             gProtectStructs[i].quickDraw = FALSE;

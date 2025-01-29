@@ -8774,9 +8774,13 @@ bool32 IsMoveMakingContact(u32 move, u32 battlerAtk)
 
 const struct ProtectionInfo gProtectionInfo[] =
 {
-    [PROTECTION_BASIC]        = { .statusMoves = TRUE, },
-    [PROTECTION_SPIKY_SHIELD] = { .statusMoves = TRUE, },
-    [PROTECTION_KINGS_SHIELD] = { .statusMoves = FALSE, },
+    [PROTECTION_BASIC]           = { .statusMoves = TRUE, },
+    [PROTECTION_SPIKY_SHIELD]    = { .statusMoves = TRUE, },
+    [PROTECTION_KINGS_SHIELD]    = { .statusMoves = FALSE, },
+    [PROTECTION_BANEFUL_BUNKER]  = { .statusMoves = TRUE, },
+    [PROTECTION_OBSTRUCT]        = { .statusMoves = FALSE, },
+    [PROTECTION_SILK_TRAP]       = { .statusMoves = FALSE, },
+    [PROTECTION_BURNING_BULWARK] = { .statusMoves = TRUE, },
 };
 
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
@@ -8801,12 +8805,6 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
-        isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].banefulBunkered)
-        isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].burningBulwarked)
-        isProtected = TRUE;
-    else if ((gProtectStructs[battlerDef].obstructed || gProtectStructs[battlerDef].silkTrapped) && !IsBattleMoveStatus(move))
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].maxGuarded)
         isProtected = TRUE;
