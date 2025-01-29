@@ -3855,7 +3855,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             case MOVE_EFFECT_FEINT:
                 if (IS_BATTLER_PROTECTED(gBattlerTarget))
                 {
-                    gProtectStructs[gBattlerTarget].protected = FALSE;
+                    gProtectStructs[gBattlerTarget].protectionType = PROTECTION_NONE;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_WIDE_GUARD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
@@ -11341,9 +11341,9 @@ static void Cmd_setprotectlike(void)
                 gProtectStructs[gBattlerAttacker].endured = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BRACED_ITSELF;
             }
-            else if (gCurrentMove == MOVE_DETECT || gCurrentMove == MOVE_PROTECT)
+            else if (gMovesInfo[gCurrentMove].argument.protect.type != PROTECTION_NONE)
             {
-                gProtectStructs[gBattlerAttacker].protected = TRUE;
+                gProtectStructs[gBattlerAttacker].protectionType = gMovesInfo[gCurrentMove].argument.protect.type;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
             }
             else if (gCurrentMove == MOVE_SPIKY_SHIELD)

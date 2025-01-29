@@ -558,4 +558,10 @@ enum StartingStatus
     STARTING_STATUS_SWAMP_OPPONENT,
 };
 
+enum ProtectionType
+{
+    PROTECTION_NONE,
+    PROTECTION_BASIC,
+};
+
 #endif // GUARD_CONSTANTS_BATTLE_H

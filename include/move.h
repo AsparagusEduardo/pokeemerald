@@ -114,7 +114,7 @@ struct MoveInfo
         } twoTurnAttack;
         struct {
             u16 side;
-            u16 property; // can be used to remove the hardcoded values
+            u16 type;
         } protect;
         u32 status;
         u16 moveProperty;

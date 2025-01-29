@@ -138,6 +138,7 @@ struct DisableStruct
 // Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
 struct ProtectStruct
 {
+    u32 protectionType;
     u32 protected:1;
     u32 spikyShielded:1;
     u32 kingsShielded:1;
@@ -904,7 +905,7 @@ static inline bool32 IsBattleMoveRecoil(u32 move)
     gBattleMons[battlerId].types[2] = TYPE_MYSTERY;                                            \
 }
 
-#define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
+#define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protectionType != PROTECTION_NONE                   \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
