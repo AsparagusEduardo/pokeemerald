@@ -4553,6 +4553,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_PARALYZE_FOES:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectParalysisFoes;
+                break;
             case MOVE_EFFECT_POISON_FOES:
             case MOVE_EFFECT_POISON_PARALYZE_FOES:
             case MOVE_EFFECT_EFFECT_SPORE_FOES:
@@ -18328,6 +18331,25 @@ static u32 GetStatusFromMoveEffect(u32 move)
     }
 }
 
+void BS_TrySetParalysis(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+    {
+        gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+        gEffectBattler = gBattlerTarget;
+        BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
+        MarkBattlerForControllerExec(gBattlerTarget);
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
 void BS_TrySetStatus1(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
@@ -18341,14 +18363,6 @@ void BS_TrySetStatus1(void)
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                effect++;
-            }
-            break;
-        case STATUS1_PARALYSIS:
-            if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
-            {
-                gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
-                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
                 effect++;
             }
             break;

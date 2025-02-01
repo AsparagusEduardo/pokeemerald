@@ -1555,6 +1555,11 @@
 	.4byte \failInstr
 	.endm
 
+	.macro trysetparalysis, ptr:req
+	callnative BS_TrySetParalysis
+	.4byte \ptr
+	.endm
+
 	.macro trysetstatus1, ptr:req
 	callnative BS_TrySetStatus1
 	.4byte \ptr

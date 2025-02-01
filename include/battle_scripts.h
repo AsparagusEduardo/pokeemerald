@@ -543,6 +543,7 @@ extern const u8 BattleScript_EffectAuroraVeilSuccess[];
 extern const u8 BattleScript_EffectGravitySuccess[];
 extern const u8 BattleScript_EffectYawnSuccess[];
 extern const u8 BattleScript_EffectTryReducePP[];
+extern const u8 BattleScript_EffectParalysisFoes[];
 extern const u8 BattleScript_EffectStatus1Foes[];
 extern const u8 BattleScript_EffectStatus2Foes[];
 extern const u8 BattleScript_TormentEnds[];

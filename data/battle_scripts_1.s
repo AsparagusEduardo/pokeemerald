@@ -9767,6 +9767,25 @@ BattleScript_EffectTryReducePP::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectParalysisFoes::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_ParalysisFoesLoop:
+	jumpifabsent BS_TARGET, BattleScript_ParalysisFoesIncrement
+	trysetparalysis BattleScript_ParalysisFoesIncrement
+	statusanimation BS_TARGET
+	updatestatusicon BS_TARGET
+	printfromtable gStatusConditionsStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+BattleScript_ParalysisFoesIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_ParalysisFoesEnd
+	setallytonexttarget BattleScript_ParalysisFoesLoop
+BattleScript_ParalysisFoesEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectStatus1Foes::
 	savetarget
 	copybyte sBATTLER, gBattlerTarget
