@@ -278,7 +278,6 @@ DOUBLE_BATTLE_TEST("Ally switch swaps opposing sky drop targets if partner is be
 }
 
 // Test passes in isolation but fails on CI
-/*
 DOUBLE_BATTLE_TEST("Ally Switch swaps Illusion data")
 {
     GIVEN {
@@ -294,7 +293,7 @@ DOUBLE_BATTLE_TEST("Ally Switch swaps Illusion data")
         EXPECT(&gPlayerParty[2] == gBattleStruct->illusion[0].mon);
     }
 }
-*/
+//*/
 
 // Triple Battles required to test
 //TO_DO_BATTLE_TEST("Ally Switch fails if the user is in the middle of the field in a Triple Battle");
