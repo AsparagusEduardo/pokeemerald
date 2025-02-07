@@ -589,6 +589,7 @@ extern const u8 BattleScript_EffectHaze[];
 extern const u8 BattleScript_EffectBide[];
 extern const u8 BattleScript_EffectRoar[];
 extern const u8 BattleScript_EffectHit[];
+extern const u8 BattleScript_EffectPrimary[];
 extern const u8 BattleScript_EffectConversion[];
 extern const u8 BattleScript_EffectRestoreHp[];
 extern const u8 BattleScript_EffectToxic[];

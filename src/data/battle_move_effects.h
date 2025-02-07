@@ -16,6 +16,12 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 1,
     },
 
+    [EFFECT_PRIMARY] =
+    {
+        .battleScript = BattleScript_EffectPrimary,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
     [EFFECT_SLEEP] =
     {
         .battleScript = BattleScript_EffectSleep,

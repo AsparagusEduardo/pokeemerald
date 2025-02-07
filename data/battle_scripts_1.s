@@ -2781,6 +2781,18 @@ BattleScript_EffectPlaceholder::
 	printstring STRINGID_NOTDONEYET
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectPrimary::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	setadditionaleffects
+	tryfaintmon BS_TARGET
+	moveendall
+	end
+
 BattleScript_EffectHit::
 	attackcanceler
 BattleScript_HitFromAccCheck::

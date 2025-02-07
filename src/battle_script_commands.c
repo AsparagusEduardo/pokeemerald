@@ -2430,6 +2430,27 @@ static void Cmd_attackanimation(void)
             return;
         }
 
+        if (GetMoveEffect(gCurrentMove) == EFFECT_PRIMARY)
+        {
+            u32 i;
+            u32 numAdditionalEffects = GetMoveAdditionalEffectCount(gCurrentMove);
+            u32 canApply = FALSE;
+            for (i = 0; i < numAdditionalEffects; i++)
+            {
+                const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(gCurrentMove, i);
+                if (CanApplyAdditionalEffect(additionalEffect))
+                {
+                    canApply = TRUE;
+                    break;
+                }
+            }
+            if (!canApply)
+            {
+                gBattlescriptCurrInstr = cmd->nextInstr;
+                return;
+            }
+        }
+
         if ((moveTarget & MOVE_TARGET_BOTH
              || moveTarget & MOVE_TARGET_FOES_AND_ALLY
              || moveTarget & MOVE_TARGET_DEPENDS)
@@ -4676,7 +4697,10 @@ static void Cmd_setadditionaleffects(void)
             // Various checks for if this move effect can be applied this turn
             if (CanApplyAdditionalEffect(additionalEffect))
             {
-                percentChance = CalcSecondaryEffectChance(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), additionalEffect);
+                if (GetMoveEffect(gCurrentMove) == EFFECT_PRIMARY)
+                    percentChance = 0;
+                else
+                    percentChance = CalcSecondaryEffectChance(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), additionalEffect);
 
                 // Activate effect if it's primary (chance == 0) or if RNGesus says so
                 if ((percentChance == 0) || RandomPercentage(RNG_SECONDARY_EFFECT + gBattleStruct->additionalEffectsCounter, percentChance))

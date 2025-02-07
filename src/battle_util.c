@@ -3782,6 +3782,18 @@ static void CancellerZMoves(u32 *effect)
     }
 }
 
+static void CancellerLimber(u32 *effect)
+{
+    u32 i;
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(gCurrentMove);
+    for (i = 0; i < numAdditionalEffects; i++)
+    {
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(gCurrentMove, i);
+        if (additionalEffect->moveEffect == MOVE_EFFECT_BURN)
+            return TRUE;
+    }
+}
+
 static void CancellerMultiTargetMoves(u32 *effect)
 {
     u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -3825,37 +3837,38 @@ static void CancellerMultiTargetMoves(u32 *effect)
 
 static const MoveSuccessOrderCancellers sMoveSuccessOrderCancellers[] =
 {
-    [CANCELLER_FLAGS] = CancellerFlags,
-    [CANCELLER_STANCE_CHANGE_1] = CancellerStanceChangeOne,
-    [CANCELLER_SKY_DROP] = CancellerSkyDrop,
-    [CANCELLER_RECHARGE] = CancellerRecharge,
-    [CANCELLER_ASLEEP] = CancellerAsleep,
-    [CANCELLER_FROZEN] = CancellerFrozen,
-    [CANCELLER_OBEDIENCE] = CancellerObedience,
-    [CANCELLER_TRUANT] = CancellerTruant,
-    [CANCELLER_FLINCH] = CancellerFlinch,
-    [CANCELLER_IN_LOVE] = CancellerInLove,
-    [CANCELLER_DISABLED] = CancellerDisabled,
-    [CANCELLER_HEAL_BLOCKED] = CancellerHealBlocked,
-    [CANCELLER_GRAVITY] = CancellerGravity,
-    [CANCELLER_THROAT_CHOP] = CancellerThroatChop,
-    [CANCELLER_TAUNTED] = CancellerTaunted,
-    [CANCELLER_IMPRISONED] = CancellerImprisoned,
-    [CANCELLER_CONFUSED] = CancellerConfused,
-    [CANCELLER_PARALYSED] = CancellerParalysed,
-    [CANCELLER_BIDE] = CancellerBide,
-    [CANCELLER_THAW] = CancellerThaw,
-    [CANCELLER_STANCE_CHANGE_2] = CancellerStanceChangeTwo,
-    [CANCELLER_WEATHER_PRIMAL] = CancellerWeatherPrimal,
-    [CANCELLER_DYNAMAX_BLOCKED] = CancellerDynamaxBlocked,
-    [CANCELLER_POWDER_MOVE] = CancellerPowderMove,
-    [CANCELLER_POWDER_STATUS] = CancellerPowderStatus,
-    [CANCELLER_PROTEAN] = CancellerProtean,
-    [CANCELLER_PSYCHIC_TERRAIN] = CancellerPsychicTerrain,
-    [CANCELLER_EXPLODING_DAMP] = CancellerExplodingDamp,
-    [CANCELLER_MULTIHIT_MOVES] = CancellerMultihitMoves,
-    [CANCELLER_Z_MOVES] = CancellerZMoves,
-    [CANCELLER_MULTI_TARGET_MOVES] = CancellerMultiTargetMoves,
+    [CANCELLER_FLAGS]               = CancellerFlags,
+    [CANCELLER_STANCE_CHANGE_1]     = CancellerStanceChangeOne,
+    [CANCELLER_SKY_DROP]            = CancellerSkyDrop,
+    [CANCELLER_RECHARGE]            = CancellerRecharge,
+    [CANCELLER_ASLEEP]              = CancellerAsleep,
+    [CANCELLER_FROZEN]              = CancellerFrozen,
+    [CANCELLER_OBEDIENCE]           = CancellerObedience,
+    [CANCELLER_TRUANT]              = CancellerTruant,
+    [CANCELLER_FLINCH]              = CancellerFlinch,
+    [CANCELLER_IN_LOVE]             = CancellerInLove,
+    [CANCELLER_DISABLED]            = CancellerDisabled,
+    [CANCELLER_HEAL_BLOCKED]        = CancellerHealBlocked,
+    [CANCELLER_GRAVITY]             = CancellerGravity,
+    [CANCELLER_THROAT_CHOP]         = CancellerThroatChop,
+    [CANCELLER_TAUNTED]             = CancellerTaunted,
+    [CANCELLER_IMPRISONED]          = CancellerImprisoned,
+    [CANCELLER_CONFUSED]            = CancellerConfused,
+    [CANCELLER_PARALYSED]           = CancellerParalysed,
+    [CANCELLER_BIDE]                = CancellerBide,
+    [CANCELLER_THAW]                = CancellerThaw,
+    [CANCELLER_STANCE_CHANGE_2]     = CancellerStanceChangeTwo,
+    [CANCELLER_WEATHER_PRIMAL]      = CancellerWeatherPrimal,
+    [CANCELLER_DYNAMAX_BLOCKED]     = CancellerDynamaxBlocked,
+    [CANCELLER_POWDER_MOVE]         = CancellerPowderMove,
+    [CANCELLER_POWDER_STATUS]       = CancellerPowderStatus,
+    [CANCELLER_PROTEAN]             = CancellerProtean,
+    [CANCELLER_PSYCHIC_TERRAIN]     = CancellerPsychicTerrain,
+    [CANCELLER_EXPLODING_DAMP]      = CancellerExplodingDamp,
+    [CANCELLER_MULTIHIT_MOVES]      = CancellerMultihitMoves,
+    [CANCELLER_Z_MOVES]             = CancellerZMoves,
+    [CANCELLER_LIMBER]              = CancellerLimber,
+    [CANCELLER_MULTI_TARGET_MOVES]  = CancellerMultiTargetMoves,
 };
 
 u32 AtkCanceller_MoveSuccessOrder(void)
