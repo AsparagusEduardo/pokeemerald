@@ -497,7 +497,35 @@ SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered")
     }
 }
 
-TO_DO_BATTLE_TEST("Red Card activates but fails if the attacker has Dynamaxed");
+DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Dynamaxed")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_UNOWN);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_PROTECT, gimmick: GIMMICK_DYNAMAX); }
+        TURN {
+            MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft);
+            MOVE(opponentRight, MOVE_TACKLE, target: playerLeft);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_GUARD, opponentLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+        MESSAGE("Wobbuffet held up its Red Card against the opposing Wobbuffet!");
+        MESSAGE("The move was blocked by the power of Dynamax!");
+        NOT MESSAGE("The opposing Unown was dragged out!");
+
+        // Red Card already consumed so cannot activate.
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+            MESSAGE("Wobbuffet held up its Red Card against the opposing Wynaut!");
+        }
+    }
+}
 
 SINGLE_BATTLE_TEST("Red Card activates before Eject Pack")
 {
