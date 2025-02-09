@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Leek increases critical hit ratio by 2 stages for the Farfet
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 4;  species = SPECIES_FARFETCHD_GALAR; } // 25%
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 4;  species = SPECIES_SIRFETCHD; }       // 25%
     }
-    for (u32 j = GEN_6; j <= GEN_9; j++) {
+    for (u32 j = GEN_6; j < GEN_COUNT; j++) {
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 2;  species = SPECIES_FARFETCHD; }       // 50%
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 2;  species = SPECIES_FARFETCHD_GALAR; } // 50%
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 2;  species = SPECIES_SIRFETCHD; }       // 50%

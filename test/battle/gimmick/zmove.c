@@ -522,7 +522,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) 10,000,000 Volt Thunderbolt has an increased critic
     PARAMETRIZE { genConfig = GEN_1; chance = 1; }
     for (u32 j = GEN_2; j <= GEN_5; j++)
         PARAMETRIZE { genConfig = j; chance = 4; }
-    for (u32 j = GEN_6; j <= GEN_9; j++)
+    for (u32 j = GEN_6; j < GEN_COUNT; j++)
         PARAMETRIZE { genConfig = j; chance = 2; }
     PASSES_RANDOMLY(1, chance, RNG_CRITICAL_HIT);
     GIVEN {

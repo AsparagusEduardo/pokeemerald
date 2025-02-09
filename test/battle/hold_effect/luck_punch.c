@@ -7,7 +7,7 @@ SINGLE_BATTLE_TEST("Lucky Punch increases critical hit ratio by 2 stages for Cha
     PARAMETRIZE { genConfig = GEN_1; passes = 25; trials = 32; } // ~78.1% with Chansey's base speed
     for (u32 j = GEN_2; j <= GEN_5; j++)
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 4; }  //  25%
-    for (u32 j = GEN_6; j <= GEN_9; j++)
+    for (u32 j = GEN_6; j < GEN_COUNT; j++)
         PARAMETRIZE { genConfig = j; passes = 1;  trials = 2; }  //  50%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {

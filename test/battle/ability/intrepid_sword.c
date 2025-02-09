@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(B_INTREPID_SWORD == GEN_9);
+    ASSUME(B_INTREPID_SWORD >= GEN_9);
 }
 
 SINGLE_BATTLE_TEST("Intrepid Sword raises Attack by one stage")

@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Focus Energy increases the user's critical hit ratio by 1 st
 {
     bool32 useFocusEnergy = 0;
     u32 genConfig = 0, chance = 0;
-    for (u32 j = GEN_1; j <= GEN_9; j++) {
+    for (u32 j = GEN_1; j < GEN_COUNT; j++) {
         PARAMETRIZE { genConfig = j; useFocusEnergy = FALSE; chance = j >= GEN_7 ? 24 : 16; } // ~4.16%/6.25% with Wobbuffet's base speed
         PARAMETRIZE { genConfig = j; useFocusEnergy = TRUE; 
             if (j >= GEN_6)

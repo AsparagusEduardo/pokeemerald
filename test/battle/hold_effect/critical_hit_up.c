@@ -53,7 +53,7 @@ SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by 2 sta
     u32 genConfig = 0, chance;
     for (u32 j = GEN_1; j <= GEN_5; j++)
         PARAMETRIZE { genConfig = j; chance = 4; } // 25%
-    for (u32 j = GEN_6; j <= GEN_9; j++)
+    for (u32 j = GEN_6; j < GEN_COUNT; j++)
         PARAMETRIZE { genConfig = j; chance = 2; } // 50%
     PASSES_RANDOMLY(1, chance, RNG_CRITICAL_HIT);
     GIVEN {

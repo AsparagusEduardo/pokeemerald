@@ -8,7 +8,7 @@ SINGLE_BATTLE_TEST("Critical hits without modifiers occur at different rates by 
     PARAMETRIZE { genConfig = GEN_2; passes = 17; trials = 256; }  // ~6.64%
     for (u32 j = GEN_3; j <= GEN_6; j++)
         PARAMETRIZE { genConfig = j; passes = 1,  trials = 16;  }  //  6.25%
-    for (u32 j = GEN_7; j <= GEN_9; j++)
+    for (u32 j = GEN_7; j < GEN_COUNT; j++)
         PARAMETRIZE { genConfig = j; passes = 1,  trials = 24;  }  // ~4.17%
 
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a cri
     PARAMETRIZE { genConfig = GEN_2; passes = 85;  trials = 256; } // ~33.2%
     for (u32 j = GEN_3; j <= GEN_5; j++)
         PARAMETRIZE { genConfig = j; passes = 1,   trials = 3; }   // ~33.3%
-    for (u32 j = GEN_6; j <= GEN_9; j++)
+    for (u32 j = GEN_6; j < GEN_COUNT; j++)
         PARAMETRIZE { genConfig = j; passes = 1,   trials = 1; }   // 100%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {

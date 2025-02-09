@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(B_PROTEAN_LIBERO == GEN_9);
+    ASSUME(B_PROTEAN_LIBERO >= GEN_9);
 }
 
 SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in")
