@@ -9239,17 +9239,17 @@ static void SpriteCB_TripleArrowKick(struct Sprite* sprite)
 static const union AffineAnimCmd sDynamaxGrowthAffineAnimCmds[] = // from CFRU
 {
     AFFINEANIMCMD_FRAME(-2, -2, 0, 64), //Double in size over 1 second
-    AFFINEANIMCMD_FRAME(0, 0, 0, 64), //Pause for 1 seconds
-    AFFINEANIMCMD_FRAME(16, 16, 0, 8), //Shrink back down in 1/8 of a second
-    AFFINEANIMCMD_END,
+    AFFINEANIMCMD_FRAME(0, 0, 0, 1), //Pause for 1 seconds
+    //AFFINEANIMCMD_FRAME(16, 16, 0, 8), //Shrink back down in 1/8 of a second
+    AFFINEANIMCMD_END_NO_RESET,
 };
 
 static const union AffineAnimCmd sDynamaxGrowthAttackAnimationAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(-4, -4, 0, 32), //Double in size quicker
-    AFFINEANIMCMD_FRAME(0, 0, 0, 32), //Pause for less
-    AFFINEANIMCMD_FRAME(16, 16, 0, 8),
-    AFFINEANIMCMD_END,
+    AFFINEANIMCMD_FRAME(0, 0, 0, 1), //Pause for less
+    //AFFINEANIMCMD_FRAME(16, 16, 0, 8),
+    AFFINEANIMCMD_END_NO_RESET,
 };
 
 //Arg 0: Animation for attack

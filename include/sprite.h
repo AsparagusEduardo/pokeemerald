@@ -125,6 +125,7 @@ union AffineAnimCmd
     struct AffineAnimEndCmdAlt end; // unused in code
 };
 
+#define AFFINEANIMCMDTYPE_END_NO_RESET 0x7FFC
 #define AFFINEANIMCMDTYPE_LOOP 0x7FFD
 #define AFFINEANIMCMDTYPE_JUMP 0x7FFE
 #define AFFINEANIMCMDTYPE_END  0x7FFF
@@ -139,6 +140,8 @@ union AffineAnimCmd
     {.type = AFFINEANIMCMDTYPE_END}
 #define AFFINEANIMCMD_END_ALT(_val) \
     {.end = {.type = AFFINEANIMCMDTYPE_END, .val = _val}}
+#define AFFINEANIMCMD_END_NO_RESET \
+    {.type = AFFINEANIMCMDTYPE_END_NO_RESET}
 
 struct AffineAnimState
 {

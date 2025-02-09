@@ -1802,6 +1802,8 @@ bool8 RunAffineAnimFromTaskData(struct Task *task)
         gSprites[task->data[15]].y2 = 0;
         ResetSpriteRotScale(task->data[15]);
         return FALSE;
+    case AFFINEANIMCMDTYPE_END_NO_RESET:
+        return FALSE;
     }
 
     return TRUE;
