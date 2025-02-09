@@ -82,7 +82,7 @@ static const u8 sGenerationalChanges[GEN_CONFIG_COUNT] =
     //[GEN_CONFIG_UPDATED_ABILITY_DATA]           = B_UPDATED_ABILITY_DATA,
 
     // Move accuracy settings
-    //[GEN_CONFIG_TOXIC_NEVER_MISS]               = B_TOXIC_NEVER_MISS,
+    [GEN_CONFIG_TOXIC_NEVER_MISS]               = B_TOXIC_NEVER_MISS,
     //[GEN_CONFIG_MINIMIZE_DMG_ACC]               = B_MINIMIZE_DMG_ACC,
     //[GEN_CONFIG_BLIZZARD_HAIL]                  = B_BLIZZARD_HAIL,
     //[GEN_CONFIG_SHEER_COLD_ACC]                 = B_SHEER_COLD_ACC,
