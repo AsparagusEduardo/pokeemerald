@@ -26,8 +26,11 @@ SINGLE_BATTLE_TEST("Frostbite reduces the special attack by 50 percent")
 SINGLE_BATTLE_TEST("Frostbite deals 1/16th (Gen7+) or 1/8th damage to affected pokemon")
 {
     s16 frostbiteDamage;
-
+    u32 genConfig, value;
+    PARAMETRIZE { genConfig = GEN_7; value = 16; }
+    PARAMETRIZE { genConfig = GEN_6; value = 8; }
     GIVEN {
+        WITH_CONFIG(GEN_CONFIG_BURN_DAMAGE, genConfig);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_FROSTBITE); }
     } WHEN {
@@ -36,7 +39,9 @@ SINGLE_BATTLE_TEST("Frostbite deals 1/16th (Gen7+) or 1/8th damage to affected p
         MESSAGE("The opposing Wobbuffet was hurt by its frostbite!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
         HP_BAR(opponent, captureDamage: &frostbiteDamage);
-   } THEN { EXPECT_EQ(frostbiteDamage, opponent->maxHP / ((B_BURN_DAMAGE >= GEN_7) ? 16 : 8)); }
+    } THEN {
+        EXPECT_EQ(frostbiteDamage, opponent->maxHP / value);
+    }
 }
 
 SINGLE_BATTLE_TEST("Frostbite is healed if hit with a thawing move")

@@ -11,6 +11,7 @@
 #include "battle_setup.h"
 #include "data.h"
 #include "item.h"
+#include "generational_changes.h"
 #include "party_menu.h"
 #include "pokemon.h"
 #include "random.h"
@@ -1462,7 +1463,7 @@ static u32 GetSwitchinStatusDamage(u32 battler)
     {
         if (status & STATUS1_BURN)
         {
-            if (B_BURN_DAMAGE >= GEN_7)
+            if (GetGenConfig(GEN_CONFIG_BURN_DAMAGE) >= GEN_7)
                 statusDamage = maxHP / 16;
             else
                 statusDamage = maxHP / 8;
@@ -1473,7 +1474,7 @@ static u32 GetSwitchinStatusDamage(u32 battler)
         }
         else if (status & STATUS1_FROSTBITE)
         {
-            if (B_BURN_DAMAGE >= GEN_7)
+            if (GetGenConfig(GEN_CONFIG_BURN_DAMAGE) >= GEN_7)
                 statusDamage = maxHP / 16;
             else
                 statusDamage = maxHP / 8;

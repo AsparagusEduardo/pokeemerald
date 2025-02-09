@@ -2524,7 +2524,7 @@ u8 DoBattlerEndTurnEffects(void)
              && IsBattlerAlive(battler)
              && !IsBattlerProtectedByMagicGuard(battler, ability))
             {
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
+                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (GetGenConfig(GEN_CONFIG_BURN_DAMAGE) >= GEN_7 ? 16 : 8);
                 if (ability == ABILITY_HEATPROOF)
                 {
                     if (gBattleMoveDamage > (gBattleMoveDamage / 2) + 1) // Record ability if the burn takes less damage than it normally would.
@@ -2543,7 +2543,7 @@ u8 DoBattlerEndTurnEffects(void)
              && IsBattlerAlive(battler)
              && !IsBattlerProtectedByMagicGuard(battler, ability))
             {
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
+                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (GetGenConfig(GEN_CONFIG_BURN_DAMAGE) >= GEN_7 ? 16 : 8);
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_FrostbiteTurnDmg);

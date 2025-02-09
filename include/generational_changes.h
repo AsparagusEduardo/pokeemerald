@@ -30,7 +30,7 @@ static const u8 sGenerationalChanges[GEN_CONFIG_COUNT] =
     //[GEN_CONFIG_RECALCULATE_STATS]              = B_RECALCULATE_STATS,
 
     // Damage settings
-    //[GEN_CONFIG_BURN_DAMAGE]                    = B_BURN_DAMAGE,
+    [GEN_CONFIG_BURN_DAMAGE]                    = B_BURN_DAMAGE,
     //[GEN_CONFIG_BURN_FACADE_DMG]                = B_BURN_FACADE_DMG,
     //[GEN_CONFIG_BINDING_DAMAGE]                 = B_BINDING_DAMAGE,
     //[GEN_CONFIG_PSYWAVE_DMG]                    = B_PSYWAVE_DMG,
