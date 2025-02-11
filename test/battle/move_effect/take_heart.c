@@ -24,6 +24,7 @@ SINGLE_BATTLE_TEST("Take Heart cures the user of all status conditions")
     PARAMETRIZE { status1 = STATUS1_SLEEP; }
     PARAMETRIZE { status1 = STATUS1_POISON; }
     PARAMETRIZE { status1 = STATUS1_FREEZE; }
+    PARAMETRIZE { status1 = STATUS1_FROSTBITE; }
     PARAMETRIZE { status1 = STATUS1_BURN; }
     PARAMETRIZE { status1 = STATUS1_PARALYSIS; }
     PARAMETRIZE { status1 = STATUS1_TOXIC_POISON; }

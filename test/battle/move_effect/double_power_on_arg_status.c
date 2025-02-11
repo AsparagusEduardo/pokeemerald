@@ -9,6 +9,7 @@ SINGLE_BATTLE_TEST("Hex deals double damage to foes with a status", s16 damage)
     PARAMETRIZE { status1 = STATUS1_POISON; }
     PARAMETRIZE { status1 = STATUS1_BURN; }
     PARAMETRIZE { status1 = STATUS1_FREEZE; }
+    PARAMETRIZE { status1 = STATUS1_FROSTBITE; }
     PARAMETRIZE { status1 = STATUS1_PARALYSIS; }
     PARAMETRIZE { status1 = STATUS1_TOXIC_POISON; }
     GIVEN {

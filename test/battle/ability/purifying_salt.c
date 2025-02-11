@@ -60,6 +60,7 @@ SINGLE_BATTLE_TEST("Purifying Salt grants immunity to status effects")
     PARAMETRIZE { move = MOVE_THUNDER_WAVE; status = STATUS1_PARALYSIS; }
     PARAMETRIZE { move = MOVE_TOXIC; status = STATUS1_TOXIC_POISON; }
     PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FREEZE; }
+    //PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FROSTBITE; } // Needs way to test B_USE_FROSTBITE
     GIVEN {
         ASSUME(gMovesInfo[MOVE_WILL_O_WISP].effect == EFFECT_WILL_O_WISP);
         ASSUME(gMovesInfo[MOVE_HYPNOSIS].effect == EFFECT_SLEEP);
