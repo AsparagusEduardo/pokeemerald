@@ -151,6 +151,7 @@ DOUBLE_BATTLE_TEST("Dancer doesn't trigger on a snatched move")
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
         ASSUME(GetMoveEffect(MOVE_SNATCH) == EFFECT_SNATCH);
+        ASSUME(MoveCanBeSnatched(MOVE_DRAGON_DANCE));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ORICORIO);
