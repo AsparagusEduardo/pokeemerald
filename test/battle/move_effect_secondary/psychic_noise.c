@@ -29,6 +29,7 @@ SINGLE_BATTLE_TEST("Psychic Noise blocks healing moves for 2 turns")
 SINGLE_BATTLE_TEST("Psychic Noise is blocked by Soundproof")
 {
     GIVEN {
+        ASSUME(IsSoundMove(MOVE_PSYCHIC_NOISE));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_SOUNDPROOF); }
     } WHEN {

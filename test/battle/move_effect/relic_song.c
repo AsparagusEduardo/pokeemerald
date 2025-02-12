@@ -26,6 +26,7 @@ SINGLE_BATTLE_TEST("Relic Song has a 10% chance to put the target to sleep")
 SINGLE_BATTLE_TEST("Relic Song is prevented by Soundproof")
 {
     GIVEN {
+        ASSUME(IsSoundMove(MOVE_RELIC_SONG));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_SOUNDPROOF); }
     } WHEN {
@@ -43,6 +44,7 @@ SINGLE_BATTLE_TEST("Relic Song is prevented by Soundproof")
 SINGLE_BATTLE_TEST("Relic Song will become a Water-type move when used by a Pok√©mon with the Ability Liquid Voice")
 {
     GIVEN {
+        ASSUME(IsSoundMove(MOVE_RELIC_SONG));
         PLAYER(SPECIES_VULPIX);
         OPPONENT(SPECIES_POPPLIO) { Ability(ABILITY_LIQUID_VOICE); }
     } WHEN {
@@ -57,6 +59,7 @@ SINGLE_BATTLE_TEST("Relic Song will become a Water-type move when used by a Pok√
 SINGLE_BATTLE_TEST("Relic Song is blocked by Throat Chop")
 {
     GIVEN {
+        ASSUME(IsSoundMove(MOVE_RELIC_SONG));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

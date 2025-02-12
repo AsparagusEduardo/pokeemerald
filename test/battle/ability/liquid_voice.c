@@ -5,6 +5,7 @@ ASSUMPTIONS
 {
     ASSUME(GetMoveType(MOVE_HYPER_VOICE) == TYPE_NORMAL);
     ASSUME(GetMovePower(MOVE_HYPER_VOICE) > 0);
+    ASSUME(IsSoundMove(MOVE_HYPER_VOICE));
 }
 
 SINGLE_BATTLE_TEST("Liquid voice turns a sound move into a Water-type move")

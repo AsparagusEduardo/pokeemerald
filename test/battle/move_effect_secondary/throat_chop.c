@@ -9,6 +9,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Throat Chop prevents the usage of sound moves")
 {
     GIVEN {
+        ASSUME(IsSoundMove(MOVE_HYPER_VOICE));
         PLAYER(SPECIES_WOBBUFFET) { Speed(100); };
         OPPONENT(SPECIES_WOBBUFFET) { Speed(50); };
     } WHEN {
