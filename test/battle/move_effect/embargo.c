@@ -315,6 +315,7 @@ SINGLE_BATTLE_TEST("Embargo disables the effect of the Memory items on the move 
 SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
 {
     GIVEN {
+        ASSUME(MoveCanBeBouncedBack(MOVE_EMBARGO));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIGHT_BALL); };
     } WHEN {

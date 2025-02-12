@@ -150,6 +150,7 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves that target all Pokémon are succes
 SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-types using Magic Coat")
 {
     GIVEN {
+        ASSUME(MoveCanBeBouncedBack(MOVE_CONFUSE_RAY));
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
@@ -171,6 +172,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
     PARAMETRIZE { sableyeAbility = ABILITY_KEEN_EYE; }
 
     GIVEN {
+        ASSUME(MoveCanBeBouncedBack(MOVE_CONFUSE_RAY));
         PLAYER(SPECIES_SABLEYE) { Ability(sableyeAbility); }
         OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
@@ -193,6 +195,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
 SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark-type with Magic Bounce")
 {
     GIVEN {
+        ASSUME(MoveCanBeBouncedBack(MOVE_CONFUSE_RAY));
         PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
@@ -206,6 +209,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark
 SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Bounce can affect Dark-type Pokémon")
 {
     GIVEN {
+        ASSUME(MoveCanBeBouncedBack(MOVE_CONFUSE_RAY));
         PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
         OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
     } WHEN {

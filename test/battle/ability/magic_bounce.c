@@ -6,6 +6,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(MoveCanBeBouncedBack(MOVE_TOXIC));
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -24,6 +25,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves")
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
         ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
+        ASSUME(MoveCanBeBouncedBack(MOVE_STUN_SPORE));
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -41,6 +43,7 @@ SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass T
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
+        ASSUME(MoveCanBeBouncedBack(MOVE_STUN_SPORE));
         ASSUME(gSpeciesInfo[SPECIES_ODDISH].types[0] == TYPE_GRASS);
         PLAYER(SPECIES_ODDISH);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
@@ -61,6 +64,7 @@ DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foe
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
         ASSUME(GetMoveTarget(MOVE_LEER) == MOVE_TARGET_BOTH);
+        ASSUME(MoveCanBeBouncedBack(MOVE_LEER));
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_KADABRA);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
@@ -93,6 +97,7 @@ DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting foes field")
 
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_STEALTH_ROCK) == MOVE_TARGET_OPPONENTS_FIELD);
+        ASSUME(MoveCanBeBouncedBack(MOVE_STEALTH_ROCK));
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_KADABRA);
         OPPONENT(battlerOne) { Ability(abilityBattlerOne); }
@@ -119,6 +124,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounced back status moves can not be bounced ba
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(MoveCanBeBouncedBack(MOVE_TOXIC));
         PLAYER(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {

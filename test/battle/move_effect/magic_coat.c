@@ -10,6 +10,7 @@ SINGLE_BATTLE_TEST("Magic Coat prints the correct message when bouncing back a m
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
+        ASSUME(MoveCanBeBouncedBack(MOVE_SPORE));
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {

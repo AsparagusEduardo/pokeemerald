@@ -184,6 +184,8 @@ SINGLE_BATTLE_TEST("Corrosion allows the Pokémon with the ability to poison a S
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
+        ASSUME(MoveCanBeBouncedBack(MOVE_TOXIC));
+        ASSUME(MoveCanBeBouncedBack(MOVE_POISON_POWDER));
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {
@@ -208,6 +210,8 @@ SINGLE_BATTLE_TEST("Corrosion's effect is lost if the move used by the Pokémon 
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
+        ASSUME(MoveCanBeBouncedBack(MOVE_TOXIC));
+        ASSUME(MoveCanBeBouncedBack(MOVE_POISON_POWDER));
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
