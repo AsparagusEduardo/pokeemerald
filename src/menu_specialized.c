@@ -1073,7 +1073,7 @@ void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, 
         bool8 isShiny = GetBoxOrPartyMonData(boxId, monId, MON_DATA_IS_SHINY, NULL);
         u32 personality = GetBoxOrPartyMonData(boxId, monId, MON_DATA_PERSONALITY, NULL);
 
-        LoadSpecialPokePic(tilesDst, species, personality, TRUE);
+        LoadSpecialPokePic(tilesDst, species, personality, TRUE, FALSE);
         LZ77UnCompWram(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), palDst);
     }
 }

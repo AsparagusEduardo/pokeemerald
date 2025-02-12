@@ -437,18 +437,24 @@ static void PrintInstructionsOnWindow(struct PokemonSpriteVisualizer *data)
     u8 x = 2;
     u8 textInstructions[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Exit  {A_BUTTON} Anims and BG$");
     u8 textInstructionsGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Gender\n{B_BUTTON} Exit  {A_BUTTON} Anims and BG$");
+    u8 textInstructionsDitto[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Ditto\n{B_BUTTON} Exit  {A_BUTTON} Anims and BG$");
     u8 textInstructionsSubmenuOne[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Back  {A_BUTTON} Sprite Coords$");
     u8 textInstructionsSubmenuOneGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Gender\n{B_BUTTON} Back  {A_BUTTON} Sprite Coords$");
+    u8 textInstructionsSubmenuOneDitto[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Ditto\n{B_BUTTON} Back  {A_BUTTON} Sprite Coords$");
 #if B_ENEMY_MON_SHADOW_STYLE >= GEN_4 && P_GBA_STYLE_SPECIES_GFX == FALSE
     u8 textInstructionsSubmenuTwo[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Back  {A_BUTTON} Shadow Coords$");
     u8 textInstructionsSubmenuTwoGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Gender\n{B_BUTTON} Back  {A_BUTTON} Shadow Coords$");
+    u8 textInstructionsSubmenuTwoDitto[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Ditto\n{B_BUTTON} Back  {A_BUTTON} Shadow Coords$");
     u8 textInstructionsSubmenuThree[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Back");
     u8 textInstructionsSubmenuThreeGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Gender\n{B_BUTTON} Back$");
+    u8 textInstructionsSubmenuThreeDitto[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Ditto\n{B_BUTTON} Back$");
 #else
     u8 textInstructionsSubmenuTwo[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Back$");
     u8 textInstructionsSubmenuTwoGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Gender\n{B_BUTTON} Back$");
+    u8 textInstructionsSubmenuTwoDitto[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Ditto\n{B_BUTTON} Back$");
     u8 textInstructionsSubmenuThree[] = _("$");
     u8 textInstructionsSubmenuThreeGender[] = _("$");
+    u8 textInstructionsSubmenuThreeDitto[] = _("$");
 #endif
 
 
@@ -465,28 +471,36 @@ static void PrintInstructionsOnWindow(struct PokemonSpriteVisualizer *data)
     FillWindowPixelBuffer(WIN_INSTRUCTIONS, 0x11);
     if (data->currentSubmenu == 0)
     {
-        if (SpeciesHasGenderDifferences(species))
+        if (SpeciesHasDittoSprites(species) && ((SpeciesHasGenderDifferences(species) && data->isFemale) || !SpeciesHasGenderDifferences(species)))
+            AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsDitto, x, 0, 0, NULL);
+        else if (SpeciesHasGenderDifferences(species))
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsGender, x, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructions, x, 0, 0, NULL);
     }
     else if (data->currentSubmenu == 1)
     {
-        if (SpeciesHasGenderDifferences(species))
+        if (SpeciesHasDittoSprites(species) && ((SpeciesHasGenderDifferences(species) && data->isFemale) || !SpeciesHasGenderDifferences(species)))
+            AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuOneDitto, x, 0, 0, NULL);
+        else if (SpeciesHasGenderDifferences(species))
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuOneGender, x, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuOne, x, 0, 0, NULL);
     }
     else if (data->currentSubmenu == 2)
     {
-        if (SpeciesHasGenderDifferences(species))
+        if (SpeciesHasDittoSprites(species) && ((SpeciesHasGenderDifferences(species) && data->isFemale) || !SpeciesHasGenderDifferences(species)))
+            AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuTwoDitto, x, 0, 0, NULL);
+        else if (SpeciesHasGenderDifferences(species))
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuTwoGender, x, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuTwo, x, 0, 0, NULL);
     }
     else if (data->currentSubmenu == 3)
     {
-        if (SpeciesHasGenderDifferences(species))
+        if (SpeciesHasDittoSprites(species) && ((SpeciesHasGenderDifferences(species) && data->isFemale) || !SpeciesHasGenderDifferences(species)))
+            AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuThreeDitto, x, 0, 0, NULL);
+        else if (SpeciesHasGenderDifferences(species))
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuThreeGender, x, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuThree, x, 0, 0, NULL);
@@ -1273,6 +1287,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             SetStructPtr(taskId, data);
 
             data->currentmonId = SPECIES_BULBASAUR;
+            data->modifyArrows.currValue = data->currentmonId;
             species = data->currentmonId;
 
             //Print instructions
@@ -1282,9 +1297,10 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             palette = GetMonSpritePalFromSpecies(species, data->isShiny, data->isFemale);
             LoadCompressedSpritePaletteWithTag(palette, species);
             //Front
-            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY), data->isDitto);
             data->isShiny = FALSE;
             data->isFemale = FALSE;
+            data->isDitto = FALSE;
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
             SetMultiuseSpriteTemplateToPokemon(species, 1);
             gMultiuseSpriteTemplate.paletteTag = species;
@@ -1297,7 +1313,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
             //Back
-            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY), data->isDitto);
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 4);
             SetMultiuseSpriteTemplateToPokemon(species, 2);
             offset_y = gSpeciesInfo[species].backPicYOffset;
@@ -1709,14 +1725,40 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
         ReloadPokemonSprites(data);
         ApplyOffsetSpriteValues(data);
     }
-    if (JOY_NEW(SELECT_BUTTON) && SpeciesHasGenderDifferences(data->currentmonId))
+    if (JOY_NEW(SELECT_BUTTON))
     {
-        data->isFemale = !data->isFemale;
-        PrintDigitChars(data);
-        UpdateBattlerValue(data);
-        ReloadPokemonSprites(data);
-        VBlankIntrWait();
-        PlaySE(SE_DEX_SCROLL);
+        if (SpeciesHasDittoSprites(data->currentmonId))
+        {
+            if (data->isDitto)
+            {
+                if (SpeciesHasGenderDifferences(data->currentmonId))
+                    data->isFemale = FALSE;
+                data->isDitto = FALSE;
+            }
+            else if (!SpeciesHasGenderDifferences(data->currentmonId) || data->isFemale)
+            {
+                data->isDitto = TRUE;
+                data->isFemale = FALSE;
+            }
+            else if (SpeciesHasGenderDifferences(data->currentmonId))
+            {
+                data->isFemale = !data->isFemale;
+            }
+            PrintDigitChars(data);
+            UpdateBattlerValue(data);
+            ReloadPokemonSprites(data);
+            VBlankIntrWait();
+            PlaySE(SE_DEX_SCROLL);
+        }
+        else if (SpeciesHasGenderDifferences(data->currentmonId))
+        {
+            data->isFemale = !data->isFemale;
+            PrintDigitChars(data);
+            UpdateBattlerValue(data);
+            ReloadPokemonSprites(data);
+            VBlankIntrWait();
+            PlaySE(SE_DEX_SCROLL);
+        }
     }
 
     if (data->currentSubmenu == 0)
@@ -1975,7 +2017,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     palette = GetMonSpritePalFromSpecies(species, data->isShiny, data->isFemale);
     LoadCompressedSpritePaletteWithTag(palette, species);
     //Front
-    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY), data->isDitto);
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
     SetMultiuseSpriteTemplateToPokemon(species, 1);
     gMultiuseSpriteTemplate.paletteTag = species;
@@ -1988,7 +2030,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
     //Back
-    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY), data->isDitto);
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 5);
     SetMultiuseSpriteTemplateToPokemon(species, 2);
     offset_y = gSpeciesInfo[species].backPicYOffset;

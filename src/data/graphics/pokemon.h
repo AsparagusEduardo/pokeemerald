@@ -45,6 +45,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_Bulbasaur[] = INCBIN_U32("graphics/pokemon/bulbasaur/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+#if P_DITTO_SPRITES
+    const u32 gMonFrontPic_BulbasaurDitto[] = INCBIN_U32("graphics/pokemon/bulbasaur/anim_front_ditto.4bpp.lz");
+    const u32 gMonBackPic_BulbasaurDitto[] = INCBIN_U32("graphics/pokemon/bulbasaur/back_ditto.4bpp.lz");
+#endif
 
 #if !P_GBA_STYLE_SPECIES_GFX
     const u32 gMonFrontPic_Ivysaur[] = INCBIN_U32("graphics/pokemon/ivysaur/anim_front.4bpp.lz");
@@ -72,6 +76,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_Ivysaur[] = INCBIN_U32("graphics/pokemon/ivysaur/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+#if P_DITTO_SPRITES
+    const u32 gMonFrontPic_IvysaurDitto[] = INCBIN_U32("graphics/pokemon/ivysaur/anim_front_ditto.4bpp.lz");
+#endif
 
 #if !P_GBA_STYLE_SPECIES_GFX
     const u32 gMonFrontPic_Venusaur[] = INCBIN_U32("graphics/pokemon/venusaur/anim_front.4bpp.lz");
@@ -99,6 +106,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_Venusaur[] = INCBIN_U32("graphics/pokemon/venusaur/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+#if P_DITTO_SPRITES
+    const u32 gMonFrontPic_VenusaurDitto[] = INCBIN_U32("graphics/pokemon/venusaur/anim_front_ditto.4bpp.lz");
+#endif
 
 #if P_GENDER_DIFFERENCES
     const u32 gMonFrontPic_VenusaurF[] = INCBIN_U32("graphics/pokemon/venusaur/anim_frontf.4bpp.lz");

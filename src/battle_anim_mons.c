@@ -2011,7 +2011,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
         LoadSpecialPokePic(gMonSpritesGfxPtr->buffer,
                            species,
                            personality,
-                           TRUE);
+                           TRUE, (gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies != SPECIES_NONE));
     }
     else
     {
@@ -2019,7 +2019,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
         LoadSpecialPokePic(gMonSpritesGfxPtr->buffer,
                            species,
                            personality,
-                           FALSE);
+                           FALSE, (gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies != SPECIES_NONE));
     }
 
     RequestDma3Copy(gMonSpritesGfxPtr->buffer, (void *)(OBJ_VRAM0 + (sheet * 0x20)), MON_PIC_SIZE, 1);

@@ -61,7 +61,7 @@ static bool16 DecompressPic(u16 species, u32 personality, bool8 isFrontPic, u8 *
 {
     if (!isTrainer)
     {
-        LoadSpecialPokePic(dest, species, personality, isFrontPic);
+        LoadSpecialPokePic(dest, species, personality, isFrontPic, FALSE);
     }
     else
     {

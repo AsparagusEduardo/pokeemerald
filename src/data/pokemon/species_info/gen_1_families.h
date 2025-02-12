@@ -55,6 +55,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Bulbasaur,
         .iconSprite = gMonIcon_Bulbasaur,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 4,
+#if P_DITTO_SPRITES
+        .frontPicDitto = gMonFrontPic_BulbasaurDitto,
+        .backPicDitto = gMonBackPic_BulbasaurDitto,
+#endif //P_DITTO_SPRITES
         SHADOW(1, -1, SHADOW_SIZE_S)
         FOOTPRINT(Bulbasaur)
         OVERWORLD(
@@ -124,6 +128,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Ivysaur,
         .iconSprite = gMonIcon_Ivysaur,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 4,
+#if P_DITTO_SPRITES
+        .frontPicDitto = gMonFrontPic_IvysaurDitto,
+#endif //P_DITTO_SPRITES
         SHADOW(-1, 3, SHADOW_SIZE_L)
         FOOTPRINT(Ivysaur)
         OVERWORLD(
@@ -204,6 +211,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backPicFemale = gMonBackPic_VenusaurF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
 #endif //P_GENDER_DIFFERENCES
+#if P_DITTO_SPRITES
+        .frontPicDitto = gMonFrontPic_VenusaurDitto,
+#endif //P_DITTO_SPRITES
         SHADOW(2, 6, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Venusaur)
         OVERWORLD(

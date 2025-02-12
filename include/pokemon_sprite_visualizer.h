@@ -65,8 +65,10 @@ struct PokemonSpriteVisualizer
     u8 iconspriteId;
     u8 followerspriteId;
 
-    bool8 isShiny;
-    bool8 isFemale;
+    u8 isShiny:1;
+    u8 isFemale:1;
+    u8 isDitto:1;
+    u8 padding:5;
 
     u8 frontShadowSpriteIdPrimary;
     u8 frontShadowSpriteIdSecondary;

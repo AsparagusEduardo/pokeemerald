@@ -410,6 +410,10 @@ struct SpeciesInfo /*0xC4*/
     const u32 *shinyPaletteFemale;
     const u8 *iconSpriteFemale;
 #endif //P_GENDER_DIFFERENCES
+#if P_DITTO_SPRITES
+    const u32 *frontPicDitto;
+    const u32 *backPicDitto;
+#endif
 #if P_FOOTPRINTS
     const u8 *footprint;
 #endif
@@ -791,6 +795,7 @@ bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv);
 bool32 SpeciesHasGenderDifferences(u16 species);
+bool32 SpeciesHasDittoSprites(u32 species);
 bool32 TryFormChange(u32 monId, u32 side, u16 method);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);

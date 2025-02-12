@@ -4387,7 +4387,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                      summary->species2,
-                                     summary->pid);
+                                     summary->pid, FALSE);
         }
         else
         {
@@ -4396,14 +4396,14 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
                 HandleLoadSpecialPokePic(TRUE,
                                          gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                          summary->species2,
-                                         summary->pid);
+                                         summary->pid, FALSE);
             }
             else
             {
                 HandleLoadSpecialPokePic(TRUE,
                                          MonSpritesGfxManager_GetSpritePtr(MON_SPR_GFX_MANAGER_A, B_POSITION_OPPONENT_LEFT),
                                          summary->species2,
-                                         summary->pid);
+                                         summary->pid, FALSE);
             }
         }
         (*state)++;

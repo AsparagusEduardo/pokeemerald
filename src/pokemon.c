@@ -6741,6 +6741,17 @@ bool32 SpeciesHasGenderDifferences(u16 species)
     return FALSE;
 }
 
+bool32 SpeciesHasDittoSprites(u32 species)
+{
+#if P_DITTO_SPRITES
+    if (gSpeciesInfo[species].frontPicDitto != NULL
+     || gSpeciesInfo[species].backPicDitto != NULL)
+        return TRUE;
+#endif
+
+    return FALSE;
+}
+
 bool32 TryFormChange(u32 monId, u32 side, u16 method)
 {
     struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;

@@ -2788,7 +2788,7 @@ static void LoadTradeMonPic(u8 whichParty, u8 state)
     case 0:
         personality = GetMonData(mon, MON_DATA_PERSONALITY);
 
-        HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[whichParty * 2 + B_POSITION_OPPONENT_LEFT], species, personality);
+        HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[whichParty * 2 + B_POSITION_OPPONENT_LEFT], species, personality, FALSE);
 
         LoadCompressedSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
         sTradeAnim->monSpecies[whichParty] = species;
@@ -3780,7 +3780,7 @@ static bool8 DoTradeAnim_Cable(void)
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_RIGHT],
                                      sTradeAnim->monSpecies[TRADE_PARTNER],
-                                     sTradeAnim->monPersonalities[TRADE_PARTNER]);
+                                     sTradeAnim->monPersonalities[TRADE_PARTNER], FALSE);
             sTradeAnim->state++;
         }
         break;
@@ -4277,7 +4277,7 @@ static bool8 DoTradeAnim_Wireless(void)
             HandleLoadSpecialPokePic(TRUE,
                                       gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_RIGHT],
                                       sTradeAnim->monSpecies[TRADE_PARTNER],
-                                      sTradeAnim->monPersonalities[TRADE_PARTNER]);
+                                      sTradeAnim->monPersonalities[TRADE_PARTNER], FALSE);
             sTradeAnim->state++;
         }
         break;
