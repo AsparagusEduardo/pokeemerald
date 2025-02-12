@@ -970,7 +970,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
         HandleLoadSpecialPokePic((GetBattlerSide(battlerAtk) != B_SIDE_PLAYER),
                                  gMonSpritesGfxPtr->spritesGfx[position],
                                  targetSpecies,
-                                 personalityValue, (gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies != SPECIES_NONE));
+                                 personalityValue, (!megaEvo));
     }
     src = gMonSpritesGfxPtr->spritesGfx[position];
     dst = (void *)(OBJ_VRAM0 + gSprites[gBattlerSpriteIds[battlerAtk]].oam.tileNum * 32);
