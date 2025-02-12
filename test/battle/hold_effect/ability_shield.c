@@ -64,6 +64,7 @@ SINGLE_BATTLE_TEST("Ability Shield protects against Mycelium Might")
     PARAMETRIZE { item = ITEM_NONE; }
 
     GIVEN {
+        ASSUME(IsPowderMove(MOVE_SPORE));
         PLAYER(SPECIES_VIGOROTH) { Ability(ABILITY_VITAL_SPIRIT); Item(item); }
         OPPONENT(SPECIES_TOEDSCOOL) { Ability(ABILITY_MYCELIUM_MIGHT); }
     } WHEN {

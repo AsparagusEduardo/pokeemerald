@@ -475,6 +475,7 @@ DOUBLE_BATTLE_TEST("(Z-MOVE) Dancer does not use a Z-Move if the battler has use
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
+        ASSUME(IsDanceMove(MOVE_FIERY_DANCE));
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_DANCER); Item(ITEM_NORMALIUM_Z); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);

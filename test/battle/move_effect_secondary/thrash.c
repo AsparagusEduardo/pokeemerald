@@ -105,6 +105,7 @@ SINGLE_BATTLE_TEST("Thrash confuses the user if it is canceled on turn 3 of 3, I
 SINGLE_BATTLE_TEST("Petal Dance does not lock mons that copy the move with Dancer")
 {
     GIVEN {
+        ASSUME(IsDanceMove(MOVE_PETAL_DANCE));
         PLAYER(SPECIES_VILEPLUME);
         OPPONENT(SPECIES_ORICORIO);
     } WHEN {
