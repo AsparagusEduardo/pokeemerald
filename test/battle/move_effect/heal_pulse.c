@@ -39,6 +39,7 @@ DOUBLE_BATTLE_TEST("Heal Pulse can heal partner")
 SINGLE_BATTLE_TEST("Heal Pulse is boosted by Mega Launcher")
 {
     GIVEN {
+        ASSUME(IsPulseMove(MOVE_HEAL_PULSE));
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(100); HP(1); }
         OPPONENT(SPECIES_CLAWITZER);
     } WHEN {

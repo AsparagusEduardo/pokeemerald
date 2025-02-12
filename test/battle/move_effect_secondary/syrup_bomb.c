@@ -57,6 +57,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup isn't applied again if the target is already co
 SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof")
 {
     GIVEN {
+        ASSUME(IsBallisticMove(MOVE_SYRUP_BOMB));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_CHESPIN) { Ability(ABILITY_BULLETPROOF); }
     } WHEN {
