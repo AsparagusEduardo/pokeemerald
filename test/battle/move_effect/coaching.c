@@ -26,6 +26,7 @@ DOUBLE_BATTLE_TEST("Coaching bypasses Protect")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_PROTECT) == EFFECT_PROTECT);
+        ASSUME(MoveIgnoresProtect(MOVE_COACHING));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);

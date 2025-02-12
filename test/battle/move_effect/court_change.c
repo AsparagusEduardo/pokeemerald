@@ -156,6 +156,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aur
 DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Steelsurge")
 {
     GIVEN {
+        ASSUME(MoveIgnoresProtect(MOVE_COURT_CHANGE));
         PLAYER(SPECIES_COPPERAJAH) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
