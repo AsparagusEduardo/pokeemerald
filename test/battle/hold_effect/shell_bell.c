@@ -83,6 +83,7 @@ SINGLE_BATTLE_TEST("Shell Bell activates after Absorb")
 SINGLE_BATTLE_TEST("Shell Bell activates after Rough Skin")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SHELL_BELL); }
         OPPONENT(SPECIES_GIBLE) { Ability(ABILITY_ROUGH_SKIN); }
     } WHEN {

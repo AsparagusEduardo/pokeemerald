@@ -34,6 +34,7 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
     PARAMETRIZE { item = ITEM_ROCKY_HELMET; }
 
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_KNOCK_OFF));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(item); }
     } WHEN {

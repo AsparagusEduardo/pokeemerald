@@ -74,6 +74,7 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target after Rocky Helmet and Iron 
 {
     PASSES_RANDOMLY(1, 2, RNG_FORCE_RANDOM_SWITCH);
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_DRAGON_TAIL));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_TOGEDEMARU) { Ability(ABILITY_IRON_BARBS); Item(ITEM_ROCKY_HELMET); }
         OPPONENT(SPECIES_WOBBUFFET);

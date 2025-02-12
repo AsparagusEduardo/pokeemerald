@@ -461,6 +461,7 @@ DOUBLE_BATTLE_TEST("Pursuit affected by Electrify fails against target with Volt
 SINGLE_BATTLE_TEST("Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_PURSUIT));
         PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -480,6 +481,7 @@ SINGLE_BATTLE_TEST("Pursuited mon correctly switches out after it got hit and ac
 DOUBLE_BATTLE_TEST("Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair - Doubles")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_PURSUIT));
         PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -504,6 +506,7 @@ DOUBLE_BATTLE_TEST("Pursuited mon correctly switches out after it got hit and ac
 SINGLE_BATTLE_TEST("Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair - Mirror Armor")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_PURSUIT));
         PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }

@@ -88,6 +88,7 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu takes damage from secondary damage without
 SINGLE_BATTLE_TEST("Disguised Mimikyu takes damage from Rocky Helmet without breaking the disguise")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_AERIAL_ACE));
         ASSUME(gItemsInfo[ITEM_ROCKY_HELMET].holdEffect == HOLD_EFFECT_ROCKY_HELMET);
         PLAYER(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_ROCKY_HELMET); }
@@ -107,6 +108,7 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu takes damage from Rocky Helmet without bre
 SINGLE_BATTLE_TEST("Disguised Mimikyu takes damage from Rough Skin without breaking the disguise")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_AERIAL_ACE));
         PLAYER(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); }
         OPPONENT(SPECIES_CARVANHA) { Ability(ABILITY_ROUGH_SKIN); }
     } WHEN {

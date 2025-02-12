@@ -114,6 +114,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after the mon loses Eject Butt
 SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picketpocket")
 {
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_REGIELEKI) { Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_PICKPOCKET); }

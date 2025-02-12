@@ -104,6 +104,7 @@ SINGLE_BATTLE_TEST("White Herb restores stats after all hits of a multi hit move
 
     GIVEN {
         ASSUME(GetMoveStrikeCount(MOVE_DUAL_WINGBEAT) == 2);
+        ASSUME(MoveMakesContact(MOVE_DUAL_WINGBEAT));
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(species) { Ability(ability); }
     } WHEN {

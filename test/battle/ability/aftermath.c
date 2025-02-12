@@ -6,6 +6,7 @@ SINGLE_BATTLE_TEST("Aftermath damages the attacker by 1/4th of its max HP if fai
     s16 aftermathDamage;
 
     GIVEN {
+        ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_AFTERMATH); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
