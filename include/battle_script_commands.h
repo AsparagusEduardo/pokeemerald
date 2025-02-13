@@ -22,8 +22,7 @@ struct PickupItem
     u8 percentage[10];
 };
 
-s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk);
-s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility);
+s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk);
 s32 GetCritHitOdds(s32 critChanceIndex);
 u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect);
 u8 GetBattlerTurnOrderNum(u8 battlerId);
@@ -42,9 +41,9 @@ bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanUseLastResort(u8 battlerId);
 u32 IsFlowerVeilProtected(u32 battler);
-u32 IsLeafGuardProtected(u32 battler);
-bool32 IsShieldsDownProtected(u32 battler);
-u32 IsAbilityStatusProtected(u32 battler);
+u32 IsLeafGuardProtected(u32 battler, u32 ability);
+bool32 IsShieldsDownProtected(u32 battler, u32 ability);
+u32 IsAbilityStatusProtected(u32 battler, u32 ability);
 bool32 TryResetBattlerStatChanges(u8 battler);
 bool32 CanCamouflage(u8 battlerId);
 u32 GetNaturePowerMove(u32 battler);

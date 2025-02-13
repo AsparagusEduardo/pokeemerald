@@ -1349,25 +1349,11 @@ static u8 GetWaterSpoutPowerForAnim(void)
     u8 i;
     u16 hp;
     u16 maxhp;
-    u16 partyIndex;
-    struct Pokemon *slot;
+    struct Pokemon *slot = GetPartyBattlerData(gBattleAnimAttacker);
 
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-    {
-        partyIndex = gBattlerPartyIndexes[gBattleAnimAttacker];
-        slot =  &gPlayerParty[partyIndex];
-        maxhp = GetMonData(slot, MON_DATA_MAX_HP);
-        hp = GetMonData(slot, MON_DATA_HP);
-        maxhp /= 4;
-    }
-    else
-    {
-        partyIndex = gBattlerPartyIndexes[gBattleAnimAttacker];
-        slot =  &gEnemyParty[partyIndex];
-        maxhp = GetMonData(slot, MON_DATA_MAX_HP);
-        hp = GetMonData(slot, MON_DATA_HP);
-        maxhp /= 4;
-    }
+    maxhp = GetMonData(slot, MON_DATA_MAX_HP);
+    hp = GetMonData(slot, MON_DATA_HP);
+    maxhp /= 4;
     for (i = 0; i < 3; i++)
     {
         if (hp < maxhp * (i + 1))
