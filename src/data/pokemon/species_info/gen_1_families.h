@@ -7954,8 +7954,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Growlithe,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 0 : 3,
 #if P_DITTO_SPRITES
-        //.frontPicDitto = gMonFrontPic_GrowlitheDitto,
-        //.backPicDitto = gMonBackPic_GrowlitheDitto,
+        .frontPicDitto = gMonFrontPic_GrowlitheDitto,
+        .backPicDitto = gMonBackPic_GrowlitheDitto,
 #endif //P_DITTO_SPRITES
         SHADOW(0, 4, SHADOW_SIZE_M)
         FOOTPRINT(Growlithe)
@@ -8027,8 +8027,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Arcanine,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 0 : 3,
 #if P_DITTO_SPRITES
-        //.frontPicDitto = gMonFrontPic_ArcanineDitto,
-        //.backPicDitto = gMonBackPic_ArcanineDitto,
+        .frontPicDitto = gMonFrontPic_ArcanineDitto,
+        .backPicDitto = gMonBackPic_ArcanineDitto,
 #endif //P_DITTO_SPRITES
         SHADOW(-4, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Arcanine)

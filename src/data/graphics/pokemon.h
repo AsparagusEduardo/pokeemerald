@@ -2580,8 +2580,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #if P_DITTO_SPRITES
-    //const u32 gMonFrontPic_GrowlitheDitto[] = INCBIN_U32("graphics/pokemon/growlithe/anim_front_ditto.4bpp.lz");
-    //const u32 gMonBackPic_GrowlitheDitto[] = INCBIN_U32("graphics/pokemon/growlithe/back_ditto.4bpp.lz");
+    const u32 gMonFrontPic_GrowlitheDitto[] = INCBIN_U32("graphics/pokemon/growlithe/anim_front_ditto.4bpp.lz");
+    const u32 gMonBackPic_GrowlitheDitto[] = INCBIN_U32("graphics/pokemon/growlithe/back_ditto.4bpp.lz");
 #endif
 
 #if !P_GBA_STYLE_SPECIES_GFX
@@ -2611,8 +2611,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #if P_DITTO_SPRITES
-    //const u32 gMonFrontPic_ArcanineDitto[] = INCBIN_U32("graphics/pokemon/arcanine/anim_front_ditto.4bpp.lz");
-    //const u32 gMonBackPic_ArcanineDitto[] = INCBIN_U32("graphics/pokemon/arcanine/back_ditto.4bpp.lz");
+    const u32 gMonFrontPic_ArcanineDitto[] = INCBIN_U32("graphics/pokemon/arcanine/anim_front_ditto.4bpp.lz");
+    const u32 gMonBackPic_ArcanineDitto[] = INCBIN_U32("graphics/pokemon/arcanine/back_ditto.4bpp.lz");
 #endif
 
 #if P_HISUIAN_FORMS
