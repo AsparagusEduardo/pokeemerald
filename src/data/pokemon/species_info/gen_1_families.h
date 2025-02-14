@@ -11336,6 +11336,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backPicFemale = gMonBackPic_DoduoF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
 #endif //P_GENDER_DIFFERENCES
+#if P_DITTO_SPRITES
+        .frontPicDitto = gMonFrontPic_DoduoDitto,
+        .backPicDitto = gMonBackPic_DoduoDitto,
+#endif //P_DITTO_SPRITES
         SHADOW(6, 5, SHADOW_SIZE_M)
         FOOTPRINT(Doduo)
         OVERWORLD(
@@ -11428,6 +11432,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backPicFemale = gMonBackPic_DodrioF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
 #endif //P_GENDER_DIFFERENCES
+#if P_DITTO_SPRITES
+        .frontPicDitto = gMonFrontPic_DodrioDitto,
+        .backPicDitto = gMonBackPic_DodrioDitto,
+#endif //P_DITTO_SPRITES
         SHADOW(3, 12, SHADOW_SIZE_L)
         FOOTPRINT(Dodrio)
         OVERWORLD(

@@ -3748,8 +3748,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #if P_DITTO_SPRITES
-    //const u32 gMonFrontPic_DoduoDitto[] = INCBIN_U32("graphics/pokemon/doduo/anim_front_ditto.4bpp.lz");
-    //const u32 gMonBackPic_DoduoDitto[] = INCBIN_U32("graphics/pokemon/doduo/back_ditto.4bpp.lz");
+    const u32 gMonFrontPic_DoduoDitto[] = INCBIN_U32("graphics/pokemon/doduo/anim_front_ditto.4bpp.lz");
+    const u32 gMonBackPic_DoduoDitto[] = INCBIN_U32("graphics/pokemon/doduo/back_ditto.4bpp.lz");
 #endif
 
 #if P_GENDER_DIFFERENCES
@@ -3787,8 +3787,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #if P_DITTO_SPRITES
-    //const u32 gMonFrontPic_DodrioDitto[] = INCBIN_U32("graphics/pokemon/dodrio/anim_front_ditto.4bpp.lz");
-    //const u32 gMonBackPic_DodrioDitto[] = INCBIN_U32("graphics/pokemon/dodrio/back_ditto.4bpp.lz");
+    const u32 gMonFrontPic_DodrioDitto[] = INCBIN_U32("graphics/pokemon/dodrio/anim_front_ditto.4bpp.lz");
+    const u32 gMonBackPic_DodrioDitto[] = INCBIN_U32("graphics/pokemon/dodrio/back_ditto.4bpp.lz");
 #endif
 
 #if P_GENDER_DIFFERENCES
