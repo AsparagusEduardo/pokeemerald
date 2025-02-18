@@ -50,6 +50,7 @@ SINGLE_BATTLE_TEST("Corrosion does not effect poison type damaging moves if the 
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_SLUDGE_BOMB, MOVE_EFFECT_POISON) == TRUE);
+        ASSUME(GetMoveType(MOVE_SLUDGE_BOMB) == TYPE_POISON);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {

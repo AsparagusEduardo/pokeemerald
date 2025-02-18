@@ -112,6 +112,14 @@ s32 Test_MgbaPrintf(const char *fmt, ...);
             Test_ExitWithResult(TEST_RESULT_ASSUMPTION_FAIL, __LINE__, ":L%s:%d: ASSUME failed", gTestRunnerState.test->filename, __LINE__); \
     } while (0)
 
+#define ASSUME_EQ(a, b) \
+    do \
+    { \
+        typeof(a) _a = (a), _b = (b); \
+        if (_a != _b) \
+            Test_ExitWithResult(TEST_RESULT_ASSUMPTION_FAIL, __LINE__, ":L%s:%d: ASSUME_EQ(%d, %d) failed", gTestRunnerState.test->filename, __LINE__, _a, _b); \
+    } while (0)
+
 #define EXPECT(c) \
     do \
     { \

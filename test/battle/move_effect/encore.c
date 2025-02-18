@@ -106,6 +106,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are immune to Encore")
 SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon can be encored immediately after reverting")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_ARM_THRUST) == TYPE_FIGHTING);
         PLAYER(SPECIES_WOBBUFFET) { Speed(50); }; // yes, this speed is necessary
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); };
     } WHEN {

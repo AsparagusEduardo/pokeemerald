@@ -119,6 +119,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
     s16 opponentRightDmg[2];
 
     GIVEN {
+        ASSUME_EQ(GetMoveType(MOVE_ROCK_SLIDE), TYPE_ROCK);
         PLAYER(SPECIES_GARDEVOIR);
         PLAYER(SPECIES_RAYQUAZA) { Ability(ABILITY_AIR_LOCK); }
         PLAYER(SPECIES_RALTS);
@@ -364,6 +365,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Not very effective Message on both opposing mo
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_PRECIPICE_BLADES) == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveType(MOVE_PRECIPICE_BLADES) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_CHIKORITA);

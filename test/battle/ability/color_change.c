@@ -55,6 +55,7 @@ SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon
 SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type")
 {
     GIVEN {
+        ASSUME(GetMoveType(MOVE_PSYCHO_CUT) == TYPE_PSYCHIC);
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
         OPPONENT(SPECIES_SLOWBRO);
     } WHEN {

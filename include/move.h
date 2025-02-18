@@ -167,7 +167,8 @@ static inline u32 GetMoveEffect(u32 moveId)
 
 static inline u32 GetMoveType(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].type;
+    return TYPE_NONE;
+    //return gMovesInfo[SanitizeMoveId(moveId)].type;
 }
 
 static inline u32 GetMoveCategory(u32 moveId)
