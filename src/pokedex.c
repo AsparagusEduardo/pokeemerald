@@ -1340,7 +1340,16 @@ static const u8 sSearchMovementMap_ShiftHoennDex[SEARCH_COUNT][4] =
 
 static const struct SearchOptionText sDexModeOptions[] =
 {
+    [DEX_MODE_KANTO] = {gText_DexKantoDescription, gText_DexKantoTitle},
+    [DEX_MODE_JOHTO] = {gText_DexJohtoDescription, gText_DexJohtoTitle},
     [DEX_MODE_HOENN]    = {gText_DexHoennDescription, gText_DexHoennTitle},
+    [DEX_MODE_SINNOH] = {gText_DexSinnohDescription, gText_DexSinnohTitle},
+    [DEX_MODE_UNOVA] = {gText_DexUnovaDescription, gText_DexUnovaTitle},
+    [DEX_MODE_KALOS] = {gText_DexKalosDescription, gText_DexKalosTitle},
+    [DEX_MODE_ALOLA] = {gText_DexAlolaDescription, gText_DexAlolaTitle},
+    [DEX_MODE_GALAR] = {gText_DexGalarDescription, gText_DexGalarTitle},
+    [DEX_MODE_HISUI] = {gText_DexHisuiDescription, gText_DexHisuiTitle},
+    [DEX_MODE_PALDEA] = {gText_DexPaldeaDescription, gText_DexPaldeaTitle},
     [DEX_MODE_NATIONAL] = {gText_DexNatDescription,   gText_DexNatTitle},
     [DEX_MODE_NEW_POKEDEX] = {gText_DexNewDescription, gText_DexNewTitle},
     {},
@@ -1414,7 +1423,16 @@ static const struct SearchOptionText sDexSearchTypeOptions[] =
 
 static const u8 sPokedexModes[] =
 {
+    DEX_MODE_KANTO,
+    DEX_MODE_JOHTO,
     DEX_MODE_HOENN,
+    DEX_MODE_SINNOH,
+    DEX_MODE_UNOVA,
+    DEX_MODE_KALOS,
+    DEX_MODE_ALOLA,
+    DEX_MODE_GALAR,
+    DEX_MODE_HISUI,
+    DEX_MODE_PALDEA,
     DEX_MODE_NATIONAL,
     DEX_MODE_NEW_POKEDEX,
 };
