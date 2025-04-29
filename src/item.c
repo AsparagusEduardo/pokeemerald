@@ -865,6 +865,8 @@ static u16 SanitizeItemId(u16 itemId)
         return itemId;
 }
 
+extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];
+
 const u8 *ItemId_GetName(u16 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].name;
@@ -885,26 +887,71 @@ static const u8 *ItemId_GetPluralName(u16 itemId)
     return gItemsInfo[SanitizeItemId(itemId)].pluralName;
 }
 
-const u8 *ItemId_GetEffect(u32 itemId)
+const u8 *ItemId_GetEffect1(u32 itemId)
 {
+    return ItemId_GetEffect2(itemId, 0);
+}
+
+const u8 *ItemId_GetEffect2(u32 itemId, u32 battlerId)
+{
+    itemId = SanitizeItemId(itemId);
     if (itemId == ITEM_ENIGMA_BERRY_E_READER)
+    {
+    if (gMain.inBattle)
+        return gEnigmaBerries[battlerId].itemEffect;
+    else
     #if FREE_ENIGMA_BERRY == FALSE
         return gSaveBlock1Ptr->enigmaBerry.itemEffect;
     #else
         return 0;
     #endif //FREE_ENIGMA_BERRY
-    else
-        return gItemsInfo[SanitizeItemId(itemId)].effect;
+    }
+    return gItemsInfo[itemId].effect;
 }
 
-u32 ItemId_GetHoldEffect(u32 itemId)
+
+u32 ItemId_GetHoldEffect1(u32 itemId)
 {
-    return gItemsInfo[SanitizeItemId(itemId)].holdEffect;
+    return ItemId_GetHoldEffect2(itemId, 0);
 }
 
-u32 ItemId_GetHoldEffectParam(u32 itemId)
+u32 ItemId_GetHoldEffect2(u32 itemId, u32 battlerId)
 {
-    return gItemsInfo[SanitizeItemId(itemId)].holdEffectParam;
+    itemId = SanitizeItemId(itemId);
+    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
+    {
+        if (gMain.inBattle)
+            return gEnigmaBerries[battlerId].holdEffect;
+        else
+        #if FREE_ENIGMA_BERRY == FALSE
+            return gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+            return HOLD_EFFECT_NONE;
+        #endif //FREE_ENIGMA_BERRY
+    }
+    return gItemsInfo[itemId].holdEffect;
+}
+
+u32 ItemId_GetHoldEffectParam1(u32 itemId)
+{
+    return ItemId_GetHoldEffectParam2(itemId, 0);
+}
+
+u32 ItemId_GetHoldEffectParam2(u32 itemId, u32 battlerId)
+{
+    itemId = SanitizeItemId(itemId);
+    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
+    {
+        if (gMain.inBattle)
+            return gEnigmaBerries[battlerId].holdEffectParam;
+        else
+        #if FREE_ENIGMA_BERRY == FALSE
+            return gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+        #else
+            return HOLD_EFFECT_NONE;
+        #endif //FREE_ENIGMA_BERRY
+    }
+    return gItemsInfo[itemId].holdEffectParam;
 }
 
 const u8 *ItemId_GetDescription(u16 itemId)

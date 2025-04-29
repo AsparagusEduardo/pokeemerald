@@ -3807,14 +3807,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-    #if FREE_ENIGMA_BERRY == FALSE
-        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-    #else
-        holdEffect = 0;
-    #endif //FREE_ENIGMA_BERRY
-    else
-        holdEffect = ItemId_GetHoldEffect(heldItem);
+    holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Skip using the item if it won't do anything
     if (ItemId_GetEffect(item) == NULL && item != ITEM_ENIGMA_BERRY_E_READER)
@@ -4390,23 +4383,7 @@ static void BufferStatRoseMessage(s32 statIdx)
 
 u8 *UseStatIncreaseItem(u16 itemId)
 {
-    const u8 *itemEffect;
-
-    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
-    {
-        if (gMain.inBattle)
-            itemEffect = gEnigmaBerries[gBattlerInMenuId].itemEffect;
-        else
-        #if FREE_ENIGMA_BERRY == FALSE
-            itemEffect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
-        #else
-            itemEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-    }
-    else
-    {
-        itemEffect = ItemId_GetEffect(itemId);
-    }
+    const u8 *itemEffect = ItemId_GetEffect(itemId, gBattlerInMenuId);
 
     gPotentialItemEffectBattler = gBattlerInMenuId;
 
@@ -4492,15 +4469,7 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
     {
         partnerSpecies = GetMonData(tradePartner, MON_DATA_SPECIES, 0);
         partnerHeldItem = GetMonData(tradePartner, MON_DATA_HELD_ITEM, 0);
-
-        if (partnerHeldItem == ITEM_ENIGMA_BERRY_E_READER)
-        #if FREE_ENIGMA_BERRY == FALSE
-            partnerHoldEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        #else
-            partnerHoldEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-        else
-            partnerHoldEffect = ItemId_GetHoldEffect(partnerHeldItem);
+        partnerHoldEffect = ItemId_GetHoldEffect(partnerHeldItem);
     }
     else
     {
@@ -4802,14 +4771,7 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     if (evolutions == NULL)
         return SPECIES_NONE;
 
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-    #if FREE_ENIGMA_BERRY == FALSE
-        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-    #else
-        holdEffect = 0;
-    #endif //FREE_ENIGMA_BERRY
-    else
-        holdEffect = ItemId_GetHoldEffect(heldItem);
+    holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
     if (holdEffect == HOLD_EFFECT_PREVENT_EVOLVE

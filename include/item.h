@@ -70,9 +70,15 @@ bool8 AddPyramidBagItem(u16 itemId, u16 count);
 bool8 RemovePyramidBagItem(u16 itemId, u16 count);
 const u8 *ItemId_GetName(u16 itemId);
 u32 ItemId_GetPrice(u16 itemId);
-const u8 *ItemId_GetEffect(u32 itemId);
-u32 ItemId_GetHoldEffect(u32 itemId);
-u32 ItemId_GetHoldEffectParam(u32 itemId);
+#define ItemId_GetEffect(...) CAT(ItemId_GetEffect, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+const u8 *ItemId_GetEffect1(u32 itemId);
+const u8 *ItemId_GetEffect2(u32 itemId, u32 battlerId);
+#define ItemId_GetHoldEffect(...) CAT(ItemId_GetHoldEffect, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+u32 ItemId_GetHoldEffect1(u32 itemId);
+u32 ItemId_GetHoldEffect2(u32 itemId, u32 battlerId);
+#define ItemId_GetHoldEffectParam(...) CAT(ItemId_GetHoldEffectParam, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+u32 ItemId_GetHoldEffectParam1(u32 itemId);
+u32 ItemId_GetHoldEffectParam2(u32 itemId, u32 battlerId);
 const u8 *ItemId_GetDescription(u16 itemId);
 u8 ItemId_GetImportance(u16 itemId);
 u8 ItemId_GetConsumability(u16 itemId);

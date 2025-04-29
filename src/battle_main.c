@@ -4029,10 +4029,7 @@ u8 IsRunningFromBattleImpossible(u32 battler)
         return BATTLE_RUN_FORBIDDEN;
     }
 
-    if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
-        holdEffect = gEnigmaBerries[battler].holdEffect;
-    else
-        holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item);
+    holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item, battler);
 
     gPotentialItemEffectBattler = battler;
 

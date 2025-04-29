@@ -570,10 +570,7 @@ bool32 TryRunFromBattle(u32 battler)
     if (FlagGet(B_FLAG_NO_RUNNING))
         return effect;
 
-    if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
-        holdEffect = gEnigmaBerries[battler].holdEffect;
-    else
-        holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item);
+    holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item, battler);
 
     gPotentialItemEffectBattler = battler;
 
@@ -7458,26 +7455,17 @@ enum ItemHoldEffect GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegati
 
     gPotentialItemEffectBattler = battler;
 
-    if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
-        return gEnigmaBerries[battler].holdEffect;
-    else
-        return ItemId_GetHoldEffect(gBattleMons[battler].item);
+    return ItemId_GetHoldEffect(gBattleMons[battler].item, battler);
 }
 
 static u32 GetBattlerItemHoldEffectParam(u32 battler, u32 item)
 {
-    if (item == ITEM_ENIGMA_BERRY_E_READER)
-        return gEnigmaBerries[battler].holdEffectParam;
-    else
-        return ItemId_GetHoldEffectParam(item);
+    return ItemId_GetHoldEffectParam(item, battler);
 }
 
 u32 GetBattlerHoldEffectParam(u32 battler)
 {
-    if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
-        return gEnigmaBerries[battler].holdEffectParam;
-    else
-        return ItemId_GetHoldEffectParam(gBattleMons[battler].item);
+    return ItemId_GetHoldEffectParam(gBattleMons[battler].item, battler);
 }
 
 bool32 IsMoveMakingContact(u32 move, u32 battlerAtk)
