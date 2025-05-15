@@ -2389,7 +2389,7 @@ void BtlController_HandlePrintString(u32 battler, bool32 updateTvData, bool32 ar
         BattleArena_DeductSkillPoints(battler, *stringId);
 }
 
-void BtlController_HandleHealthBarUpdate(u32 battler, bool32 updateHpText)
+void BtlController_HandleHealthBarUpdate(u32 battler)
 {
     s32 maxHP, curHP;
     s16 hpVal;
@@ -2408,7 +2408,10 @@ void BtlController_HandleHealthBarUpdate(u32 battler, bool32 updateHpText)
     else
     {
         SetBattleBarStruct(battler, gHealthboxSpriteIds[battler], maxHP, 0, hpVal);
-        if (updateHpText)
+        // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
+        if (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == RecordedPlayerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == WallyBufferExecCompleted)
             UpdateHpTextInHealthbox(gHealthboxSpriteIds[battler], HP_CURRENT, 0, maxHP);
         TestRunner_Battle_RecordHP(battler, curHP, 0);
     }
