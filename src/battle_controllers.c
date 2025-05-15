@@ -2121,7 +2121,7 @@ void BtlController_HandleSetRawMonData(u32 battler)
     BtlController_Complete(battler);
 }
 
-void BtlController_HandleLoadMonSprite(u32 battler, void (*controllerCallback)(u32 battler))
+void BtlController_HandleLoadMonSprite(u32 battler)
 {
     struct Pokemon *mon = GetBattlerMon(battler);
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
@@ -2142,7 +2142,12 @@ void BtlController_HandleLoadMonSprite(u32 battler, void (*controllerCallback)(u
 
     SetBattlerShadowSpriteCallback(battler, species);
 
-    gBattlerControllerFuncs[battler] = controllerCallback;
+    if (gBattlerControllerEndFuncs[battler] == OpponentBufferExecCompleted
+     && gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted
+     && gBattlerControllerEndFuncs[battler] == RecordedOpponentBufferExecCompleted)
+        gBattlerControllerFuncs[battler] = TryShinyAnimAfterMonAnim;
+    else
+        gBattlerControllerFuncs[battler] = WaitForMonAnimAfterLoad;
 }
 
 void BtlController_HandleSwitchInAnim(u32 battler)
@@ -2840,6 +2845,18 @@ bool32 TryShinyAnimAfterMonAnimUtil(u32 battler)
     FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
 
     return TRUE;
+}
+
+void TryShinyAnimAfterMonAnim(u32 battler)
+{
+    if (TryShinyAnimAfterMonAnimUtil(battler))
+        BtlController_Complete(battler);
+}
+
+void WaitForMonAnimAfterLoad(u32 battler)
+{
+    if (gSprites[gBattlerSpriteIds[battler]].animEnded && gSprites[gBattlerSpriteIds[battler]].x2 == 0)
+        BtlController_Complete(battler);
 }
 
 bool32 SwitchIn_ShowSubstituteUtil(u32 battler)
