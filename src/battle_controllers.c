@@ -312,6 +312,14 @@ bool32 IsValidForBattle(struct Pokemon *mon)
          && GetMonData(mon, MON_DATA_IS_EGG) == FALSE);
 }
 
+bool32 ShouldUpdateTvData(u32 battler)
+{
+    // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
+    return (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted);
+}
+
 static void SetBattlePartyIds(void)
 {
     s32 i, j;
@@ -2357,15 +2365,12 @@ void BtlController_HandleMoveAnimation(u32 battler)
         gTransformedShininess[battler] = gAnimDisableStructPtr->transformedMonShininess;
         gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 0;
         gBattlerControllerFuncs[battler] = Controller_DoMoveAnimation;
-        // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
-        if (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
-         || gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted
-         || gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted)
+        if (ShouldUpdateTvData(battler))
             BattleTv_SetDataBasedOnMove(move, gWeatherMoveAnim, gAnimDisableStructPtr);
     }
 }
 
-void BtlController_HandlePrintString(u32 battler, bool32 updateTvData, bool32 arenaPtsDeduct)
+void BtlController_HandlePrintString(u32 battler)
 {
     u16 *stringId;
 
@@ -2386,9 +2391,11 @@ void BtlController_HandlePrintString(u32 battler, bool32 updateTvData, bool32 ar
 
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MSG);
     gBattlerControllerFuncs[battler] = Controller_WaitForString;
-    if (updateTvData)
+    if (ShouldUpdateTvData(battler))
         BattleTv_SetDataBasedOnString(*stringId);
-    if (arenaPtsDeduct)
+    // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
+    if (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
+     || gBattlerControllerEndFuncs[battler] == OpponentBufferExecCompleted)
         BattleArena_DeductSkillPoints(battler, *stringId);
 }
 
@@ -2731,10 +2738,7 @@ void BtlController_HandleBattleAnimation(u32 battler)
         else
             gBattlerControllerFuncs[battler] = Controller_WaitForBattleAnimation;
 
-        // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
-        if (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
-         || gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted
-         || gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted)
+        if (ShouldUpdateTvData(battler))
             BattleTv_SetDataBasedOnAnimation(animationId);
     }
 }
