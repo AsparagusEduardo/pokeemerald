@@ -2341,7 +2341,7 @@ void BtlController_HandleBallThrowAnim(u32 battler, u32 target, u32 animId, bool
     HandleBallThrow(battler, target, animId, allowCriticalCapture);
 }
 
-void BtlController_HandleMoveAnimation(u32 battler, bool32 updateTvData)
+void BtlController_HandleMoveAnimation(u32 battler)
 {
     if (!IsBattleSEPlaying(battler))
     {
@@ -2357,7 +2357,10 @@ void BtlController_HandleMoveAnimation(u32 battler, bool32 updateTvData)
         gTransformedShininess[battler] = gAnimDisableStructPtr->transformedMonShininess;
         gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 0;
         gBattlerControllerFuncs[battler] = Controller_DoMoveAnimation;
-        if (updateTvData)
+        // To identify what controller is handling this function. TODO: Add Battle Controller IDs?
+        if (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted
+         || gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted)
             BattleTv_SetDataBasedOnMove(move, gWeatherMoveAnim, gAnimDisableStructPtr);
     }
 }
