@@ -4385,8 +4385,6 @@ void ResetPokemonJumpRecords(void)
     records->bestJumpScore = 0;
     records->excellentsInRow = 0;
     records->gamesWithMaxPlayers = 0;
-    records->unused2 = 0;
-    records->unused1 = 0;
 #endif //FREE_POKEMON_JUMP
 }
 
