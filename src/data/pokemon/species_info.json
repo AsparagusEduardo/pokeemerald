@@ -1,0 +1,812 @@
+{
+  "configs": {
+    "updated_stats_gen": 9,
+    "updated_types_gen": 9,
+    "updated_exp_yield_gen": 9,
+    "groups_enabled": {
+      "regional_forms": {
+        "alola": true,
+        "galar": true,
+        "hisui": true,
+        "paldea": true
+      },
+      "cross_evolutions": {
+        "NOTES": [
+          "Regional form evolutions are handled in that region's config.",
+          "Eg. Clodsire is handled in 'regional_forms.paldea'."
+        ],
+        "gen2": true,
+        "gen3": true,
+        "gen4": true,
+        "gen6": true,
+        "gen7": true,
+        "gen8": true,
+        "gen9": true
+      },
+      "gimmick_forms": {
+        "mega_evolutions": true,
+        "primal_reversions": true,
+        "ultra_burst": true,
+        "gigantamax_forms": true,
+        "tera_forms": true,
+        "fusion_forms": true,
+        "pikachu_forms": {
+          "cosplay": true,
+          "caps": true
+        }
+      }
+    }
+  },
+  "generations": [
+    {
+      "name": "custom",
+      "NOTE": "Add your fakemon families here instead of at the end to avoid conflicts with incoming new-gen species.",
+      "enabled": true,
+      "families": []
+    },
+    {
+      "name": "gen_1",
+      "enabled": true,
+      "families": [
+        {
+          "name": "BULBASAUR",
+          "enabled": true,
+          "members": [
+            {
+              "species_id": "SPECIES_BULBASAUR",
+              "enabled": true,
+              "base_stats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "speed": 45,
+                "sp_attack": 65,
+                "sp_defense": 65
+              },
+              "types": [ "TYPE_GRASS", "TYPE_POISON" ],
+              "catch_rate": 45,
+              "exp_yield": 64
+            },
+            {
+              "species_id": "SPECIES_IVYSAUR",
+              "enabled": true,
+              "base_stats": {
+                "hp": 60,
+                "attack": 62,
+                "defense": 63,
+                "speed": 60,
+                "sp_attack": 80,
+                "sp_defense": 80
+              },
+              "types": [ "TYPE_GRASS", "TYPE_POISON" ],
+              "catch_rate": 45,
+              "exp_yield": {
+                "gen5": 142,
+                "default": 141
+              }
+            },
+            {
+              "species_id": "SPECIES_VENUSAUR",
+              "base_stats": {
+                "hp": 80,
+                "attack": 82,
+                "defense": 83,
+                "speed": 80,
+                "sp_attack": 100,
+                "sp_defense": 100
+              },
+              "types": [ "TYPE_GRASS", "TYPE_POISON" ],
+              "catch_rate": 45,
+              "exp_yield": {
+                "gen8": 263,
+                "gen5": 236,
+                "default": 208
+              }
+            }
+          ]
+        },
+        {
+          "name": "CHARMANDER",
+          "enabled": true,
+          "members": [
+            {
+              "species_id": "SPECIES_CHARMANDER",
+              "base_stats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "speed": 65,
+                "sp_attack": {
+                  "gen2": 60,
+                  "default": 50
+                },
+                "sp_defense": 50
+              },
+              "types": [ "TYPE_FIRE" ],
+              "catch_rate": 45,
+              "exp_yield": {
+                "gen5": 62,
+                "default": 65
+              }
+            }
+          ]
+        },
+        {
+          "name": "SQUIRTLE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "CATERPIE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "WEEDLE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PIDGEY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "RATTATA",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SPEAROW",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "EKANS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PIKACHU",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SANDSHREW",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "NIDORAN",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "CLEFAIRY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "VULPIX",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "JIGGLYPUFF",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ZUBAT",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ODDISH",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PARAS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "VENONAT",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "DIGLETT",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MEOWTH",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PSYDUCK",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MANKEY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "GROWLITHE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "POLIWAG",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ABRA",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MACHOP",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "BELLSPROUT",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "TENTACOOL",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "GEODUDE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PONYTA",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SLOWPOKE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MAGNEMITE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "FARFETCHD",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "DODUO",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SEEL",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "GRIMER",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SHELLDER",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "GASTLY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ONIX",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "DROWZEE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "KRABBY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "VOLTORB",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "EXEGGCUTE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "CUBONE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "HITMONS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "LICKITUNG",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "KOFFING",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "RHYHORN",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "CHANSEY",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "TANGELA",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "KANGASKHAN",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "HORSEA",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "GOLDEEN",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "STARYU",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MR_MIME",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SCYTHER",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "JYNX",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ELECTABUZZ",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MAGMAR",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PINSIR",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "TAUROS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MAGIKARP",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "LAPRAS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "DITTO",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "EEVEE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "PORYGON",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "OMANYTE",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "KABUTO",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "AERODACTYL",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "SNORLAX",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ARTICUNO",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "ZAPDOS",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MOLTRES",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "DRATINI",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MEWTWO",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        },
+        {
+          "name": "MEW",
+          "enabled": true,
+          "members": [
+            {
+
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
