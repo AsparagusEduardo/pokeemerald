@@ -432,6 +432,8 @@ void BtlController_HandleSwitchInShowHealthbox(u32 battler);
 void BtlController_HandleSwitchInTryShinyAnim(u32 battler);
 void BtlController_HandleSwitchInSoundAndEnd(u32 battler);
 void BtlController_HandleSwitchInShowSubstitute(u32 battler);
+void PrintLinkStandbyMsg(void);
+void BtlController_HandleLinkStandbyMsg(u32 battler);
 void BtlController_HandleEndLinkBattle(u32 battler);
 
 #endif // GUARD_BATTLE_CONTROLLERS_H

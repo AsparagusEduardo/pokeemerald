@@ -3402,6 +3402,38 @@ static void SafariSetBattleEndCallbacks(u32 battler)
     }
 }
 
+void PrintLinkStandbyMsg(void)
+{
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+    {
+        gBattle_BG0_X = 0;
+        gBattle_BG0_Y = 0;
+        BattlePutTextOnWindow(gText_LinkStandby, B_WIN_MSG);
+    }
+}
+
+void BtlController_HandleLinkStandbyMsg(u32 battler)
+{
+    RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][2]);
+    if (IsControllerPlayer(battler))
+    {
+        switch (gBattleResources->bufferA[battler][1])
+        {
+        case LINK_STANDBY_MSG_STOP_BOUNCE:
+            PrintLinkStandbyMsg();
+            // fall through
+        case LINK_STANDBY_STOP_BOUNCE_ONLY:
+            EndBounceEffect(battler, BOUNCE_HEALTHBOX);
+            EndBounceEffect(battler, BOUNCE_MON);
+            break;
+        case LINK_STANDBY_MSG_ONLY:
+            PrintLinkStandbyMsg();
+            break;
+        }
+    }
+    BtlController_Complete(battler);
+}
+
 void BtlController_HandleEndLinkBattle(u32 battler)
 {
     if (IsControllerLinkPartner(battler))

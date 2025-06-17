@@ -35,7 +35,6 @@ static void LinkOpponentHandleTrainerSlide(u32 battler);
 static void LinkOpponentHandleTrainerSlideBack(u32 battler);
 static void LinkOpponentHandleIntroTrainerBallThrow(u32 battler);
 static void LinkOpponentHandleDrawPartyStatusSummary(u32 battler);
-static void LinkOpponentHandleLinkStandbyMsg(u32 battler);
 
 static void LinkOpponentBufferRunCommand(u32 battler);
 
@@ -90,7 +89,7 @@ static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 batt
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
     [CONTROLLER_SPRITEINVISIBILITY]       = BtlController_HandleSpriteInvisibility,
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
-    [CONTROLLER_LINKSTANDBYMSG]           = LinkOpponentHandleLinkStandbyMsg,
+    [CONTROLLER_LINKSTANDBYMSG]           = BtlController_HandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = BtlController_Empty,
     [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = BtlController_Empty,
@@ -377,10 +376,4 @@ static void LinkOpponentHandleIntroTrainerBallThrow(u32 battler)
 static void LinkOpponentHandleDrawPartyStatusSummary(u32 battler)
 {
     BtlController_HandleDrawPartyStatusSummary(battler, B_SIDE_OPPONENT, TRUE);
-}
-
-static void LinkOpponentHandleLinkStandbyMsg(u32 battler)
-{
-    RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][2]);
-    BtlController_Complete(battler);
 }

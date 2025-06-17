@@ -70,7 +70,6 @@ static void PlayerHandleOneReturnValue_Duplicate(u32 battler);
 static void PlayerHandleIntroTrainerBallThrow(u32 battler);
 static void PlayerHandleDrawPartyStatusSummary(u32 battler);
 static void PlayerHandleEndBounceEffect(u32 battler);
-static void PlayerHandleLinkStandbyMsg(u32 battler);
 static void PlayerHandleResetActionMoveSelection(u32 battler);
 static void PlayerHandleBattleDebug(u32 battler);
 
@@ -88,7 +87,6 @@ static void Task_PrepareToGiveExpWithExpBar(u8);
 static void Task_SetControllerToWaitForString(u8);
 static void Task_GiveExpWithExpBar(u8);
 static void Task_UpdateLvlInHealthbox(u8);
-static void PrintLinkStandbyMsg(void);
 
 static void ReloadMoveNames(u32 battler);
 static u32 CheckTypeEffectiveness(u32 battlerAtk, u32 battlerDef);
@@ -146,7 +144,7 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_ENDBOUNCE]                = PlayerHandleEndBounceEffect,
     [CONTROLLER_SPRITEINVISIBILITY]       = BtlController_HandleSpriteInvisibility,
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
-    [CONTROLLER_LINKSTANDBYMSG]           = PlayerHandleLinkStandbyMsg,
+    [CONTROLLER_LINKSTANDBYMSG]           = BtlController_HandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = PlayerHandleResetActionMoveSelection,
     [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = PlayerHandleBattleDebug,
@@ -1809,16 +1807,6 @@ void CB2_SetUpReshowBattleScreenAfterMenu2(void)
     SetMainCallback2(ReshowBattleScreenAfterMenu);
 }
 
-static void PrintLinkStandbyMsg(void)
-{
-    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-    {
-        gBattle_BG0_X = 0;
-        gBattle_BG0_Y = 0;
-        BattlePutTextOnWindow(gText_LinkStandby, B_WIN_MSG);
-    }
-}
-
 static void PlayerHandleLoadMonSprite(u32 battler)
 {
     BattleLoadMonSpriteGfx(GetBattlerMon(battler), battler);
@@ -2253,25 +2241,6 @@ static void PlayerHandleEndBounceEffect(u32 battler)
 {
     EndBounceEffect(battler, BOUNCE_HEALTHBOX);
     EndBounceEffect(battler, BOUNCE_MON);
-    BtlController_Complete(battler);
-}
-
-static void PlayerHandleLinkStandbyMsg(u32 battler)
-{
-    RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][2]);
-    switch (gBattleResources->bufferA[battler][1])
-    {
-    case LINK_STANDBY_MSG_STOP_BOUNCE:
-        PrintLinkStandbyMsg();
-        // fall through
-    case LINK_STANDBY_STOP_BOUNCE_ONLY:
-        EndBounceEffect(battler, BOUNCE_HEALTHBOX);
-        EndBounceEffect(battler, BOUNCE_MON);
-        break;
-    case LINK_STANDBY_MSG_ONLY:
-        PrintLinkStandbyMsg();
-        break;
-    }
     BtlController_Complete(battler);
 }
 
