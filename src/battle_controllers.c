@@ -2698,15 +2698,15 @@ void BtlController_HandleTrainerSlide(u32 battler, u32 trainerPicId)
 
 #undef sSpeedX
 
-void BtlController_HandleTrainerSlideBack(u32 battler, s16 data0, bool32 startAnim)
+void BtlController_HandleTrainerSlideBack(u32 battler)
 {
     SetSpritePrimaryCoordsFromSecondaryCoords(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]]);
-    gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[0] = data0;
+    gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[0] = IsControllerPlayer(battler) ? 50 : 35;
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[2] = IsOnPlayerSide(battler) ? -40 : 280;
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[4] = gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].y;
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].callback = StartAnimLinearTranslation;
     StoreSpriteCallbackInData6(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], SpriteCallbackDummy);
-    if (startAnim)
+    if (IsControllerPlayer(battler))
         StartSpriteAnim(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], 1);
     gBattlerControllerFuncs[battler] = Controller_HandleTrainerSlideBack;
 }
