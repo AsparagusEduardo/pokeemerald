@@ -1481,15 +1481,6 @@ void BtlController_EmitOneReturnValue(u32 battler, u32 bufferId, u16 ret)
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 4);
 }
 
-void BtlController_EmitOneReturnValue_Duplicate(u32 battler, u32 bufferId, u16 ret)
-{
-    gBattleResources->transferBuffer[0] = CONTROLLER_ONERETURNVALUE_DUPLICATE;
-    gBattleResources->transferBuffer[1] = ret;
-    gBattleResources->transferBuffer[2] = (ret & 0xFF00) >> 8;
-    gBattleResources->transferBuffer[3] = 0;
-    PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 4);
-}
-
 void BtlController_EmitHitAnimation(u32 battler, u32 bufferId)
 {
     gBattleResources->transferBuffer[0] = CONTROLLER_HITANIMATION;
