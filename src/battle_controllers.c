@@ -665,6 +665,13 @@ static inline bool32 IsControllerSafari(u32 battler)
     return (gBattlerControllerEndFuncs[battler] == SafariBufferExecCompleted);
 }
 
+static inline bool32 IsControllerOpponentType(u32 battler)
+{
+    return (IsControllerOpponent(battler)
+         || IsControllerLinkOpponent(battler)
+         || IsControllerRecordedOpponent(battler));
+}
+
 bool32 ShouldUpdateTvData(u32 battler)
 {
     return (IsControllerPlayer(battler)
@@ -2548,9 +2555,7 @@ void BtlController_HandleLoadMonSprite(u32 battler)
 
     SetBattlerShadowSpriteCallback(battler, species);
 
-    if (IsControllerOpponent(battler)
-     && IsControllerLinkOpponent(battler)
-     && IsControllerRecordedOpponent(battler))
+    if (IsControllerOpponentType(battler))
         gBattlerControllerFuncs[battler] = TryShinyAnimAfterMonAnim;
     else
         gBattlerControllerFuncs[battler] = WaitForMonAnimAfterLoad;
@@ -3114,7 +3119,7 @@ static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite)
 
 #undef sBattlerId
 
-void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 considerDelay)
+void BtlController_HandleDrawPartyStatusSummary(u32 battler)
 {
     if (gBattleResources->bufferA[battler][1] != 0 && IsOnPlayerSide(battler))
     {
@@ -3124,7 +3129,7 @@ void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 co
     {
         gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusSummaryShown = 1;
 
-        if (side == B_SIDE_OPPONENT && gBattleResources->bufferA[battler][2] != 0)
+        if (IsControllerOpponentType(battler) && gBattleResources->bufferA[battler][2] != 0)
         {
             if (gBattleSpritesDataPtr->healthBoxesData[battler].opponentDrawPartyStatusSummaryDelay < 2)
             {
@@ -3141,7 +3146,7 @@ void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 co
         gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusDelayTimer = 0;
 
         // If intro, skip the delay after drawing
-        if (considerDelay && gBattleResources->bufferA[battler][2] != 0)
+        if (!IsControllerWally(battler) && gBattleResources->bufferA[battler][2] != 0)
             gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusDelayTimer = 93;
 
         gBattlerControllerFuncs[battler] = Controller_WaitForPartyStatusSummary;
@@ -3264,9 +3269,7 @@ void BtlController_HandleSwitchInShowSubstitute(u32 battler)
         if (gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
             InitAndLaunchSpecialAnimation(battler, battler, battler, B_ANIM_MON_TO_SUBSTITUTE);
 
-        if (IsControllerOpponent(battler)
-         && IsControllerLinkOpponent(battler)
-         && IsControllerRecordedOpponent(battler))
+        if (IsControllerOpponentType(battler))
             gBattlerControllerFuncs[battler] = BtlController_HandleSwitchInSoundAndEnd;
         else
             gBattlerControllerFuncs[battler] = BtlController_HandleSwitchInWaitAndEnd;
