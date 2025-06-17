@@ -660,6 +660,11 @@ static inline bool32 IsControllerLinkPartner(u32 battler)
     return (gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted);
 }
 
+static inline bool32 IsControllerSafari(u32 battler)
+{
+    return (gBattlerControllerEndFuncs[battler] == SafariBufferExecCompleted);
+}
+
 bool32 ShouldUpdateTvData(u32 battler)
 {
     return (IsControllerPlayer(battler)
@@ -3384,5 +3389,108 @@ void BtlController_HandleSwitchInTryShinyAnim(u32 battler)
         {
             gBattlerControllerFuncs[battler] = BtlController_HandleSwitchInShowHealthbox;
         }
+    }
+}
+
+static void SafariSetBattleEndCallbacks(u32 battler)
+{
+    if (!gPaletteFade.active)
+    {
+        gMain.inBattle = FALSE;
+        gMain.callback1 = gPreBattleCallback1;
+        SetMainCallback2(gMain.savedCallback);
+    }
+}
+
+void BtlController_HandleEndLinkBattle(u32 battler)
+{
+    if (IsControllerLinkPartner(battler))
+    {
+        RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][4]);
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        gSaveBlock2Ptr->frontier.disableRecordBattle = gBattleResources->bufferA[battler][2];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerLinkOpponent(battler))
+    {
+        RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][4]);
+        if (gBattleResources->bufferA[battler][1] == B_OUTCOME_DREW)
+            gBattleOutcome = gBattleResources->bufferA[battler][1];
+        else
+            gBattleOutcome = gBattleResources->bufferA[battler][1] ^ B_OUTCOME_DREW;
+        gSaveBlock2Ptr->frontier.disableRecordBattle = gBattleResources->bufferA[battler][2];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerOpponent(battler))
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_LINK && !(gBattleTypeFlags & BATTLE_TYPE_IS_MASTER))
+        {
+            gMain.inBattle = FALSE;
+            gMain.callback1 = gPreBattleCallback1;
+            SetMainCallback2(gMain.savedCallback);
+        }
+        BtlController_Complete(battler);
+    }
+    else if (IsControllerPlayerPartner(battler))
+    {
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerPlayer(battler))
+    {
+        RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][4]);
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        gSaveBlock2Ptr->frontier.disableRecordBattle = gBattleResources->bufferA[battler][2];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerRecordedOpponent(battler))
+    {
+        if (gBattleResources->bufferA[battler][1] == B_OUTCOME_DREW)
+            gBattleOutcome = gBattleResources->bufferA[battler][1];
+        else
+            gBattleOutcome = gBattleResources->bufferA[battler][1] ^ B_OUTCOME_DREW;
+
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerRecordedPlayer(battler))
+    {
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
+    }
+    else if (IsControllerSafari(battler))
+    {
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        if ((gBattleTypeFlags & BATTLE_TYPE_LINK) && !(gBattleTypeFlags & BATTLE_TYPE_IS_MASTER))
+            gBattlerControllerFuncs[battler] = SafariSetBattleEndCallbacks;
+    }
+    else if (IsControllerWally(battler))
+    {
+        gBattleOutcome = gBattleResources->bufferA[battler][1];
+        FadeOutMapMusic(5);
+        BeginFastPaletteFade(3);
+        BtlController_Complete(battler);
+        if (!(gBattleTypeFlags & BATTLE_TYPE_IS_MASTER) && gBattleTypeFlags & BATTLE_TYPE_LINK)
+            gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
     }
 }

@@ -72,7 +72,6 @@ static void PlayerHandleDrawPartyStatusSummary(u32 battler);
 static void PlayerHandleEndBounceEffect(u32 battler);
 static void PlayerHandleLinkStandbyMsg(u32 battler);
 static void PlayerHandleResetActionMoveSelection(u32 battler);
-static void PlayerHandleEndLinkBattle(u32 battler);
 static void PlayerHandleBattleDebug(u32 battler);
 
 static void PlayerBufferRunCommand(u32 battler);
@@ -149,7 +148,7 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
     [CONTROLLER_LINKSTANDBYMSG]           = PlayerHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = PlayerHandleResetActionMoveSelection,
-    [CONTROLLER_ENDLINKBATTLE]            = PlayerHandleEndLinkBattle,
+    [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = PlayerHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
@@ -2292,17 +2291,6 @@ static void PlayerHandleResetActionMoveSelection(u32 battler)
         break;
     }
     BtlController_Complete(battler);
-}
-
-static void PlayerHandleEndLinkBattle(u32 battler)
-{
-    RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][4]);
-    gBattleOutcome = gBattleResources->bufferA[battler][1];
-    gSaveBlock2Ptr->frontier.disableRecordBattle = gBattleResources->bufferA[battler][2];
-    FadeOutMapMusic(5);
-    BeginFastPaletteFade(3);
-    BtlController_Complete(battler);
-    gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
 }
 
 static void Controller_WaitForDebug(u32 battler)

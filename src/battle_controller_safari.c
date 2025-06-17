@@ -37,7 +37,6 @@ static void SafariHandleChoosePokemon(u32 battler);
 static void SafariHandleStatusIconUpdate(u32 battler);
 static void SafariHandleFaintingCry(u32 battler);
 static void SafariHandleIntroTrainerBallThrow(u32 battler);
-static void SafariHandleEndLinkBattle(u32 battler);
 
 static void SafariBufferRunCommand(u32 battler);
 static void CompleteWhenChosePokeblock(u32 battler);
@@ -96,7 +95,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
     [CONTROLLER_LINKSTANDBYMSG]           = BtlController_Empty,
     [CONTROLLER_RESETACTIONMOVESELECTION] = BtlController_Empty,
-    [CONTROLLER_ENDLINKBATTLE]            = SafariHandleEndLinkBattle,
+    [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = BtlController_Empty,
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
@@ -194,16 +193,6 @@ static void Controller_WaitForHealthbox(u32 battler)
 {
     if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
         BtlController_Complete(battler);
-}
-
-static void SafariSetBattleEndCallbacks(u32 battler)
-{
-    if (!gPaletteFade.active)
-    {
-        gMain.inBattle = FALSE;
-        gMain.callback1 = gPreBattleCallback1;
-        SetMainCallback2(gMain.savedCallback);
-    }
 }
 
 static void SafariOpenPokeblockCase(u32 battler)
@@ -375,14 +364,4 @@ static void SafariHandleIntroTrainerBallThrow(u32 battler)
     StartHealthboxSlideIn(battler);
     SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
     gBattlerControllerFuncs[battler] = Controller_WaitForHealthbox;
-}
-
-static void SafariHandleEndLinkBattle(u32 battler)
-{
-    gBattleOutcome = gBattleResources->bufferA[battler][1];
-    FadeOutMapMusic(5);
-    BeginFastPaletteFade(3);
-    BtlController_Complete(battler);
-    if ((gBattleTypeFlags & BATTLE_TYPE_LINK) && !(gBattleTypeFlags & BATTLE_TYPE_IS_MASTER))
-        gBattlerControllerFuncs[battler] = SafariSetBattleEndCallbacks;
 }

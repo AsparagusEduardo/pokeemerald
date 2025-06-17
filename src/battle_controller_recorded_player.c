@@ -39,7 +39,6 @@ static void RecordedPlayerHandleStatusIconUpdate(u32 battler);
 static void RecordedPlayerHandleStatusAnimation(u32 battler);
 static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler);
 static void RecordedPlayerHandleDrawPartyStatusSummary(u32 battler);
-static void RecordedPlayerHandleEndLinkBattle(u32 battler);
 
 static void RecordedPlayerBufferRunCommand(u32 battler);
 
@@ -96,7 +95,7 @@ static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 ba
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
     [CONTROLLER_LINKSTANDBYMSG]           = BtlController_Empty,
     [CONTROLLER_RESETACTIONMOVESELECTION] = BtlController_Empty,
-    [CONTROLLER_ENDLINKBATTLE]            = RecordedPlayerHandleEndLinkBattle,
+    [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = BtlController_Empty,
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
@@ -414,13 +413,4 @@ static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler)
 static void RecordedPlayerHandleDrawPartyStatusSummary(u32 battler)
 {
     BtlController_HandleDrawPartyStatusSummary(battler, B_SIDE_PLAYER, TRUE);
-}
-
-static void RecordedPlayerHandleEndLinkBattle(u32 battler)
-{
-    gBattleOutcome = gBattleResources->bufferA[battler][1];
-    FadeOutMapMusic(5);
-    BeginFastPaletteFade(3);
-    BtlController_Complete(battler);
-    gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
 }

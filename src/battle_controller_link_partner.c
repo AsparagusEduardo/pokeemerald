@@ -35,7 +35,6 @@ static void LinkPartnerHandleTrainerSlideBack(u32 battler);
 static void LinkPartnerHandleIntroTrainerBallThrow(u32 battler);
 static void LinkPartnerHandleDrawPartyStatusSummary(u32 battler);
 static void LinkPartnerHandleLinkStandbyMsg(u32 battler);
-static void LinkPartnerHandleEndLinkBattle(u32 battler);
 
 static void LinkPartnerBufferRunCommand(u32 battler);
 
@@ -92,7 +91,7 @@ static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battl
     [CONTROLLER_BATTLEANIMATION]          = BtlController_HandleBattleAnimation,
     [CONTROLLER_LINKSTANDBYMSG]           = LinkPartnerHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = BtlController_Empty,
-    [CONTROLLER_ENDLINKBATTLE]            = LinkPartnerHandleEndLinkBattle,
+    [CONTROLLER_ENDLINKBATTLE]            = BtlController_HandleEndLinkBattle,
     [CONTROLLER_DEBUGMENU]                = BtlController_Empty,
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
@@ -175,15 +174,4 @@ static void LinkPartnerHandleLinkStandbyMsg(u32 battler)
 {
     RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][2]);
     BtlController_Complete(battler);
-}
-
-static void LinkPartnerHandleEndLinkBattle(u32 battler)
-{
-    RecordedBattle_RecordAllBattlerData(&gBattleResources->bufferA[battler][4]);
-    gBattleOutcome = gBattleResources->bufferA[battler][1];
-    gSaveBlock2Ptr->frontier.disableRecordBattle = gBattleResources->bufferA[battler][2];
-    FadeOutMapMusic(5);
-    BeginFastPaletteFade(3);
-    BtlController_Complete(battler);
-    gBattlerControllerFuncs[battler] = SetBattleEndCallbacks;
 }
