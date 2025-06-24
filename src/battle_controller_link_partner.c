@@ -33,7 +33,6 @@
 static void LinkPartnerHandleDrawTrainerPic(u32 battler);
 static void LinkPartnerHandleTrainerSlideBack(u32 battler);
 static void LinkPartnerHandleIntroTrainerBallThrow(u32 battler);
-static void LinkPartnerHandleDrawPartyStatusSummary(u32 battler);
 static void LinkPartnerHandleLinkStandbyMsg(u32 battler);
 static void LinkPartnerHandleEndLinkBattle(u32 battler);
 
@@ -85,7 +84,7 @@ static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battl
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
     [CONTROLLER_INTROTRAINERBALLTHROW]    = LinkPartnerHandleIntroTrainerBallThrow,
-    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = LinkPartnerHandleDrawPartyStatusSummary,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
     [CONTROLLER_SPRITEINVISIBILITY]       = BtlController_HandleSpriteInvisibility,
@@ -164,11 +163,6 @@ static void LinkPartnerHandleIntroTrainerBallThrow(u32 battler)
     const u16 *trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     // Link partner uses the same intro sequence as the player partner.
     BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal, 24, Controller_PlayerPartnerShowIntroHealthbox);
-}
-
-static void LinkPartnerHandleDrawPartyStatusSummary(u32 battler)
-{
-    BtlController_HandleDrawPartyStatusSummary(battler, B_SIDE_PLAYER, TRUE);
 }
 
 static void LinkPartnerHandleLinkStandbyMsg(u32 battler)

@@ -41,7 +41,6 @@ static void RecordedOpponentHandleChoosePokemon(u32 battler);
 static void RecordedOpponentHandleStatusIconUpdate(u32 battler);
 static void RecordedOpponentHandleStatusAnimation(u32 battler);
 static void RecordedOpponentHandleIntroTrainerBallThrow(u32 battler);
-static void RecordedOpponentHandleDrawPartyStatusSummary(u32 battler);
 static void RecordedOpponentHandleEndLinkBattle(u32 battler);
 
 static void RecordedOpponentBufferRunCommand(u32 battler);
@@ -92,7 +91,7 @@ static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
     [CONTROLLER_INTROTRAINERBALLTHROW]    = RecordedOpponentHandleIntroTrainerBallThrow,
-    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = RecordedOpponentHandleDrawPartyStatusSummary,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
     [CONTROLLER_SPRITEINVISIBILITY]       = BtlController_HandleSpriteInvisibility,
@@ -373,11 +372,6 @@ static void RecordedOpponentHandleStatusAnimation(u32 battler)
 static void RecordedOpponentHandleIntroTrainerBallThrow(u32 battler)
 {
     BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL, 0, Intro_TryShinyAnimShowHealthbox);
-}
-
-static void RecordedOpponentHandleDrawPartyStatusSummary(u32 battler)
-{
-    BtlController_HandleDrawPartyStatusSummary(battler, B_SIDE_OPPONENT, TRUE);
 }
 
 static void RecordedOpponentHandleEndLinkBattle(u32 battler)

@@ -2811,7 +2811,7 @@ static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite)
 
 #undef sBattlerId
 
-void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 considerDelay)
+void BtlController_HandleDrawPartyStatusSummary(u32 battler)
 {
     if (gBattleResources->bufferA[battler][1] != 0 && IsOnPlayerSide(battler))
     {
@@ -2821,7 +2821,8 @@ void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 co
     {
         gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusSummaryShown = 1;
 
-        if (side == B_SIDE_OPPONENT && gBattleResources->bufferA[battler][2] != 0)
+        if ((IsControllerOpponent(battler) || IsControllerLinkOpponent(battler) || IsControllerRecordedOpponent(battler))
+            && gBattleResources->bufferA[battler][2] != 0)
         {
             if (gBattleSpritesDataPtr->healthBoxesData[battler].opponentDrawPartyStatusSummaryDelay < 2)
             {
@@ -2838,7 +2839,7 @@ void BtlController_HandleDrawPartyStatusSummary(u32 battler, u32 side, bool32 co
         gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusDelayTimer = 0;
 
         // If intro, skip the delay after drawing
-        if (considerDelay && gBattleResources->bufferA[battler][2] != 0)
+        if (!IsControllerWally(battler) && gBattleResources->bufferA[battler][2] != 0)
             gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusDelayTimer = 93;
 
         gBattlerControllerFuncs[battler] = Controller_WaitForPartyStatusSummary;
