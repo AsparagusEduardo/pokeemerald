@@ -41,7 +41,6 @@
 #include "test_runner.h"
 
 static void OpponentHandleDrawTrainerPic(u32 battler);
-static void OpponentHandleTrainerSlideBack(u32 battler);
 static void OpponentHandleChooseAction(u32 battler);
 static void OpponentHandleChooseMove(u32 battler);
 static void OpponentHandleChooseItem(u32 battler);
@@ -63,7 +62,7 @@ static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler)
     [CONTROLLER_RETURNMONTOBALL]          = BtlController_HandleReturnMonToBall,
     [CONTROLLER_DRAWTRAINERPIC]           = OpponentHandleDrawTrainerPic,
     [CONTROLLER_TRAINERSLIDE]             = OpponentHandleTrainerSlide,
-    [CONTROLLER_TRAINERSLIDEBACK]         = OpponentHandleTrainerSlideBack,
+    [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
     [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
@@ -391,11 +390,6 @@ void OpponentHandleTrainerSlide(u32 battler)
 {
     u32 trainerPicId = OpponentGetTrainerPicId(battler);
     BtlController_HandleTrainerSlide(battler, trainerPicId);
-}
-
-static void OpponentHandleTrainerSlideBack(u32 battler)
-{
-    BtlController_HandleTrainerSlideBack(battler, 35, FALSE);
 }
 
 static void OpponentHandleChooseAction(u32 battler)

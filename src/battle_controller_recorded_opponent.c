@@ -33,7 +33,6 @@
 #include "constants/trainers.h"
 
 static void RecordedOpponentHandleDrawTrainerPic(u32 battler);
-static void RecordedOpponentHandleTrainerSlideBack(u32 battler);
 static void RecordedOpponentHandleChooseAction(u32 battler);
 static void RecordedOpponentHandleChooseMove(u32 battler);
 static void RecordedOpponentHandleChooseItem(u32 battler);
@@ -56,7 +55,7 @@ static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 
     [CONTROLLER_RETURNMONTOBALL]          = BtlController_HandleReturnMonToBall,
     [CONTROLLER_DRAWTRAINERPIC]           = RecordedOpponentHandleDrawTrainerPic,
     [CONTROLLER_TRAINERSLIDE]             = OpponentHandleTrainerSlide,
-    [CONTROLLER_TRAINERSLIDEBACK]         = RecordedOpponentHandleTrainerSlideBack,
+    [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
     [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
@@ -306,11 +305,6 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
     }
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, TRUE, xPos, 40, -1);
-}
-
-static void RecordedOpponentHandleTrainerSlideBack(u32 battler)
-{
-    BtlController_HandleTrainerSlideBack(battler, 35, FALSE);
 }
 
 static void RecordedOpponentHandleChooseAction(u32 battler)
