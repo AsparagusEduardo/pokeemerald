@@ -40,3 +40,5 @@ prefabs.json
 *.js
 /pokeemerald-*.png
 /pokeemerald_modern-*.png
+SDL2/*
+SDL2.dll
