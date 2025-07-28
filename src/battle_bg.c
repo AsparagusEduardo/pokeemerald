@@ -166,7 +166,11 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
-        .width = LANG_VAL(26, 27, 27, 27),
+#if EUROPE
+        .width = 27,
+#else
+        .width = 26,
+#endif
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x0090,
@@ -272,9 +276,17 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
     },
     [B_WIN_YESNO] = {
         .bg = 0,
-        .tilemapLeft = LANG_VAL(26, 25, 25, 25),
+#if EUROPE
+        .tilemapLeft = 25,
+#else
+        .tilemapLeft = 26,
+#endif
         .tilemapTop = 9,
-        .width = LANG_VAL(3, 4, 4, 4),
+#if EUROPE
+        .width = 4,
+#else
+        .width = 3,
+#endif
         .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x0100,
@@ -387,7 +399,11 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
-        .width = LANG_VAL(26, 27, 27, 27),
+#if EUROPE
+        .width = 27,
+#else
+        .width = 26,
+#endif
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x0090,
@@ -493,9 +509,17 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
     },
     [B_WIN_YESNO] = {
         .bg = 0,
-        .tilemapLeft = LANG_VAL(26, 25, 25, 25),
+#if EUROPE
+        .tilemapLeft = 25,
+#else
+        .tilemapLeft = 26,
+#endif
         .tilemapTop = 9,
-        .width = LANG_VAL(3, 4, 4, 4),
+#if EUROPE
+        .width = 4,
+#else
+        .width = 3,
+#endif
         .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x0100,
@@ -556,9 +580,17 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
     },
     [ARENA_WIN_SKILL] = {
         .bg = 0,
-        .tilemapLeft = LANG_VAL(12, 11, 12, 12),
+#if FRENCH
+        .tilemapLeft = 11,
+#else
+        .tilemapLeft = 12,
+#endif
         .tilemapTop = 6,
-        .width = LANG_VAL(6, 8, 6, 6),
+#if FRENCH
+        .width = 8,
+#else
+        .width = 6,
+#endif
         .height = 2,
         .paletteNum = 5,
         .baseBlock = 0x0130,
@@ -570,7 +602,11 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 6,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = LANG_VAL(0x013C, 0x0140, 0x013C, 0x013C),
+#if FRENCH
+        .baseBlock = 0x0140,
+#else
+        .baseBlock = 0x013C,
+#endif
     },
     [ARENA_WIN_JUDGMENT_TITLE] = {
         .bg = 0,
@@ -579,13 +615,21 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 14,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = LANG_VAL(0x0148, 0x014C, 0x0148, 0x0148),
+#if FRENCH
+        .baseBlock = 0x014C,
+#else
+        .baseBlock = 0x0148,
+#endif
     },
     [ARENA_WIN_JUDGMENT_TEXT] = {
         .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
-        .width = LANG_VAL(26, 27, 27, 27),
+#if EUROPE
+        .width = 27,
+#else
+        .width = 26,
+#endif
         .height = 4,
         .paletteNum = 7,
         .baseBlock = 0x0090,

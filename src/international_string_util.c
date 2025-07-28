@@ -87,8 +87,8 @@ int Intl_GetListMenuWidth(const struct ListMenuTemplate *listMenu)
 
 void CopyMonCategoryText(int dexNum, u8 *dest)
 {
-#if FRENCH
-    // Just category name in French
+#if FRENCH || GERMAN
+    // Just category name
     u8 *str = StringCopy(dest, gPokedexEntries[dexNum].categoryName);
 #elif ITALIAN || SPANISH
     const u8 *categoryName = gPokedexEntries[dexNum].categoryName;
@@ -275,6 +275,8 @@ const u8 gText_TateLiza[] = _("LEVY&TATIA");
 const u8 gText_TateLiza[] = _("TELL & PAT");
 #elif SPANISH
 const u8 gText_TateLiza[] = _("VITO-LETI");
+#elif GERMAN
+const u8 gText_TateLiza[] = _("BEN&SVENJA");
 #endif
 
 const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGender, const u8 *trainerName)

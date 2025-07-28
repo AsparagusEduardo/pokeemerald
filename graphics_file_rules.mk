@@ -53,6 +53,11 @@ TYPESGFXDIR := graphics/types/spanish
 $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESGFXDIR)/contest_%.4bpp)
 	@cat $^ >$@
 
+### German Types ###
+TYPESGFXDIR := graphics/types/german
+$(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESGFXDIR)/contest_%.4bpp)
+	@cat $^ >$@
+
 
 ### Castform ###
 
@@ -812,7 +817,7 @@ $(PKNAVGFXDIR)/match_call/ui.4bpp: %.4bpp: %.png
 
 $(PKNAVGFXDIR)/match_call/french/ui.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 13 -Wnum_tiles
-	
+
 $(PKNAVGFXDIR)/match_call/italian/ui.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 13 -Wnum_tiles
 

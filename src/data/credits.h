@@ -76,6 +76,8 @@ static const u8 sCreditsText_PkmnEmeraldVersion[]             = _("POKéMON VERS
 static const u8 sCreditsText_PkmnEmeraldVersion[]             = _("POKéMON VERSIONE SMERALDO");
 #elif SPANISH
 static const u8 sCreditsText_PkmnEmeraldVersion[]             = _("POKéMON EDICIÓN ESMERALDA");
+#elif GERMAN
+static const u8 sCreditsText_PkmnEmeraldVersion[]             = _("POKéMON SMARAGD-EDITION");
 #else //ENGLISH
 static const u8 sCreditsText_PkmnEmeraldVersion[]             = _("POKéMON EMERALD VERSION");
 #endif
@@ -214,6 +216,8 @@ static const u8 sCreditsText_EnglishVersion[]                 = _("French Versio
 static const u8 sCreditsText_EnglishVersion[]                 = _("Italian Version Coordinators");
 #elif SPANISH
 static const u8 sCreditsText_EnglishVersion[]                 = _("Spanish Version Coordinators");
+#elif GERMAN
+static const u8 sCreditsText_EnglishVersion[]                 = _("German Version Coordinators");
 #else //ENGLISH
 static const u8 sCreditsText_EnglishVersion[]                 = _("English Version Coordinators");
 #endif
@@ -273,13 +277,17 @@ static const u8 sCreditsText_ThomasFougeray[]                 = _("Andrea Salvi"
 static const u8 sCreditsText_PierreSanchez[]                  = _("Sofía Marín Aguilar-Galindo");
 static const u8 sCreditsText_SabrinaBretant[]                 = _("Jesús Ángel Rodríguez Gago");
 static const u8 sCreditsText_ThomasFougeray[]                 = _("Palma Sánchez de Moya Rodríguez");
+#elif GERMAN
+static const u8 sCreditsText_PierreSanchez[]                  = _("Daniel Schäfers");
+static const u8 sCreditsText_SabrinaBretant[]                 = _("Martina Deimel");
+static const u8 sCreditsText_ThomasFougeray[]                 = _("Andrea Jähn");
 #endif
 static const u8 sCreditsText_AlessioDanieli[]                 = _("Alessio Danieli");
 static const u8 sCreditsText_NOETestingTeam[]                 = _("NOE Testing Team");
 static const u8 sCreditsText_StefanRomberg[]                  = _("Stefan Romberg");
 static const u8 sCreditsText_MihoKozawa[]                     = _("Miho Kozawa");
 static const u8 sCreditsText_ToshifumiSayama[]                = _("Toshifumi Sayama");
-static const u8 sCreditsText_Hiroshi_Akune[]                  = _("Hiroshi Akune");
+static const u8 sCreditsText_HiroshiAkune[]                   = _("Hiroshi Akune");
 #endif
 static const struct CreditsEntry sCreditsEntry_EmptyString                      = { 0, FALSE, sCreditsText_EmptyString};
 static const struct CreditsEntry sCreditsEntry_PkmnEmeraldVersion               = { 7,  TRUE, sCreditsText_PkmnEmeraldVersion};
@@ -456,7 +464,7 @@ static const struct CreditsEntry sCreditsEntry_NOETestingTeam                   
 static const struct CreditsEntry sCreditsEntry_StefanRomberg                    = { 0, FALSE, sCreditsText_StefanRomberg};
 static const struct CreditsEntry sCreditsEntry_MihoKozawa                       = { 0, FALSE, sCreditsText_MihoKozawa};
 static const struct CreditsEntry sCreditsEntry_ToshifumiSayama                  = { 0, FALSE, sCreditsText_ToshifumiSayama};
-static const struct CreditsEntry sCreditsEntry_HiroshiAkune                     = { 0, FALSE, sCreditsText_Hiroshi_Akune};
+static const struct CreditsEntry sCreditsEntry_HiroshiAkune                     = { 0, FALSE, sCreditsText_HiroshiAkune};
 #endif
 
 #define _ &sCreditsEntry_EmptyString

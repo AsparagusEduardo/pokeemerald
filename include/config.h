@@ -34,7 +34,7 @@
 #define LOG_HANDLER (LOG_HANDLER_MGBA_PRINT)
 #endif
 
-#define EUROPE (FRENCH || ITALIAN || SPANISH)
+#define EUROPE (FRENCH || ITALIAN || SPANISH || GERMAN)
 
 // Using English as default.
 #if !defined(ENGLISH) && !EUROPE

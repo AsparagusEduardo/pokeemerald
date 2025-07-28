@@ -179,9 +179,17 @@ static const struct WindowTemplate sRegistryWindowTemplates[] =
 {
     {
         .bg = 0,
-        .tilemapLeft = LANG_VAL(18, 17, 17, 17),
+#if EUROPE
+        .tilemapLeft = 17,
+#else
+        .tilemapLeft = 18,
+#endif
         .tilemapTop = 1,
-        .width = LANG_VAL(11, 12, 12, 12),
+#if EUROPE
+        .width = 12,
+#else
+        .width = 11,
+#endif
         .height = 18,
         .paletteNum = 15,
         .baseBlock = 0x01,
@@ -193,7 +201,11 @@ static const struct WindowTemplate sRegistryWindowTemplates[] =
         .width = 28,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = LANG_VAL(0xc7, 0xd9, 0xd9, 0xd9),
+#if EUROPE
+        .baseBlock = 0xd9,
+#else
+        .baseBlock = 0xc7,
+#endif
     }
 };
 

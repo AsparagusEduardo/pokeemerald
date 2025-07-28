@@ -26,7 +26,7 @@ endif
 # Language
 ifeq ($(LANGUAGE), ENGLISH)
   GAME_CODE := $(GAME_CODE)E
-  BUILD_SUFIX  := 
+  BUILD_SUFIX  :=
 else
 ifeq ($(LANGUAGE), FRENCH)
   GAME_CODE  := $(GAME_CODE)F
@@ -40,7 +40,12 @@ ifeq ($(LANGUAGE), SPANISH)
   GAME_CODE  := $(GAME_CODE)S
   BUILD_SUFIX := _es
 else
+ifeq ($(LANGUAGE), GERMAN)
+  GAME_CODE  := $(GAME_CODE)D
+  BUILD_SUFIX := _de
+else
   $(error unknown language $(LANGUAGE))
+endif
 endif
 endif
 endif
@@ -272,7 +277,7 @@ clean-assets:
 
 tidy: tidynonmodern tidymodern
 
-ALL_BUILDS := emerald emerald_fr emerald_it emerald_es
+ALL_BUILDS := emerald emerald_fr emerald_it emerald_es emerald_de
 MODERN_BUILDS := $(ALL_BUILDS:%=%_modern)
 ALL_BUILDS_DIRS := $(ALL_BUILDS:%=build/%)
 MODERN_BUILDS_DIRS := $(MODERN_BUILDS:%=build/%)

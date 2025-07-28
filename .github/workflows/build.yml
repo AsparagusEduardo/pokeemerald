@@ -95,6 +95,20 @@ jobs:
           LANGUAGE: SPANISH
         run: make -j${nproc}
 
+      - name: German Compare
+        env:
+          MODERN: 0
+          COMPARE: 1
+          LANGUAGE: GERMAN
+        run: make -j${nproc}
+
+      - name: German Modern
+        env:
+          MODERN: 1
+          COMPARE: 0
+          LANGUAGE: GERMAN
+        run: make -j${nproc}
+
       - name: Move symfiles
         if: ${{ github.event_name == 'push' }}
         run: |
