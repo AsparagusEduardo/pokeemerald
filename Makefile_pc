@@ -1,3 +1,19 @@
+# GBA rom header
+TITLE       := POKEMON EMER
+GAME_CODE   := BPEE
+MAKER_CODE  := 01
+REVISION    := 0
+MODERN      := 1
+PORTABLE    := 1
+TARGET_PLATFORM := PLATFORM_SDL2
+TILE_RENDERER := RENDERER_EASY_DRAW
+
+# `File name`.gba ('_modern' will be appended to the modern builds)
+FILE_NAME := pokeemerald
+
+# Default make rule
+all: rom
+
 PREFIX := i686-w64-mingw32-
 OBJCOPY := $(PREFIX)objcopy
 CC := $(PREFIX)gcc
@@ -12,26 +28,19 @@ export CPP := $(PREFIX)cpp
 export LD := $(PREFIX)ld
 
 ifeq ($(OS),Windows_NT)
-EXE := .exe
+  EXE := .exe
 else
 EXE :=
 endif
 
-all: rom
-
-TITLE       := POKEMON EMER
-GAME_CODE   := BPEE
-MAKER_CODE  := 01
-REVISION    := 0
-MODERN      := 1
-TARGET_PLATFORM := PLATFORM_SDL2
-TILE_RENDERER := RENDERER_EASY_DRAW
+ROM		:= pokeemerald.exe
 
 SHELL := /bin/bash -o pipefail
 
 ELF = $(ROM:.exe=.elf)
 MAP = $(ROM:.exe=.map)
 
+# Commonly used directories
 C_SUBDIR = src
 GFLIB_SUBDIR = gflib
 ASM_SUBDIR = asm
@@ -49,16 +58,19 @@ DATA_ASM_BUILDDIR = $(OBJ_DIR)/$(DATA_ASM_SUBDIR)
 SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
-ASFLAGS := --32 --defsym MODERN=$(MODERN) --defsym PORTABLE=1 --defsym UBFIX=1
+ASFLAGS := --32 --defsym MODERN=$(MODERN) --defsym PORTABLE=$(PORTABLE) --defsym UBFIX=1
 
 GCC_VER := $(shell $(CC) -dumpversion)
 
 CC1 	:= $(shell $(PREFIX)gcc --print-prog-name=cc1) -quiet
-override CFLAGS += -Wno-trigraphs -Wimplicit -Wparentheses -Wunused -m32 -std=gnu99 -fleading-underscore -fno-dce -fno-builtin -Wno-unused-function -DPORTABLE -DNONMATCHING -D UBFIX -DMODERN=$(MODERN)
-ROM		:= pokeemerald.exe
+override CFLAGS += -Wno-trigraphs -Wimplicit -Wparentheses -Wunused -m32 -std=gnu99 -fleading-underscore -fno-dce -fno-builtin -Wno-unused-function -DPORTABLE=$(PORTABLE) -DNONMATCHING -D UBFIX -DMODERN=$(MODERN)
 OBJ_DIR	:= build/pc
 
-CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -D NONMATCHING -D PORTABLE -D $(TARGET_PLATFORM) -D $(TILE_RENDERER) -D MODERN=$(MODERN) -D UBFIX -I$(SDL_DIR)/include -L$(SDL_DIR)/lib
+INCLUDE_DIRS := include
+INCLUDE_CPP_ARGS := $(INCLUDE_DIRS:%=-iquote %)
+INCLUDE_SCANINC_ARGS := $(INCLUDE_DIRS:%=-I %)
+
+CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -D NONMATCHING -D PORTABLE=$(PORTABLE) -D $(TARGET_PLATFORM) -D $(TILE_RENDERER) -D MODERN=$(MODERN) -D UBFIX -I$(SDL_DIR)/include -L$(SDL_DIR)/lib
 
 LDFLAGS = -Map ../../$(MAP)
 
@@ -83,19 +95,21 @@ endif
 
 LIB := $(LIBPATH) -lgcc -lc
 
+# Variable filled out in other make files
 AUTO_GEN_TARGETS :=
 include make_tools.mk
+# Tool executables
+GFX       := $(TOOLS_DIR)/gbagfx/gbagfx$(EXE)
+AIF       := $(TOOLS_DIR)/aif2pcm/aif2pcm$(EXE)
+MID       := $(TOOLS_DIR)/mid2agb/mid2agb$(EXE)
+SCANINC   := $(TOOLS_DIR)/scaninc/scaninc$(EXE)
+PREPROC   := $(TOOLS_DIR)/preproc/preproc$(EXE)
+RAMSCRGEN := $(TOOLS_DIR)/ramscrgen/ramscrgen$(EXE)
+FIX       := $(TOOLS_DIR)/gbafix/gbafix$(EXE)
+MAPJSON   := $(TOOLS_DIR)/mapjson/mapjson$(EXE)
+JSONPROC  := $(TOOLS_DIR)/jsonproc/jsonproc$(EXE)
 
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
-GFX := $(TOOLS_DIR)/gbagfx/gbagfx$(EXE)
-AIF := $(TOOLS_DIR)/aif2pcm/aif2pcm$(EXE)
-MID := $(TOOLS_DIR)/mid2agb/mid2agb$(EXE)
-SCANINC := $(TOOLS_DIR)/scaninc/scaninc$(EXE)
-PREPROC := $(TOOLS_DIR)/preproc/preproc$(EXE)
-RAMSCRGEN := $(TOOLS_DIR)/ramscrgen/ramscrgen$(EXE)
-FIX := $(TOOLS_DIR)/gbafix/gbafix$(EXE)
-MAPJSON := $(TOOLS_DIR)/mapjson/mapjson$(EXE)
-JSONPROC := $(TOOLS_DIR)/jsonproc/jsonproc$(EXE)
 
 MAKEFLAGS += --no-print-directory
 
@@ -132,6 +146,7 @@ else
 NODEP := 1
 endif
 
+# Collect sources
 C_SRCS_IN := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
@@ -161,9 +176,10 @@ OBJS     := $(C_OBJS) $(GFLIB_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(SONG_OBJS) $(
 OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(OBJS))
 
 SUBDIRS  := $(sort $(dir $(OBJS)))
-
 $(shell mkdir -p $(SUBDIRS))
 
+
+# Other rules
 rom: $(ROM)
 ifeq ($(COMPARE),1)
 	@$(SHA1) rom.sha1
@@ -178,9 +194,9 @@ mostlyclean: tidy
 	rm -f $(SAMPLE_SUBDIR)/*.bin
 	rm -f $(CRY_SUBDIR)/*.bin
 	rm -f $(MID_SUBDIR)/*.s
-	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.rl' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	rm -f $(DATA_ASM_SUBDIR)/layouts/layouts.inc $(DATA_ASM_SUBDIR)/layouts/layouts_table.inc
 	rm -f $(DATA_ASM_SUBDIR)/maps/connections.inc $(DATA_ASM_SUBDIR)/maps/events.inc $(DATA_ASM_SUBDIR)/maps/groups.inc $(DATA_ASM_SUBDIR)/maps/headers.inc
+	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.rl' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
 	rm -f $(AUTO_GEN_TARGETS)
 
@@ -195,26 +211,31 @@ clean-platform:
 	rm -f $(ROM)$(EXE) $(ELF) $(MAP)
 	rm -r $(OBJ_DIR)/src/platform
 
+# Other rules
 include graphics_file_rules.mk
 include map_data_rules.mk
 include spritesheet_rules.mk
 include json_data_rules.mk
 include songs.mk
 
+# NOTE: Tools must have been built prior (FIXME)
+# so you can't really call this rule directly
 generated: $(AUTO_GEN_TARGETS)
+	@: # Silence the "Nothing to be done for `generated'" message, which some people were confusing for an error.
 
-%.s: ;
+
+%.s:   ;
 %.png: ;
 %.pal: ;
 %.aif: ;
 
-%.1bpp: %.png  ; $(GFX) $< $@
-%.4bpp: %.png  ; $(GFX) $< $@
-%.8bpp: %.png  ; $(GFX) $< $@
-%.gbapal: %.pal ; $(GFX) $< $@
-%.gbapal: %.png ; $(GFX) $< $@
-%.lz: % ; $(GFX) $< $@
-%.rl: % ; $(GFX) $< $@
+%.1bpp:   %.png  ; $(GFX) $< $@
+%.4bpp:   %.png  ; $(GFX) $< $@
+%.8bpp:   %.png  ; $(GFX) $< $@
+%.gbapal: %.pal  ; $(GFX) $< $@
+%.gbapal: %.png  ; $(GFX) $< $@
+%.lz:     %      ; $(GFX) $< $@
+%.rl:     %      ; $(GFX) $< $@
 $(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 
@@ -293,6 +314,7 @@ $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
 
+# Linker script
 LD_SCRIPT := ld_script_pc.ld
 LD_SCRIPT_DEPS :=
 
