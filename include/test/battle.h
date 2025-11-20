@@ -971,6 +971,7 @@ struct moveWithPP {
 
 #define FLAG_SET(flagId) SetFlagForTest(__LINE__, flagId)
 #define WITH_CONFIG(configTag, value) TestSetConfig(__LINE__, configTag, value)
+#define WITH_MOVE_DATA(move, type, value) TestSetMoveData(__LINE__, move, type, value)
 
 #define PLAYER(species) for (OpenPokemon(__LINE__, B_POSITION_PLAYER_LEFT, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
 #define OPPONENT(species) for (OpenPokemon(__LINE__, B_POSITION_OPPONENT_LEFT, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
@@ -1011,6 +1012,7 @@ struct moveWithPP {
 
 void SetFlagForTest(u32 sourceLine, u16 flagId);
 void TestSetConfig(u32 sourceLine, enum ConfigTag configTag, u32 value);
+void TestSetMoveData(u32 sourceLine, u32 move, enum MoveDataType configTag, u32 value);
 void ClearFlagAfterTest(void);
 void OpenPokemon(u32 sourceLine, enum BattlerPosition position, u32 species);
 void OpenPokemonMulti(u32 sourceLine, enum BattlerPosition position, u32 species);

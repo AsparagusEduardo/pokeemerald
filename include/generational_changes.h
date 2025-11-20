@@ -4,6 +4,13 @@
 #include "constants/generational_changes.h"
 #include "config/battle.h"
 
+struct MoveDataOverride
+{
+    u32 moveId:16;
+    enum MoveDataType type:8;
+    u32 data:8;
+};
+
 #define UNPACK_CONFIG_STRUCT(_name, _field, _typeMaxValue, ...) INVOKE_WITH_(UNPACK_CONFIG_STRUCT_, _field, UNPACK_B(_typeMaxValue));
 #define UNPACK_CONFIG_STRUCT_(_field, _type, ...) _type FIRST(__VA_OPT__(_field:BIT_SIZE(FIRST(__VA_ARGS__)),) _field)
 
@@ -22,6 +29,16 @@ void SetConfig(enum ConfigTag configTag, u32 value);
 #if TESTING
 void TestInitConfigData(void);
 void TestFreeConfigData(void);
+void TestInitMoveDataOverride(void);
+void TestAddMoveDataOverride(u32 move, enum MoveDataType type, u8 value);
+void TestFreeMoveDataOverride(void);
 #endif
+
+static inline void SetMoveData(u32 move, enum MoveDataType type, u8 value)
+{
+#if TESTING
+    TestAddMoveDataOverride(move, type, value);
+#endif
+}
 
 #endif // GUARD_GENERATIONAL_CHANGES_H

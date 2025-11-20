@@ -208,4 +208,10 @@ enum ConfigTag
     CONFIG_COUNT
 };
 
+enum MoveDataType
+{
+    MOVE_DATA_POWER,
+    MOVE_DATA_COUNT
+};
+
 #endif // GUARD_CONSTANTS_GENERATIONAL_CHANGES_H
