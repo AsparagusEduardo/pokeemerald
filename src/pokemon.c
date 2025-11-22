@@ -2846,7 +2846,7 @@ u32 GetBoxMonData2(struct BoxPokemon *boxMon, s32 field)
 #define SET16(lhs) (lhs) = data[0] + (data[1] << 8)
 #define SET32(lhs) (lhs) = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24)
 //
-// Prefer SET_BY_WIDTH for fields whose types might be extended (e.g. 
+// Prefer SET_BY_WIDTH for fields whose types might be extended (e.g.
 // anything whose typedef is in gametypes.h).
 //
 #define SET_BY_WIDTH(lhs) \
@@ -3560,7 +3560,7 @@ enum Ability GetSpeciesAbility(u16 species, u8 slot)
 
 u32 GetSpeciesBaseHP(u16 species)
 {
-    return gSpeciesInfo[SanitizeSpeciesId(species)].baseHP;
+    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseHP);
 }
 
 u32 GetSpeciesBaseAttack(u16 species)
@@ -7138,7 +7138,7 @@ u16 SanitizeSpeciesId(u16 species)
 bool32 IsSpeciesEnabled(u16 species)
 {
     // This function should not use the GetSpeciesBaseHP function, as the included sanitation will result in an infinite loop
-    return gSpeciesInfo[species].baseHP > 0 || species == SPECIES_EGG;
+    return GET_DEPRECATED(u32, gSpeciesInfo[species].baseHP) > 0 || species == SPECIES_EGG;
 }
 
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method)
