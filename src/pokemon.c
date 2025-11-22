@@ -3547,64 +3547,9 @@ u32 GetSpeciesWeight(u16 species)
     return gSpeciesInfo[SanitizeSpeciesId(species)].weight;
 }
 
-enum Type GetSpeciesType(u16 species, u8 slot)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].types[slot]);
-}
-
 enum Ability GetSpeciesAbility(u16 species, u8 slot)
 {
     return gSpeciesInfo[SanitizeSpeciesId(species)].abilities[slot];
-}
-
-u32 GetSpeciesBaseHP(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseHP);
-}
-
-u32 GetSpeciesBaseAttack(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseAttack);
-}
-
-u32 GetSpeciesBaseDefense(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseDefense);
-}
-
-u32 GetSpeciesBaseSpAttack(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseSpAttack);
-}
-
-u32 GetSpeciesBaseSpDefense(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseSpDefense);
-}
-
-u32 GetSpeciesBaseSpeed(u16 species)
-{
-    return GET_DEPRECATED(u32, gSpeciesInfo[SanitizeSpeciesId(species)].baseSpeed);
-}
-
-u32 GetSpeciesBaseStat(u16 species, u32 statIndex)
-{
-    switch (statIndex)
-    {
-    case STAT_HP:
-        return GetSpeciesBaseHP(species);
-    case STAT_ATK:
-        return GetSpeciesBaseAttack(species);
-    case STAT_DEF:
-        return GetSpeciesBaseDefense(species);
-    case STAT_SPEED:
-        return GetSpeciesBaseSpeed(species);
-    case STAT_SPATK:
-        return GetSpeciesBaseSpAttack(species);
-    case STAT_SPDEF:
-        return GetSpeciesBaseSpDefense(species);
-    }
-    return 0;
 }
 
 const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species)
@@ -7124,20 +7069,6 @@ bool32 TryFormChange(u32 monId, enum BattleSide side, enum FormChanges method)
     }
 
     return FALSE;
-}
-
-u16 SanitizeSpeciesId(u16 species)
-{
-    if (species > NUM_SPECIES || !IsSpeciesEnabled(species))
-        return SPECIES_NONE;
-    else
-        return species;
-}
-
-bool32 IsSpeciesEnabled(u16 species)
-{
-    // This function should not use the GetSpeciesBaseHP function, as the included sanitation will result in an infinite loop
-    return GET_DEPRECATED(u32, gSpeciesInfo[species].baseHP) > 0 || species == SPECIES_EGG;
 }
 
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method)
