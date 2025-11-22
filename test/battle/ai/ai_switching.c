@@ -53,7 +53,7 @@ AI_SINGLE_BATTLE_TEST("AI sees on-field player ability correctly and does not se
         OPPONENT(SPECIES_BOMBIRDIER) {Level(42); Moves(MOVE_ROCK_SLIDE); }
         OPPONENT(SPECIES_IRON_THORNS) {Level(43); Moves(MOVE_SUPERCELL_SLAM, MOVE_ICE_PUNCH); }
     } WHEN {
-        TURN { 
+        TURN {
             MOVE(player, MOVE_VOLT_SWITCH);
             SEND_OUT(player, 1);
             EXPECT_MOVE(opponent, MOVE_SCRATCH);
@@ -110,7 +110,7 @@ AI_MULTI_BATTLE_TEST("AI partner will not switch mid-turn into a player Pokémon
         MULTI_PARTNER(SPECIES_RATICATE) { Moves(MOVE_HEADBUTT); }
         MULTI_OPPONENT_A(SPECIES_RATTATA) { Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_B(SPECIES_KANGASKHAN) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { EXPECT_SWITCH(playerRight, 5); };
     } SCENE {
@@ -142,7 +142,7 @@ AI_TWO_VS_ONE_BATTLE_TEST("AI partner will not switch mid-turn into a player Pok
         MULTI_PARTNER(SPECIES_RATICATE) { Moves(MOVE_HEADBUTT); }
         MULTI_OPPONENT_A(SPECIES_RATTATA) { Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_A(SPECIES_KANGASKHAN) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { EXPECT_SWITCH(playerRight, 5); };
     } SCENE {
@@ -174,7 +174,7 @@ AI_MULTI_BATTLE_TEST("AI partner will not switch into a player Pokémon after fa
         MULTI_PARTNER(SPECIES_HAUNTER);
         MULTI_OPPONENT_A(SPECIES_TRAPINCH) { Ability(ABILITY_ARENA_TRAP); Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_B(SPECIES_VIBRAVA) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { EXPECT_MOVE(playerRight, MOVE_CELEBRATE); EXPECT_SEND_OUT(playerRight, 5); };
     } SCENE {
@@ -204,7 +204,7 @@ AI_TWO_VS_ONE_BATTLE_TEST("AI partner will not switch into a player Pokémon aft
         MULTI_PARTNER(SPECIES_HAUNTER);
         MULTI_OPPONENT_A(SPECIES_TRAPINCH) { Ability(ABILITY_ARENA_TRAP); Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_A(SPECIES_VIBRAVA) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { EXPECT_MOVE(playerRight, MOVE_CELEBRATE); EXPECT_SEND_OUT(playerRight, 5); };
     } SCENE {
@@ -233,7 +233,7 @@ AI_MULTI_BATTLE_TEST("AI partner will not switch into a player Pokémon (multi)"
         MULTI_PARTNER(SPECIES_RATICATE) { Moves(MOVE_HEADBUTT); HP(1); }
         MULTI_OPPONENT_A(SPECIES_RATTATA) { Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_B(SPECIES_KANGASKHAN) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_AURA_SPHERE, target:playerRight); EXPECT_SWITCH(playerRight, 4); EXPECT_SEND_OUT(playerRight, 3); };
         TURN { EXPECT_MOVE(playerRight, MOVE_SHADOW_BALL, target:opponentLeft); };
@@ -263,7 +263,7 @@ AI_TWO_VS_ONE_BATTLE_TEST("AI partner will not switch into a player Pokémon (2v
         MULTI_PARTNER(SPECIES_RATICATE) { Moves(MOVE_HEADBUTT); HP(1); }
         MULTI_OPPONENT_A(SPECIES_RATTATA) { Moves(MOVE_CELEBRATE); }
         MULTI_OPPONENT_A(SPECIES_KANGASKHAN) { Moves(MOVE_CELEBRATE); }
-        
+
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_AURA_SPHERE, target:playerRight); EXPECT_SWITCH(playerRight, 4); EXPECT_SEND_OUT(playerRight, 3); };
         TURN { EXPECT_MOVE(playerRight, MOVE_SHADOW_BALL, target:opponentLeft); };
@@ -322,7 +322,7 @@ AI_ONE_VS_TWO_BATTLE_TEST("AI will not switch into a partner Pokémon in a 1v2 b
         MULTI_OPPONENT_B(SPECIES_GENGAR) { Moves(MOVE_SHADOW_BALL); }
         MULTI_OPPONENT_B(SPECIES_GASTLY) { Moves(MOVE_LICK); }
         MULTI_OPPONENT_B(SPECIES_RATICATE) { Moves(MOVE_HEADBUTT); }
-        
+
     } WHEN {
         TURN { EXPECT_SWITCH(opponentRight, 5); };
     } SCENE {
@@ -1430,7 +1430,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if all moves 
         ASSUME(GetMoveType(MOVE_FAKE_OUT) == TYPE_NORMAL);
         ASSUME(GetMoveType(MOVE_RETURN) == TYPE_NORMAL);
         ASSUME(GetMoveType(MOVE_DRAIN_PUNCH) == TYPE_FIGHTING);
-        ASSUME(gSpeciesInfo[SPECIES_MAROWAK_ALOLA].types[1] == TYPE_GHOST);
+        ASSUME(GetSpeciesType(SPECIES_MAROWAK_ALOLA, 1) == TYPE_GHOST);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_MAROWAK_ALOLA) { Ability(ABILITY_LIGHTNING_ROD); Moves(MOVE_SHADOW_BONE); }
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_FAKE_OUT, MOVE_RETURN, MOVE_DRAIN_PUNCH, MOVE_THUNDER_PUNCH); Ability(ABILITY_LIMBER); }
