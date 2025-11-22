@@ -4775,7 +4775,7 @@ static void SaveMonDataInStruct(void)
     }
 
     sPokedexView->sPokemonStats.species             = species;
-    sPokedexView->sPokemonStats.genderRatio         = gSpeciesInfo[species].genderRatio;
+    sPokedexView->sPokemonStats.genderRatio         = GetSpeciesGenderRatio(species);
     sPokedexView->sPokemonStats.baseHP              = GetSpeciesBaseHP(species);
     sPokedexView->sPokemonStats.baseSpeed           = GetSpeciesBaseSpeed(species);
     sPokedexView->sPokemonStats.baseAttack          = GetSpeciesBaseAttack(species);

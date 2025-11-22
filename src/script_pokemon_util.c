@@ -338,7 +338,7 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
     int sentToPc;
     struct Pokemon mon;
     u32 i;
-    u8 genderRatio = gSpeciesInfo[species].genderRatio;
+    u8 genderRatio = GetSpeciesGenderRatio(species);
     u16 targetSpecies;
     bool32 isShiny;
 

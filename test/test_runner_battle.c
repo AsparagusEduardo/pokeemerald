@@ -528,7 +528,7 @@ static void BattleTest_Run(void *data)
 
         if (((DATA.explicitSpeeds[B_POSITION_PLAYER_LEFT] + DATA.explicitSpeeds[B_POSITION_PLAYER_RIGHT]) != (revisedPlayerExplicitSpeeds + revisedPartnerExplicitSpeeds)
          || (DATA.explicitSpeeds[B_POSITION_OPPONENT_LEFT] + DATA.explicitSpeeds[B_POSITION_OPPONENT_RIGHT]) != (revisedOpponentAExplicitSpeeds + revisedOpponentBExplicitSpeeds)))
-         
+
         {
             Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":LSpeed required for all PLAYERs and OPPONENTs");
         }
@@ -1810,19 +1810,19 @@ void OpenPokemonMulti(u32 sourceLine, enum BattlerPosition position, u32 species
         if ((*partySize == 0) || (*partySize == 1) || (*partySize == 2))
             *partySize = 3;
         party = DATA.recordedBattle.playerParty;
-    } 
+    }
     else if (position == B_POSITION_OPPONENT_LEFT) // MULTI_OPPONENT_A
     {
         partySize = &DATA.opponentPartySize;
         party = DATA.recordedBattle.opponentParty;
-    } 
+    }
     else // MULTI_OPPONENT_B
     {
         partySize = &DATA.opponentPartySize;
         if ((*partySize == 0) || (*partySize == 1) || (*partySize == 2))
             *partySize = 3;
         party = DATA.recordedBattle.opponentParty;
-    } 
+    }
     INVALID_IF(*partySize >= PARTY_SIZE, "Too many Pokemon in party");
     DATA.currentPosition = position;
     DATA.currentPartyIndex = *partySize;
@@ -1903,21 +1903,20 @@ static void SetGimmick(u32 sourceLine, u32 side, u32 partyIndex, enum Gimmick gi
 
 void Gender_(u32 sourceLine, u32 gender)
 {
-    const struct SpeciesInfo *info;
     INVALID_IF(!DATA.currentMon, "Gender outside of PLAYER/OPPONENT");
-    info = &gSpeciesInfo[GetMonData(DATA.currentMon, MON_DATA_SPECIES)];
+    u32 genderRatio = GetSpeciesGenderRatio(GetMonData(DATA.currentMon, MON_DATA_SPECIES));
     switch (gender)
     {
     case MON_MALE:
         DATA.gender = 0xFF;
-        INVALID_IF(info->genderRatio == MON_GENDERLESS || info->genderRatio == MON_FEMALE, "Illegal male");
+        INVALID_IF(genderRatio == MON_GENDERLESS || genderRatio == MON_FEMALE, "Illegal male");
         break;
     case MON_FEMALE:
         DATA.gender = 0x00;
-        INVALID_IF(info->genderRatio == MON_GENDERLESS || info->genderRatio == MON_MALE, "Illegal female");
+        INVALID_IF(genderRatio == MON_GENDERLESS || genderRatio == MON_MALE, "Illegal female");
         break;
     case MON_GENDERLESS:
-        INVALID_IF(info->genderRatio != gender, "Illegal genderless");
+        INVALID_IF(genderRatio != gender, "Illegal genderless");
         break;
     }
 }
@@ -2211,7 +2210,7 @@ static const char *BattlerIdentifier(s32 battlerId)
     case BATTLE_TEST_AI_TWO_VS_ONE:
     case BATTLE_TEST_ONE_VS_TWO:
     case BATTLE_TEST_AI_ONE_VS_TWO:
-        return sBattlerIdentifiersDoubles[battlerId]; 
+        return sBattlerIdentifiersDoubles[battlerId];
     }
     return "<unknown>";
 }
