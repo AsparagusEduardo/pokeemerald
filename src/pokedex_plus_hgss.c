@@ -4793,7 +4793,7 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.growthRate          = gSpeciesInfo[species].growthRate;
     sPokedexView->sPokemonStats.eggGroup1           = gSpeciesInfo[species].eggGroups[0];
     sPokedexView->sPokemonStats.eggGroup2           = gSpeciesInfo[species].eggGroups[1];
-    sPokedexView->sPokemonStats.eggCycles           = gSpeciesInfo[species].eggCycles;
+    sPokedexView->sPokemonStats.eggCycles           = GetSpeciesEggCycles(species);
     sPokedexView->sPokemonStats.expYield            = GetSpeciesExpYield(species);
     sPokedexView->sPokemonStats.friendship          = gSpeciesInfo[species].friendship;
     sPokedexView->sPokemonStats.ability0            = GetAbilityBySpecies(species, 0);
