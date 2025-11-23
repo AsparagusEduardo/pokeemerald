@@ -1955,21 +1955,18 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             if (partyData[monIndex].ability != ABILITY_NONE)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
-                u32 maxAbilityNum = ARRAY_COUNT(speciesInfo->abilities);
-                for (abilityNum = 0; abilityNum < maxAbilityNum; ++abilityNum)
+                for (abilityNum = 0; abilityNum < NUM_ABILITY_SLOTS; ++abilityNum)
                 {
-                    if (speciesInfo->abilities[abilityNum] == partyData[monIndex].ability)
+                    if (GetSpeciesAbility(partyData[monIndex].species, abilityNum) == partyData[monIndex].ability)
                         break;
                 }
-                if (abilityNum >= maxAbilityNum)
+                if (abilityNum >= NUM_ABILITY_SLOTS)
                     abilityNum = 0;
             }
             else if (B_TRAINER_MON_RANDOM_ABILITY)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
-                abilityNum = personalityHash % 3;
-                while (speciesInfo->abilities[abilityNum] == ABILITY_NONE)
+                abilityNum = personalityHash % NUM_ABILITY_SLOTS;
+                while (GetSpeciesAbility(partyData[monIndex].species, abilityNum) == ABILITY_NONE)
                 {
                     abilityNum--;
                 }

@@ -1605,14 +1605,12 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
     // try to set ability. Otherwise, random of non-hidden as per vanilla
     if (fmon->ability != ABILITY_NONE)
     {
-        const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[fmon->species];
-        u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
-        for (ability = 0; ability < maxAbilities; ++ability)
+        for (ability = 0; ability < NUM_ABILITY_SLOTS; ++ability)
         {
-            if (speciesInfo->abilities[ability] == fmon->ability)
+            if (GetSpeciesAbility(fmon->species, ability) == fmon->ability)
                 break;
         }
-        if (ability >= maxAbilities)
+        if (ability >= NUM_ABILITY_SLOTS)
             ability = 0;
         SetMonData(dst, MON_DATA_ABILITY_NUM, &ability);
     }
@@ -3030,14 +3028,12 @@ void FillPartnerParty(u16 trainerId)
             }
             if (partyData[i].ability != ABILITY_NONE)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
-                u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
-                for (j = 0; j < maxAbilities; j++)
+                for (j = 0; j < NUM_ABILITY_SLOTS; j++)
                 {
-                    if (speciesInfo->abilities[j] == partyData[i].ability)
+                    if (GetSpeciesAbility(partyData[i].species, j) == partyData[i].ability)
                         break;
                 }
-                if (j < maxAbilities)
+                if (j < NUM_ABILITY_SLOTS)
                     SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &j);
             }
             SetMonData(&gPlayerParty[i + 3], MON_DATA_FRIENDSHIP, &(partyData[i].friendship));
