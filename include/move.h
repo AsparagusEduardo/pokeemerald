@@ -185,19 +185,19 @@ static inline const u8 *GetMoveName(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].name;
 }
 
-#define RETURN_IF_DATA_OVERRIDE(_type)                                                      \
-for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)                          \
-{                                                                                           \
-    if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == _type)\
-        return gMoveDataTestOverride[i].data;                                               \
-}
+#define RETURN_IF_DATA_OVERRIDE(_type, _label)                                                  \
+    moveId = SanitizeMoveId(moveId);                                                            \
+    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)                          \
+    {                                                                                           \
+        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == _type)\
+            return gMoveDataTestOverride[i].data;                                               \
+    }                                                                                           \
+    return gMovesInfo[moveId]._label;
 
 static inline enum BattleMoveEffects GetMoveEffect(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_EFFECT);
-    return gMovesInfo[moveId].effect;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_EFFECT, effect);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].effect;
 #endif
@@ -224,9 +224,7 @@ static inline enum DamageCategory GetMoveCategory(u32 moveId)
 static inline u32 GetMovePower(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_POWER);
-    return gMovesInfo[moveId].power;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_POWER, power);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].power;
 #endif
@@ -240,9 +238,7 @@ static inline u32 GetMoveAccuracy(u32 moveId)
 static inline u32 GetMoveTarget(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_TARGET);
-    return gMovesInfo[moveId].target;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_TARGET, target);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].target;
 #endif
@@ -331,9 +327,7 @@ static inline bool32 IsPulseMove(u32 moveId)
 static inline bool32 IsSoundMove(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_SOUND_MOVE);
-    return gMovesInfo[moveId].soundMove;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_SOUND_MOVE, soundMove);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].soundMove;
 #endif
@@ -367,9 +361,7 @@ static inline bool32 IsSlicingMove(u32 moveId)
 static inline bool32 IsHealingMove(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_HEAL_MOVE);
-    return gMovesInfo[moveId].healingMove;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_HEAL_MOVE, healingMove);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].healingMove;
 #endif
@@ -423,9 +415,7 @@ static inline bool32 MoveThawsUser(u32 moveId)
 static inline bool32 MoveIgnoresSubstitute(u32 moveId)
 {
 #if TESTING
-    moveId = SanitizeMoveId(moveId);
-    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_IGNORES_SUBSTITUTE);
-    return gMovesInfo[moveId].ignoresSubstitute;
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_IGNORES_SUBSTITUTE, ignoresSubstitute);
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].ignoresSubstitute;
 #endif
