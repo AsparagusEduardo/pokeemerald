@@ -110,29 +110,48 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
 
 SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Normal-type (or Typeless in Gen. 4) until the end of the turn")
 {
-    u32 damagingMove;
-    PARAMETRIZE { damagingMove = MOVE_POUND; }
-    PARAMETRIZE { damagingMove = MOVE_KARATE_CHOP; }
-    PARAMETRIZE { damagingMove = MOVE_GUST; }
-    PARAMETRIZE { damagingMove = MOVE_POISON_STING; }
-    PARAMETRIZE { damagingMove = MOVE_EARTHQUAKE; }
-    PARAMETRIZE { damagingMove = MOVE_ROCK_THROW; }
-    PARAMETRIZE { damagingMove = MOVE_LEECH_LIFE; }
-    PARAMETRIZE { damagingMove = MOVE_LICK; }
-    PARAMETRIZE { damagingMove = MOVE_STEEL_WING; }
-    PARAMETRIZE { damagingMove = MOVE_EMBER; }
-    PARAMETRIZE { damagingMove = MOVE_WATER_GUN; }
-    PARAMETRIZE { damagingMove = MOVE_VINE_WHIP; }
-    PARAMETRIZE { damagingMove = MOVE_THUNDER_SHOCK; }
-    PARAMETRIZE { damagingMove = MOVE_CONFUSION; }
-    PARAMETRIZE { damagingMove = MOVE_ICE_BEAM; }
-    PARAMETRIZE { damagingMove = MOVE_DRAGON_BREATH; }
-    PARAMETRIZE { damagingMove = MOVE_BITE; }
-    PARAMETRIZE { damagingMove = MOVE_DISARMING_VOICE; }
+    u32 damagingMove, config;
+    PARAMETRIZE { damagingMove = MOVE_POUND;           config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_KARATE_CHOP;     config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_GUST;            config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_POISON_STING;    config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_EARTHQUAKE;      config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_ROCK_THROW;      config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_LEECH_LIFE;      config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_LICK;            config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_STEEL_WING;      config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_EMBER;           config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_WATER_GUN;       config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_VINE_WHIP;       config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_THUNDER_SHOCK;   config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_CONFUSION;       config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_ICE_BEAM;        config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_DRAGON_BREATH;   config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_BITE;            config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_DISARMING_VOICE; config = GEN_4; }
+    PARAMETRIZE { damagingMove = MOVE_POUND;           config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_KARATE_CHOP;     config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_GUST;            config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_POISON_STING;    config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_EARTHQUAKE;      config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_ROCK_THROW;      config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_LEECH_LIFE;      config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_LICK;            config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_STEEL_WING;      config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_EMBER;           config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_WATER_GUN;       config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_VINE_WHIP;       config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_THUNDER_SHOCK;   config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_CONFUSION;       config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_ICE_BEAM;        config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_DRAGON_BREATH;   config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_BITE;            config = GEN_5; }
+    PARAMETRIZE { damagingMove = MOVE_DISARMING_VOICE; config = GEN_5; }
 
     GIVEN {
         ASSUME(GetSpeciesType(SPECIES_TORNADUS, 0) == TYPE_FLYING);
         ASSUME(GetSpeciesType(SPECIES_TORNADUS, 1) == TYPE_FLYING);
+        WITH_CONFIG(CONFIG_ROOST_PURE_FLYING, config);
         PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -142,7 +161,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Tornadus's HP was restored.");
 
-        if (B_ROOST_PURE_FLYING >= GEN_5) // >= Gen. 5, Pokemon becomes pure Normal-type
+        if (config >= GEN_5) // >= Gen. 5, Pokemon becomes pure Normal-type
         {
             if (damagingMove == MOVE_KARATE_CHOP)
             {

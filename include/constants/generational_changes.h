@@ -44,7 +44,7 @@
     F(UPDATED_TYPE_MATCHUPS,     updatedTypeMatchups,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     F(PRANKSTER_DARK_TYPES,      pranksterDarkTypes,      (u32, GEN_COUNT - 1)) \
     F(SHEER_COLD_IMMUNITY,       sheerColdImmunity,       (u32, GEN_COUNT - 1)) \
-    F(ROOST_PURE_FLYING,         roostPureFlying,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(ROOST_PURE_FLYING,         roostPureFlying,         (u32, GEN_COUNT - 1)) \
     F(STATUS_TYPE_IMMUNITY,      statusTypeImmunity,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     /* Turn settings */ \
     F(BINDING_TURNS,             bindingTurns,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \

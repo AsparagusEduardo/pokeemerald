@@ -10285,7 +10285,7 @@ void GetBattlerTypes(u32 battler, bool32 ignoreTera, enum Type types[static 3])
     if (!isTera && gDisableStructs[battler].roostActive)
     {
         if (types[0] == TYPE_FLYING && types[1] == TYPE_FLYING)
-            types[0] = types[1] = B_ROOST_PURE_FLYING >= GEN_5 ? TYPE_NORMAL : TYPE_MYSTERY;
+            types[0] = types[1] = GetConfig(CONFIG_ROOST_PURE_FLYING) >= GEN_5 ? TYPE_NORMAL : TYPE_MYSTERY;
         else if (types[0] == TYPE_FLYING)
             types[0] = TYPE_MYSTERY;
         else if (types[1] == TYPE_FLYING)

@@ -111,16 +111,17 @@ SINGLE_BATTLE_TEST("Revelation Dance becomes Typeless if its user is Typeless")
     }
 }
 
-SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type if used by a Typeless Pokemon due to Roost")
+SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type (Gen5+) or typeless (Gen4) if used by a Typeless Pokemon due to Roost")
 {
-    u16 speciesOpponent;
+    u32 speciesOpponent, config;
 
-    PARAMETRIZE { speciesOpponent = SPECIES_SABLEYE; }
-    PARAMETRIZE { speciesOpponent = SPECIES_AGGRON; }
-
-    ASSUME(B_ROOST_PURE_FLYING >= GEN_5);
+    PARAMETRIZE { speciesOpponent = SPECIES_SABLEYE; config = GEN_4; }
+    PARAMETRIZE { speciesOpponent = SPECIES_AGGRON;  config = GEN_4; }
+    PARAMETRIZE { speciesOpponent = SPECIES_SABLEYE; config = GEN_5; }
+    PARAMETRIZE { speciesOpponent = SPECIES_AGGRON;  config = GEN_5; }
 
     GIVEN {
+        WITH_CONFIG(CONFIG_ROOST_PURE_FLYING, config);
         PLAYER(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); }
         OPPONENT(speciesOpponent);
     } WHEN {
