@@ -211,6 +211,7 @@ enum ConfigTag
 enum MoveDataType
 {
     MOVE_DATA_POWER,
+    MOVE_DATA_HEAL_MOVE,
     MOVE_DATA_COUNT
 };
 
