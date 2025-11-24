@@ -6,9 +6,9 @@
 
 struct MoveDataOverride
 {
-    u32 moveId:16;
-    enum MoveDataType type:8;
-    u32 data:8;
+    u32 moveId:10;
+    enum MoveDataType type:7;
+    u32 data:15;
 };
 
 #define UNPACK_CONFIG_STRUCT(_name, _field, _typeMaxValue, ...) INVOKE_WITH_(UNPACK_CONFIG_STRUCT_, _field, UNPACK_B(_typeMaxValue));
@@ -30,11 +30,11 @@ void SetConfig(enum ConfigTag configTag, u32 value);
 void TestInitConfigData(void);
 void TestFreeConfigData(void);
 void TestInitMoveDataOverride(void);
-void TestAddMoveDataOverride(u32 move, enum MoveDataType type, u8 value);
+void TestAddMoveDataOverride(u32 move, enum MoveDataType type, u32 value);
 void TestFreeMoveDataOverride(void);
 #endif
 
-static inline void SetMoveData(u32 move, enum MoveDataType type, u8 value)
+static inline void SetMoveData(u32 move, enum MoveDataType type, u32 value)
 {
 #if TESTING
     TestAddMoveDataOverride(move, type, value);
