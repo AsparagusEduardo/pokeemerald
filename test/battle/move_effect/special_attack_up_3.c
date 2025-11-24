@@ -1,17 +1,13 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-    ASSUME(GetMoveEffect(MOVE_TAIL_GLOW) == EFFECT_SPECIAL_ATTACK_UP_3);
-}
-
 SINGLE_BATTLE_TEST("Tail Glow drastically raises Special Attack", s16 damage)
 {
     bool32 raiseSpecialAttack;
     PARAMETRIZE { raiseSpecialAttack = FALSE; }
     PARAMETRIZE { raiseSpecialAttack = TRUE; }
     GIVEN {
+        WITH_MOVE_DATA(MOVE_TAIL_GLOW, MOVE_DATA_EFFECT, EFFECT_SPECIAL_ATTACK_UP_3); // Tail Glow only raised by 2 stages in Gen3-4
         ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
