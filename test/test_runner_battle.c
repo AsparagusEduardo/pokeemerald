@@ -1835,6 +1835,7 @@ void TestSetMoveData(u32 sourceLine, u32 move, enum MoveDataType type, u32 value
     switch(type)
     {
     case MOVE_DATA_POWER:              if (GetMovePower(move) != value)          shouldSet = TRUE; break;
+    case MOVE_DATA_TYPE:               if (GetMoveType(move) != value)           shouldSet = TRUE; break;
     case MOVE_DATA_EFFECT:             if (GetMoveEffect(move) != value)         shouldSet = TRUE; break;
     case MOVE_DATA_TARGET:             if (GetMoveTarget(move) != value)         shouldSet = TRUE; break;
     case MOVE_DATA_HEAL_MOVE:          if (IsHealingMove(move) != value)         shouldSet = TRUE; break;

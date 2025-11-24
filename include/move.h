@@ -213,7 +213,11 @@ static inline const u8 *GetMoveDescription(u32 moveId)
 
 static inline enum Type GetMoveType(u32 moveId)
 {
+#if TESTING
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_TYPE, type);
+#else
     return gMovesInfo[SanitizeMoveId(moveId)].type;
+#endif
 }
 
 static inline enum DamageCategory GetMoveCategory(u32 moveId)

@@ -43,6 +43,7 @@ SINGLE_BATTLE_TEST("Curse applies to the user if used with Protean/Libero")
     PARAMETRIZE { ability = ABILITY_PROTEAN; species = SPECIES_KECLEON; }
     PARAMETRIZE { ability = ABILITY_LIBERO;  species = SPECIES_RABOOT; }
     GIVEN {
+        WITH_MOVE_DATA(MOVE_CURSE, MOVE_DATA_TYPE, TYPE_GHOST); // Curse is not a Ghost-type move in Gen1-4
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
