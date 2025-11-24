@@ -185,16 +185,18 @@ static inline const u8 *GetMoveName(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].name;
 }
 
+#define RETURN_IF_DATA_OVERRIDE(_type)                                                      \
+for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)                          \
+{                                                                                           \
+    if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == _type)\
+        return gMoveDataTestOverride[i].data;                                               \
+}
+
 static inline enum BattleMoveEffects GetMoveEffect(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_EFFECT)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_EFFECT);
     return gMovesInfo[moveId].effect;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].effect;
@@ -223,12 +225,7 @@ static inline u32 GetMovePower(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_POWER)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_POWER);
     return gMovesInfo[moveId].power;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].power;
@@ -244,12 +241,7 @@ static inline u32 GetMoveTarget(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_TARGET)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_TARGET);
     return gMovesInfo[moveId].target;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].target;
@@ -340,12 +332,7 @@ static inline bool32 IsSoundMove(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_SOUND_MOVE)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_SOUND_MOVE);
     return gMovesInfo[moveId].soundMove;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].soundMove;
@@ -381,12 +368,7 @@ static inline bool32 IsHealingMove(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_HEAL_MOVE)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_HEAL_MOVE);
     return gMovesInfo[moveId].healingMove;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].healingMove;
@@ -442,12 +424,7 @@ static inline bool32 MoveIgnoresSubstitute(u32 moveId)
 {
 #if TESTING
     moveId = SanitizeMoveId(moveId);
-    for (u32 i = 0; gMoveDataTestOverride[i].moveId != MOVE_NONE; i++)
-    {
-        if (gMoveDataTestOverride[i].moveId == moveId && gMoveDataTestOverride[i].type == MOVE_DATA_IGNORES_SUBSTITUTE)
-            return gMoveDataTestOverride[i].data;
-    }
-
+    RETURN_IF_DATA_OVERRIDE(MOVE_DATA_IGNORES_SUBSTITUTE);
     return gMovesInfo[moveId].ignoresSubstitute;
 #else
     return gMovesInfo[SanitizeMoveId(moveId)].ignoresSubstitute;
@@ -687,5 +664,7 @@ static inline const u8 *GetMoveBattleScript(u32 moveId)
     }
     return gBattleMoveEffects[GetMoveEffect(moveId)].battleScript;
 }
+
+#undef RETURN_IF_DATA_OVERRIDE
 
 #endif // GUARD_MOVES_H
