@@ -7045,13 +7045,13 @@ BattleScript_MoveStatDrain::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
 	statbuffchange BS_TARGET, STAT_CHANGE_ALLOW_PTR, BattleScript_MoveStatDrain_Cont
-.if B_ABSORBING_ABILITY_STRING >= GEN_5
+	jumpifgenconfiglowerthan CONFIG_ABSORBING_ABILITY_STRING, GEN_5, BattleScript_MoveStatDrain_Gen4
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
-.else
+	goto BattleScript_MoveStatDrain_Cont
+BattleScript_MoveStatDrain_Gen4:
 	printstring STRINGID_TARGETABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
-.endif
 BattleScript_MoveStatDrain_Cont:
 	clearsemiinvulnerablebit
 	goto BattleScript_MoveEnd

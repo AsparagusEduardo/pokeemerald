@@ -3622,7 +3622,7 @@ bool32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, enum Ability ability
         {
             battleScript = BattleScript_MoveStatDrain;
             SET_STATCHANGER(statId, statAmount, FALSE);
-            if (B_ABSORBING_ABILITY_STRING < GEN_5)
+            if (GetConfig(CONFIG_ABSORBING_ABILITY_STRING) < GEN_5)
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
         }
         break;

@@ -107,7 +107,11 @@ SINGLE_BATTLE_TEST("Wind Rider activates when it's no longer effected by Neutral
 
 SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage")
 {
+    u32 config;
+    PARAMETRIZE { config = GEN_4; }
+    PARAMETRIZE { config = GEN_5; }
     GIVEN {
+        WITH_CONFIG(CONFIG_ABSORBING_ABILITY_STRING, config);
         ASSUME(IsWindMove(MOVE_GUST));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_WIND_RIDER); }
@@ -120,7 +124,10 @@ SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage
         }
         ABILITY_POPUP(opponent, ABILITY_WIND_RIDER);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Bramblin's Attack rose!");
+        if (config >= GEN_5)
+            MESSAGE("The opposing Bramblin's Attack rose!");
+        else
+            MESSAGE("The opposing Bramblin's Wind Rider raised its Attack!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
     }
