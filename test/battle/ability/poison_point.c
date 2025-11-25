@@ -33,9 +33,12 @@ SINGLE_BATTLE_TEST("Poison Point inflicts poison on contact")
 
 SINGLE_BATTLE_TEST("Poison Point triggers 30% of the time")
 {
-    PASSES_RANDOMLY(3, 10, RNG_POISON_POINT);
+    u32 config, passes, trials;
+    PARAMETRIZE { config = GEN_3; passes = 1; trials = 3; }
+    PARAMETRIZE { config = GEN_4; passes = 3; trials = 10; }
+    PASSES_RANDOMLY(passes, trials, RNG_POISON_POINT);
     GIVEN {
-        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
+        WITH_CONFIG(CONFIG_ABILITY_TRIGGER_CHANCE, config);
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_NIDORAN_M) { Ability(ABILITY_POISON_POINT); }

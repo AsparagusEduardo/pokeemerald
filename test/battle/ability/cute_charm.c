@@ -52,9 +52,12 @@ TO_DO_BATTLE_TEST("Cute Charm triggers 1/3 of the time (Gen 3)")
 
 SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time (Gen 4+)")
 {
-    PASSES_RANDOMLY(3, 10, RNG_CUTE_CHARM);
+    u32 config, passes, trials;
+    PARAMETRIZE { config = GEN_3; passes = 1; trials = 3; }
+    PARAMETRIZE { config = GEN_4; passes = 3; trials = 10; }
+    PASSES_RANDOMLY(passes, trials, RNG_CUTE_CHARM);
     GIVEN {
-        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
+        WITH_CONFIG(CONFIG_ABILITY_TRIGGER_CHANCE, config);
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
         OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_FEMALE); Ability(ABILITY_CUTE_CHARM); }
