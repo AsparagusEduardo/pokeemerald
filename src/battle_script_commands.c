@@ -10571,7 +10571,7 @@ static void Cmd_twoturnmoveschargestringandanimation(void)
     CMD_ARGS(const u8 *animationThenStringPtr);
 
     gBattleScripting.savedStringId = GetMoveTwoTurnAttackStringId(gCurrentMove);
-    if (B_UPDATED_MOVE_DATA < GEN_5 || MoveHasChargeTurnAdditionalEffect(gCurrentMove))
+    if (MoveHasChargeTurnAdditionalEffect(gCurrentMove))
         gBattlescriptCurrInstr = cmd->animationThenStringPtr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
