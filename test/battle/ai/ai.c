@@ -662,6 +662,7 @@ AI_SINGLE_BATTLE_TEST("AI stays choice locked into moves in spite of the player'
         ASSUME(IsSoundMove(MOVE_BOOMBURST));
         ASSUME(IsBallisticMove(MOVE_BULLET_SEED));
         ASSUME(GetMoveCategory(MOVE_TAIL_WHIP) == DAMAGE_CATEGORY_STATUS);
+        WITH_MOVE_DATA(MOVE_BULLET_SEED, MOVE_DATA_POWER, 25); // Gen 4's 10 power makes the AI choose Scratch
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(playerMon) { Ability(ability); }
