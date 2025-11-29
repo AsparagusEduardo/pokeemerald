@@ -13,6 +13,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_CRAFTY_SHIELD) == EFFECT_PROTECT);
     ASSUME(GetMoveEffect(MOVE_BANEFUL_BUNKER) == EFFECT_PROTECT);
     ASSUME(GetMoveEffect(MOVE_BURNING_BULWARK) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_SALTY_FORTRESS) == EFFECT_PROTECT);
     ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
     ASSUME(MoveMakesContact(MOVE_SCRATCH));
     ASSUME(GetMoveCategory(MOVE_LEER) == DAMAGE_CATEGORY_STATUS);
@@ -29,6 +30,7 @@ SINGLE_BATTLE_TEST("Protect: Protect, Detect, Spiky Shield, Baneful Bunker and B
         MOVE_SPIKY_SHIELD,
         MOVE_BANEFUL_BUNKER,
         MOVE_BURNING_BULWARK,
+        MOVE_SALTY_FORTRESS,
     };
     u16 protectMove = MOVE_NONE;
     u16 usedMove = MOVE_NONE;
@@ -189,6 +191,47 @@ SINGLE_BATTLE_TEST("Protect: Baneful Bunker poisons Pokémon for moves making co
             NONE_OF {
                 HP_BAR(opponent);
                 STATUS_ICON(player, STATUS1_POISON);
+            }
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Protect: Salty Fortress gives Salt Cure effect to Pokémon for moves making contact")
+{
+    u32 j, usedMove = MOVE_NONE;
+
+    PARAMETRIZE {usedMove = MOVE_SCRATCH; }
+    PARAMETRIZE {usedMove = MOVE_LEER; }
+    PARAMETRIZE {usedMove = MOVE_WATER_GUN; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SALTY_FORTRESS); MOVE(player, usedMove); }
+        for (j = 0; j < 3; j++)
+            TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SALTY_FORTRESS, opponent);
+        MESSAGE("The opposing Wobbuffet protected itself!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
+        MESSAGE("The opposing Wobbuffet protected itself!");
+        if (usedMove == MOVE_SCRATCH) {
+            s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+            MESSAGE("Wobbuffet is being salt cured!");
+            for (j = 0; j < 4; j++) {
+                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SALT_CURE_DAMAGE, player);
+                HP_BAR(player, damage: maxHP / 8);
+                MESSAGE("Wobbuffet is hurt by Salt Cure!");
+            }
+        }
+        else {
+            NONE_OF {
+                MESSAGE("Wobbuffet is being salt cured!");
+                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SALT_CURE_DAMAGE, player);
+                HP_BAR(player);
+                MESSAGE("Wobbuffet is hurt by Salt Cure!");
             }
         }
     }

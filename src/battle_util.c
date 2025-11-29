@@ -6629,6 +6629,8 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_BANEFUL_BUNKER)
         isProtected = TRUE;
+    else if (gProtectStructs[battlerDef].protected == PROTECT_SALTY_FORTRESS)
+        isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_BURNING_BULWARK)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_OBSTRUCT && !IsBattleMoveStatus(move))
@@ -6661,6 +6663,7 @@ u32 GetProtectType(enum ProtectMethod method)
     case PROTECT_KINGS_SHIELD:
     case PROTECT_BANEFUL_BUNKER:
     case PROTECT_BURNING_BULWARK:
+    case PROTECT_SALTY_FORTRESS:
     case PROTECT_OBSTRUCT:
     case PROTECT_SILK_TRAP:
     case PROTECT_MAX_GUARD:

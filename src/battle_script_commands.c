@@ -6084,6 +6084,20 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
+                case PROTECT_SALTY_FORTRESS:
+                    if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker))
+                     && !gBattleMons[gBattlerTarget].volatiles.saltCure)
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        i = gBattlerAttacker;
+                        gBattlerAttacker = gBattlerTarget;
+                        gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                        gBattleScripting.moveEffect = MOVE_EFFECT_SALT_CURE;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SALTY_FORTRESS);
+                        BattleScriptCall(BattleScript_KingsShieldEffect);
+                        effect = 1;
+                    }
+                    break;
                 case PROTECT_BURNING_BULWARK:
                     if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker))
                      && CanBeBurned(gBattlerTarget, gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
@@ -14388,13 +14402,13 @@ static void Cmd_setnonvolatilestatus(void)
         if (gBattleScripting.moveEffect >= MOVE_EFFECT_CONFUSION)
             SetMoveEffect(gBattleScripting.battler, gEffectBattler, gBattleScripting.moveEffect, cmd->nextInstr, EFFECT_PRIMARY);
         else
-            SetNonVolatileStatus(gEffectBattler, gBattleScripting.moveEffect, cmd->nextInstr, TRIGGER_ON_ABILITY);
+            SetNonVolatileStatus(gEffectBattler, gBattleScripting.moveEffect, cmd->nextInstr, cmd->trigger);
         break;
     case TRIGGER_ON_MOVE:
-        SetNonVolatileStatus(gBattlerTarget, GetMoveNonVolatileStatus(gCurrentMove), cmd->nextInstr, TRIGGER_ON_MOVE);
+        SetNonVolatileStatus(gBattlerTarget, GetMoveNonVolatileStatus(gCurrentMove), cmd->nextInstr, cmd->trigger);
         break;
     case TRIGGER_ON_PROTECT:
-        SetNonVolatileStatus(gBattlerAttacker, gBattleScripting.moveEffect, cmd->nextInstr, TRIGGER_ON_PROTECT);
+        SetNonVolatileStatus(gBattlerAttacker, gBattleScripting.moveEffect, cmd->nextInstr, cmd->trigger);
         break;
     }
 }

@@ -21177,6 +21177,34 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .battleAnimScript = gBattleAnimMove_MalignantChain,
     },
 
+    [MOVE_SALTY_FORTRESS] =
+    {
+        .name = COMPOUND_STRING("Salty Fortress"),
+        .description = COMPOUND_STRING(
+            "Protects user and leaves\n"
+            "attackers salty."),
+        .effect = EFFECT_PROTECT,
+        .power = 0,
+        .type = TYPE_ROCK,
+        .accuracy = 0,
+        .pp = 10,
+        .target = MOVE_TARGET_USER,
+        .priority = 4,
+        .category = DAMAGE_CATEGORY_STATUS,
+        .argument = { .protectMethod = PROTECT_SALTY_FORTRESS },
+        .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .metronomeBanned = TRUE,
+        .copycatBanned = TRUE,
+        .assistBanned = TRUE,
+        .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
+        .contestCategory = CONTEST_CATEGORY_TOUGH,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_BanefulBunker,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
