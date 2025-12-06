@@ -36,6 +36,7 @@
 #include "main.h"
 #include "malloc.h"
 #include "m4a.h"
+#include "main_menu.h"
 #include "map_name_popup.h"
 #include "match_call.h"
 #include "menu.h"
@@ -1792,7 +1793,12 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
+#if TESTING
+    gFieldCallback = NULL;
+    NewGameBirchSpeech_SetDefaultPlayerName(0);
+#else
     gFieldCallback = ExecuteTruckSequence;
+#endif
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();

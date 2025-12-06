@@ -266,9 +266,54 @@ void InitKeys(void)
     gMain.newKeysRaw = 0;
 }
 
+static const u32 sBufferedInputs[][2] =
+{
+    {0,         30},
+    {DPAD_DOWN, 15},
+    {DPAD_DOWN, 15},
+    {DPAD_RIGHT,30},
+    {DPAD_UP,   15},
+    {A_BUTTON,1},
+    {0,         30},
+    {B_BUTTON,100},
+    {A_BUTTON,1},
+    {0,         30},
+    {START_BUTTON,1},
+    {0,         10},
+    {A_BUTTON,1},
+    {0,         60},
+    {DPAD_RIGHT,30},
+    {UINT32_MAX}
+};
+
+#if TESTING
+EWRAM_DATA u32 gGBufferedInputsTimer = 0;
+EWRAM_DATA bool8 sFinishedBufferedInputs = FALSE;
+#endif
+
 static void ReadKeys(void)
 {
     u16 keyInput = REG_KEYINPUT ^ KEYS_MASK;
+#if TESTING
+    if (!sFinishedBufferedInputs)
+    {
+        u32 totalTime = 0;
+        for (u32 i = 0; i < ARRAY_COUNT(sBufferedInputs); i++)
+        {
+            if (sBufferedInputs[i][0] == UINT32_MAX)
+            {
+                sFinishedBufferedInputs = TRUE;
+                break;
+            }
+            totalTime += sBufferedInputs[i][1];
+            if (gMain.vblankCounter1 - gGBufferedInputsTimer < totalTime) {
+                //DebugPrintf("totalTime:%d, input:%d", totalTime, sBufferedInputs[i][0]);
+                keyInput = sBufferedInputs[i][0];
+                break;
+            }
+        }
+    }
+#endif
     gMain.newKeysRaw = keyInput & ~gMain.heldKeysRaw;
     gMain.newKeys = gMain.newKeysRaw;
     gMain.newAndRepeatedKeys = gMain.newKeysRaw;

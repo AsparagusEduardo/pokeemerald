@@ -26,6 +26,18 @@
 #include "script.h"
 #include "test/test.h"
 
+#define OVERWORLD_TEST(_name) \
+    static void CAT(Test, __LINE__)(void); \
+    __attribute__((section(".tests"), used)) static const struct Test CAT(sTest, __LINE__) = \
+    { \
+        .name = _name, \
+        .filename = __FILE__, \
+        .runner = &gOverworldTestRunner, \
+        .sourceLine = __LINE__, \
+        .data = (void *)CAT(Test, __LINE__), \
+    }; \
+    static void CAT(Test, __LINE__)(void)
+
 #define OVERWORLD_SCRIPT(...) \
     ({ \
         const u8 *_script; \

@@ -131,7 +131,11 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
+#if TESTING
+    SetWarpDestination(MAP_GROUP(MAP_PETALBURG_CITY), MAP_NUM(MAP_PETALBURG_CITY), WARP_ID_NONE, -1, -1);
+#else
     SetWarpDestination(MAP_GROUP(MAP_INSIDE_OF_TRUCK), MAP_NUM(MAP_INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
+#endif
     WarpIntoMap();
 }
 

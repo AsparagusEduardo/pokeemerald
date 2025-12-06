@@ -98,6 +98,8 @@ struct FunctionTestRunnerState
 extern const struct TestRunner gFunctionTestRunner;
 extern struct FunctionTestRunnerState *gFunctionTestRunnerState;
 
+extern const struct TestRunner gOverworldTestRunner;
+
 extern struct TestRunnerState gTestRunnerState;
 extern struct PersistentTestRunnerState gPersistentTestRunnerState;
 
