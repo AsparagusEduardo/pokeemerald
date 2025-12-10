@@ -64,8 +64,6 @@ bool32 IsAiVsAiBattle(void)
 bool32 BattlerIsPlayer(u32 battlerId)
 {
     return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER
-        || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);
-    return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);
 }
 
@@ -407,47 +405,47 @@ bool32 IsValidForBattleButDead(struct Pokemon *mon)
 
 static inline bool32 IsControllerPlayer(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_PLAYER);
 }
 
 static inline bool32 IsControllerRecordedPlayer(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == RecordedPlayerBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_RECORDED_PLAYER);
 }
 
 static inline bool32 IsControllerRecordedPartner(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == RecordedPartnerBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_RECORDED_PARTNER);
 }
 
 static inline bool32 IsControllerOpponent(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == OpponentBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_OPPONENT);
 }
 
 static inline bool32 IsControllerPlayerPartner(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == PlayerPartnerBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_PLAYER_PARTNER);
 }
 
 static inline bool32 IsControllerWally(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == WallyBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_WALLY);
 }
 
 static inline bool32 IsControllerRecordedOpponent(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == RecordedOpponentBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_RECORDED_OPPONENT);
 }
 
 static inline bool32 IsControllerLinkOpponent(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == LinkOpponentBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_LINK_OPPONENT);
 }
 
 static inline bool32 IsControllerLinkPartner(u32 battler)
 {
-    return (gBattlerControllerEndFuncs[battler] == LinkPartnerBufferExecCompleted);
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_LINK_PARTNER);
 }
 
 bool32 ShouldUpdateTvData(u32 battler)
