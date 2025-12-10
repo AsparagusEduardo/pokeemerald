@@ -1261,10 +1261,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
 
-    // Start shiny animation if applicable for 1st Pokémon
-    TryShinyAnimationHelper(battler);
-    // Start shiny animation if applicable for 2nd Pokémon
-    TryShinyAnimationHelper(BATTLE_PARTNER(battler));
+    BtlController_Intro_TryShinyAnimShowHealthbox(battler);
 
     // Show healthbox after ball anim
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive

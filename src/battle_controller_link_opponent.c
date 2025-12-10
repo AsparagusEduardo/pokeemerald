@@ -175,9 +175,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
 
-    TryShinyAnimationHelper(battler);
-    if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-        TryShinyAnimationHelper(BATTLE_PARTNER(battler));
+    BtlController_Intro_TryShinyAnimShowHealthbox(battler);
 
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
     {

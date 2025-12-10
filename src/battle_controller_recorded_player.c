@@ -187,11 +187,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
 
-    if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
-    {
-        TryShinyAnimationHelper(battler);
-        TryShinyAnimationHelper(BATTLE_PARTNER(battler));
-    }
+    BtlController_Intro_TryShinyAnimShowHealthbox(battler);
 
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
         && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)

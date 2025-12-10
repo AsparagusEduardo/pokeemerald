@@ -197,15 +197,9 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
-    bool32 twoMons;
+    bool32 twoMons = TwoOpponentIntroMons(battler);
 
-    TryShinyAnimationHelper(battler);
-
-    twoMons = TwoOpponentIntroMons(battler);
-    if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-        && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT)
-        && twoMons)
-        TryShinyAnimationHelper(BATTLE_PARTNER(battler));
+    BtlController_Intro_TryShinyAnimShowHealthbox(battler);
 
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
     {

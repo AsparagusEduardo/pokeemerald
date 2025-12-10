@@ -3054,6 +3054,24 @@ void TryShinyAnimAfterMonAnim(u32 battler)
     }
 }
 
+void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
+{
+    bool32 twoMons = TwoOpponentIntroMons(battler);
+
+    if (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
+    {
+        TryShinyAnimationHelper(battler);
+
+        if ((!IsControllerLinkOpponent(battler) || !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+        && (!IsControllerOpponent(battler) || (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+                                               && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT)
+                                               && twoMons)))
+        {
+            TryShinyAnimationHelper(BATTLE_PARTNER(battler));
+        }
+    }
+}
+
 void WaitForMonAnimAfterLoad(u32 battler)
 {
     if (gSprites[gBattlerSpriteIds[battler]].animEnded && gSprites[gBattlerSpriteIds[battler]].x2 == 0)

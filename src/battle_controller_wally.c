@@ -209,8 +209,7 @@ static void CompleteOnChosenItem(u32 battler)
 
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
-    TryShinyAnimationHelper(battler);
-    TryShinyAnimationHelper(BATTLE_PARTNER(battler));
+    BtlController_Intro_TryShinyAnimShowHealthbox(battler);
 
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
         && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive
