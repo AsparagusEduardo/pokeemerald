@@ -172,23 +172,21 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
 }
 
+static void TryShinyAnimationHelper(u32 battler)
+{
+    if (!gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
+     && !gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
+     && !gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+        TryShinyAnimation(battler, GetBattlerMon(battler));
+}
+
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
 
-    if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-        && !gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
-        && !gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-    {
-        TryShinyAnimation(battler, GetBattlerMon(battler));
-    }
-    if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI)
-        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive
-        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim
-        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-    {
-        TryShinyAnimation(BATTLE_PARTNER(battler), GetBattlerMon(BATTLE_PARTNER(battler)));
-    }
+    TryShinyAnimationHelper(battler);
+    if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+        TryShinyAnimationHelper(BATTLE_PARTNER(battler));
 
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
     {
