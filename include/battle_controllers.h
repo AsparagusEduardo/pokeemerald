@@ -457,6 +457,7 @@ void LinkPartnerBufferExecCompleted(u32 battler);
 void TrySetBattlerShadowSpriteCallback(u32 battler);
 
 void AnimateMonAfterPokeBallFail(u32 battler);
+void TryShinyAnimationHelper(u32 battler);
 void TryShinyAnimAfterMonAnim(u32 battler);
 void WaitForMonAnimAfterLoad(u32 battler);
 void BtlController_HandleSwitchInWaitAndEnd(u32 battler);

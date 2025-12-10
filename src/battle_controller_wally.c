@@ -207,13 +207,6 @@ static void CompleteOnChosenItem(u32 battler)
     }
 }
 
-static void TryShinyAnimationHelper(u32 battler)
-{
-    if (!gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
-     && !gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive)
-        TryShinyAnimation(battler, GetBattlerMon(battler));
-}
-
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     TryShinyAnimationHelper(battler);

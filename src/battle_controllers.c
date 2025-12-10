@@ -3027,6 +3027,14 @@ void TrySetBattlerShadowSpriteCallback(u32 battler)
         SetBattlerShadowSpriteCallback(battler, GetBattlerVisualSpecies(battler));
 }
 
+void TryShinyAnimationHelper(u32 battler)
+{
+    if (!gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
+     && !gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
+     && ((!IsControllerLinkOpponent(battler) && !IsControllerOpponent(battler)) || !gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim))
+        TryShinyAnimation(battler, GetBattlerMon(battler));
+}
+
 void TryShinyAnimAfterMonAnim(u32 battler)
 {
     if (gSprites[gBattlerSpriteIds[battler]].x2 == 0)

@@ -193,14 +193,6 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
 }
 
-static void TryShinyAnimationHelper(u32 battler)
-{
-    if (!gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
-     && !gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-     && !gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-        TryShinyAnimation(battler, GetBattlerMon(battler));
-}
-
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
