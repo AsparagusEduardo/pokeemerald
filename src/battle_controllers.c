@@ -3076,10 +3076,15 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 {
     bool32 healthboxAnimDone = FALSE;
     bool32 twoMons = FALSE;
+    bool32 checkPartner = FALSE;
 
     if (IsControllerLinkOpponent(battler))
     {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
             healthboxAnimDone = TRUE;
     }
     else if (IsControllerOpponent(battler))
@@ -3087,59 +3092,70 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
         twoMons = TwoOpponentIntroMons(battler);
         if (!twoMons || ((twoMons && (gBattleTypeFlags & BATTLE_TYPE_MULTI) && !BATTLE_TWO_VS_ONE_OPPONENT) || (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)))
         {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
             twoMons = FALSE;
         }
         else
         {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-            && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
+            checkPartner = TRUE;
             twoMons = TRUE;
         }
+
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
+            healthboxAnimDone = TRUE;
     }
     else if (IsControllerPlayer(battler))
     {
         // Check if healthbox has finished sliding in
         if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-            && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
-        }
-        else
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
-        }
+            checkPartner = TRUE;
+
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
+            healthboxAnimDone = TRUE;
     }
     else if (IsControllerRecordedOpponent(battler))
     {
         if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-            && gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
             healthboxAnimDone = TRUE;
     }
     else if (IsControllerRecordedPlayer(battler))
     {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
             healthboxAnimDone = TRUE;
-        if (GetBattlerPosition(battler) != B_POSITION_PLAYER_LEFT && IsCryPlayingOrClearCrySongs())
-            healthboxAnimDone = FALSE;
     }
     else if (IsControllerWally(battler))
     {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
             healthboxAnimDone = TRUE;
     }
     else if (BattlerIsPartner(battler))
     {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
+        && (!IsControllerRecordedOpponent(battler) || gSprites[gBattlerSpriteIds[battler]].animEnded)
+        && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || !IsCryPlayingOrClearCrySongs())
+        && (!BattlerIsPartner(battler)|| !IsCryPlayingOrClearCrySongs()))
             healthboxAnimDone = TRUE;
-        if (IsCryPlayingOrClearCrySongs())
-            healthboxAnimDone = FALSE;
     }
-
 
     if (healthboxAnimDone)
     {
