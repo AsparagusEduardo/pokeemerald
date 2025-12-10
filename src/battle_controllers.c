@@ -3074,11 +3074,11 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
 
 void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 {
+    bool32 healthboxAnimDone = FALSE;
+    bool32 twoMons = FALSE;
+
     if (IsControllerLinkOpponent(battler))
     {
-        bool32 healthboxAnimDone = FALSE;
-        bool32 twoMons = FALSE;
-
         if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
             healthboxAnimDone = TRUE;
 
@@ -3119,9 +3119,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else if (IsControllerOpponent(battler))
     {
-        bool8 healthboxAnimDone = FALSE;
-        bool8 twoMons;
-
         twoMons = TwoOpponentIntroMons(battler);
         if (!twoMons || ((twoMons && (gBattleTypeFlags & BATTLE_TYPE_MULTI) && !BATTLE_TWO_VS_ONE_OPPONENT) || (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)))
         {
@@ -3183,8 +3180,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else if (IsControllerPlayer(battler))
     {
-        bool8 healthboxAnimDone = FALSE;
-
         // Check if healthbox has finished sliding in
         if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         {
@@ -3220,8 +3215,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else if (IsControllerRecordedOpponent(battler))
     {
-        bool8 healthboxAnimDone = FALSE;
-
         if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
             && gSprites[gBattlerSpriteIds[battler]].animEnded)
             healthboxAnimDone = TRUE;
@@ -3248,8 +3241,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else if (IsControllerRecordedPlayer(battler))
     {
-        bool32 healthboxAnimDone = FALSE;
-
         if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
         {
             if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
@@ -3291,8 +3282,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else if (IsControllerWally(battler))
     {
-        bool32 healthboxAnimDone = FALSE;
-
         if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
             healthboxAnimDone = TRUE;
 
@@ -3310,7 +3299,8 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
             CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
             HandleLowHpMusicChange(GetBattlerMon(battler), battler);
 
-            BtlController_Complete(battler);
+            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 0;
+            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
         }
     }
     else if (BattlerIsPartner(battler))
