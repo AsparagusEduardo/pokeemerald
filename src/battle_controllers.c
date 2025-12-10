@@ -3194,23 +3194,18 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
             }
             else
             {
-                if (gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                {
-                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
-                    {
-                        if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim)
-                            return;
-                        if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                            return;
-                        FreeShinyStars();
-                    }
-                    gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-                    gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-                }
-                else
-                {
+                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
                     return;
+                if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
+                {
+                    if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim)
+                        return;
+                    if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                        return;
+                    FreeShinyStars();
                 }
+                gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
             }
 
             gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
