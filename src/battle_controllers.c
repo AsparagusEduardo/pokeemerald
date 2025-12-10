@@ -3145,10 +3145,10 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     {
         if (IsControllerLinkOpponent(battler))
         {
+            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+                return;
             if (twoMons || !IsBattlerSpriteVisible(BATTLE_PARTNER(battler)))
             {
-                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                    return;
                 if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
                     return;
 
@@ -3162,9 +3162,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
             }
             else
             {
-                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                    return;
-
                 gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
                 gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
 
@@ -3179,10 +3176,10 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
         }
         else if (IsControllerOpponent(battler))
         {
+            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+                return;
             if (twoMons == TRUE)
             {
-                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                    return;
                 if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
                     return;
 
@@ -3194,8 +3191,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
             }
             else
             {
-                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                    return;
                 if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
                 {
                     if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim)
