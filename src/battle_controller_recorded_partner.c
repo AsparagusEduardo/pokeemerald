@@ -119,23 +119,6 @@ static void RecordedPartnerBufferRunCommand(u32 battler)
     }
 }
 
-static void Intro_WaitForHealthbox(u32 battler)
-{
-    bool32 finished = FALSE;
-
-    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-        finished = TRUE;
-
-    if (IsCryPlayingOrClearCrySongs())
-        finished = FALSE;
-
-    if (finished)
-    {
-        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-        gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-    }
-}
-
 void Controller_RecordedPartnerShowIntroHealthbox(u32 battler)
 {
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
@@ -162,7 +145,7 @@ void Controller_RecordedPartnerShowIntroHealthbox(u32 battler)
 
         gBattleSpritesDataPtr->animationData->introAnimActive = FALSE;
 
-        gBattlerControllerFuncs[battler] = Intro_WaitForHealthbox;
+        gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
     }
 }
 

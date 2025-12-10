@@ -460,6 +460,7 @@ void AnimateMonAfterPokeBallFail(u32 battler);
 void TryShinyAnimationHelper(u32 battler);
 void TryShinyAnimAfterMonAnim(u32 battler);
 void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler);
+void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler);
 void WaitForMonAnimAfterLoad(u32 battler);
 void BtlController_HandleSwitchInWaitAndEnd(u32 battler);
 void BtlController_Intro_DelayAndEnd(u32 battler);

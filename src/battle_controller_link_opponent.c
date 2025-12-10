@@ -115,50 +115,6 @@ static void LinkOpponentBufferRunCommand(u32 battler)
     }
 }
 
-static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
-{
-    bool32 healthboxAnimDone = FALSE;
-    bool32 twoMons = FALSE;
-
-    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-        healthboxAnimDone = TRUE;
-
-    if (healthboxAnimDone)
-    {
-        if (twoMons || !IsBattlerSpriteVisible(BATTLE_PARTNER(battler)))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                return;
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-
-            FreeShinyStars();
-        }
-        else
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-
-            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
-            {
-                FreeShinyStars();
-            }
-        }
-
-        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-        gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-    }
-}
-
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
@@ -230,7 +186,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = FALSE;
             gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = FALSE;
 
-            gBattlerControllerFuncs[battler] = Intro_WaitForShinyAnimAndHealthbox;
+            gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
         }
     }
 }

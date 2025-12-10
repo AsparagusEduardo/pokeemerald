@@ -45,7 +45,6 @@ static void WallyHandleEndLinkBattle(u32 battler);
 
 static void WallyBufferRunCommand(u32 battler);
 static void CompleteOnChosenItem(u32 battler);
-static void Intro_WaitForShinyAnimAndHealthbox(u32 battler);
 
 static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
 {
@@ -229,32 +228,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
 
         gBattleSpritesDataPtr->animationData->introAnimActive = FALSE;
-        gBattlerControllerFuncs[battler] = Intro_WaitForShinyAnimAndHealthbox;
-    }
-}
-
-static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
-{
-    bool32 healthboxAnimDone = FALSE;
-
-    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-        healthboxAnimDone = TRUE;
-
-    if (healthboxAnimDone && gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim
-        && gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-    {
-        gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-        gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-
-        gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-        gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-
-        FreeShinyStars();
-
-        CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
-        HandleLowHpMusicChange(GetBattlerMon(battler), battler);
-
-        BtlController_Complete(battler);
+        gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
     }
 }
 

@@ -121,23 +121,6 @@ static void PlayerPartnerBufferRunCommand(u32 battler)
     }
 }
 
-static void Intro_WaitForHealthbox(u32 battler)
-{
-    bool32 finished = FALSE;
-
-    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-        finished = TRUE;
-
-    if (IsCryPlayingOrClearCrySongs())
-        finished = FALSE;
-
-    if (finished)
-    {
-        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-        gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-    }
-}
-
 // Also used by the link partner.
 void Controller_PlayerPartnerShowIntroHealthbox(u32 battler)
 {
@@ -165,7 +148,7 @@ void Controller_PlayerPartnerShowIntroHealthbox(u32 battler)
 
         gBattleSpritesDataPtr->animationData->introAnimActive = FALSE;
 
-        gBattlerControllerFuncs[battler] = Intro_WaitForHealthbox;
+        gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
     }
 }
 

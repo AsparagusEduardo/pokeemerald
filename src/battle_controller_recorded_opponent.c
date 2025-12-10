@@ -138,35 +138,6 @@ void RecordedOpponentBufferExecCompleted(u32 battler)
     }
 }
 
-static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
-{
-    bool8 healthboxAnimDone = FALSE;
-
-    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-        && gSprites[gBattlerSpriteIds[battler]].animEnded)
-        healthboxAnimDone = TRUE;
-
-    if (healthboxAnimDone)
-    {
-        if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                return;
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-            FreeShinyStars();
-        }
-
-        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-        gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-    }
-}
-
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
@@ -247,7 +218,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
         gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = FALSE;
         gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = FALSE;
 
-        gBattlerControllerFuncs[battler] = Intro_WaitForShinyAnimAndHealthbox;
+        gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
     }
 }
 
