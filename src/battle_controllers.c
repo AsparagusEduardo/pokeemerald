@@ -3143,84 +3143,87 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 
     if (healthboxAnimDone)
     {
-        if (IsControllerLinkOpponent(battler))
+        if ((!IsControllerRecordedOpponent(battler) || GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+         && (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT))
         {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (twoMons || !IsBattlerSpriteVisible(BATTLE_PARTNER(battler)))
+            if (IsControllerLinkOpponent(battler))
             {
-                if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
                     return;
-
-                gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-
-                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-
-                FreeShinyStars();
-            }
-            else
-            {
-                gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-
-                if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
-                {
-                    FreeShinyStars();
-                }
-            }
-        }
-        else if (IsControllerOpponent(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (twoMons == TRUE)
-            {
-                if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                    return;
-
-                gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-                FreeShinyStars();
-            }
-            else
-            {
-                if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
+                if (twoMons || !IsBattlerSpriteVisible(BATTLE_PARTNER(battler)))
                 {
                     if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim)
                         return;
                     if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
                         return;
+
+                    gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+
+                    gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
+
                     FreeShinyStars();
                 }
+                else
+                {
+                    gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+
+                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
+                    {
+                        FreeShinyStars();
+                    }
+                }
+            }
+            else if (IsControllerOpponent(battler))
+            {
+                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+                    return;
+                if (twoMons == TRUE)
+                {
+                    if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                        return;
+
+                    gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
+                    FreeShinyStars();
+                }
+                else
+                {
+                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT)
+                    {
+                        if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim)
+                            return;
+                        if (gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                            return;
+                        FreeShinyStars();
+                    }
+                    gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                    gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+                }
+            }
+            else if (IsControllerPlayer(battler))
+            {
+                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+                    return;
+                if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                    return;
+                // Reset shiny anim (even if it didn't occur)
                 gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
                 gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
+                FreeShinyStars();
+
+                HandleLowHpMusicChange(GetBattlerMon(battler), battler);
+
+                if (TwoPlayerIntroMons(battler))
+                    HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
             }
-        }
-        else if (IsControllerPlayer(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                return;
-            // Reset shiny anim (even if it didn't occur)
-            gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
-            FreeShinyStars();
-
-            HandleLowHpMusicChange(GetBattlerMon(battler), battler);
-
-            if (TwoPlayerIntroMons(battler))
-                HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
-        }
-        else if (IsControllerRecordedOpponent(battler))
-        {
-            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+            else if (IsControllerRecordedOpponent(battler))
             {
                 if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
                     return;
@@ -3233,10 +3236,7 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
                 FreeShinyStars();
             }
-        }
-        else if (IsControllerRecordedPlayer(battler))
-        {
-            if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
+            else if (IsControllerRecordedPlayer(battler))
             {
                 if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
                     return;
@@ -3255,24 +3255,24 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 if (IsDoubleBattle())
                     HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
             }
-        }
-        else if (IsControllerWally(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
-                return;
-            if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
-                return;
+            else if (IsControllerWally(battler))
+            {
+                if (!gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim)
+                    return;
+                if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
+                    return;
 
-            gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
 
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
-            gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
+                gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
 
-            FreeShinyStars();
+                FreeShinyStars();
 
-            CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
-            HandleLowHpMusicChange(GetBattlerMon(battler), battler);
+                CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
+                HandleLowHpMusicChange(GetBattlerMon(battler), battler);
+            }
         }
 
         gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = IsControllerWally(battler) ? 0 : 3;
