@@ -123,19 +123,8 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 
     if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
     {
-        if (!IsDoubleBattle() || (IsDoubleBattle() && (gBattleTypeFlags & BATTLE_TYPE_MULTI)))
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
-        }
-        else
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-                && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-            {
-                healthboxAnimDone = TRUE;
-            }
-        }
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+            healthboxAnimDone = TRUE;
 
         if (healthboxAnimDone && gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim
             && gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim)
@@ -158,19 +147,8 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
     else
     {
-        if (!IsDoubleBattle() || (IsDoubleBattle() && (gBattleTypeFlags & BATTLE_TYPE_MULTI)))
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-                healthboxAnimDone = TRUE;
-        }
-        else
-        {
-            if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-                && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-            {
-                healthboxAnimDone = TRUE;
-            }
-        }
+        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+            healthboxAnimDone = TRUE;
 
         if (IsCryPlayingOrClearCrySongs())
             healthboxAnimDone = FALSE;

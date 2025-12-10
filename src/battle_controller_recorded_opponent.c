@@ -142,21 +142,9 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 {
     bool8 healthboxAnimDone = FALSE;
 
-    if (!IsDoubleBattle() || (IsDoubleBattle() && (gBattleTypeFlags & BATTLE_TYPE_MULTI)))
-    {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-         && gSprites[gBattlerSpriteIds[battler]].animEnded)
-            healthboxAnimDone = TRUE;
-
-    }
-    else
-    {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-         && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy
-         && gSprites[gBattlerSpriteIds[battler]].animEnded
-         && gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].animEnded)
-             healthboxAnimDone = TRUE;
-    }
+    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
+        && gSprites[gBattlerSpriteIds[battler]].animEnded)
+        healthboxAnimDone = TRUE;
 
     if (healthboxAnimDone)
     {

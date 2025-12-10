@@ -123,19 +123,8 @@ static void Intro_WaitForHealthbox(u32 battler)
 {
     bool32 finished = FALSE;
 
-    if (!IsDoubleBattle() || (IsDoubleBattle() && (gBattleTypeFlags & BATTLE_TYPE_MULTI)))
-    {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
-            finished = TRUE;
-    }
-    else
-    {
-        if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy
-            && gSprites[gHealthboxSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-        {
-            finished = TRUE;
-        }
-    }
+    if (gSprites[gHealthboxSpriteIds[battler]].callback == SpriteCallbackDummy)
+        finished = TRUE;
 
     if (IsCryPlayingOrClearCrySongs())
         finished = FALSE;
