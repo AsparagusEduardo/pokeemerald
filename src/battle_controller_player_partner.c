@@ -121,37 +121,6 @@ static void PlayerPartnerBufferRunCommand(u32 battler)
     }
 }
 
-// Also used by the link partner.
-void Controller_PlayerPartnerShowIntroHealthbox(u32 battler)
-{
-    if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive
-        && gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-        && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
-        && ++gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay != 1)
-    {
-        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 0;
-        TryShinyAnimation(battler, GetBattlerMon(battler));
-
-        if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-        {
-            DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-            StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-            SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-        }
-
-        DestroySprite(&gSprites[gBattleControllerData[battler]]);
-        UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-        StartHealthboxSlideIn(battler);
-        SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-
-        gBattleSpritesDataPtr->animationData->introAnimActive = FALSE;
-
-        gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
-    }
-}
-
 void PlayerPartnerBufferExecCompleted(u32 battler)
 {
     gBattlerControllerFuncs[battler] = PlayerPartnerBufferRunCommand;
@@ -306,7 +275,7 @@ static void PlayerPartnerHandleIntroTrainerBallThrow(u32 battler)
     else
         trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
 
-    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal, 24, Controller_PlayerPartnerShowIntroHealthbox);
+    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal, 24, BtlController_Intro_TryShinyAnimShowHealthbox);
 }
 
 static void PlayerPartnerHandleEndLinkBattle(u32 battler)

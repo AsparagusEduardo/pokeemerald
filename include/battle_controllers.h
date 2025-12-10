@@ -430,7 +430,6 @@ void OpponentBufferExecCompleted(u32 battler);
 void OpponentHandleTrainerSlide(u32 battler);
 
 // player partner controller
-void Controller_PlayerPartnerShowIntroHealthbox(u32 battler); // Also used by the link partner.
 void SetControllerToPlayerPartner(u32 battler);
 void PlayerPartnerBufferExecCompleted(u32 battler);
 
