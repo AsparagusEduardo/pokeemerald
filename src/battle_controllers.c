@@ -3214,11 +3214,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim = FALSE;
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
                 FreeShinyStars();
-
-                HandleLowHpMusicChange(GetBattlerMon(battler), battler);
-
-                if (TwoPlayerIntroMons(battler))
-                    HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
             }
             else if (IsControllerRecordedOpponent(battler))
             {
@@ -3243,10 +3238,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
 
                 FreeShinyStars();
-
-                HandleLowHpMusicChange(GetBattlerMon(battler), battler);
-                if (IsDoubleBattle())
-                    HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
             }
             else if (IsControllerWally(battler))
             {
@@ -3260,9 +3251,21 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
 
                 FreeShinyStars();
+            }
 
+            if (IsControllerWally(battler))
                 CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
+
+            if (IsControllerPlayer(battler)
+            || IsControllerRecordedPlayer(battler)
+            || IsControllerWally(battler))
+            {
                 HandleLowHpMusicChange(GetBattlerMon(battler), battler);
+
+                // Was IsDoubleBattle instead of TwoPlayerIntroMons for Recorded player, but should be functionally the same
+                // TwoPlayerIntroMons should never true when controller is Wally, but this check is preserved here to keep the logic as it was
+                if (TwoPlayerIntroMons(battler) && !IsControllerWally(battler))
+                    HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
             }
         }
 
