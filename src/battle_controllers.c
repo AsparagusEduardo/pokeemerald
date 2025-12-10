@@ -96,6 +96,11 @@ bool32 BattlerIsLink(u32 battlerId)
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_LINK_OPPONENT);
 }
 
+bool32 BattlerIsWally(u32 battlerId)
+{
+    return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_WALLY);
+}
+
 bool32 BattlerHasAi(u32 battlerId)
 {
     switch (gBattlerBattleController[battlerId])
