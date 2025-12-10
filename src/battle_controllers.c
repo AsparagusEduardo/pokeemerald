@@ -3170,9 +3170,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                     FreeShinyStars();
                 }
             }
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
         }
         else if (IsControllerOpponent(battler))
         {
@@ -3202,9 +3199,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = FALSE;
                 gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = FALSE;
             }
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
         }
         else if (IsControllerPlayer(battler))
         {
@@ -3223,9 +3217,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 
             if (TwoPlayerIntroMons(battler))
                 HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
         }
         else if (IsControllerRecordedOpponent(battler))
         {
@@ -3242,9 +3233,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].finishedShinyMonAnim = FALSE;
                 FreeShinyStars();
             }
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
         }
         else if (IsControllerRecordedPlayer(battler))
         {
@@ -3266,14 +3254,6 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
                 HandleLowHpMusicChange(GetBattlerMon(battler), battler);
                 if (IsDoubleBattle())
                     HandleLowHpMusicChange(GetBattlerMon(BATTLE_PARTNER(battler)), BATTLE_PARTNER(battler));
-
-                gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-                gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-            }
-            else
-            {
-                gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-                gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
             }
         }
         else if (IsControllerWally(battler))
@@ -3293,18 +3273,10 @@ void BtlController_Intro_WaitForShinyAnimAndHealthbox(u32 battler)
 
             CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
             HandleLowHpMusicChange(GetBattlerMon(battler), battler);
+        }
 
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 0;
-            gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-        }
-        else if (BattlerIsPartner(battler))
-        {
-            if (healthboxAnimDone)
-            {
-                gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 3;
-                gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
-            }
-        }
+        gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = IsControllerWally(battler) ? 0 : 3;
+        gBattlerControllerFuncs[battler] = BtlController_Intro_DelayAndEnd;
     }
 }
 
