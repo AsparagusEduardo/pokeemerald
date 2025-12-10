@@ -38,7 +38,6 @@ static void RecordedPlayerHandleChooseMove(u32 battler);
 static void RecordedPlayerHandleChooseItem(u32 battler);
 static void RecordedPlayerHandleChoosePokemon(u32 battler);
 static void RecordedPlayerHandleStatusIconUpdate(u32 battler);
-static void RecordedPlayerHandleStatusAnimation(u32 battler);
 static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler);
 static void RecordedPlayerHandleDrawPartyStatusSummary(u32 battler);
 static void RecordedPlayerHandleEndLinkBattle(u32 battler);
@@ -73,7 +72,7 @@ static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 ba
     [CONTROLLER_HEALTHBARUPDATE]          = BtlController_HandleHealthBarUpdate,
     [CONTROLLER_EXPUPDATE]                = PlayerHandleExpUpdate,
     [CONTROLLER_STATUSICONUPDATE]         = RecordedPlayerHandleStatusIconUpdate,
-    [CONTROLLER_STATUSANIMATION]          = RecordedPlayerHandleStatusAnimation,
+    [CONTROLLER_STATUSANIMATION]          = BtlController_HandleStatusAnimation,
     [CONTROLLER_STATUSXOR]                = BtlController_Empty,
     [CONTROLLER_DATATRANSFER]             = BtlController_Empty,
     [CONTROLLER_DMA3TRANSFER]             = BtlController_Empty,
@@ -287,7 +286,7 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
             xPos = 80;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
-    else 
+    else
     {
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
         {
@@ -402,11 +401,6 @@ static void RecordedPlayerHandleStatusIconUpdate(u32 battler)
         if (gTestRunnerEnabled)
             TestRunner_Battle_RecordStatus1(battler, GetMonData(GetBattlerMon(battler), MON_DATA_STATUS));
     }
-}
-
-static void RecordedPlayerHandleStatusAnimation(u32 battler)
-{
-    BtlController_HandleStatusAnimation(battler);
 }
 
 static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler)
