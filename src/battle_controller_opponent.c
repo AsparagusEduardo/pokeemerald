@@ -44,7 +44,6 @@
 #include "test/test_runner_battle.h"
 
 static void OpponentHandleDrawTrainerPic(u32 battler);
-static void OpponentHandleTrainerSlideBack(u32 battler);
 static void OpponentHandleChooseAction(u32 battler);
 static void OpponentHandleChooseMove(u32 battler);
 static void OpponentHandleChooseItem(u32 battler);
@@ -65,7 +64,7 @@ static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler)
     [CONTROLLER_RETURNMONTOBALL]          = BtlController_HandleReturnMonToBall,
     [CONTROLLER_DRAWTRAINERPIC]           = OpponentHandleDrawTrainerPic,
     [CONTROLLER_TRAINERSLIDE]             = OpponentHandleTrainerSlide,
-    [CONTROLLER_TRAINERSLIDEBACK]         = OpponentHandleTrainerSlideBack,
+    [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
     [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
@@ -372,7 +371,7 @@ static void OpponentHandleDrawTrainerPic(u32 battler)
 {
     s16 xPos;
     u32 trainerPicId;
-    
+
     // Sets Multibattle test opponent sprites to not be Hiker
     if (IsMultibattleTest())
     {
@@ -393,7 +392,7 @@ static void OpponentHandleDrawTrainerPic(u32 battler)
     else
     {
         trainerPicId = OpponentGetTrainerPicId(battler);
-    
+
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
         {
             if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
@@ -414,11 +413,6 @@ void OpponentHandleTrainerSlide(u32 battler)
 {
     u32 trainerPicId = OpponentGetTrainerPicId(battler);
     BtlController_HandleTrainerSlide(battler, trainerPicId);
-}
-
-static void OpponentHandleTrainerSlideBack(u32 battler)
-{
-    BtlController_HandleTrainerSlideBack(battler, 35, FALSE);
 }
 
 static void OpponentHandleChooseAction(u32 battler)

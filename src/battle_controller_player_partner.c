@@ -37,7 +37,6 @@
 #include "test/test_runner_battle.h"
 
 static void PlayerPartnerHandleDrawTrainerPic(u32 battler);
-static void PlayerPartnerHandleTrainerSlideBack(u32 battler);
 static void PlayerPartnerHandleChooseAction(u32 battler);
 static void PlayerPartnerHandleChooseMove(u32 battler);
 static void PlayerPartnerHandleChoosePokemon(u32 battler);
@@ -58,7 +57,7 @@ static void (*const sPlayerPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 bat
     [CONTROLLER_RETURNMONTOBALL]          = BtlController_HandleReturnMonToBall,
     [CONTROLLER_DRAWTRAINERPIC]           = PlayerPartnerHandleDrawTrainerPic,
     [CONTROLLER_TRAINERSLIDE]             = BtlController_Empty,
-    [CONTROLLER_TRAINERSLIDEBACK]         = PlayerPartnerHandleTrainerSlideBack,
+    [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
     [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
@@ -241,11 +240,6 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
         isFrontPic = TRUE;
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
-}
-
-static void PlayerPartnerHandleTrainerSlideBack(u32 battler)
-{
-    BtlController_HandleTrainerSlideBack(battler, 35, FALSE);
 }
 
 static void PlayerPartnerHandleChooseAction(u32 battler)

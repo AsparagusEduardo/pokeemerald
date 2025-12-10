@@ -36,7 +36,6 @@
 #include "constants/trainers.h"
 
 static void RecordedPartnerHandleDrawTrainerPic(u32 battler);
-static void RecordedPartnerHandleTrainerSlideBack(u32 battler);
 static void RecordedPartnerHandleChooseAction(u32 battler);
 static void RecordedPartnerHandleChooseMove(u32 battler);
 static void RecordedPartnerHandleChoosePokemon(u32 battler);
@@ -56,7 +55,7 @@ static void (*const sRecordedPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 b
     [CONTROLLER_RETURNMONTOBALL]          = BtlController_HandleReturnMonToBall,
     [CONTROLLER_DRAWTRAINERPIC]           = RecordedPartnerHandleDrawTrainerPic,
     [CONTROLLER_TRAINERSLIDE]             = BtlController_Empty,
-    [CONTROLLER_TRAINERSLIDEBACK]         = RecordedPartnerHandleTrainerSlideBack,
+    [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
     [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
@@ -211,11 +210,6 @@ static void RecordedPartnerHandleDrawTrainerPic(u32 battler)
     isFrontPic = FALSE;
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
-}
-
-static void RecordedPartnerHandleTrainerSlideBack(u32 battler)
-{
-    BtlController_HandleTrainerSlideBack(battler, 35, FALSE);
 }
 
 static void RecordedPartnerHandleChooseAction(u32 battler)
