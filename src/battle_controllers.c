@@ -2797,14 +2797,12 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     if (IsControllerLinkPartner(battler))
     {
         trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
-        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
     else if (IsControllerPlayerPartner(battler))
     {
         if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
         {
             trainerPicId = gBattlePartners[GetBattlePartnerDifficultyLevel(gPartnerTrainerId)][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic;
-            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
         }
         else
         {
@@ -2812,20 +2810,17 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
                 trainerPicId = GetTrainerBackPicFromId(gPartnerTrainerId);
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
-            trainerPal = gTrainerSprites[trainerPicId].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
         }
     }
     else if (IsControllerPlayer(battler))
     {
         trainerPicId = PlayerGetTrainerBackPicId();
-        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
     else if (IsControllerRecordedPartner(battler))
     {
         if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
         {
             trainerPicId = gBattlePartners[GetBattlePartnerDifficultyLevel(gPartnerTrainerId)][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
-            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
         }
         else
         {
@@ -2833,7 +2828,6 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
                 trainerPicId = GetTrainerPicFromId(gPartnerTrainerId);
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
-            trainerPal = gTrainerSprites[trainerPicId].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
         }
     }
     else if (IsControllerRecordedPlayer(battler))
@@ -2843,13 +2837,16 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
         else
             trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
 
-        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
     else if (IsControllerWally(battler))
     {
         trainerPicId = TRAINER_BACK_PIC_WALLY;
-        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
+
+    if ((IsControllerRecordedPartner(battler) || IsControllerPlayerPartner(battler)) && gPartnerTrainerId <= TRAINER_PARTNER(PARTNER_NONE))
+        trainerPal = gTrainerSprites[trainerPicId].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+    else
+        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
 
     if (IsControllerPlayer(battler) || IsControllerWally(battler))
         tagTrainerPal = 0xD6F8;
