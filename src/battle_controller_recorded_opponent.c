@@ -248,7 +248,7 @@ static void RecordedOpponentHandleStatusIconUpdate(u32 battler)
 
 static void RecordedOpponentHandleIntroTrainerBallThrow(u32 battler)
 {
-    BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL, 0, BtlController_Intro_TryShinyAnimShowHealthbox);
+    BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL, 0);
 }
 
 static void RecordedOpponentHandleEndLinkBattle(u32 battler)
