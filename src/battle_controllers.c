@@ -2830,9 +2830,10 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
         else
         {
             if (IsAiVsAiBattle())
-                trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
+                trainerPicId = GetTrainerPicFromId(gPartnerTrainerId);
             else
-                trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
+            trainerPal = gTrainerSprites[trainerPicId].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
         }
     }
     else if (IsControllerRecordedPlayer(battler))
