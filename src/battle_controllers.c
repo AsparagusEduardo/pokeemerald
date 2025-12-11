@@ -2801,16 +2801,11 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     else if (IsControllerPlayerPartner(battler))
     {
         if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        {
             trainerPicId = gBattlePartners[GetBattlePartnerDifficultyLevel(gPartnerTrainerId)][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic;
-        }
+        else if (IsAiVsAiBattle())
+            trainerPicId = GetTrainerBackPicFromId(gPartnerTrainerId);
         else
-        {
-            if (IsAiVsAiBattle())
-                trainerPicId = GetTrainerBackPicFromId(gPartnerTrainerId);
-            else
-                trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
-        }
+            trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
     }
     else if (IsControllerPlayer(battler))
     {
@@ -2819,16 +2814,11 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     else if (IsControllerRecordedPartner(battler))
     {
         if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        {
             trainerPicId = gBattlePartners[GetBattlePartnerDifficultyLevel(gPartnerTrainerId)][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
-        }
+        else if (IsAiVsAiBattle())
+            trainerPicId = GetTrainerPicFromId(gPartnerTrainerId);
         else
-        {
-            if (IsAiVsAiBattle())
-                trainerPicId = GetTrainerPicFromId(gPartnerTrainerId);
-            else
-                trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
-        }
+            trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
     }
     else if (IsControllerRecordedPlayer(battler))
     {
@@ -2836,7 +2826,6 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
             trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
         else
             trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
-
     }
     else if (IsControllerWally(battler))
     {
