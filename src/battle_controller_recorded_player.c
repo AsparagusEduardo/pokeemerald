@@ -193,24 +193,12 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
 }
 
-static void ChooseActionInBattlePalace(u32 battler)
-{
-    if (gBattleCommunication[4] >= gBattlersCount / 2)
-    {
-        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, RecordedBattle_GetBattlerAction(RECORDED_BATTLE_PALACE_ACTION, battler), 0);
-        BtlController_Complete(battler);
-    }
-}
-
 static void RecordedPlayerHandleChooseAction(u32 battler)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+    if (!(gBattleTypeFlags & BATTLE_TYPE_PALACE) || (gBattleCommunication[4] >= gBattlersCount / 2))
     {
-        gBattlerControllerFuncs[battler] = ChooseActionInBattlePalace;
-    }
-    else
-    {
-        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, RecordedBattle_GetBattlerAction(RECORDED_ACTION_TYPE, battler), 0);
+        u32 recordedType = (gBattleTypeFlags & BATTLE_TYPE_PALACE) ? RECORDED_BATTLE_PALACE_ACTION : RECORDED_ACTION_TYPE;
+        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, RecordedBattle_GetBattlerAction(recordedType, battler), 0);
         BtlController_Complete(battler);
     }
 }
