@@ -3125,9 +3125,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-
-            gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
         }
         else if (IsControllerOpponent(battler))
         {
@@ -3143,8 +3140,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
         }
         else if (IsControllerPlayer(battler))
         {
@@ -3155,8 +3150,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 else
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
         }
         else if (IsControllerRecordedOpponent(battler))
         {
@@ -3172,8 +3165,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
         }
         else if (IsControllerRecordedPlayer(battler))
         {
@@ -3190,9 +3181,9 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 }
 
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
         }
+        gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
+        bgmRestored = TRUE;
     }
 
     if ((IsControllerOpponent(battler) && twoMonsOpponent && (!twoMonsOpponent || !(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
