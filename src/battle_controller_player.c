@@ -67,7 +67,6 @@ static void PlayerHandleTwoReturnValues(u32 battler);
 static void PlayerHandleChosenMonReturnValue(u32 battler);
 static void PlayerHandleOneReturnValue(u32 battler);
 static void PlayerHandleOneReturnValue_Duplicate(u32 battler);
-static void PlayerHandleIntroTrainerBallThrow(u32 battler);
 static void PlayerHandleEndBounceEffect(u32 battler);
 static void PlayerHandleLinkStandbyMsg(u32 battler);
 static void PlayerHandleResetActionMoveSelection(u32 battler);
@@ -140,7 +139,7 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_PLAYFANFAREORBGM]         = BtlController_HandlePlayFanfareOrBGM,
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
-    [CONTROLLER_INTROTRAINERBALLTHROW]    = PlayerHandleIntroTrainerBallThrow,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = BtlController_HandleIntroTrainerBallThrow,
     [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = PlayerHandleEndBounceEffect,
@@ -1727,18 +1726,6 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
     return trainerPicId;
 }
 
-static u32 PlayerGetTrainerBackPicId(void)
-{
-    u32 trainerPicId;
-
-    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
-    else
-        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
-
-    return trainerPicId;
-}
-
 // In emerald it's possible to have a tag battle in the battle frontier facilities with AI
 // which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven)
 // that use an animated back pic.
@@ -2127,13 +2114,6 @@ static void PlayerHandleOneReturnValue_Duplicate(u32 battler)
 {
     BtlController_EmitOneReturnValue_Duplicate(battler, B_COMM_TO_ENGINE, 0);
     BtlController_Complete(battler);
-}
-
-static void PlayerHandleIntroTrainerBallThrow(u32 battler)
-{
-    const u32 paletteIndex = PlayerGetTrainerBackPicId();
-    const u16 *trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
-    BtlController_HandleIntroTrainerBallThrow(battler, trainerPal);
 }
 
 static void PlayerHandleEndBounceEffect(u32 battler)

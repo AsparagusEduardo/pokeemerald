@@ -388,7 +388,8 @@ void BtlController_HandleIntroSlide(u32 battler);
 void BtlController_HandleSpriteInvisibility(u32 battler);
 bool32 TwoPlayerIntroMons(u32 battlerId); // Double battle with both player pokemon active.
 bool32 TwoOpponentIntroMons(u32 battlerId); // Double battle with both opponent pokemon active.
-void BtlController_HandleIntroTrainerBallThrow(u32 battler, const u16 *trainerPal);
+u32 PlayerGetTrainerBackPicId(void);
+void BtlController_HandleIntroTrainerBallThrow(u32 battler);
 void BtlController_HandleDrawPartyStatusSummary(u32 battler);
 void BtlController_HandleHidePartyStatusSummary(u32 battler);
 void BtlController_HandleBattleAnimation(u32 battler);

@@ -39,7 +39,6 @@ static void RecordedPartnerHandleDrawTrainerPic(u32 battler);
 static void RecordedPartnerHandleChooseAction(u32 battler);
 static void RecordedPartnerHandleChooseMove(u32 battler);
 static void RecordedPartnerHandleChoosePokemon(u32 battler);
-static void RecordedPartnerHandleIntroTrainerBallThrow(u32 battler);
 static void RecordedPartnerHandleEndLinkBattle(u32 battler);
 static void RecordedPartnerBufferRunCommand(u32 battler);
 
@@ -88,7 +87,7 @@ static void (*const sRecordedPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 b
     [CONTROLLER_PLAYFANFAREORBGM]         = BtlController_HandlePlayFanfareOrBGM,
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
-    [CONTROLLER_INTROTRAINERBALLTHROW]    = RecordedPartnerHandleIntroTrainerBallThrow,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = BtlController_HandleIntroTrainerBallThrow,
     [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
@@ -174,21 +173,6 @@ static void RecordedPartnerHandleChoosePokemon(u32 battler)
     gSelectedMonPartyId = gBattleStruct->monToSwitchIntoId[battler]; // Revival Blessing
     BtlController_EmitChosenMonReturnValue(battler, B_COMM_TO_ENGINE, gBattleStruct->monToSwitchIntoId[battler], NULL);
     BtlController_Complete(battler);
-}
-
-static void RecordedPartnerHandleIntroTrainerBallThrow(u32 battler)
-{
-    const u16 *trainerPal;
-    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
-
-    if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
-    else if (IsAiVsAiBattle())
-        trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
-    else
-        trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
-
-    BtlController_HandleIntroTrainerBallThrow(battler, trainerPal);
 }
 
 static void RecordedPartnerHandleEndLinkBattle(u32 battler)

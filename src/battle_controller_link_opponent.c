@@ -33,7 +33,6 @@
 
 static void LinkOpponentHandleDrawTrainerPic(u32 battler);
 static void LinkOpponentHandleTrainerSlide(u32 battler);
-static void LinkOpponentHandleIntroTrainerBallThrow(u32 battler);
 static void LinkOpponentHandleLinkStandbyMsg(u32 battler);
 static void LinkOpponentHandleEndLinkBattle(u32 battler);
 
@@ -84,7 +83,7 @@ static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 batt
     [CONTROLLER_PLAYFANFAREORBGM]         = BtlController_HandlePlayFanfareOrBGM,
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
-    [CONTROLLER_INTROTRAINERBALLTHROW]    = LinkOpponentHandleIntroTrainerBallThrow,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = BtlController_HandleIntroTrainerBallThrow,
     [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
@@ -217,11 +216,6 @@ static void LinkOpponentHandleTrainerSlide(u32 battler)
 
     BtlController_HandleTrainerSlide(battler, trainerPicId);
     BtlController_Complete(battler); // Possibly a bug, because execution should be completed after the slide in finishes. See Controller_WaitForTrainerPic.
-}
-
-static void LinkOpponentHandleIntroTrainerBallThrow(u32 battler)
-{
-    BtlController_HandleIntroTrainerBallThrow(battler, NULL);
 }
 
 static void LinkOpponentHandleLinkStandbyMsg(u32 battler)

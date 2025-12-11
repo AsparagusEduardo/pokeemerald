@@ -32,7 +32,6 @@
 #include "random.h"
 
 static void LinkPartnerHandleDrawTrainerPic(u32 battler);
-static void LinkPartnerHandleIntroTrainerBallThrow(u32 battler);
 static void LinkPartnerHandleLinkStandbyMsg(u32 battler);
 static void LinkPartnerHandleEndLinkBattle(u32 battler);
 
@@ -83,7 +82,7 @@ static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battl
     [CONTROLLER_PLAYFANFAREORBGM]         = BtlController_HandlePlayFanfareOrBGM,
     [CONTROLLER_FAINTINGCRY]              = BtlController_HandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
-    [CONTROLLER_INTROTRAINERBALLTHROW]    = LinkPartnerHandleIntroTrainerBallThrow,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = BtlController_HandleIntroTrainerBallThrow,
     [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_HandleHidePartyStatusSummary,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
@@ -151,14 +150,6 @@ static void LinkPartnerHandleDrawTrainerPic(u32 battler)
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, FALSE,
                                        xPos, 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size),
                                        -1);
-}
-
-static void LinkPartnerHandleIntroTrainerBallThrow(u32 battler)
-{
-    u32 trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
-    const u16 *trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
-    // Link partner uses the same intro sequence as the player partner.
-    BtlController_HandleIntroTrainerBallThrow(battler, trainerPal);
 }
 
 static void LinkPartnerHandleLinkStandbyMsg(u32 battler)

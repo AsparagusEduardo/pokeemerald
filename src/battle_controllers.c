@@ -13,6 +13,7 @@
 #include "cable_club.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "frontier_util.h"
 #include "item.h"
 #include "link.h"
 #include "link_rfu.h"
@@ -2763,6 +2764,18 @@ bool32 TwoOpponentIntroMons(u32 battler) // Double battle with both opponent pok
             && IsValidForBattle(GetBattlerMon(BATTLE_PARTNER(battler))));
 }
 
+u32 PlayerGetTrainerBackPicId(void)
+{
+    u32 trainerPicId;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+        trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
+    else
+        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+
+    return trainerPicId;
+}
+
 // Task data for Task_StartSendOutAnim
 #define tBattlerId          data[0]
 #define tStartTimer         data[1]
@@ -2773,7 +2786,7 @@ bool32 TwoOpponentIntroMons(u32 battler) // Double battle with both opponent pok
 // Sprite data for SpriteCB_FreePlayerSpriteLoadMonSprite
 #define sBattlerId data[5]
 
-void BtlController_HandleIntroTrainerBallThrow(u32 battler, const u16 *trainerPal)
+void BtlController_HandleIntroTrainerBallThrow(u32 battler)
 {
     u8 paletteNum, taskId;
     enum BattleSide side = GetBattlerSide(battler);
@@ -2798,6 +2811,55 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler, const u16 *trainerPa
     {
         StoreSpriteCallbackInData6(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], SpriteCB_FreePlayerSpriteLoadMonSprite);
         StartSpriteAnim(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], ShouldDoSlideInAnim(battler) ? 2 : 1);
+
+        const u16 *trainerPal = NULL;
+        if (IsControllerLinkPartner(battler))
+        {
+            u32 trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
+            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
+        }
+        else if (IsControllerPlayerPartner(battler))
+        {
+            enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
+
+            if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+                trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic].palette.data;
+            else if (IsAiVsAiBattle())
+                trainerPal = gTrainerSprites[GetTrainerBackPicFromId(gPartnerTrainerId)].palette.data;
+            else
+                trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+        }
+        else if (IsControllerPlayer(battler))
+        {
+            const u32 paletteIndex = PlayerGetTrainerBackPicId();
+            trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
+        }
+        else if (IsControllerRecordedPartner(battler))
+        {
+            enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
+
+            if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+                trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
+            else if (IsAiVsAiBattle())
+                trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
+            else
+                trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+        }
+        else if (IsControllerRecordedPlayer(battler))
+        {
+            u32 trainerPicId;
+
+            if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
+                trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
+            else
+                trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+
+            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
+        }
+        else if (IsControllerWally(battler))
+        {
+            trainerPal = gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].palette.data;
+        }
 
         if (IsControllerPlayer(battler) || IsControllerWally(battler))
             paletteNum = AllocSpritePalette(0xD6F8);

@@ -40,7 +40,6 @@ static void WallyHandleChooseAction(u32 battler);
 static void WallyHandleChooseMove(u32 battler);
 static void WallyHandleChooseItem(u32 battler);
 static void WallyHandleFaintingCry(u32 battler);
-static void WallyHandleIntroTrainerBallThrow(u32 battler);
 static void WallyHandleEndLinkBattle(u32 battler);
 
 static void WallyBufferRunCommand(u32 battler);
@@ -91,7 +90,7 @@ static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_PLAYFANFAREORBGM]         = BtlController_HandlePlayFanfareOrBGM,
     [CONTROLLER_FAINTINGCRY]              = WallyHandleFaintingCry,
     [CONTROLLER_INTROSLIDE]               = BtlController_HandleIntroSlide,
-    [CONTROLLER_INTROTRAINERBALLTHROW]    = WallyHandleIntroTrainerBallThrow,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = BtlController_HandleIntroTrainerBallThrow,
     [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = BtlController_HandleDrawPartyStatusSummary,
     [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = BtlController_Empty,
     [CONTROLLER_ENDBOUNCE]                = BtlController_Empty,
@@ -316,12 +315,6 @@ static void WallyHandleFaintingCry(u32 battler)
 
     PlayCry_Normal(species, 25);
     BtlController_Complete(battler);
-}
-
-static void WallyHandleIntroTrainerBallThrow(u32 battler)
-{
-    const u16 *trainerPal = gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].palette.data;
-    BtlController_HandleIntroTrainerBallThrow(battler, trainerPal);
 }
 
 static void WallyHandleEndLinkBattle(u32 battler)
