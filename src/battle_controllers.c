@@ -3433,28 +3433,15 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
         }
-        else if (IsControllerRecordedOpponent(battler))
+        else
         {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-        }
-        else if (IsControllerRecordedPlayer(battler))
-        {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-        }
-        else if (IsControllerWally(battler))
-        {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-        }
-        else if (BattlerIsPartner(battler))
-        {
-            if (++gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay == 1)
-                return;
-            gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 0;
-            TryShinyAnimation(battler, GetBattlerMon(battler));
-
+            if (BattlerIsPartner(battler))
+            {
+                if (++gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay == 1)
+                    return;
+                gBattleSpritesDataPtr->healthBoxesData[battler].introEndDelay = 0;
+                TryShinyAnimation(battler, GetBattlerMon(battler));
+            }
             if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
         }
