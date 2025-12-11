@@ -3092,7 +3092,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 StartHealthboxSlideIn(battler);
                 SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
         }
         else if (IsControllerPlayer(battler))
         {
@@ -3108,7 +3107,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 StartHealthboxSlideIn(battler);
                 SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
         }
         else if (IsControllerWally(battler) || BattlerIsPartner(battler))
         {
@@ -3121,7 +3119,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
             StartHealthboxSlideIn(battler);
             SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            bgmRestored = TRUE;
         }
         else
         {
@@ -3137,8 +3134,12 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 StartHealthboxSlideIn(battler);
                 SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
         }
+
+        if (!IsControllerWally(battler) && !BattlerIsPartner(battler))
+            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
+        else
+            bgmRestored = TRUE;
     }
 
     if (IsControllerLinkOpponent(battler))
