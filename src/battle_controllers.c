@@ -3111,9 +3111,9 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
         && !IsCryPlayingOrClearCrySongs())
     {
-        if (IsControllerLinkOpponent(battler))
+        if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
         {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            if (IsControllerLinkOpponent(battler))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                 {
@@ -3125,10 +3125,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-        }
-        else if (IsControllerOpponent(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            else if (IsControllerOpponent(battler))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                 {
@@ -3140,20 +3137,14 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-        }
-        else if (IsControllerPlayer(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            else if (IsControllerPlayer(battler))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                     m4aMPlayContinue(&gMPlayInfo_BGM);
                 else
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
             }
-        }
-        else if (IsControllerRecordedOpponent(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            else if (IsControllerRecordedOpponent(battler))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                 {
@@ -3165,10 +3156,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-        }
-        else if (IsControllerRecordedPlayer(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            else if (IsControllerRecordedPlayer(battler))
             {
                 if ((gBattleTypeFlags & BATTLE_TYPE_LINK) && (gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 {
@@ -3179,7 +3167,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 {
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
-
             }
         }
         gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
