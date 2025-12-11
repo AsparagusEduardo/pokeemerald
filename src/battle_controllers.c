@@ -2753,7 +2753,7 @@ void BtlController_HandleSpriteInvisibility(u32 battler)
 
 bool32 TwoPlayerIntroMons(u32 battler) // Double battle with both player pokemon active.
 {
-    return (IsDoubleBattle() && IsValidForBattle(GetBattlerMon(battler ^ BIT_FLANK)));
+    return (IsDoubleBattle() && IsValidForBattle(GetBattlerMon(BATTLE_PARTNER(battler))));
 }
 
 bool32 TwoOpponentIntroMons(u32 battler) // Double battle with both opponent pokemon active.
@@ -3058,7 +3058,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
-    bool32 twoMons = TwoOpponentIntroMons(battler);
+    bool32 twoMonsOpponent = TwoOpponentIntroMons(battler);
     bool32 allDone = FALSE;
 
     if (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
@@ -3068,7 +3068,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         if ((!IsControllerLinkOpponent(battler) || !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         && (!IsControllerOpponent(battler) || (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
                                                && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT)
-                                               && twoMons)))
+                                               && twoMonsOpponent)))
         {
             TryShinyAnimationHelper(BATTLE_PARTNER(battler));
         }
@@ -3127,7 +3127,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
             {
-                if (twoMons && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
+                if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
                 {
                     UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
                     StartHealthboxSlideIn(BATTLE_PARTNER(battler));
@@ -3161,7 +3161,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             bgmRestored = TRUE;
         }
 
-        if (!twoMons || (twoMons && gBattleTypeFlags & BATTLE_TYPE_MULTI && !BATTLE_TWO_VS_ONE_OPPONENT))
+        if (!twoMonsOpponent || (twoMonsOpponent && gBattleTypeFlags & BATTLE_TYPE_MULTI && !BATTLE_TWO_VS_ONE_OPPONENT))
         {
             if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy)
             {
@@ -3430,7 +3430,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         }
         else if (IsControllerOpponent(battler))
         {
-            if (twoMons && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
+            if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
 
             DestroySprite(&gSprites[gBattleControllerData[battler]]);
