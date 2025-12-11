@@ -3113,42 +3113,18 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     {
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
         {
-            if (IsControllerLinkOpponent(battler))
-            {
-                if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
-                {
-                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
-                        m4aMPlayContinue(&gMPlayInfo_BGM);
-                }
-                else
-                {
-                    m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-                }
-            }
-            else if (IsControllerOpponent(battler))
-            {
-                if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
-                {
-                    if (GetBattlerPosition(battler) == 1)
-                        m4aMPlayContinue(&gMPlayInfo_BGM);
-                }
-                else
-                {
-                    m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-                }
-            }
-            else if (IsControllerPlayer(battler))
+            if (IsControllerPlayer(battler))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                     m4aMPlayContinue(&gMPlayInfo_BGM);
                 else
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
             }
-            else if (IsControllerRecordedOpponent(battler))
+            else if (IsControllerRecordedPlayer(battler))
             {
-                if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
+                if ((gBattleTypeFlags & BATTLE_TYPE_LINK) && (gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 {
-                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+                    if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
                         m4aMPlayContinue(&gMPlayInfo_BGM);
                 }
                 else
@@ -3156,11 +3132,11 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
                 }
             }
-            else if (IsControllerRecordedPlayer(battler))
+            else
             {
-                if ((gBattleTypeFlags & BATTLE_TYPE_LINK) && (gBattleTypeFlags & BATTLE_TYPE_MULTI))
+                if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
                 {
-                    if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
+                    if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
                         m4aMPlayContinue(&gMPlayInfo_BGM);
                 }
                 else
