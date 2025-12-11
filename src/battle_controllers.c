@@ -3059,7 +3059,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
     bool32 twoMonsOpponent = TwoOpponentIntroMons(battler);
-    bool32 allDone = FALSE;
 
     if (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
     {
@@ -3473,11 +3472,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = FALSE;
             gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = FALSE;
         }
-        allDone = TRUE;
-    }
-
-    if (allDone)
-    {
         gBattleSpritesDataPtr->animationData->introAnimActive = FALSE;
         gBattlerControllerFuncs[battler] = BtlController_Intro_WaitForShinyAnimAndHealthbox;
     }
