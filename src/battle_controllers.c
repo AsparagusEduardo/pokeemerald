@@ -3059,6 +3059,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
     bool32 twoMonsOpponent = TwoOpponentIntroMons(battler);
+    bool32 checkPartner = FALSE;
 
     if (!IsControllerRecordedPlayer(battler) || GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
     {
@@ -3113,12 +3114,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-
-        if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-            && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-        {
-            battlerAnimsDone = TRUE;
-        }
     }
     else if (IsControllerOpponent(battler))
     {
@@ -3160,31 +3155,8 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             bgmRestored = TRUE;
         }
 
-        if (!twoMonsOpponent || (twoMonsOpponent && gBattleTypeFlags & BATTLE_TYPE_MULTI && !BATTLE_TWO_VS_ONE_OPPONENT))
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy)
-            {
-                TrySetBattlerShadowSpriteCallback(battler);
-                if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-                {
-                    battlerAnimsDone = TRUE;
-                }
-            }
-        }
-        else
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-                && gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-            {
-                TrySetBattlerShadowSpriteCallback(battler);
-                TrySetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler));
-                if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
-                    && gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-                {
-                    battlerAnimsDone = TRUE;
-                }
-            }
-        }
+        if (twoMonsOpponent && (!twoMonsOpponent || !(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
+            checkPartner = TRUE;
     }
     else if (IsControllerPlayer(battler))
     {
@@ -3226,23 +3198,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
 
         // Wait for battler anims
         if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-                && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
-                && gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy
-                && gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-            {
-                battlerAnimsDone = TRUE;
-            }
-        }
-        else
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-                && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-            {
-                battlerAnimsDone = TRUE;
-            }
-        }
+            checkPartner = TRUE;
     }
     else if (IsControllerRecordedOpponent(battler))
     {
@@ -3285,29 +3241,8 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             bgmRestored = TRUE;
         }
 
-        if (!IsDoubleBattle())
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy)
-            {
-                TrySetBattlerShadowSpriteCallback(battler);
-                if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-                    battlerAnimsDone = TRUE;
-            }
-        }
-        else
-        {
-            if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-                && gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-            {
-                TrySetBattlerShadowSpriteCallback(battler);
-                TrySetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler));
-                if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
-                    && gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
-                {
-                    battlerAnimsDone = TRUE;
-                }
-            }
-        }
+        if (IsDoubleBattle())
+            checkPartner = TRUE;
     }
     else if (IsControllerRecordedPlayer(battler))
     {
@@ -3350,12 +3285,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-
-        if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-            && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-        {
-            battlerAnimsDone = TRUE;
-        }
     }
     else if (IsControllerWally(battler))
     {
@@ -3372,12 +3301,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             StartHealthboxSlideIn(battler);
             SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             bgmRestored = TRUE;
-        }
-
-        if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-            && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-        {
-            battlerAnimsDone = TRUE;
         }
     }
     else if (BattlerIsPartner(battler))
@@ -3396,9 +3319,19 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             bgmRestored = TRUE;
         }
+    }
 
-        if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
-            && gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
+    if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
+        && (!checkPartner || gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy))
+    {
+        if (IsControllerOpponent(battler) || IsControllerRecordedOpponent(battler))
+        {
+            TrySetBattlerShadowSpriteCallback(battler);
+            if (checkPartner)
+                TrySetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler));
+        }
+        if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
+            && (!checkPartner || gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy))
         {
             battlerAnimsDone = TRUE;
         }
