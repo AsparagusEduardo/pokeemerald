@@ -3420,39 +3420,33 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
                 SetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler), GetMonData(GetBattlerMon(BATTLE_PARTNER(battler)), MON_DATA_SPECIES));
             }
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
             SetBattlerShadowSpriteCallback(battler, GetBattlerVisualSpecies(battler));
         }
         else if (IsControllerOpponent(battler))
         {
             if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
         // Clean up
         else if (IsControllerPlayer(battler))
         {
             if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
         else if (IsControllerRecordedOpponent(battler))
         {
             if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
         else if (IsControllerRecordedPlayer(battler))
         {
             if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
         else if (IsControllerWally(battler))
         {
             if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
         else if (BattlerIsPartner(battler))
         {
@@ -3463,9 +3457,8 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
 
             if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 DestroySprite(&gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]]);
-
-            DestroySprite(&gSprites[gBattleControllerData[battler]]);
         }
+        DestroySprite(&gSprites[gBattleControllerData[battler]]);
 
         if (!IsControllerWally(battler) && !BattlerIsPartner(battler))
         {
