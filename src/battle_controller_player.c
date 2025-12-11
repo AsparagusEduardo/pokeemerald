@@ -2133,7 +2133,7 @@ static void PlayerHandleIntroTrainerBallThrow(u32 battler)
 {
     const u32 paletteIndex = PlayerGetTrainerBackPicId();
     const u16 *trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
-    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F8, trainerPal, 31);
+    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F8, trainerPal);
 }
 
 static void PlayerHandleEndBounceEffect(u32 battler)

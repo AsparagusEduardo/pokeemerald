@@ -272,7 +272,7 @@ static void RecordedPlayerHandleIntroTrainerBallThrow(u32 battler)
         trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
 
     trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
-    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal, 24);
+    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F9, trainerPal);
 }
 
 static void RecordedPlayerHandleEndLinkBattle(u32 battler)

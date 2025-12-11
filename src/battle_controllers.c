@@ -2773,7 +2773,7 @@ bool32 TwoOpponentIntroMons(u32 battler) // Double battle with both opponent pok
 // Sprite data for SpriteCB_FreePlayerSpriteLoadMonSprite
 #define sBattlerId data[5]
 
-void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, const u16 *trainerPal, s16 framesToWait)
+void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, const u16 *trainerPal)
 {
     u8 paletteNum, taskId;
     enum BattleSide side = GetBattlerSide(battler);
@@ -2810,7 +2810,14 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, c
 
     taskId = CreateTask(Task_StartSendOutAnim, 5);
     gTasks[taskId].tBattlerId = battler;
-    gTasks[taskId].tFramesToWait = framesToWait;
+
+    if (IsControllerPlayer(battler) || IsControllerWally(battler))
+        gTasks[taskId].tFramesToWait = 31;
+    else if (BattlerIsOpponent(battler))
+        gTasks[taskId].tFramesToWait = 0;
+    else
+        gTasks[taskId].tFramesToWait = 24;
+
     SetWordTaskArg(taskId, tControllerFunc_1, (uint32_t)(BtlController_Intro_TryShinyAnimShowHealthbox));
 
     if (gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusSummaryShown)

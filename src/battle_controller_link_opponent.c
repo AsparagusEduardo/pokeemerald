@@ -221,7 +221,7 @@ static void LinkOpponentHandleTrainerSlide(u32 battler)
 
 static void LinkOpponentHandleIntroTrainerBallThrow(u32 battler)
 {
-    BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL, 0);
+    BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL);
 }
 
 static void LinkOpponentHandleLinkStandbyMsg(u32 battler)
