@@ -3105,12 +3105,13 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             bgmRestored = TRUE;
     }
 
-    if (IsControllerLinkOpponent(battler))
+    // Restore bgm after cry has played and healthbox anim is started
+    if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
+        && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
+        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
+        && !IsCryPlayingOrClearCrySongs())
     {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
-            && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
-            && !IsCryPlayingOrClearCrySongs())
+        if (IsControllerLinkOpponent(battler))
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
             {
@@ -3128,13 +3129,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-    }
-    else if (IsControllerOpponent(battler))
-    {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
-            && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
-            && !IsCryPlayingOrClearCrySongs())
+        else if (IsControllerOpponent(battler))
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
             {
@@ -3151,14 +3146,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-    }
-    else if (IsControllerPlayer(battler))
-    {
-        // Restore bgm after cry has played and healthbox anim is started
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
-            && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
-            && !IsCryPlayingOrClearCrySongs())
+        else if (IsControllerPlayer(battler))
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
             {
@@ -3170,13 +3158,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-    }
-    else if (IsControllerRecordedOpponent(battler))
-    {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
-            && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
-            && !IsCryPlayingOrClearCrySongs())
+        else if (IsControllerRecordedOpponent(battler))
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
             {
@@ -3193,13 +3175,7 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-    }
-    else if (IsControllerRecordedPlayer(battler))
-    {
-        if (gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
-            && !gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
-            && !IsCryPlayingOrClearCrySongs())
+        else if (IsControllerRecordedPlayer(battler))
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
             {
