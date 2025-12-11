@@ -3078,50 +3078,25 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
         && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
     {
-        if (IsControllerOpponent(battler))
+        if (IsControllerWally(battler) || BattlerIsPartner(battler) || !gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
         {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
+            bool32 updatePartner = FALSE;
+            if (IsControllerOpponent(battler))
+                updatePartner = twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT);
+            else if (IsControllerPlayer(battler))
+                updatePartner = TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI);
+            else
+                updatePartner = IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI);
+
+            if (updatePartner)
             {
-                if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
+                StartHealthboxSlideIn(BATTLE_PARTNER(battler));
+                SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
             }
-        }
-        else if (IsControllerPlayer(battler))
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
-        }
-        else
-        {
-            if (IsControllerWally(battler) || BattlerIsPartner(battler) || !gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
+            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
+            StartHealthboxSlideIn(battler);
+            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
         }
 
         if (!IsControllerWally(battler) && !BattlerIsPartner(battler))
