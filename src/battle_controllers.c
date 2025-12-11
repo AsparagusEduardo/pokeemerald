@@ -2790,6 +2790,63 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
 {
     u8 paletteNum, taskId;
     enum BattleSide side = GetBattlerSide(battler);
+    const u16 *trainerPal = NULL;
+    u16 tagTrainerPal;
+
+    if (IsControllerLinkPartner(battler))
+    {
+        u32 trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
+        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
+    }
+    else if (IsControllerPlayerPartner(battler))
+    {
+        enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
+
+        if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+            trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic].palette.data;
+        else if (IsAiVsAiBattle())
+            trainerPal = gTrainerSprites[GetTrainerBackPicFromId(gPartnerTrainerId)].palette.data;
+        else
+            trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+    }
+    else if (IsControllerPlayer(battler))
+    {
+        const u32 paletteIndex = PlayerGetTrainerBackPicId();
+        trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
+    }
+    else if (IsControllerRecordedPartner(battler))
+    {
+        enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
+
+        if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+            trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
+        else if (IsAiVsAiBattle())
+            trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
+        else
+            trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
+    }
+    else if (IsControllerRecordedPlayer(battler))
+    {
+        u32 trainerPicId;
+
+        if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
+            trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
+        else
+            trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+
+        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
+    }
+    else if (IsControllerWally(battler))
+    {
+        trainerPal = gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].palette.data;
+    }
+
+    if (IsControllerPlayer(battler) || IsControllerWally(battler))
+        tagTrainerPal = 0xD6F8;
+    else if (BattlerIsOpponent(battler))
+        tagTrainerPal = 0;
+    else
+        tagTrainerPal = 0xD6F9;
 
     SetSpritePrimaryCoordsFromSecondaryCoords(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]]);
     if (side == B_SIDE_PLAYER)
@@ -2812,61 +2869,7 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
         StoreSpriteCallbackInData6(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], SpriteCB_FreePlayerSpriteLoadMonSprite);
         StartSpriteAnim(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], ShouldDoSlideInAnim(battler) ? 2 : 1);
 
-        const u16 *trainerPal = NULL;
-        if (IsControllerLinkPartner(battler))
-        {
-            u32 trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
-            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
-        }
-        else if (IsControllerPlayerPartner(battler))
-        {
-            enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
-
-            if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-                trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic].palette.data;
-            else if (IsAiVsAiBattle())
-                trainerPal = gTrainerSprites[GetTrainerBackPicFromId(gPartnerTrainerId)].palette.data;
-            else
-                trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
-        }
-        else if (IsControllerPlayer(battler))
-        {
-            const u32 paletteIndex = PlayerGetTrainerBackPicId();
-            trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
-        }
-        else if (IsControllerRecordedPartner(battler))
-        {
-            enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
-
-            if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-                trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
-            else if (IsAiVsAiBattle())
-                trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
-            else
-                trainerPal = gTrainerSprites[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].palette.data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
-        }
-        else if (IsControllerRecordedPlayer(battler))
-        {
-            u32 trainerPicId;
-
-            if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
-                trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
-            else
-                trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
-
-            trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
-        }
-        else if (IsControllerWally(battler))
-        {
-            trainerPal = gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].palette.data;
-        }
-
-        if (IsControllerPlayer(battler) || IsControllerWally(battler))
-            paletteNum = AllocSpritePalette(0xD6F8);
-        else if (BattlerIsOpponent(battler))
-            paletteNum = AllocSpritePalette(0);
-        else
-            paletteNum = AllocSpritePalette(0xD6F9);
+        paletteNum = AllocSpritePalette(tagTrainerPal);
         LoadPalette(trainerPal, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (8 + battler/2);
     }
