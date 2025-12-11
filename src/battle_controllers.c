@@ -2792,10 +2792,11 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     enum BattleSide side = GetBattlerSide(battler);
     const u16 *trainerPal = NULL;
     u16 tagTrainerPal;
+    u32 trainerPicId = 0;
 
     if (IsControllerLinkPartner(battler))
     {
-        u32 trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
+        trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
         trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
     else if (IsControllerPlayerPartner(battler))
@@ -2811,8 +2812,8 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     }
     else if (IsControllerPlayer(battler))
     {
-        const u32 paletteIndex = PlayerGetTrainerBackPicId();
-        trainerPal = gTrainerBacksprites[paletteIndex].palette.data;
+        trainerPicId = PlayerGetTrainerBackPicId();
+        trainerPal = gTrainerBacksprites[trainerPicId].palette.data;
     }
     else if (IsControllerRecordedPartner(battler))
     {
@@ -2827,8 +2828,6 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler)
     }
     else if (IsControllerRecordedPlayer(battler))
     {
-        u32 trainerPicId;
-
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
             trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(battler)].gender + TRAINER_BACK_PIC_BRENDAN;
         else
