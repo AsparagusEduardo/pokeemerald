@@ -425,7 +425,7 @@ static void OpponentHandleChoosePokemon(u32 battler)
 
 static void OpponentHandleIntroTrainerBallThrow(u32 battler)
 {
-    BtlController_HandleIntroTrainerBallThrow(battler, 0, NULL);
+    BtlController_HandleIntroTrainerBallThrow(battler, NULL);
 }
 
 static void OpponentHandleEndLinkBattle(u32 battler)

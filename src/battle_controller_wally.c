@@ -321,7 +321,7 @@ static void WallyHandleFaintingCry(u32 battler)
 static void WallyHandleIntroTrainerBallThrow(u32 battler)
 {
     const u16 *trainerPal = gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].palette.data;
-    BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F8, trainerPal);
+    BtlController_HandleIntroTrainerBallThrow(battler, trainerPal);
 }
 
 static void WallyHandleEndLinkBattle(u32 battler)

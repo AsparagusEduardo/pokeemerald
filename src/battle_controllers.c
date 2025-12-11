@@ -2773,7 +2773,7 @@ bool32 TwoOpponentIntroMons(u32 battler) // Double battle with both opponent pok
 // Sprite data for SpriteCB_FreePlayerSpriteLoadMonSprite
 #define sBattlerId data[5]
 
-void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, const u16 *trainerPal)
+void BtlController_HandleIntroTrainerBallThrow(u32 battler, const u16 *trainerPal)
 {
     u8 paletteNum, taskId;
     enum BattleSide side = GetBattlerSide(battler);
@@ -2799,7 +2799,12 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, c
         StoreSpriteCallbackInData6(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], SpriteCB_FreePlayerSpriteLoadMonSprite);
         StartSpriteAnim(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], ShouldDoSlideInAnim(battler) ? 2 : 1);
 
-        paletteNum = AllocSpritePalette(tagTrainerPal);
+        if (IsControllerPlayer(battler) || IsControllerWally(battler))
+            paletteNum = AllocSpritePalette(0xD6F8);
+        else if (BattlerIsOpponent(battler))
+            paletteNum = AllocSpritePalette(0);
+        else
+            paletteNum = AllocSpritePalette(0xD6F9);
         LoadPalette(trainerPal, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (8 + battler/2);
     }
