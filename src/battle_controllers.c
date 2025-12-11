@@ -3074,9 +3074,56 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         }
     }
 
-    if (IsControllerLinkOpponent(battler))
+    // Show healthbox after ball anim
+    if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
+        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
     {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
+        if (IsControllerOpponent(battler))
+        {
+            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
+            {
+                if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
+                {
+                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
+                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
+                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
+                }
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
+                StartHealthboxSlideIn(battler);
+                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
+            }
+            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
+        }
+        else if (IsControllerPlayer(battler))
+        {
+            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
+            {
+                if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+                {
+                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
+                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
+                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
+                }
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
+                StartHealthboxSlideIn(battler);
+                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
+            }
+            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
+        }
+        else if (IsControllerWally(battler) || BattlerIsPartner(battler))
+        {
+            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+            {
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
+                StartHealthboxSlideIn(BATTLE_PARTNER(battler));
+                SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
+            }
+            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
+            StartHealthboxSlideIn(battler);
+            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
+            bgmRestored = TRUE;
+        }
+        else
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
             {
@@ -3092,7 +3139,10 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             }
             gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
         }
+    }
 
+    if (IsControllerLinkOpponent(battler))
+    {
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
             && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
             && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
@@ -3117,23 +3167,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     }
     else if (IsControllerOpponent(battler))
     {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (twoMonsOpponent && (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
-        }
-
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
             && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
             && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
@@ -3157,25 +3190,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     }
     else if (IsControllerPlayer(battler))
     {
-        // Show healthbox after ball anim
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
-        }
-
         // Restore bgm after cry has played and healthbox anim is started
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
             && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
@@ -3195,24 +3209,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     }
     else if (IsControllerRecordedOpponent(battler))
     {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-         && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
-        }
-
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
             && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
             && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
@@ -3236,24 +3232,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
     }
     else if (IsControllerRecordedPlayer(battler))
     {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
-            {
-                if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                {
-                    UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                    StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                    SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-                }
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(battler);
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            }
-            gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted = TRUE;
-        }
-
         if (gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
             && !gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
             && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
@@ -3273,40 +3251,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
 
             }
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
-            bgmRestored = TRUE;
-        }
-    }
-    else if (IsControllerWally(battler))
-    {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-            {
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-            }
-            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-            StartHealthboxSlideIn(battler);
-            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-            bgmRestored = TRUE;
-        }
-    }
-    else if (BattlerIsPartner(battler))
-    {
-        if (!gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive
-            && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
-        {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-            {
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-            }
-            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-            StartHealthboxSlideIn(battler);
-            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             bgmRestored = TRUE;
         }
     }
