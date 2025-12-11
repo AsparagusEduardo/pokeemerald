@@ -3154,9 +3154,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-
-        if (twoMonsOpponent && (!twoMonsOpponent || !(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
-            checkPartner = TRUE;
     }
     else if (IsControllerPlayer(battler))
     {
@@ -3195,10 +3192,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-
-        // Wait for battler anims
-        if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-            checkPartner = TRUE;
     }
     else if (IsControllerRecordedOpponent(battler))
     {
@@ -3240,9 +3233,6 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
             gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
             bgmRestored = TRUE;
         }
-
-        if (IsDoubleBattle())
-            checkPartner = TRUE;
     }
     else if (IsControllerRecordedPlayer(battler))
     {
@@ -3321,6 +3311,12 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
         }
     }
 
+    if ((IsControllerOpponent(battler) && twoMonsOpponent && (!twoMonsOpponent || !(gBattleTypeFlags & BATTLE_TYPE_MULTI) || BATTLE_TWO_VS_ONE_OPPONENT))
+        || (IsControllerPlayer(battler) && TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+        || (IsControllerRecordedOpponent(battler) && IsDoubleBattle()))
+        checkPartner = TRUE;
+
+    // Wait for battler anims
     if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
         && (!checkPartner || gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy))
     {
