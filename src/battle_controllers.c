@@ -3108,21 +3108,9 @@ void BtlController_Intro_TryShinyAnimShowHealthbox(u32 battler)
                 SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
             }
         }
-        else if (IsControllerWally(battler) || BattlerIsPartner(battler))
-        {
-            if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-            {
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battler)], GetBattlerMon(BATTLE_PARTNER(battler)), HEALTHBOX_ALL);
-                StartHealthboxSlideIn(BATTLE_PARTNER(battler));
-                SetHealthboxSpriteVisible(gHealthboxSpriteIds[BATTLE_PARTNER(battler)]);
-            }
-            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
-            StartHealthboxSlideIn(battler);
-            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-        }
         else
         {
-            if (!gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
+            if (IsControllerWally(battler) || BattlerIsPartner(battler) || !gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted)
             {
                 if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
                 {
