@@ -36,7 +36,6 @@ static void WallyHandleDrawTrainerPic(u32 battler);
 static void WallyHandleTrainerSlide(u32 battler);
 static void WallyHandleSuccessBallThrowAnim(u32 battler);
 static void WallyHandleBallThrowAnim(u32 battler);
-static void WallyHandleChooseAction(u32 battler);
 static void WallyHandleChooseMove(u32 battler);
 static void WallyHandleChooseItem(u32 battler);
 static void WallyHandleFaintingCry(u32 battler);
@@ -65,7 +64,7 @@ static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_MOVEANIMATION]            = BtlController_HandleMoveAnimation,
     [CONTROLLER_PRINTSTRING]              = BtlController_HandlePrintString,
     [CONTROLLER_PRINTSTRINGPLAYERONLY]    = BtlController_HandlePrintStringPlayerOnly,
-    [CONTROLLER_CHOOSEACTION]             = WallyHandleChooseAction,
+    [CONTROLLER_CHOOSEACTION]             = BtlController_HandleChooseAction,
     [CONTROLLER_YESNOBOX]                 = BtlController_Empty,
     [CONTROLLER_CHOOSEMOVE]               = WallyHandleChooseMove,
     [CONTROLLER_OPENBAG]                  = WallyHandleChooseItem,
@@ -245,21 +244,6 @@ static void WallyHandleSuccessBallThrowAnim(u32 battler)
 static void WallyHandleBallThrowAnim(u32 battler)
 {
     BtlController_HandleBallThrowAnim(battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW_WITH_TRAINER, FALSE);
-}
-
-static void WallyHandleChooseAction(u32 battler)
-{
-    s32 i;
-
-    gBattlerControllerFuncs[battler] = BtlController_HandleChooseActionAfterDma3;
-    BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
-
-    for (i = 0; i < 4; i++)
-        ActionSelectionDestroyCursorAt(i);
-
-    ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-    BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillWallyDo);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
 
 static void WallyHandleChooseMove(u32 battler)

@@ -2866,7 +2866,7 @@ static void BtlController_HandleInputChooseAction(u32 battler)
     }
 }
 
-void BtlController_HandleChooseActionAfterDma3(u32 battler)
+static void BtlController_HandleChooseActionAfterDma3(u32 battler)
 {
     if (!IsDma3ManagerBusyWithBgCopy())
     {
@@ -2890,6 +2890,76 @@ void BtlController_HandleChooseActionAfterDma3(u32 battler)
             }
         }
         gBattlerControllerFuncs[battler] = BtlController_HandleInputChooseAction;
+    }
+}
+
+void BtlController_HandleChooseAction(u32 battler)
+{
+    s32 i;
+
+    gBattlerControllerFuncs[battler] = BtlController_HandleChooseActionAfterDma3;
+    if (IsControllerSafari(battler))
+        BattlePutTextOnWindow(gText_SafariZoneMenu, B_WIN_ACTION_MENU);
+    else
+        BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
+
+    for (i = 0; i < 4; i++)
+        ActionSelectionDestroyCursorAt(i);
+
+    if (IsControllerPlayer(battler))
+    {
+        BattleTv_ClearExplosionFaintCause();
+        TryRestoreLastUsedBall();
+    }
+    ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+    if (IsControllerWally(battler))
+    {
+        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillWallyDo);
+    }
+    else if (IsControllerSafari(battler))
+    {
+        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo2);
+    }
+    else
+    {
+        PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
+        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
+    }
+
+    if (B_SHOW_PARTNER_TARGET && IsControllerPlayer(battler) && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(B_POSITION_PLAYER_RIGHT))
+    {
+        StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
+        u32 move = GetChosenMoveFromPosition(B_POSITION_PLAYER_RIGHT);
+        StringAppend(gStringVar1, GetMoveName(move));
+        u32 moveTarget = GetBattlerMoveTargetType(B_POSITION_PLAYER_RIGHT, move);
+        if (moveTarget == MOVE_TARGET_SELECTED)
+        {
+            if (gAiBattleData->chosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_LEFT)
+                StringAppend(gStringVar1, COMPOUND_STRING(" -{UP_ARROW}"));
+            else if (gAiBattleData->chosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_RIGHT)
+                StringAppend(gStringVar1, COMPOUND_STRING(" {UP_ARROW}-"));
+            else if (gAiBattleData->chosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_PLAYER_LEFT)
+                StringAppend(gStringVar1, COMPOUND_STRING(" {DOWN_ARROW}-"));
+            else if (gAiBattleData->chosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_PLAYER_RIGHT)
+                StringAppend(gStringVar1, COMPOUND_STRING(" -{DOWN_ARROW}"));
+        }
+        else if (moveTarget == MOVE_TARGET_BOTH)
+        {
+            StringAppend(gStringVar1, COMPOUND_STRING(" {UP_ARROW}{UP_ARROW}"));
+        }
+        else if (moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+        {
+            StringAppend(gStringVar1, COMPOUND_STRING(" {V_D_ARROW}{UP_ARROW}"));
+        }
+        else if (moveTarget == MOVE_TARGET_ALL_BATTLERS)
+        {
+            StringAppend(gStringVar1, COMPOUND_STRING(" {V_D_ARROW}{V_D_ARROW}"));
+        }
+        BattlePutTextOnWindow(gStringVar1, B_WIN_ACTION_PROMPT);
+    }
+    else
+    {
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
     }
 }
 

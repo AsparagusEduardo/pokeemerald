@@ -31,7 +31,6 @@
 static void SafariHandleDrawTrainerPic(u32 battler);
 static void SafariHandleSuccessBallThrowAnim(u32 battler);
 static void SafariHandleBallThrowAnim(u32 battler);
-static void SafariHandleChooseAction(u32 battler);
 static void SafariHandleChooseItem(u32 battler);
 static void SafariHandleChoosePokemon(u32 battler);
 static void SafariHandleStatusIconUpdate(u32 battler);
@@ -63,7 +62,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_MOVEANIMATION]            = BtlController_Empty,
     [CONTROLLER_PRINTSTRING]              = BtlController_HandlePrintString,
     [CONTROLLER_PRINTSTRINGPLAYERONLY]    = BtlController_HandlePrintStringPlayerOnly,
-    [CONTROLLER_CHOOSEACTION]             = SafariHandleChooseAction,
+    [CONTROLLER_CHOOSEACTION]             = BtlController_HandleChooseAction,
     [CONTROLLER_YESNOBOX]                 = BtlController_Empty,
     [CONTROLLER_CHOOSEMOVE]               = BtlController_Empty,
     [CONTROLLER_OPENBAG]                  = SafariHandleChooseItem,
@@ -222,21 +221,6 @@ static void SafariHandleSuccessBallThrowAnim(u32 battler)
 static void SafariHandleBallThrowAnim(u32 battler)
 {
     BtlController_HandleBallThrowAnim(battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW_WITH_TRAINER, FALSE);
-}
-
-static void SafariHandleChooseAction(u32 battler)
-{
-    s32 i;
-
-    gBattlerControllerFuncs[battler] = BtlController_HandleChooseActionAfterDma3;
-    BattlePutTextOnWindow(gText_SafariZoneMenu, B_WIN_ACTION_MENU);
-
-    for (i = 0; i < 4; i++)
-        ActionSelectionDestroyCursorAt(i);
-
-    ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-    BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo2);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
 
 static void SafariHandleChooseItem(u32 battler)
