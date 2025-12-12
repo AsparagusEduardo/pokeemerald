@@ -220,7 +220,7 @@ static void SafariHandleSuccessBallThrowAnim(u32 battler)
 
 static void SafariHandleBallThrowAnim(u32 battler)
 {
-    BtlController_HandleBallThrowAnim(battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW_WITH_TRAINER);
+    BtlController_HandleBallThrowAnim(battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
 }
 
 static void SafariHandleChooseItem(u32 battler)

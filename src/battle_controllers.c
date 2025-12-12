@@ -2559,11 +2559,15 @@ void BtlController_HandleSuccessBallThrowAnim(u32 battler, u32 target, u32 animI
     HandleBallThrow(battler, target, animId, allowCriticalCapture);
 }
 
-void BtlController_HandleBallThrowAnim(u32 battler, u32 target, u32 animId)
+void BtlController_HandleBallThrowAnim(u32 battler, u32 target)
 {
     bool32 allowCriticalCapture = FALSE;
+    u32 animId = B_ANIM_BALL_THROW;
     if (IsControllerPlayer(battler))
         allowCriticalCapture = TRUE;
+
+    if (IsControllerSafari(battler) || IsControllerWally(battler))
+        animId = B_ANIM_BALL_THROW_WITH_TRAINER;
 
     gBattleSpritesDataPtr->animationData->ballThrowCaseId = gBattleResources->bufferA[battler][1];
     HandleBallThrow(battler, target, animId, allowCriticalCapture);
