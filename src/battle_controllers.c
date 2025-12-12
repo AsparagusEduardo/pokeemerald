@@ -2622,7 +2622,7 @@ void BtlController_HandlePrintStringPlayerOnly(u32 battler)
         BtlController_Complete(battler);
 }
 
-u16 GetPrevBall(u16 ballId)
+static u16 GetPrevBall(u16 ballId)
 {
     s32 i;
     s32 index = ItemIdToBallId(ballId);
@@ -2639,7 +2639,7 @@ u16 GetPrevBall(u16 ballId)
     return ballId;
 }
 
-u32 GetNextBall(u32 ballId)
+static u32 GetNextBall(u32 ballId)
 {
     s32 i;
     s32 index = ItemIdToBallId(ballId);
