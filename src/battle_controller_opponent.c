@@ -65,7 +65,6 @@ static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler)
     [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = BtlController_Empty,
-    [CONTROLLER_SUCCESSBALLTHROWANIM]     = BtlController_Empty,
     [CONTROLLER_BALLTHROWANIM]            = BtlController_Empty,
     [CONTROLLER_PAUSE]                    = BtlController_Empty,
     [CONTROLLER_MOVEANIMATION]            = BtlController_HandleMoveAnimation,

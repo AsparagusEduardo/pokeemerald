@@ -53,7 +53,6 @@ static void PlayerHandleLoadMonSprite(u32 battler);
 static void PlayerHandleDrawTrainerPic(u32 battler);
 static void PlayerHandleTrainerSlide(u32 battler);
 static void PlayerHandlePaletteFade(u32 battler);
-static void PlayerHandleSuccessBallThrowAnim(u32 battler);
 static void PlayerHandlePause(u32 battler);
 static void PlayerHandleYesNoBox(u32 battler);
 static void PlayerHandleChooseItem(u32 battler);
@@ -107,7 +106,6 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_TRAINERSLIDEBACK]         = BtlController_HandleTrainerSlideBack,
     [CONTROLLER_FAINTANIMATION]           = BtlController_HandleFaintAnimation,
     [CONTROLLER_PALETTEFADE]              = PlayerHandlePaletteFade,
-    [CONTROLLER_SUCCESSBALLTHROWANIM]     = PlayerHandleSuccessBallThrowAnim,
     [CONTROLLER_BALLTHROWANIM]            = BtlController_HandleBallThrowAnim,
     [CONTROLLER_PAUSE]                    = PlayerHandlePause,
     [CONTROLLER_MOVEANIMATION]            = BtlController_HandleMoveAnimation,
@@ -1581,11 +1579,6 @@ static void PlayerHandlePaletteFade(u32 battler)
 {
     BeginNormalPaletteFade(PALETTES_ALL, 2, 0, 16, RGB_BLACK);
     BtlController_Complete(battler);
-}
-
-static void PlayerHandleSuccessBallThrowAnim(u32 battler)
-{
-    BtlController_HandleSuccessBallThrowAnim(battler, gBattlerTarget, B_ANIM_BALL_THROW, TRUE);
 }
 
 static void PlayerHandlePause(u32 battler)
