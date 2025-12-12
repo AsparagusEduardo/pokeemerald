@@ -376,6 +376,9 @@ void BtlController_HandleBallThrowAnim(u32 battler, u32 target, u32 animId, bool
 void BtlController_HandleMoveAnimation(u32 battler);
 void BtlController_HandlePrintString(u32 battler);
 void BtlController_HandlePrintStringPlayerOnly(u32 battler);
+u16 GetPrevBall(u16 ballId);
+u32 GetNextBall(u32 ballId);
+void BtlController_HandleInputChooseAction(u32 battler);
 void BtlController_HandleHealthBarUpdate(u32 battler);
 void DoStatusIconUpdate(u32 battler);
 void BtlController_HandleStatusIconUpdate(u32 battler);

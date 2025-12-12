@@ -449,6 +449,11 @@ static inline bool32 IsControllerLinkPartner(u32 battler)
     return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_LINK_PARTNER);
 }
 
+static inline bool32 IsControllerSafari(u32 battler)
+{
+    return (gBattlerBattleController[battler] == BATTLE_CONTROLLER_SAFARI);
+}
+
 bool32 ShouldUpdateTvData(u32 battler)
 {
     return (IsControllerPlayer(battler)
@@ -2614,6 +2619,244 @@ void BtlController_HandlePrintStringPlayerOnly(u32 battler)
         BtlController_HandlePrintString(battler);
     else
         BtlController_Complete(battler);
+}
+
+u16 GetPrevBall(u16 ballId)
+{
+    s32 i;
+    s32 index = ItemIdToBallId(ballId);
+    u32 newBall = 0;
+     for (i = 0; i < POKEBALL_COUNT; i++)
+    {
+        index--;
+        if (index == -1)
+            index = POKEBALL_COUNT - 1;
+        newBall = gBallItemIds[index];
+        if (CheckBagHasItem(newBall, 1))
+            return newBall;
+    }
+    return ballId;
+}
+
+u32 GetNextBall(u32 ballId)
+{
+    s32 i;
+    s32 index = ItemIdToBallId(ballId);
+    u32 newBall = 0;
+    for (i = 0; i < POKEBALL_COUNT; i++)
+    {
+        index++;
+        if (index == POKEBALL_COUNT)
+            index = 0;
+        newBall = gBallItemIds[index];
+        if (CheckBagHasItem(newBall, 1))
+            return newBall;
+    }
+    return ballId;
+}
+
+void BtlController_HandleInputChooseAction(u32 battler)
+{
+    if (JOY_REPEAT(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        gPlayerDpadHoldFrames++;
+    else
+        gPlayerDpadHoldFrames = 0;
+
+    if (IsControllerPlayer(battler))
+    {
+        DoBounceEffect(battler, BOUNCE_HEALTHBOX, 7, 1);
+        DoBounceEffect(battler, BOUNCE_MON, 7, 1);
+
+        if (B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == TRUE)
+        {
+            if (!gLastUsedBallMenuPresent)
+            {
+                gBattleStruct->ackBallUseBtn = FALSE;
+            }
+            else if (JOY_NEW(B_LAST_USED_BALL_BUTTON))
+            {
+                gBattleStruct->ackBallUseBtn = TRUE;
+                gBattleStruct->ballSwapped = FALSE;
+                ArrowsChangeColorLastBallCycle(TRUE);
+            }
+
+            if (gBattleStruct->ackBallUseBtn)
+            {
+                if (JOY_HELD(B_LAST_USED_BALL_BUTTON) && (JOY_NEW(DPAD_DOWN) || JOY_NEW(DPAD_RIGHT)))
+                {
+                    bool32 sameBall = FALSE;
+                    u32 nextBall = GetNextBall(gBallToDisplay);
+                    gBattleStruct->ballSwapped = TRUE;
+                    if (gBallToDisplay == nextBall)
+                        sameBall = TRUE;
+                    else
+                        gBallToDisplay = nextBall;
+                    SwapBallToDisplay(sameBall);
+                    PlaySE(SE_SELECT);
+                }
+                else if (JOY_HELD(B_LAST_USED_BALL_BUTTON) && (JOY_NEW(DPAD_UP) || JOY_NEW(DPAD_LEFT)))
+                {
+                    bool32 sameBall = FALSE;
+                    u32 prevBall = GetPrevBall(gBallToDisplay);
+                    gBattleStruct->ballSwapped = TRUE;
+                    if (gBallToDisplay == prevBall)
+                        sameBall = TRUE;
+                    else
+                        gBallToDisplay = prevBall;
+                    SwapBallToDisplay(sameBall);
+                    PlaySE(SE_SELECT);
+                }
+                else if (JOY_NEW(B_BUTTON) || (!JOY_HELD(B_LAST_USED_BALL_BUTTON) && gBattleStruct->ballSwapped))
+                {
+                    gBattleStruct->ackBallUseBtn = FALSE;
+                    gBattleStruct->ballSwapped = FALSE;
+                    ArrowsChangeColorLastBallCycle(FALSE);
+                }
+                else if (!JOY_HELD(B_LAST_USED_BALL_BUTTON) && CanThrowLastUsedBall())
+                {
+                    gBattleStruct->ackBallUseBtn = FALSE;
+                    PlaySE(SE_SELECT);
+                    ArrowsChangeColorLastBallCycle(FALSE);
+                    TryHideLastUsedBall();
+                    BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
+                    BtlController_Complete(battler);
+                }
+                return;
+            }
+        }
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        if (IsControllerPlayer(battler))
+        {
+            TryHideLastUsedBall();
+            switch (gActionSelectionCursor[battler])
+            {
+            case 0: // Top left
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_MOVE, 0);
+                break;
+            case 1: // Top right
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
+                break;
+            case 2: // Bottom left
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SWITCH, 0);
+                break;
+            case 3: // Bottom right
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_RUN, 0);
+                break;
+            }
+        }
+        else if (IsControllerSafari(battler))
+        {
+            switch (gActionSelectionCursor[battler])
+            {
+            case 0: // Top left
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SAFARI_BALL, 0);
+                    break;
+            case 1: // Top right
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SAFARI_POKEBLOCK, 0);
+                break;
+            case 2: // Bottom left
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SAFARI_GO_NEAR, 0);
+                break;
+            case 3: // Bottom right
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_SAFARI_RUN, 0);
+                break;
+            }
+        }
+        BtlController_Complete(battler);
+    }
+    else if (JOY_NEW(DPAD_LEFT))
+    {
+        if (gActionSelectionCursor[battler] & 1) // if is top right or bottom right
+        {
+            PlaySE(SE_SELECT);
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 1;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        }
+    }
+    else if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (!(gActionSelectionCursor[battler] & 1)) // if is top left or bottom left
+        {
+            PlaySE(SE_SELECT);
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 1;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        }
+    }
+    else if (JOY_NEW(DPAD_UP))
+    {
+        if (gActionSelectionCursor[battler] & 2) // if is bottom left or bottom right
+        {
+            PlaySE(SE_SELECT);
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 2;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        }
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        if (!(gActionSelectionCursor[battler] & 2)) // if is top left or top right
+        {
+            PlaySE(SE_SELECT);
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 2;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        }
+    }
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
+    {
+        if (IsControllerPlayer(battler)
+         && IsDoubleBattle()
+         && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT
+         && !(gAbsentBattlerFlags & (1u << GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
+         && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+        {
+            // Return item to bag if partner had selected one (if consumable).
+            u16 itemId = gBattleResources->bufferA[battler][2] | (gBattleResources->bufferA[battler][3] << 8);
+            if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM && GetItemConsumability(itemId))
+            {
+                AddBagItem(itemId, 1);
+            }
+            PlaySE(SE_SELECT);
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_CANCEL_PARTNER, 0);
+            BtlController_Complete(battler);
+        }
+        else if (B_QUICK_MOVE_CURSOR_TO_RUN)
+        {
+            if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) // If wild or safari battle, pressing B moves cursor to "Run".
+            {
+                PlaySE(SE_SELECT);
+                ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+                gActionSelectionCursor[battler] = 3;
+                ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            }
+        }
+    }
+    else if (IsControllerPlayer(battler))
+    {
+        if (JOY_NEW(START_BUTTON))
+        {
+            SwapHpBarsWithHpText();
+        }
+        else if (DEBUG_BATTLE_MENU == TRUE && JOY_NEW(SELECT_BUTTON))
+        {
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_DEBUG, 0);
+            BtlController_Complete(battler);
+        }
+        else if (B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == FALSE
+                 && JOY_NEW(B_LAST_USED_BALL_BUTTON) && CanThrowLastUsedBall())
+        {
+            PlaySE(SE_SELECT);
+            TryHideLastUsedBall();
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
+            BtlController_Complete(battler);
+        }
+    }
 }
 
 void BtlController_HandleHealthBarUpdate(u32 battler)
