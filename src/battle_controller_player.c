@@ -1590,7 +1590,7 @@ static void PlayerHandleSuccessBallThrowAnim(u32 battler)
 
 void PlayerHandleBallThrowAnim(u32 battler)
 {
-    BtlController_HandleBallThrowAnim(battler, gBattlerTarget, B_ANIM_BALL_THROW, TRUE);
+    BtlController_HandleBallThrowAnim(battler, gBattlerTarget, B_ANIM_BALL_THROW);
 }
 
 static void PlayerHandlePause(u32 battler)

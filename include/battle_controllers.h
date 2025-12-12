@@ -372,7 +372,7 @@ void BtlController_HandleTrainerSlide(u32 battler, u32 trainerPicId);
 void BtlController_HandleTrainerSlideBack(u32 battler);
 void BtlController_HandleFaintAnimation(u32 battler);
 void BtlController_HandleSuccessBallThrowAnim(u32 battler, u32 target, u32 animId, bool32 allowCriticalCapture);
-void BtlController_HandleBallThrowAnim(u32 battler, u32 target, u32 animId, bool32 allowCriticalCapture);
+void BtlController_HandleBallThrowAnim(u32 battler, u32 target, u32 animId);
 void BtlController_HandleMoveAnimation(u32 battler);
 void BtlController_HandlePrintString(u32 battler);
 void BtlController_HandlePrintStringPlayerOnly(u32 battler);
