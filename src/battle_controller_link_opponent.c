@@ -131,16 +131,10 @@ void LinkOpponentBufferExecCompleted(u32 battler)
 
 static void LinkOpponentHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos;
     u32 trainerPicId;
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
-        if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
-            xPos = 152;
-        else // first mon
-            xPos = 200;
-
         if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
         {
             if (battler == B_POSITION_OPPONENT_LEFT)
@@ -174,7 +168,6 @@ static void LinkOpponentHandleDrawTrainerPic(u32 battler)
     }
     else
     {
-        xPos = 176;
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_UNION_ROOM)
         {
             trainerPicId = GetUnionRoomTrainerPic();
@@ -201,7 +194,7 @@ static void LinkOpponentHandleDrawTrainerPic(u32 battler)
         }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, 40);
 }
 
 static void LinkOpponentHandleTrainerSlide(u32 battler)

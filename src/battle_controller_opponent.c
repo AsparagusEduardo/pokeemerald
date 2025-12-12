@@ -203,44 +203,22 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
 
 static void OpponentHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos;
     u32 trainerPicId;
 
     // Sets Multibattle test opponent sprites to not be Hiker
     if (IsMultibattleTest())
     {
         if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
-        {
             trainerPicId = TRAINER_PIC_LEAF;
-            if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
-                xPos = 176;
-            else
-                xPos = 200;
-        }
         else
-        {
             trainerPicId = TRAINER_PIC_RED;
-            xPos = 152;
-        }
     }
     else
     {
         trainerPicId = OpponentGetTrainerPicId(battler);
-
-        if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
-        {
-            if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
-                xPos = 152;
-           else // first mon
-                xPos = 200;
-        }
-        else
-        {
-            xPos = 176;
-        }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, 40);
 }
 
 void OpponentHandleTrainerSlide(u32 battler)

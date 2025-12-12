@@ -2380,10 +2380,11 @@ void BtlController_HandleReturnMonToBall(u32 battler)
 
 #define sSpeedX data[0]
 
-void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 xPos, s16 yPos)
+void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
 {
     s32 subpriority = -1;
     bool32 isFrontPic = TRUE;
+    s16 xPos = 0;
 
     if (IsControllerSafari(battler) || IsControllerWally(battler))
         subpriority = 30;
@@ -2397,6 +2398,173 @@ void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 xPos,
     || (IsControllerSafari(battler))
     || (IsControllerWally(battler)))
         isFrontPic = FALSE;
+
+    if (IsControllerLinkOpponent(battler))
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+        {
+            if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
+                xPos = 152;
+            else // first mon
+                xPos = 200;
+        }
+        else
+        {
+            xPos = 176;
+        }
+    }
+    else if (IsControllerLinkPartner(battler))
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+        {
+            if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
+                xPos = 90;
+            else // first mon
+                xPos = 32;
+        }
+        else
+        {
+            xPos = 80;
+        }
+    }
+    else if (IsControllerOpponent(battler))
+    {
+        if (IsMultibattleTest())
+        {
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+            {
+                if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+                    xPos = 176;
+                else
+                    xPos = 200;
+            }
+            else
+            {
+                xPos = 152;
+            }
+        }
+        else
+        {
+            if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
+            {
+                if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
+                    xPos = 152;
+                else // first mon
+                    xPos = 200;
+            }
+            else
+            {
+                xPos = 176;
+            }
+        }
+    }
+    else if (IsControllerPlayerPartner(battler))
+    {
+        if (IsMultibattleTest())
+            xPos = 90;
+        else if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+            xPos = 90;
+        else if (IsAiVsAiBattle())
+            xPos = 60;
+        else
+            xPos = 32;
+    }
+    else if (IsControllerPlayer(battler))
+    {
+        if (IsMultibattleTest())
+        {
+            if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+                xPos = 32;
+            else
+                xPos = 80;
+        }
+        else
+        {
+            if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+            {
+                if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // Second mon, on the right.
+                    xPos = 90;
+                else // First mon, on the left.
+                    xPos = 32;
+
+                if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
+                    xPos = 90;
+            }
+            else
+            {
+                xPos = 80;
+            }
+        }
+    }
+    else if (IsControllerRecordedOpponent(battler))
+    {
+        if (IsMultibattleTest())
+        {
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+            {
+                if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+                    xPos = 176;
+                else
+                    xPos = 200;
+            }
+            else
+            {
+                xPos = 152;
+            }
+        }
+        else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+        {
+            if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
+                xPos = 152;
+            else // first mon
+                xPos = 200;
+        }
+        else
+        {
+            xPos = 176;
+        }
+    }
+    else if (IsControllerRecordedPartner(battler))
+    {
+        xPos = 90;
+    }
+    else if (IsControllerRecordedPlayer(battler))
+    {
+        // Sets Multibattle test player sprites to not be Hiker
+        if (IsMultibattleTest())
+        {
+            if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+                xPos = 32;
+            else
+                xPos = 80;
+        }
+        else
+        {
+            if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+            {
+                if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
+                    xPos = 90;
+                else // first mon
+                    xPos = 32;
+
+                // !TESTING added as otherwise first test battle sprite is positioned incorrectly
+                if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && !TESTING)
+                    xPos = 90;
+            }
+            else
+            {
+                xPos = 80;
+            }
+        }
+    }
+    else if (IsControllerSafari(battler))
+    {
+        xPos = 80;
+    }
+    else if (IsControllerWally(battler))
+    {
+        xPos = 80;
+    }
 
     if (!IsOnPlayerSide(battler)) // Always the front sprite for the opponent.
     {

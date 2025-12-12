@@ -140,7 +140,7 @@ void PlayerPartnerBufferExecCompleted(u32 battler)
 // which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven) that use the back pic as well as animate it
 static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos, yPos;
+    s16 yPos;
     u32 trainerPicId;
 
     enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
@@ -148,29 +148,25 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
     if (IsMultibattleTest())
     {
         trainerPicId = TRAINER_BACK_PIC_STEVEN;
-        xPos = 90;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
     else if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
     {
         trainerPicId = gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic;
-        xPos = 90;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
     else if (IsAiVsAiBattle())
     {
         trainerPicId = GetTrainerPicFromId(gPartnerTrainerId);
-        xPos = 60;
         yPos = 80;
     }
     else
     {
         trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
-        xPos = 32;
         yPos = 80;
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, yPos);
 }
 
 static void PlayerPartnerHandleChooseAction(u32 battler)

@@ -1516,15 +1516,12 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
 // that use an animated back pic.
 static void PlayerHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos, yPos;
+    s16 yPos;
     u32 trainerPicId;
+
     if (IsMultibattleTest())
     {
         trainerPicId = TRAINER_BACK_PIC_BRENDAN;
-        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
-            xPos = 32;
-        else
-            xPos = 80;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
     else
@@ -1532,24 +1529,13 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
         trainerPicId = PlayerGetTrainerBackPicId();
         if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
-            if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // Second mon, on the right.
-                xPos = 90;
-            else // First mon, on the left.
-                xPos = 32;
-
             if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
-            {
-                xPos = 90;
                 yPos = 80;
-            }
             else
-            {
                 yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
-            }
         }
         else
         {
-            xPos = 80;
             yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
         }
     }
@@ -1558,7 +1544,7 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
         trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, yPos);
 }
 
 static void PlayerHandleTrainerSlide(u32 battler)

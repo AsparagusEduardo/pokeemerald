@@ -132,17 +132,13 @@ void RecordedPlayerBufferExecCompleted(u32 battler)
 
 static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos, yPos;
+    s16 yPos;
     u32 trainerPicId;
 
     // Sets Multibattle test player sprites to not be Hiker
     if (IsMultibattleTest())
     {
         trainerPicId = TRAINER_BACK_PIC_BRENDAN;
-        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
-            xPos = 32;
-        else
-            xPos = 80;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
     else
@@ -159,30 +155,19 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
 
         if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
-            if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
-                xPos = 90;
-            else // first mon
-                xPos = 32;
-
             // !TESTING added as otherwise first test battle sprite is positioned incorrectly
             if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && !TESTING)
-            {
-                xPos = 90;
                 yPos = 80;
-            }
             else
-            {
                 yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
-            }
         }
         else
         {
-            xPos = 80;
             yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
         }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, yPos);
 }
 
 static void RecordedPlayerHandleChooseAction(u32 battler)

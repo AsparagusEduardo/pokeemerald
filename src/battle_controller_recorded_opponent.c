@@ -137,33 +137,18 @@ void RecordedOpponentBufferExecCompleted(u32 battler)
 
 static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos;
     u32 trainerPicId;
 
     // Sets Multibattle test opponent sprites to not be Hiker
     if (IsMultibattleTest())
     {
         if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
-        {
             trainerPicId = TRAINER_PIC_LEAF;
-            if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
-                xPos = 176;
-            else
-                xPos = 200;
-        }
         else
-        {
             trainerPicId = TRAINER_PIC_RED;
-            xPos = 152;
-        }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
-        if ((GetBattlerPosition(battler) & BIT_FLANK) != 0) // second mon
-            xPos = 152;
-        else // first mon
-            xPos = 200;
-
         if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
         {
             if (battler == B_POSITION_OPPONENT_LEFT)
@@ -178,18 +163,13 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
     }
     else
     {
-        xPos = 176;
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_UNION_ROOM)
-        {
             trainerPicId = GetUnionRoomTrainerPic();
-        }
         else
-        {
             trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[gRecordedBattleMultiplayerId ^ BIT_SIDE].gender);
-        }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, 40);
 }
 
 static void RecordedOpponentHandleChooseAction(u32 battler)

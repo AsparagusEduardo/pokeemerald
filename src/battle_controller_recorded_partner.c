@@ -138,14 +138,13 @@ void RecordedPartnerBufferExecCompleted(u32 battler)
 // which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven) that use the back pic as well as animate it
 static void RecordedPartnerHandleDrawTrainerPic(u32 battler)
 {
-    s16 xPos, yPos;
+    s16 yPos;
     u32 trainerPicId;
 
     trainerPicId = TRAINER_BACK_PIC_STEVEN;
-    xPos = 90;
     yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, yPos);
 }
 
 static void RecordedPartnerHandleChooseAction(u32 battler)

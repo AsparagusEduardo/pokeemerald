@@ -221,8 +221,7 @@ void WallyBufferExecCompleted(u32 battler)
 
 static void WallyHandleDrawTrainerPic(u32 battler)
 {
-    BtlController_HandleDrawTrainerPic(battler, TRAINER_BACK_PIC_WALLY,
-                                       80, 80 + 4 * (8 - gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].coordinates.size));
+    BtlController_HandleDrawTrainerPic(battler, TRAINER_BACK_PIC_WALLY, 80 + 4 * (8 - gTrainerBacksprites[TRAINER_BACK_PIC_WALLY].coordinates.size));
 }
 
 static void WallyHandleTrainerSlide(u32 battler)
