@@ -444,6 +444,7 @@ void SafariBufferExecCompleted(u32 battler);
 // wally controller
 void SetControllerToWally(u32 battler);
 void WallyBufferExecCompleted(u32 battler);
+void WallyHandleActions(u32 battler);
 
 // recorded opponent controller
 void SetControllerToRecordedOpponent(u32 battler);

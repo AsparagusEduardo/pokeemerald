@@ -125,7 +125,7 @@ static void WallyBufferRunCommand(u32 battler)
     }
 }
 
-static void WallyHandleActions(u32 battler)
+void WallyHandleActions(u32 battler)
 {
     switch (gBattleStruct->wallyBattleState)
     {
@@ -253,7 +253,7 @@ static void HandleChooseActionAfterDma3(u32 battler)
     {
         gBattle_BG0_X = 0;
         gBattle_BG0_Y = DISPLAY_HEIGHT;
-        gBattlerControllerFuncs[battler] = WallyHandleActions;
+        gBattlerControllerFuncs[battler] = BtlController_HandleInputChooseAction;
     }
 }
 

@@ -2657,6 +2657,12 @@ u32 GetNextBall(u32 ballId)
 
 void BtlController_HandleInputChooseAction(u32 battler)
 {
+    if (IsControllerWally(battler))
+    {
+        gBattlerControllerFuncs[battler] = WallyHandleActions;
+        return;
+    }
+
     if (JOY_REPEAT(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
