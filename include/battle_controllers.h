@@ -378,7 +378,7 @@ void BtlController_HandlePrintString(u32 battler);
 void BtlController_HandlePrintStringPlayerOnly(u32 battler);
 u16 GetPrevBall(u16 ballId);
 u32 GetNextBall(u32 ballId);
-void BtlController_HandleInputChooseAction(u32 battler);
+void BtlController_HandleChooseActionAfterDma3(u32 battler);
 void BtlController_HandleHealthBarUpdate(u32 battler);
 void DoStatusIconUpdate(u32 battler);
 void BtlController_HandleStatusIconUpdate(u32 battler);

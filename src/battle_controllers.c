@@ -10,6 +10,7 @@
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "battle_tv.h"
+#include "bg.h"
 #include "cable_club.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -2655,7 +2656,7 @@ u32 GetNextBall(u32 ballId)
     return ballId;
 }
 
-void BtlController_HandleInputChooseAction(u32 battler)
+static void BtlController_HandleInputChooseAction(u32 battler)
 {
     if (IsControllerWally(battler))
     {
@@ -2862,6 +2863,33 @@ void BtlController_HandleInputChooseAction(u32 battler)
             BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
             BtlController_Complete(battler);
         }
+    }
+}
+
+void BtlController_HandleChooseActionAfterDma3(u32 battler)
+{
+    if (!IsDma3ManagerBusyWithBgCopy())
+    {
+        gBattle_BG0_X = 0;
+        gBattle_BG0_Y = DISPLAY_HEIGHT;
+        if (IsControllerPlayer(battler) && gBattleStruct->aiDelayTimer != 0)
+        {
+            gBattleStruct->aiDelayFrames = gMain.vblankCounter1 - gBattleStruct->aiDelayTimer;
+            gBattleStruct->aiDelayTimer = 0;
+            if (DEBUG_AI_DELAY_TIMER)
+            {
+                static const u8 sFramesText[] = _(" frames thinking\n");
+                static const u8 sCyclesText[] = _(" cycles");
+                ConvertIntToDecimalStringN(gDisplayedStringBattle, gBattleStruct->aiDelayFrames, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                u8* end = StringAppend(gDisplayedStringBattle, sFramesText);
+                ConvertIntToDecimalStringN(end, gBattleStruct->aiDelayCycles, STR_CONV_MODE_RIGHT_ALIGN, 8);
+                // Clear old result once read out
+                gBattleStruct->aiDelayCycles = 0;
+                StringAppend(gDisplayedStringBattle, sCyclesText);
+                BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
+            }
+        }
+        gBattlerControllerFuncs[battler] = BtlController_HandleInputChooseAction;
     }
 }
 

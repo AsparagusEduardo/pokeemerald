@@ -1604,38 +1604,11 @@ static void PlayerHandlePause(u32 battler)
     BtlController_Complete(battler);
 }
 
-static void HandleChooseActionAfterDma3(u32 battler)
-{
-    if (!IsDma3ManagerBusyWithBgCopy())
-    {
-        gBattle_BG0_X = 0;
-        gBattle_BG0_Y = DISPLAY_HEIGHT;
-        if (gBattleStruct->aiDelayTimer != 0)
-        {
-            gBattleStruct->aiDelayFrames = gMain.vblankCounter1 - gBattleStruct->aiDelayTimer;
-            gBattleStruct->aiDelayTimer = 0;
-            if (DEBUG_AI_DELAY_TIMER)
-            {
-                static const u8 sFramesText[] = _(" frames thinking\n");
-                static const u8 sCyclesText[] = _(" cycles");
-                ConvertIntToDecimalStringN(gDisplayedStringBattle, gBattleStruct->aiDelayFrames, STR_CONV_MODE_RIGHT_ALIGN, 3);
-                u8* end = StringAppend(gDisplayedStringBattle, sFramesText);
-                ConvertIntToDecimalStringN(end, gBattleStruct->aiDelayCycles, STR_CONV_MODE_RIGHT_ALIGN, 8);
-                // Clear old result once read out
-                gBattleStruct->aiDelayCycles = 0;
-                StringAppend(gDisplayedStringBattle, sCyclesText);
-                BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
-            }
-        }
-        gBattlerControllerFuncs[battler] = BtlController_HandleInputChooseAction;
-    }
-}
-
 static void PlayerHandleChooseAction(u32 battler)
 {
     s32 i;
 
-    gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
+    gBattlerControllerFuncs[battler] = BtlController_HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
     BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
 

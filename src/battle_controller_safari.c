@@ -224,21 +224,11 @@ static void SafariHandleBallThrowAnim(u32 battler)
     BtlController_HandleBallThrowAnim(battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW_WITH_TRAINER, FALSE);
 }
 
-static void HandleChooseActionAfterDma3(u32 battler)
-{
-    if (!IsDma3ManagerBusyWithBgCopy())
-    {
-        gBattle_BG0_X = 0;
-        gBattle_BG0_Y = DISPLAY_HEIGHT;
-        gBattlerControllerFuncs[battler] = BtlController_HandleInputChooseAction;
-    }
-}
-
 static void SafariHandleChooseAction(u32 battler)
 {
     s32 i;
 
-    gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
+    gBattlerControllerFuncs[battler] = BtlController_HandleChooseActionAfterDma3;
     BattlePutTextOnWindow(gText_SafariZoneMenu, B_WIN_ACTION_MENU);
 
     for (i = 0; i < 4; i++)
