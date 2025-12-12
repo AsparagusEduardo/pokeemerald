@@ -2996,9 +2996,17 @@ void DoStatusIconUpdate(u32 battler)
 {
     struct Pokemon *mon = GetBattlerMon(battler);
 
-    UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_STATUS_ICON);
-    gBattleSpritesDataPtr->healthBoxesData[battler].statusAnimActive = 0;
-    gBattlerControllerFuncs[battler] = Controller_WaitForStatusAnimation;
+    if (!IsControllerSafari(battler))
+    {
+        UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_STATUS_ICON);
+        gBattleSpritesDataPtr->healthBoxesData[battler].statusAnimActive = 0;
+        gBattlerControllerFuncs[battler] = Controller_WaitForStatusAnimation;
+    }
+    else
+    {
+        UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_SAFARI_BALLS_TEXT);
+        BtlController_Complete(battler);
+    }
 }
 
 void BtlController_HandleStatusIconUpdate(u32 battler)
@@ -3006,6 +3014,8 @@ void BtlController_HandleStatusIconUpdate(u32 battler)
     if (!IsBattleSEPlaying(battler))
     {
         DoStatusIconUpdate(battler);
+        if (gTestRunnerEnabled && BattlerIsRecorded(battler))
+            TestRunner_Battle_RecordStatus1(battler, GetMonData(GetBattlerMon(battler), MON_DATA_STATUS));
     }
 }
 
