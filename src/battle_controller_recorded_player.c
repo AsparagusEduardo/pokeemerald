@@ -132,7 +132,6 @@ void RecordedPlayerBufferExecCompleted(u32 battler)
 
 static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
 {
-    bool32 isFrontPic;
     s16 xPos, yPos;
     u32 trainerPicId;
 
@@ -183,12 +182,7 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
         }
     }
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && !TESTING)
-        isFrontPic = TRUE;
-    else
-        isFrontPic = FALSE;
-
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
 }
 
 static void RecordedPlayerHandleChooseAction(u32 battler)

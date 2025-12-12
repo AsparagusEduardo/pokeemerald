@@ -1516,7 +1516,6 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
 // that use an animated back pic.
 static void PlayerHandleDrawTrainerPic(u32 battler)
 {
-    bool32 isFrontPic;
     s16 xPos, yPos;
     u32 trainerPicId;
     if (IsMultibattleTest())
@@ -1557,16 +1556,9 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
 
     // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
-    {
         trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
-        isFrontPic = TRUE;
-    }
-    else // Use back pic in all the other usual circumstances.
-    {
-        isFrontPic = FALSE;
-    }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
 }
 
 static void PlayerHandleTrainerSlide(u32 battler)

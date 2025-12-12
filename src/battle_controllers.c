@@ -2380,11 +2380,23 @@ void BtlController_HandleReturnMonToBall(u32 battler)
 
 #define sSpeedX data[0]
 
-void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, bool32 isFrontPic, s16 xPos, s16 yPos)
+void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 xPos, s16 yPos)
 {
     s32 subpriority = -1;
+    bool32 isFrontPic = TRUE;
+
     if (IsControllerSafari(battler) || IsControllerWally(battler))
         subpriority = 30;
+
+    // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
+    if (IsControllerLinkPartner(battler)
+    || (IsControllerPlayerPartner(battler) && gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+    || (IsControllerPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE)))
+    || (IsControllerRecordedPartner(battler))
+    || (IsControllerRecordedPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || TESTING))
+    || (IsControllerSafari(battler))
+    || (IsControllerWally(battler)))
+        isFrontPic = FALSE;
 
     if (!IsOnPlayerSide(battler)) // Always the front sprite for the opponent.
     {

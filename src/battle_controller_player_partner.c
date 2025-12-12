@@ -140,7 +140,6 @@ void PlayerPartnerBufferExecCompleted(u32 battler)
 // which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven) that use the back pic as well as animate it
 static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
 {
-    bool32 isFrontPic;
     s16 xPos, yPos;
     u32 trainerPicId;
 
@@ -171,13 +170,7 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
         yPos = 80;
     }
 
-    // Use back pic only if the partner Steven or is custom.
-    if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        isFrontPic = FALSE;
-    else
-        isFrontPic = TRUE;
-
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, yPos);
 }
 
 static void PlayerPartnerHandleChooseAction(u32 battler)

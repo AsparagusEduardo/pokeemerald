@@ -201,7 +201,7 @@ static void LinkOpponentHandleDrawTrainerPic(u32 battler)
         }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, TRUE, xPos, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, xPos, 40);
 }
 
 static void LinkOpponentHandleTrainerSlide(u32 battler)

@@ -146,7 +146,7 @@ static void LinkPartnerHandleDrawTrainerPic(u32 battler)
     }
 
     trainerPicId = LinkPlayerGetTrainerPicId(GetBattlerMultiplayerId(battler));
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, FALSE,
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId,
                                        xPos, 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size));
 }
 
