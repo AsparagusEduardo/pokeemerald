@@ -189,7 +189,7 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
         }
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, TRUE, xPos, 40, -1);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, TRUE, xPos, 40);
 }
 
 static void RecordedOpponentHandleChooseAction(u32 battler)

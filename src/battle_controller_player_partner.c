@@ -177,7 +177,7 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
     else
         isFrontPic = TRUE;
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
 }
 
 static void PlayerPartnerHandleChooseAction(u32 battler)

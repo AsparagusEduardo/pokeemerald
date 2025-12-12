@@ -188,7 +188,7 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
     else
         isFrontPic = FALSE;
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
 }
 
 static void RecordedPlayerHandleChooseAction(u32 battler)

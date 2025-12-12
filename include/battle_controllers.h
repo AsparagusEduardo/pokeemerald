@@ -366,7 +366,7 @@ void BtlController_HandleSetRawMonData(u32 battler);
 void BtlController_HandleLoadMonSprite(u32 battler);
 void BtlController_HandleSwitchInAnim(u32 battler);
 void BtlController_HandleReturnMonToBall(u32 battler);
-void BtlController_HandleDrawTrainerPic(u32 battlerId, u32 trainerPicId, bool32 isFrontPic, s16 xPos, s16 yPos, s32 subpriority);
+void BtlController_HandleDrawTrainerPic(u32 battlerId, u32 trainerPicId, bool32 isFrontPic, s16 xPos, s16 yPos);
 void BtlController_HandleTrainerSlide(u32 battler, u32 trainerPicId);
 void BtlController_HandleTrainerSlideBack(u32 battler);
 void BtlController_HandleFaintAnimation(u32 battler);

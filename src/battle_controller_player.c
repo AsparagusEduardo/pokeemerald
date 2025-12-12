@@ -1566,7 +1566,7 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
         isFrontPic = FALSE;
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos, -1);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId, isFrontPic, xPos, yPos);
 }
 
 static void PlayerHandleTrainerSlide(u32 battler)
