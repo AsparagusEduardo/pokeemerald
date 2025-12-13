@@ -2399,16 +2399,7 @@ void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
     || (IsControllerWally(battler)))
         isFrontPic = FALSE;
 
-    if (IsControllerLinkOpponent(battler))
-    {
-        if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-            xPos = 176;
-        else if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // second mon
-            xPos = 152;
-        else // first mon
-            xPos = 200;
-    }
-    else if (IsControllerOpponent(battler))
+    if (BattlerIsOpponent(battler))
     {
         if (IsMultibattleTest())
         {
@@ -2423,30 +2414,9 @@ void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
         {
             if (!(gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT))
                 xPos = 176;
-            else if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // second mon
+            else if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // second trainer
                 xPos = 152;
-            else // first mon
-                xPos = 200;
-        }
-    }
-    else if (IsControllerRecordedOpponent(battler))
-    {
-        if (IsMultibattleTest())
-        {
-            if (GetBattlerPosition(battler) != B_POSITION_OPPONENT_LEFT)
-                xPos = 152;
-            else if (!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
-                xPos = 176;
-            else
-                xPos = 200;
-        }
-        else
-        {
-            if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
-                xPos = 176;
-            else if ((GetBattlerPosition(battler) & BIT_FLANK) != B_FLANK_LEFT) // second mon
-                xPos = 152;
-            else // first mon
+            else // first trainer
                 xPos = 200;
         }
     }
