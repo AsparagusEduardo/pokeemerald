@@ -169,7 +169,7 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
             trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[gRecordedBattleMultiplayerId ^ BIT_SIDE].gender);
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId);
 }
 
 static void RecordedOpponentHandleChooseAction(u32 battler)

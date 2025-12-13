@@ -1519,32 +1519,15 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
     s16 yPos;
     u32 trainerPicId;
 
-    if (IsMultibattleTest())
-    {
-        trainerPicId = TRAINER_BACK_PIC_BRENDAN;
-        yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
-    }
-    else
-    {
-        trainerPicId = PlayerGetTrainerBackPicId();
-        if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-        {
-            if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
-                yPos = 80;
-            else
-                yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
-        }
-        else
-        {
-            yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
-        }
-    }
-
     // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
         trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
+    else if (IsMultibattleTest())
+        trainerPicId = TRAINER_BACK_PIC_BRENDAN;
+    else
+        trainerPicId = PlayerGetTrainerBackPicId();
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, yPos);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId);
 }
 
 static void PlayerHandleTrainerSlide(u32 battler)

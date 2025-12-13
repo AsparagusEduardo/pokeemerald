@@ -2448,17 +2448,64 @@ static s16 DrawTrainerPic_GetXPos(u32 battler)
     return xPos;
 }
 
+static s16 DrawTrainerPic_GetYPos(u32 battler, u32 trainerPicId)
+{
+    s16 yPos = 0;
+
+    if (BattlerIsOpponent(battler))
+    {
+        yPos = 40;
+    }
+    else if (IsControllerSafari(battler)
+        || IsControllerWally(battler)
+        || IsControllerLinkPartner(battler)
+        || IsControllerRecordedPartner(battler))
+    {
+        yPos = 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size);
+    }
+    else if (IsControllerPlayerPartner(battler))
+    {
+        if (IsMultibattleTest() || gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+            yPos = 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size);
+        else
+            yPos = 80;
+    }
+    else if (IsControllerPlayer(battler))
+    {
+        if ((IsMultibattleTest()
+            || !(gBattleTypeFlags & BATTLE_TYPE_MULTI)
+            || !(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+            || gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE)))
+            yPos = 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size);
+        else
+            yPos = 80;
+    }
+    else if (IsControllerRecordedPlayer(battler))
+    {
+        // Sets Multibattle test player sprites to not be Hiker
+        if (IsMultibattleTest()
+        || !(gBattleTypeFlags & BATTLE_TYPE_MULTI)
+        || !(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && !TESTING)) // !TESTING added as otherwise first test battle sprite is positioned incorrectly
+            yPos = 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size);
+        else
+            yPos = 80;
+    }
+
+    return yPos;
+}
+
 // In emerald it's possible to have a tag battle in the battle frontier facilities with AI
 // which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven)
 // that use an animated back pic.
 
 #define sSpeedX data[0]
 
-void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
+void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId)
 {
     s32 subpriority = -1;
     bool32 isFrontPic = TRUE;
     s16 xPos = DrawTrainerPic_GetXPos(battler);
+    s16 yPos = DrawTrainerPic_GetYPos(battler, trainerPicId);
 
     if (IsControllerSafari(battler) || IsControllerWally(battler))
         subpriority = 30;

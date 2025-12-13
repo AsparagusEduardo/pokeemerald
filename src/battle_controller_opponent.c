@@ -218,7 +218,7 @@ static void OpponentHandleDrawTrainerPic(u32 battler)
         trainerPicId = OpponentGetTrainerPicId(battler);
     }
 
-    BtlController_HandleDrawTrainerPic(battler, trainerPicId, 40);
+    BtlController_HandleDrawTrainerPic(battler, trainerPicId);
 }
 
 void OpponentHandleTrainerSlide(u32 battler)
