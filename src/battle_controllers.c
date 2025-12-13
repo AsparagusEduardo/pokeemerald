@@ -2374,30 +2374,9 @@ void BtlController_HandleReturnMonToBall(u32 battler)
     }
 }
 
-// In emerald it's possible to have a tag battle in the battle frontier facilities with AI
-// which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven)
-// that use an animated back pic.
-
-#define sSpeedX data[0]
-
-void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
+static s16 DrawTrainerPic_GetXPos(u32 battler)
 {
-    s32 subpriority = -1;
-    bool32 isFrontPic = TRUE;
     s16 xPos = 0;
-
-    if (IsControllerSafari(battler) || IsControllerWally(battler))
-        subpriority = 30;
-
-    // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
-    if (IsControllerLinkPartner(battler)
-    || (IsControllerPlayerPartner(battler) && gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-    || (IsControllerPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE)))
-    || (IsControllerRecordedPartner(battler))
-    || (IsControllerRecordedPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || TESTING))
-    || (IsControllerSafari(battler))
-    || (IsControllerWally(battler)))
-        isFrontPic = FALSE;
 
     if (BattlerIsOpponent(battler))
     {
@@ -2466,6 +2445,33 @@ void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
     {
         xPos = 80;
     }
+    return xPos;
+}
+
+// In emerald it's possible to have a tag battle in the battle frontier facilities with AI
+// which use the front sprite for both the player and the partner as opposed to any other battles (including the one with Steven)
+// that use an animated back pic.
+
+#define sSpeedX data[0]
+
+void BtlController_HandleDrawTrainerPic(u32 battler, u32 trainerPicId, s16 yPos)
+{
+    s32 subpriority = -1;
+    bool32 isFrontPic = TRUE;
+    s16 xPos = DrawTrainerPic_GetXPos(battler);
+
+    if (IsControllerSafari(battler) || IsControllerWally(battler))
+        subpriority = 30;
+
+    // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
+    if (IsControllerLinkPartner(battler)
+    || (IsControllerPlayerPartner(battler) && gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
+    || (IsControllerPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE)))
+    || (IsControllerRecordedPartner(battler))
+    || (IsControllerRecordedPlayer(battler) && (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || TESTING))
+    || (IsControllerSafari(battler))
+    || (IsControllerWally(battler)))
+        isFrontPic = FALSE;
 
     if (!IsOnPlayerSide(battler)) // Always the front sprite for the opponent.
     {
