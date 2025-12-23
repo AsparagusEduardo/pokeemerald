@@ -14,8 +14,8 @@ After completing the install instructions for your OS, proceed to [Building poke
 On Windows, the project can be built using the following systems:
 - WSL2, fastest
 - WSL1, 7 times slower than WSL2
-- Msys2, 20 times slower than WSL2 (**NOTE**: Currently broken on pret upstream)
-- Cygwin, 30 timer slower than WSL2 (**NOTE**: Currently broken on pret upstream)
+- Msys2, 20 times slower than WSL2
+- Cygwin, 30 timer slower than WSL2
 
 **NOTE**: Only WSL systems are recommended.
 
@@ -32,6 +32,7 @@ Distributions with instructions:
 - [Debian](docs/install/linux/DEBIAN.md)
 - [Arch Linux](docs/install/linux/ARCH_LINUX.md)
 - [NixOS](docs/install/linux/NIXOS.md)
+- [Fedora](docs/install/linux/FEDORA.md)
 
 Other distributions have to infer what to do from [general instructions](docs/install/linux/OTHERS.md).
 
