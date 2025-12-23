@@ -29,6 +29,7 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "item_icon.h"
+#include "item_use.h"
 #include "list_menu.h"
 #include "m4a.h"
 #include "main.h"
@@ -385,7 +386,7 @@ extern const u8 Debug_EventScript_FakeRTCNotEnabled[];
 extern const u8 Debug_BerryPestsDisabled[];
 extern const u8 Debug_BerryWeedsDisabled[];
 
-extern const u8 FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon[];
+extern const u8 Common_EventScript_MoveRelearner[];
 
 #include "data/map_group_count.h"
 
@@ -576,7 +577,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_PCBag[] =
 
 static const struct DebugMenuOption sDebugMenu_Actions_Party[] =
 {
-    { COMPOUND_STRING("Move Reminder"),      DebugAction_ExecuteScript, FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon },
+    { COMPOUND_STRING("Move Relearner"),     DebugAction_ExecuteScript, Common_EventScript_MoveRelearner },
     { COMPOUND_STRING("Hatch an Egg"),       DebugAction_ExecuteScript, Debug_HatchAnEgg },
     { COMPOUND_STRING("Heal party"),         DebugAction_Party_HealParty },
     { COMPOUND_STRING("Inflict Status1"),    DebugAction_ExecuteScript, Debug_EventScript_InflictStatus1 },
@@ -663,7 +664,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Flags[] =
     { NULL }
 };
 
-static const u8 *sDebugMenu_Actions_BagUse_Options[] =
+static const u8 *const sDebugMenu_Actions_BagUse_Options[] =
 {
     COMPOUND_STRING("No Bag: {STR_VAR_1}Inactive"),
     COMPOUND_STRING("No Bag: {STR_VAR_1}VS Trainers"),
@@ -994,7 +995,7 @@ static const u16 sLocationFlags[] =
 
 static u8 Debug_CheckToggleFlags(u8 id)
 {
-    u8 result = FALSE;
+    bool32 result = FALSE;
 
     switch (id)
     {
@@ -2076,6 +2077,17 @@ static void Debug_Display_ItemInfo(u32 itemId, u32 digit, u8 windowId)
 {
     StringCopy(gStringVar2, gText_DigitIndicator[digit]);
     u8* end = CopyItemName(itemId, gStringVar1);
+    u16 moveId = ItemIdToBattleMoveId(itemId);
+    if (moveId != MOVE_NONE)
+    {
+        end = StringCopy(end, gText_Space);
+        end = StringCopy(end, GetMoveName(moveId));
+    }
+    else if (CheckIfItemIsTMHMOrEvolutionStone(itemId) == 1)
+    {
+        end = StringCopy(end, COMPOUND_STRING(" None"));
+    } 
+
     WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(windowId));
     StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
     ConvertIntToDecimalStringN(gStringVar3, itemId, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
@@ -3041,6 +3053,9 @@ static void DebugAction_Give_MaxMoney(u8 taskId)
 static void DebugAction_Give_MaxCoins(u8 taskId)
 {
     SetCoins(MAX_COINS);
+
+    if (!CheckBagHasItem(ITEM_COIN_CASE, 1))
+        AddBagItem(ITEM_COIN_CASE, 1);
 }
 
 static void DebugAction_Give_MaxBattlePoints(u8 taskId)

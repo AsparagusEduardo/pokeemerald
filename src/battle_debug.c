@@ -360,7 +360,6 @@ static const struct ListMenuItem sVolatileStatusListItems[] =
     {COMPOUND_STRING("Torment"),            VOLATILE_TORMENT},
     {COMPOUND_STRING("Powder"),             VOLATILE_POWDER},
     {COMPOUND_STRING("DefenseCurl"),        VOLATILE_DEFENSE_CURL},
-    {COMPOUND_STRING("Recharge"),           VOLATILE_RECHARGE},
     {COMPOUND_STRING("Rage"),               VOLATILE_RAGE},
     {COMPOUND_STRING("DestinyBond"),        VOLATILE_DESTINY_BOND},
     {COMPOUND_STRING("EscapePrevention"),   VOLATILE_ESCAPE_PREVENTION},
@@ -379,7 +378,7 @@ static const struct ListMenuItem sVolatileStatusListItems[] =
     {COMPOUND_STRING("Lock On"),            VOLATILE_LOCK_ON},
     {COMPOUND_STRING("Perish Song"),        VOLATILE_PERISH_SONG},
     {COMPOUND_STRING("Minimize"),           VOLATILE_MINIMIZE},
-    {COMPOUND_STRING("Charge"),             VOLATILE_CHARGE},
+    {COMPOUND_STRING("Charge"),             VOLATILE_CHARGE_TIMER},
     {COMPOUND_STRING("Root"),               VOLATILE_ROOT},
     {COMPOUND_STRING("Yawn"),               VOLATILE_YAWN},
     {COMPOUND_STRING("Imprison"),           VOLATILE_IMPRISON},
@@ -1495,7 +1494,7 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
     case LIST_ITEM_TYPES:
         for (i = 0; i < 3; i++)
         {
-            u8 *types = &gBattleMons[data->battlerId].types[0];
+            enum Type *types = &gBattleMons[data->battlerId].types[0];
 
             PadString(gTypesInfo[types[i]].name, text);
             printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
@@ -2291,6 +2290,7 @@ static const u8 *const sHoldEffectNames[HOLD_EFFECT_COUNT] =
     [HOLD_EFFECT_OGERPON_MASK]     = COMPOUND_STRING("Ogerpon Mask"),
     [HOLD_EFFECT_BERSERK_GENE]     = COMPOUND_STRING("Berserk Gene"),
 };
+
 static const u8 *GetHoldEffectName(enum HoldEffect holdEffect)
 {
     if (sHoldEffectNames[holdEffect] == NULL)

@@ -20,6 +20,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     {
         .battleScript = BattleScript_EffectNonVolatileStatus,
         .battleTvScore = 0, // Handled within the battle TV functions
+        .encourageEncore = TRUE,
     },
 
     [EFFECT_ABSORB] =
@@ -791,7 +792,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_BEAT_UP] =
     {
-        .battleScript = (B_BEAT_UP >= GEN_5) ? BattleScript_EffectHit : BattleScript_EffectBeatUp,
+        .battleScript = BattleScript_EffectBeatUp,
         .battleTvScore = 2,
     },
 
@@ -851,9 +852,9 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_WORRY_SEED] =
+    [EFFECT_OVERWRITE_ABILITY] =
     {
-        .battleScript = BattleScript_EffectWorrySeed,
+        .battleScript = BattleScript_EffectOverwriteAbility,
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
     },
@@ -1393,12 +1394,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_SUCKER_PUNCH] =
     {
         .battleScript = BattleScript_EffectHit,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
-    [EFFECT_SIMPLE_BEAM] =
-    {
-        .battleScript = BattleScript_EffectSimpleBeam,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -2127,7 +2122,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_UPPER_HAND] =
     {
-        .battleScript = BattleScript_EffectUpperHand,
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
     },

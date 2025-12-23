@@ -31,7 +31,7 @@
 #define sSPECIAL_TRAINER_BATTLE_TYPE (gBattleScripting + 0x26) // specialTrainerBattleType
 #define sMON_CAUGHT                  (gBattleScripting + 0x27) // monCaught
 #define sSAVED_DMG                   (gBattleScripting + 0x28) // savedDmg
-#define sSAVED_MOVE_EFFECT           (gBattleScripting + 0x2C) // savedMoveEffect
+#define sUNUSED_0x2C                 (gBattleScripting + 0x2C) // unused_0x2c
 #define sMOVE_EFFECT                 (gBattleScripting + 0x2E) // moveEffect
 #define sUNUSED_0x30                 (gBattleScripting + 0x30) // unused_0x30
 #define sILLUSION_NICK_HACK          (gBattleScripting + 0x32) // illusionNickHack
@@ -96,10 +96,9 @@ enum CmdVarious
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN         1
-#define DMG_DOUBLED             2
-#define DMG_1_8_TARGET_HP       3
-#define DMG_FULL_ATTACKER_HP    4
-#define DMG_BIG_ROOT            5
+#define DMG_1_8_TARGET_HP       2
+#define DMG_FULL_ATTACKER_HP    3
+#define DMG_BIG_ROOT            4
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)
@@ -125,11 +124,20 @@ enum CmdVarious
 
 #define PARTY_SCREEN_OPTIONAL (1 << 7) // Flag for first argument to openpartyscreen
 
+enum SetMoveEffectFlags
+{
+    NO_FLAGS = 0,
+    EFFECT_PRIMARY = (1 << 0),
+    EFFECT_CERTAIN = (1 << 1),
+};
+
 // cases for Cmd_moveend - Order matters!
 enum MoveEndEffects
 {
     MOVEEND_SET_VALUES,
     MOVEEND_PROTECT_LIKE_EFFECT,
+    MOVEEND_GRUDGE,
+    MOVEEND_DESTINY_BOND,
     MOVEEND_ABSORB,
     MOVEEND_RAGE,
     MOVEEND_SYNCHRONIZE_TARGET,
@@ -149,12 +157,12 @@ enum MoveEndEffects
     MOVEEND_MIRROR_MOVE,
     MOVEEND_DEFROST,
     MOVEEND_NEXT_TARGET, // Everything up until here is handled for each strike of a spread move
-    MOVEEND_HP_THRESHHOLD_ITEMS_TARGET, // Activation only during a multi hit move / ability (Parental Bond))
+    MOVEEND_HP_THRESHHOLD_ITEMS_TARGET, // Activation only during a multi hit move / ability (Parental Bond)
     MOVEEND_MULTIHIT_MOVE,
     MOVEEND_MOVE_BLOCK,
     MOVEEND_ITEM_EFFECTS_ATTACKER_2,
     MOVEEND_ABILITY_BLOCK,
-    MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, skip to Eject Pack
+    MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, skip to Hit Escape + One
     MOVEEND_COLOR_CHANGE, // Color Change / Berserk / Anger Shell
     MOVEEND_KEE_MARANGA_HP_THRESHOLD_ITEM_TARGET,
     MOVEEND_RED_CARD,
@@ -198,6 +206,12 @@ enum TriggerOnFieldStatus
     ON_ANY,
     ON_TERRAIN,
     ON_WEATHER,
+};
+
+enum HealthUpdate
+{
+    PASSIVE_HP_UPDATE,
+    MOVE_DAMAGE_HP_UPDATE,
 };
 
 #endif // GUARD_CONSTANTS_BATTLE_SCRIPT_COMMANDS_H
