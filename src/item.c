@@ -276,25 +276,19 @@ bool8 AddBagItem(u16 itemId, u16 count)
                 Free(newItems);
                 return TRUE;
             }
-            else
+
+            // try creating another instance of the item if possible
+            if (pocket == TMHM_POCKET || pocket == BERRIES_POCKET)
             {
-                // try creating another instance of the item if possible
-                if (pocket == TMHM_POCKET || pocket == BERRIES_POCKET)
-                {
-                    Free(newItems);
-                    return FALSE;
-                }
-                else
-                {
-                    count -= slotCapacity - ownedCount;
-                    SetBagItemQuantity(&newItems[i].quantity, slotCapacity);
-                    // don't create another instance of the item if it's at max slot capacity and count is equal to 0
-                    if (count == 0)
-                    {
-                        break;
-                    }
-                }
+                Free(newItems);
+                return FALSE;
             }
+
+            count -= slotCapacity - ownedCount;
+            SetBagItemQuantity(&newItems[i].quantity, slotCapacity);
+            // don't create another instance of the item if it's at max slot capacity and count is equal to 0
+            if (count == 0)
+                break;
         }
     }
 
@@ -519,11 +513,8 @@ bool8 AddPCItem(u16 itemId, u16 count)
             Free(newItems);
             return FALSE;
         }
-        else
-        {
-            newItems[freeSlot].itemId = itemId;
-            SetPCItemQuantity(&newItems[freeSlot].quantity, count);
-        }
+        newItems[freeSlot].itemId = itemId;
+        SetPCItemQuantity(&newItems[freeSlot].quantity, count);
     }
 
     // Copy items back to the PC
