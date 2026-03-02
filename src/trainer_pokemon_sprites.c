@@ -317,7 +317,7 @@ u16 FreeAndDestroyMonPicSpriteNoPalette(u16 spriteId)
     return FreeAndDestroyPicSpriteInternal(spriteId, FALSE);
 }
 
-static u16 UNUSED LoadMonPicInWindow(u16 species, bool8 isShiny, u32 personality, bool8 isFrontPic, u8 paletteSlot, u8 windowId)
+u16 LoadMonPicInWindow(u16 species, bool8 isShiny, u32 personality, bool8 isFrontPic, u8 paletteSlot, u8 windowId)
 {
     return LoadPicSpriteInWindow(species, isShiny, personality, isFrontPic, paletteSlot, windowId, FALSE);
 }

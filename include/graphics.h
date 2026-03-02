@@ -2717,6 +2717,11 @@ extern const u16 gBattleAnimSpritePal_PowerGem[];
 extern const u16 gBattleAnimSpritePal_StoneEdge[];
 extern const u16 gBattleAnimSpritePal_StealthRock[];
 extern const u16 gBattleAnimSpritePal_PoisonJab[];
+
+// pokedex_screen
+extern const u16 gDexScreen_TopMenuIconPals_AtoZ[];
+extern const u32 gDexScreen_TopMenuIconTiles_AtoZ[];
+
 // New Battle Anim Particles
 extern const u32 gBattleAnimSpriteGfx_WhiteStreak[];
 extern const u16 gBattleAnimSpritePal_WhiteStreak[];

@@ -4,6 +4,7 @@
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
+#include "overworld.h"
 
 // Despite having a variable to track it, the roamer is
 // hard-coded to only ever be in map group 0
@@ -296,4 +297,11 @@ void GetRoamerLocation(u32 roamerIndex, u8 *mapGroup, u8 *mapNum)
 {
     *mapGroup = sRoamerLocation[roamerIndex][MAP_GRP];
     *mapNum = sRoamerLocation[roamerIndex][MAP_NUM];
+}
+
+u16 GetRoamerLocationMapSectionId(u32 roamerIndex)
+{
+    if (!ROAMER(roamerIndex)->active)
+        return MAPSEC_NONE;
+    return Overworld_GetMapHeaderByGroupAndId(sRoamerLocation[roamerIndex][MAP_GRP], sRoamerLocation[roamerIndex][MAP_NUM])->regionMapSectionId;
 }

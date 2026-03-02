@@ -108,7 +108,7 @@ static const u8 sTextColors[] = { TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_C
 // Table of move info icon offsets in graphics/interface/menu_info.png
 static const struct MenuInfoIcon sMenuInfoIcons[] =
 {   // { width, height, offset }
-    { 12, 12, 0x00 },  // Unused
+    [MENU_INFO_ICON_CAUGHT] = { 12, 12, 0x00 },
     [TYPE_NONE + 1]     = { 32, 12, 0xA4 }, // Copy of TYPE_MYSTERY's
     [TYPE_NORMAL + 1]   = { 32, 12, 0x20 },
     [TYPE_FIGHTING + 1] = { 32, 12, 0x64 },
@@ -1844,12 +1844,12 @@ static void UNUSED UnusedBlitBitmapRect(const struct Bitmap *src, struct Bitmap 
     }
 }
 
-static void UNUSED LoadMonIconPalAtOffset(u8 palOffset, u16 speciesId)
+void LoadMonIconPalAtOffset(u8 palOffset, u16 speciesId)
 {
     LoadPalette(GetValidMonIconPalettePtr(speciesId), palOffset, PLTT_SIZE_4BPP);
 }
 
-static void UNUSED DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y)
+void DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y)
 {
     BlitBitmapToWindow(windowId, GetMonIconPtr(speciesId, personality), x, y, 32, 32);
 }

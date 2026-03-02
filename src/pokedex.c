@@ -17,6 +17,7 @@
 #include "pokedex.h"
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
+#include "pokedex_frlg.h"
 #include "pokedex_plus_hgss.h"
 #include "rtc.h"
 #include "scanline_effect.h"
@@ -1590,6 +1591,11 @@ void CB2_OpenPokedex(void)
     if (POKEDEX_PLUS_HGSS)
     {
         CB2_OpenPokedexPlusHGSS();
+        return;
+    }
+    else if (IS_FRLG)
+    {
+        CB2_OpenPokedexFRLG();
         return;
     }
 
@@ -4012,6 +4018,8 @@ u8 DisplayCaughtMonDexPage(u16 species, bool32 isShiny, u32 personality)
     u8 taskId = 0;
     if (POKEDEX_PLUS_HGSS)
         taskId = CreateTask(Task_DisplayCaughtMonDexPageHGSS, 0);
+    else if (IS_FRLG)
+        return DexScreen_RegisterMonToPokedexFRLG(species);
     else
         taskId = CreateTask(Task_DisplayCaughtMonDexPage, 0);
 

@@ -20,6 +20,7 @@
 #define MENU_CURSOR_DELTA_LEFT  -1
 #define MENU_CURSOR_DELTA_RIGHT  1
 
+#define MENU_INFO_ICON_CAUGHT    0
 #define MENU_INFO_ICON_TYPE      (NUMBER_OF_MON_TYPES + 1)
 #define MENU_INFO_ICON_POWER     (NUMBER_OF_MON_TYPES + 2)
 #define MENU_INFO_ICON_ACCURACY  (NUMBER_OF_MON_TYPES + 3)
@@ -99,6 +100,8 @@ void PrintMenuActionGrid(u8 windowId, u8 fontId, u8 left, u8 top, u8 optionWidth
 u8 InitMenuActionGrid(u8 windowId, u8 optionWidth, u8 columns, u8 rows, u8 initialCursorPos);
 u8 ChangeMenuGridCursorPosition(s8 deltaX, s8 deltaY);
 u8 GetStartMenuWindowId(void);
+void LoadMonIconPalAtOffset(u8 palOffset, u16 speciesId);
+void DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y);
 void ListMenuLoadStdPalAt(u8 palOffset, u8 palId);
 u8 Menu_MoveCursor(s8 cursorDelta);
 u8 Menu_MoveCursorNoWrapAround(s8 cursorDelta);

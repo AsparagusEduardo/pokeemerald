@@ -5777,3 +5777,23 @@ bool8 CheckAddCoins(void)
     else
         return TRUE;
 }
+
+u8 GetUnlockedSeviiAreas(void)
+{
+    u8 result = 0;
+    if (FlagGet(FLAG_WORLD_MAP_ONE_ISLAND) == TRUE)
+        result |= 1 << 0;
+    if (FlagGet(FLAG_WORLD_MAP_TWO_ISLAND) == TRUE)
+        result |= 1 << 1;
+    if (FlagGet(FLAG_WORLD_MAP_THREE_ISLAND) == TRUE)
+        result |= 1 << 2;
+    if (FlagGet(FLAG_WORLD_MAP_FOUR_ISLAND) == TRUE)
+        result |= 1 << 3;
+    if (FlagGet(FLAG_WORLD_MAP_FIVE_ISLAND) == TRUE)
+        result |= 1 << 4;
+    if (FlagGet(FLAG_WORLD_MAP_SIX_ISLAND) == TRUE)
+        result |= 1 << 5;
+    if (FlagGet(FLAG_WORLD_MAP_SEVEN_ISLAND) == TRUE)
+        result |= 1 << 6;
+    return result;
+}

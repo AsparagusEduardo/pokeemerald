@@ -5280,6 +5280,33 @@ enum NationalDexOrder HoennToNationalOrder(enum HoennDexOrder hoennNum)
     return sHoennToNationalOrder[hoennNum - 1];
 }
 
+enum NationalDexOrder KantoToNationalDexNum(enum KantoDexOrder kantoNum)
+{
+    if (KANTO_DEX_START <= kantoNum && kantoNum < KANTO_DEX_END)
+        return sKantoToNationalOrder[kantoNum - KANTO_DEX_START];
+    return NATIONAL_DEX_NONE;
+}
+
+u16 KantoNumToSpecies(enum KantoDexOrder kantoNum)
+{
+    return NationalPokedexNumToSpecies(KantoToNationalDexNum(kantoNum));
+}
+
+enum KantoDexOrder NationalToKantoDexNum(enum NationalDexOrder natDexNum)
+{
+    enum KantoDexOrder i;
+
+    if (natDexNum == NATIONAL_DEX_NONE)
+        return KANTO_DEX_NONE;
+
+    for (i = 0; i < ARRAY_COUNT(sKantoToNationalOrder); i++)
+    {
+        if (sKantoToNationalOrder[i] == natDexNum)
+            return i + KANTO_DEX_START;
+    }
+    return KANTO_DEX_NONE;
+}
+
 // Spots can be drawn on Spinda's color indexes 1, 2, or 3
 #define FIRST_SPOT_COLOR 1
 #define LAST_SPOT_COLOR  3

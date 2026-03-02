@@ -61,6 +61,7 @@
 
 #define BG_TILE_H_FLIP(n) (0x400 + (n))
 #define BG_TILE_V_FLIP(n) (0x800 + (n))
+#define BG_TILE_H_V_FLIP(n) (0xC00 + (n))
 
 #define NUM_BACKGROUNDS 4
 

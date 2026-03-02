@@ -2054,6 +2054,9 @@ static const u16 sEmptyPal[16] = {0};
 
 #include "data/graphics/berry_fix.h"
 
+const u16 gDexScreen_TopMenuIconPals_AtoZ[] = INCBIN_U16("graphics/pokedex/cat_icon_abc.gbapal");
+const u32 gDexScreen_TopMenuIconTiles_AtoZ[] = INCBIN_U32("graphics/pokedex/cat_icon_abc.4bpp.lz");
+
 // Trade
 const u16 gTradeMenu_Pal[] = INCBIN_U16("graphics/trade/menu.gbapal");
 const u16 gTradeCursor_Pal[] = INCBIN_U16("graphics/trade/cursor.gbapal");
