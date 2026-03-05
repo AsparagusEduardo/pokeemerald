@@ -1,2 +1,2 @@
-SeafoamIslands_B2F_Frlg_MapScripts::
+SeafoamIslands_B2F_MapScripts::
 	.byte 0

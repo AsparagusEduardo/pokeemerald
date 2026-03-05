@@ -1,4 +1,4 @@
-LavenderTown_House2_Frlg_MapScripts::
+LavenderTown_House2_MapScripts::
 	.byte 0
 
 LavenderTown_House2_EventScript_NameRater::

@@ -18,7 +18,6 @@
 #include "list_menu.h"
 #include "mystery_event_menu.h"
 #include "naming_screen.h"
-#include "oak_speech.h"
 #include "option_menu.h"
 #include "overworld.h"
 #include "palette.h"
@@ -472,8 +471,8 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] =
 };
 
 static const struct MenuAction sMenuActions_Gender[] = {
-    {gText_Boy, {NULL}},
-    {gText_Girl, {NULL}}
+    {COMPOUND_STRING("BOY"), {NULL}},
+    {COMPOUND_STRING("GIRL"), {NULL}}
 };
 
 static const u8 *const sMalePresetNames[] = {
@@ -1076,18 +1075,6 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
         {
         case ACTION_NEW_GAME:
         default:
-            if (IS_FRLG)
-            {
-                DestroyTask(taskId);
-                FreeAllWindowBuffers();
-                if (action != ACTION_OPTION)
-                    sCurrItemAndOptionMenuCheck = 0;
-                else
-                    sCurrItemAndOptionMenuCheck |= OPTION_MENU_FLAG;  // entering the options menu
-                StartNewGameSceneFrlg();
-                return;
-            }
-
             gPlttBufferUnfaded[0] = RGB_BLACK;
             gPlttBufferFaded[0] = RGB_BLACK;
             gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
@@ -2199,7 +2186,7 @@ static void MainMenu_FormatSavegamePokedex(void)
         if (IsNationalPokedexEnabled())
             dexCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
         else
-            dexCount = GetRegionalPokedexCount(FLAG_GET_CAUGHT);
+            dexCount = GetHoennPokedexCount(FLAG_GET_CAUGHT);
         StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPokedex);
         AddTextPrinterParameterized3(2, FONT_NORMAL, 0, 33, sTextColor_MenuInfo, TEXT_SKIP_DRAW, gStringVar4);
         ConvertIntToDecimalStringN(str, dexCount, STR_CONV_MODE_LEFT_ALIGN, 4);

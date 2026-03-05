@@ -1,2 +1,2 @@
-NavelRock_SummitPath_3F_Frlg_MapScripts::
+NavelRock_SummitPath_3F_MapScripts::
 	.byte 0

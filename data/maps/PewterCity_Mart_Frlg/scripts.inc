@@ -1,4 +1,4 @@
-PewterCity_Mart_Frlg_MapScripts::
+PewterCity_Mart_MapScripts::
 	.byte 0
 
 PewterCity_Mart_EventScript_Youngster::

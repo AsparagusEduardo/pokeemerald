@@ -1,4 +1,4 @@
-TrainerTower_Lobby_Frlg_MapScripts::
+TrainerTower_Lobby_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, TrainerTower_Lobby_OnResume
 	map_script MAP_SCRIPT_ON_RETURN_TO_FIELD, TrainerTower_Lobby_OnReturnToField
 	map_script MAP_SCRIPT_ON_TRANSITION, TrainerTower_Lobby_OnTransition
@@ -96,7 +96,7 @@ TrainerTower_Lobby_EventScript_EnterEnd::
 TrainerTower_Lobby_EventScript_Nurse::
 	lock
 	faceplayer
-	call EventScript_PkmnCenterNurse_Frlg
+	call Common_EventScript_PkmnCenterNurse
 	release
 	end
 

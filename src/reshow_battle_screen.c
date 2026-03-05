@@ -24,7 +24,7 @@ static void CreateHealthboxSprite(enum BattlerId battler);
 static void ClearBattleBgCntBaseBlocks(void);
 static void CreateCaughtMonSprite(void);
 
-#define CATCH_TUTORIAL_TRAINER_PIC_BACK (IS_FRLG ? TRAINER_PIC_BACK_OLD_MAN : TRAINER_PIC_BACK_WALLY)
+#define CATCH_TUTORIAL_TRAINER_PIC_BACK (TRAINER_PIC_BACK_WALLY)
 
 void ReshowBattleScreenDummy(void)
 {
@@ -274,9 +274,7 @@ static bool8 LoadBattlerSpriteGfx(enum BattlerId battler)
         enum BattlerPosition position = GetBattlerPosition(battler);
         if (!IsOnPlayerSide(battler))
         {
-            if (IsGhostBattleWithoutScope())
-                DecompressGhostFrontPic(battler);
-            else if (!gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
+            if (!gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
                 BattleLoadMonSpriteGfx(GetBattlerMon(battler), battler);
             else
                 BattleLoadSubstituteOrMonSpriteGfx(battler, FALSE);
@@ -302,9 +300,7 @@ void CreateBattlerSprite(enum BattlerId battler)
         u8 posY;
         enum BattlerPosition position = GetBattlerPosition(battler);
 
-        if (IsGhostBattleWithoutScope())
-            posY = GetGhostSpriteDefault_Y(battler);
-        else if (gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
+        if (gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
             posY = GetSubstituteSpriteDefault_Y(battler);
         else
             posY = GetBattlerSpriteDefault_Y(battler);

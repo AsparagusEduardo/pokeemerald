@@ -1665,7 +1665,7 @@ static void SpriteCB_StatusSummaryBalls_OnSwitchout(struct Sprite *sprite)
     sprite->y2 = gSprites[barSpriteId].y2;
 }
 
-void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
+static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 {
     u32 healthboxSpriteId2 = gSprites[healthboxSpriteId].oam.affineParam;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
@@ -1684,9 +1684,6 @@ void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     species = GetMonData(mon, MON_DATA_SPECIES);
 
     if ((species == SPECIES_NIDORAN_F || species == SPECIES_NIDORAN_M) && StringCompare(nickname, GetSpeciesName(species)) == 0)
-        gender = 100;
-
-    if (GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_OPPONENT && IsGhostBattleWithoutScope())
         gender = 100;
 
     switch (gender)
@@ -1726,7 +1723,7 @@ void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     gSprites[healthboxSpriteId2].data[1] = savedValue2;
 }
 
-void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
+static void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
 {
     enum BattlerId battler;
     u8 healthBarSpriteId;
@@ -1738,8 +1735,6 @@ void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
 
     battler = gSprites[healthboxSpriteId].hMain_Battler;
     if (IsOnPlayerSide(battler))
-        return;
-    if (GetBattlerSide(battler) == B_SIDE_OPPONENT && IsGhostBattleWithoutScope())
         return;
     if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES)), FLAG_GET_CAUGHT))
         return;

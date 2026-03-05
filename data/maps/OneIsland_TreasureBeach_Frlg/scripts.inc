@@ -1,4 +1,4 @@
-OneIsland_TreasureBeach_Frlg_MapScripts::
+OneIsland_TreasureBeach_MapScripts::
 	.byte 0
 
 OneIsland_TreasureBeach_EventScript_Boy::

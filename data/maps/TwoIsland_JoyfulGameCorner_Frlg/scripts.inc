@@ -1,8 +1,8 @@
-TwoIsland_JoyfulGameCorner_Frlg_MapScripts::
+TwoIsland_JoyfulGameCorner_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TwoIsland_JoyfulGameCorner_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, TwoIsland_JoyfulGameCorner_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, TwoIsland_JoyfulGameCorner_OnFrame
-	map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad_Frlg
+	map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad
 	.byte 0
 
 TwoIsland_JoyfulGameCorner_OnTransition::

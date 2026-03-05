@@ -1,4 +1,4 @@
-CeladonCity_Condominiums_RoofRoom_Frlg_MapScripts::
+CeladonCity_Condominiums_RoofRoom_MapScripts::
 	.byte 0
 
 CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt::

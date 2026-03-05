@@ -1,4 +1,4 @@
-Route7_Frlg_MapScripts::
+Route7_MapScripts::
 	.byte 0
 
 Route7_EventScript_UndergroundPathSign::

@@ -1,4 +1,4 @@
-Route24_Frlg_MapScripts::
+Route24_MapScripts::
 	.byte 0
 
 Route24_EventScript_Rocket::

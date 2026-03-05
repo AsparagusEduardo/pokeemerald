@@ -589,11 +589,6 @@ bool32 TryRunFromBattle(enum BattlerId battler)
             effect++;
         }
     }
-    else if (IsGhostBattleWithoutScope())
-    {
-        if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-            effect++;
-    }
     else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL) && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         effect++;
@@ -693,51 +688,12 @@ void HandleAction_Run(void)
     }
 }
 
-#define safariBaitThrowCounter safariPkblThrowCounter
-#define safariRockThrowCounter safariGoNearCounter
-
 void HandleAction_WatchesCarefully(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
-    if (IS_FRLG)
-    {
-        if (gBattleStruct->safariRockThrowCounter != 0)
-        {
-            gBattleStruct->safariRockThrowCounter--;
-            if (gBattleStruct->safariRockThrowCounter == 0)
-            {
-                gBattleStruct->safariCatchFactor = gSpeciesInfo[GetMonData(gEnemyParty, MON_DATA_SPECIES)].catchRate * 100 / 1275;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_WATCHING;
-            }
-            else
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_ANGRY;
-            }
-        }
-        else
-        {
-            if (gBattleStruct->safariBaitThrowCounter != 0)
-            {
-                --gBattleStruct->safariBaitThrowCounter;
-                if (gBattleStruct->safariBaitThrowCounter == 0)
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_WATCHING;
-                else
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_EATING;
-            }
-            else
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_WATCHING;
-            }
-        }
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[0];
-    }
-    else
-    {
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_WATCHING;
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[0];
-    }
+    gBattlescriptCurrInstr = gBattlescriptsForSafariActions[0];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
@@ -769,48 +725,27 @@ void HandleAction_ThrowPokeblock(void)
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
+    gBattleCommunication[MULTISTRING_CHOOSER] = gBattleResources->bufferB[gBattlerAttacker][1] - 1;
+    gLastUsedItem = gBattleResources->bufferB[gBattlerAttacker][2];
 
-    if (IS_FRLG)
+    if (gBattleResults.pokeblockThrows < 255)
+        gBattleResults.pokeblockThrows++;
+    if (gBattleStruct->safariPkblThrowCounter < 3)
+        gBattleStruct->safariPkblThrowCounter++;
+    if (gBattleStruct->safariEscapeFactor > 1)
     {
-        // throw bait
-        gBattleStruct->safariBaitThrowCounter += Random() % 5 + 2;
-        if (gBattleStruct->safariBaitThrowCounter > 6)
-            gBattleStruct->safariBaitThrowCounter = 6;
-
-        gBattleStruct->safariRockThrowCounter = 0;
-        gBattleStruct->safariCatchFactor >>= 1;
-
-        if (gBattleStruct->safariCatchFactor <= 2)
-            gBattleStruct->safariCatchFactor = 3;
-
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[5];
-    }
-    else
-    {
-        // throw pokeblock
-        gBattleCommunication[MULTISTRING_CHOOSER] = gBattleResources->bufferB[gBattlerAttacker][1] - 1;
-        gLastUsedItem = gBattleResources->bufferB[gBattlerAttacker][2];
-
-        if (gBattleResults.pokeblockThrows < 255)
-            gBattleResults.pokeblockThrows++;
-        if (gBattleStruct->safariPkblThrowCounter < 3)
-            gBattleStruct->safariPkblThrowCounter++;
-        if (gBattleStruct->safariEscapeFactor > 1)
-        {
-            // BUG: safariEscapeFactor can become 0 below. This causes the pokeblock throw glitch.
-            #ifdef BUGFIX
-            if (gBattleStruct->safariEscapeFactor <= sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]])
-            #else
-            if (gBattleStruct->safariEscapeFactor < sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]])
-            #endif
-                gBattleStruct->safariEscapeFactor = 1;
-            else
-                gBattleStruct->safariEscapeFactor -= sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]];
-        }
-
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[2];
+        // BUG: safariEscapeFactor can become 0 below. This causes the pokeblock throw glitch.
+        #ifdef BUGFIX
+        if (gBattleStruct->safariEscapeFactor <= sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]])
+        #else
+        if (gBattleStruct->safariEscapeFactor < sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]])
+        #endif
+            gBattleStruct->safariEscapeFactor = 1;
+        else
+            gBattleStruct->safariEscapeFactor -= sPkblToEscapeFactor[gBattleStruct->safariPkblThrowCounter][gBattleCommunication[MULTISTRING_CHOOSER]];
     }
 
+    gBattlescriptCurrInstr = gBattlescriptsForSafariActions[2];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
@@ -820,49 +755,26 @@ void HandleAction_GoNear(void)
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
 
-    if (IS_FRLG)
+    gBattleStruct->safariCatchFactor += sGoNearCounterToCatchFactor[gBattleStruct->safariGoNearCounter];
+    if (gBattleStruct->safariCatchFactor > 20)
+        gBattleStruct->safariCatchFactor = 20;
+
+    gBattleStruct->safariEscapeFactor += sGoNearCounterToEscapeFactor[gBattleStruct->safariGoNearCounter];
+    if (gBattleStruct->safariEscapeFactor > 20)
+        gBattleStruct->safariEscapeFactor = 20;
+
+    if (gBattleStruct->safariGoNearCounter < 3)
     {
-        // throw rock
-        gBattleStruct->safariRockThrowCounter += Random() % 5 + 2;
-        if (gBattleStruct->safariRockThrowCounter > 6)
-            gBattleStruct->safariRockThrowCounter = 6;
-
-        gBattleStruct->safariBaitThrowCounter = 0;
-        gBattleStruct->safariCatchFactor <<= 1;
-
-        if (gBattleStruct->safariCatchFactor > 20)
-            gBattleStruct->safariCatchFactor = 20;
-
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[4];
+        gBattleStruct->safariGoNearCounter++;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CREPT_CLOSER;
     }
     else
     {
-        // go near
-        gBattleStruct->safariCatchFactor += sGoNearCounterToCatchFactor[gBattleStruct->safariGoNearCounter];
-        if (gBattleStruct->safariCatchFactor > 20)
-            gBattleStruct->safariCatchFactor = 20;
-
-        gBattleStruct->safariEscapeFactor += sGoNearCounterToEscapeFactor[gBattleStruct->safariGoNearCounter];
-        if (gBattleStruct->safariEscapeFactor > 20)
-            gBattleStruct->safariEscapeFactor = 20;
-
-        if (gBattleStruct->safariGoNearCounter < 3)
-        {
-            gBattleStruct->safariGoNearCounter++;
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CREPT_CLOSER;
-        }
-        else
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_GET_CLOSER;
-        }
-        gBattlescriptCurrInstr = gBattlescriptsForSafariActions[1];
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_GET_CLOSER;
     }
-
+    gBattlescriptCurrInstr = gBattlescriptsForSafariActions[1];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
-
-#undef safariBaitThrowCounter
-#undef safariRockThrowCounter
 
 void HandleAction_SafariZoneRun(void)
 {
@@ -5028,7 +4940,7 @@ u32 IsAbilityPreventingEscape(enum BattlerId battler)
     {
         if (battler == battlerDef || IsBattlerAlly(battler, battlerDef))
             continue;
-        
+
         if (!IsBattlerAlive(battlerDef))
             continue;
 
@@ -8065,8 +7977,7 @@ s32 CalcCritChanceStageGen1(struct BattleContext *ctx)
 static bool32 IsCriticalHit(struct BattleContext *ctx)
 {
 
-    if ((gBattleTypeFlags & (BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_POKEDUDE))
-    || ((gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE) && (!IS_FRLG || !BtlCtrl_OakOldMan_TestState2Flag(1))))
+    if (gBattleTypeFlags & (BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
         return FALSE;
     if (ctx->isSelfInflicted)
         return FALSE;

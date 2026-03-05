@@ -1,4 +1,4 @@
-FiveIsland_House1_Frlg_MapScripts::
+FiveIsland_House1_MapScripts::
 	.byte 0
 
 FiveIsland_House1_EventScript_Woman::

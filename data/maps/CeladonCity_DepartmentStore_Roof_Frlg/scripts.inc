@@ -1,4 +1,4 @@
-CeladonCity_DepartmentStore_Roof_Frlg_MapScripts::
+CeladonCity_DepartmentStore_Roof_MapScripts::
 	.byte 0
 
 CeladonCity_DepartmentStore_Roof_EventScript_ThirstyGirl::

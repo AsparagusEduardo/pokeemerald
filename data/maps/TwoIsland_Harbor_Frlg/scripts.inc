@@ -1,4 +1,4 @@
-TwoIsland_Harbor_Frlg_MapScripts::
+TwoIsland_Harbor_MapScripts::
 	.byte 0
 
 TwoIsland_Harbor_EventScript_Sailor::

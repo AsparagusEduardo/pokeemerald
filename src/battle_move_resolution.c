@@ -413,20 +413,6 @@ static enum CancelerResult CancelerConfused(struct BattleContext *ctx)
     return CANCELER_RESULT_SUCCESS;
 }
 
-static enum CancelerResult CancelerGhost(struct BattleContext *ctx) // GHOST in pokemon tower
-{
-    if (IsGhostBattleWithoutScope())
-    {
-        if (GetBattlerSide(ctx->battlerAtk) == B_SIDE_PLAYER)
-            gBattlescriptCurrInstr = BattleScript_TooScaredToMove;
-        else
-            gBattlescriptCurrInstr = BattleScript_GhostGetOutGetOut;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-        return CANCELER_RESULT_FAILURE;
-    }
-    return CANCELER_RESULT_SUCCESS;
-}
-
 static enum CancelerResult CancelerParalyzed(struct BattleContext *ctx)
 {
     if (gBattleMons[ctx->battlerAtk].status1 & STATUS1_PARALYSIS
@@ -1989,7 +1975,6 @@ static enum CancelerResult (*const sMoveSuccessOrderCancelers[])(struct BattleCo
     [CANCELER_TAUNTED] = CancelerTaunted,
     [CANCELER_IMPRISONED] = CancelerImprisoned,
     [CANCELER_CONFUSED] = CancelerConfused,
-    [CANCELER_GHOST] = CancelerGhost,
     [CANCELER_PARALYZED] = CancelerParalyzed,
     [CANCELER_INFATUATION] = CancelerInfatuation,
     [CANCELER_Z_MOVES] = CancelerZMoves,

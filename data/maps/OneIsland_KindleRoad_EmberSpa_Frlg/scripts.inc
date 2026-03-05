@@ -1,4 +1,4 @@
-OneIsland_KindleRoad_EmberSpa_Frlg_MapScripts::
+OneIsland_KindleRoad_EmberSpa_MapScripts::
 	.byte 0
 
 OneIsland_KindleRoad_EmberSpa_EventScript_OldMan::

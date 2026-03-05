@@ -1,4 +1,4 @@
-Route13_Frlg_MapScripts::
+Route13_MapScripts::
 	.byte 0
 
 Route13_EventScript_TrainerTips1::

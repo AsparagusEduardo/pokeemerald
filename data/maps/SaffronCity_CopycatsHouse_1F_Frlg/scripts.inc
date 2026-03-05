@@ -1,4 +1,4 @@
-SaffronCity_CopycatsHouse_1F_Frlg_MapScripts::
+SaffronCity_CopycatsHouse_1F_MapScripts::
 	.byte 0
 
 SaffronCity_CopycatsHouse_1F_EventScript_CopycatsMom::

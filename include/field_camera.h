@@ -23,7 +23,6 @@ void ResetFieldCamera(void);
 void ResetCameraUpdateInfo(void);
 u32 InitCameraUpdateCallback(u8 trackedSpriteId);
 void CameraUpdate(void);
-void CameraUpdateNoObjectRefresh(void);
 void SetCameraPanningCallback(void (*callback)(void));
 void SetCameraPanning(s16 horizontal, s16 vertical);
 void InstallCameraPanAheadCallback(void);

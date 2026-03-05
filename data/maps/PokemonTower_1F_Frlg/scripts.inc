@@ -1,4 +1,4 @@
-PokemonTower_1F_Frlg_MapScripts::
+PokemonTower_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PokemonTower_1F_OnTransition
 	.byte 0
 

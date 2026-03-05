@@ -1,4 +1,4 @@
-RockTunnel_B1F_Frlg_MapScripts::
+RockTunnel_B1F_MapScripts::
 	.byte 0
 
 RockTunnel_B1F_EventScript_Sofia::

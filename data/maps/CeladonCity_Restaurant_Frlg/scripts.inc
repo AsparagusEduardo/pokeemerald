@@ -1,4 +1,4 @@
-CeladonCity_Restaurant_Frlg_MapScripts::
+CeladonCity_Restaurant_MapScripts::
 	.byte 0
 
 CeladonCity_Restaurant_EventScript_Chef::

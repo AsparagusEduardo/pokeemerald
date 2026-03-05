@@ -1,6 +1,6 @@
 .equ MAGIKARP_PRICE, 500
 
-Route4_PokemonCenter_1F_Frlg_MapScripts::
+Route4_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route4_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
@@ -70,7 +70,7 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC::
 	goto_if_eq VAR_RESULT, NO, Route4_PokemonCenter_1F_EventScript_TransferMagikarpCloseMoneyBox
 	fadescreen FADE_TO_BLACK
 	hidemoneybox
-	special ChangePokemonNickname
+	special ChangeBoxPokemonNickname
 	waitstate
 	lock
 	faceplayer
@@ -134,7 +134,7 @@ Route4_PokemonCenter_1F_EventScript_NoRoomForMagikarp::
 Route4_PokemonCenter_1F_EventScript_Nurse::
 	lock
 	faceplayer
-	call EventScript_PkmnCenterNurse_Frlg
+	call Common_EventScript_PkmnCenterNurse
 	release
 	end
 

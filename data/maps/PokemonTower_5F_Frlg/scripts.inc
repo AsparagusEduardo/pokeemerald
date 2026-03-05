@@ -1,4 +1,4 @@
-PokemonTower_5F_Frlg_MapScripts::
+PokemonTower_5F_MapScripts::
 	.byte 0
 
 PokemonTower_5F_EventScript_Channeler::

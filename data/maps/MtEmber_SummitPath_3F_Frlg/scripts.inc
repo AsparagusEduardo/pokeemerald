@@ -1,2 +1,2 @@
-MtEmber_SummitPath_3F_Frlg_MapScripts::
+MtEmber_SummitPath_3F_MapScripts::
 	.byte 0

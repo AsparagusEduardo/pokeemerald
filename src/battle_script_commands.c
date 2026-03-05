@@ -1106,32 +1106,12 @@ static bool32 ShouldSkipAccuracyCalcPastFirstHit(enum BattlerId battlerAtk, enum
     return TRUE; // multiHitOn is set so skip Acc check for everything else
 }
 
-static bool32 ShouldSkipFRLGAccuracyCheck(void)
-{
-    if (!IS_FRLG)
-        return FALSE;
-
-    if ((gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE
-     && (!BtlCtrl_OakOldMan_TestState2Flag(1) || !BtlCtrl_OakOldMan_TestState2Flag(2))
-     && GetMovePower(gCurrentMove) != 0
-     && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER))
-    {
-        return TRUE;
-    }
-
-    if (gBattleTypeFlags & BATTLE_TYPE_POKEDUDE)
-        return TRUE;
-
-    return FALSE;
-}
-
 static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u8 *failInstr)
 {
     enum Ability abilityAtk = GetBattlerAbility(gBattlerAttacker);
     enum HoldEffect holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker);
 
-    if (ShouldSkipFRLGAccuracyCheck()
-     || ShouldSkipAccuracyCalcPastFirstHit(gBattlerAttacker, abilityAtk, holdEffectAtk, GetMoveEffect(gCurrentMove))
+    if (ShouldSkipAccuracyCalcPastFirstHit(gBattlerAttacker, abilityAtk, holdEffectAtk, GetMoveEffect(gCurrentMove))
      || IsMaxMove(gCurrentMove)
      || IsZMove(gCurrentMove))
     {
@@ -1148,12 +1128,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
         if (gBattleStruct->calculatedSpreadMoveAccuracy)
             break;
 
-        if (!calcSpreadMove && battlerDef != gBattlerTarget)
             continue;
-
-        if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef))
-            continue;
-
         numTargets++;
 
         struct BattleCalcValues cv = {0};
@@ -2364,7 +2339,7 @@ static void SetNonVolatileStatus(enum BattlerId effectBattler, enum MoveEffect e
 
 static inline bool32 IgnoreTargetingForMoveEffect(enum MoveEffect moveEffect) // Currently only used to determine move effects which happen even if the move's defined effectbattler is fainted
 {
-    switch (moveEffect) 
+    switch (moveEffect)
     {
     case MOVE_EFFECT_PAYDAY:
     case MOVE_EFFECT_BUG_BITE:
@@ -2376,7 +2351,7 @@ static inline bool32 IgnoreTargetingForMoveEffect(enum MoveEffect moveEffect) //
     case MOVE_EFFECT_SANDSTORM:
     case MOVE_EFFECT_HAIL:
     case MOVE_EFFECT_MISTY_TERRAIN:
-    case MOVE_EFFECT_GRASSY_TERRAIN: 
+    case MOVE_EFFECT_GRASSY_TERRAIN:
     case MOVE_EFFECT_ELECTRIC_TERRAIN:
     case MOVE_EFFECT_PSYCHIC_TERRAIN:
     case MOVE_EFFECT_DEFOG:
@@ -2443,7 +2418,7 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         gBattlescriptCurrInstr = battleScript;
         return;
     }
-    
+
     gBattleScripting.battler = battlerAtk;
     gEffectBattler = effectBattler;
 
@@ -10807,7 +10782,7 @@ static bool32 CriticalCapture(u32 odds)
         return FALSE;
 
     if (B_CRITICAL_CAPTURE_LOCAL_DEX == TRUE)
-        totalDexCount = REGIONAL_DEX_COUNT;
+        totalDexCount = HOENN_DEX_COUNT;
     else
         totalDexCount = NATIONAL_DEX_COUNT;
 
@@ -10854,13 +10829,7 @@ static void Cmd_handleballthrow(void)
 
     gBattlerTarget = GetCatchingBattler();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_GHOST)
-    {
-        BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_GHOST_DODGE);
-        MarkBattlerForControllerExec(gBattlerAttacker);
-        gBattlescriptCurrInstr = BattleScript_GhostBallDodge;
-    }
-    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gBattlerAttacker);

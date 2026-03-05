@@ -1,4 +1,4 @@
-Route11_Frlg_MapScripts::
+Route11_MapScripts::
 	.byte 0
 
 Route11_EventScript_DiglettsCaveSign::

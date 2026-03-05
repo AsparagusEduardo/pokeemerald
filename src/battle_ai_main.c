@@ -7043,7 +7043,7 @@ static s32 AI_Safari(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
 // First battle logic
 static s32 AI_FirstBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move, s32 score)
 {
-    if (!IS_FRLG && gAiLogicData->hpPercents[battlerDef] <= 20)
+    if (gAiLogicData->hpPercents[battlerDef] <= 20)
         AI_Flee();
 
     return score;

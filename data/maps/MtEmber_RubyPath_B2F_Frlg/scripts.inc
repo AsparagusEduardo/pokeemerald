@@ -1,2 +1,2 @@
-MtEmber_RubyPath_B2F_Frlg_MapScripts::
+MtEmber_RubyPath_B2F_MapScripts::
 	.byte 0

@@ -1,4 +1,4 @@
-FiveIsland_MemorialPillar_Frlg_MapScripts::
+FiveIsland_MemorialPillar_MapScripts::
 	.byte 0
 
 FiveIsland_MemorialPillar_EventScript_MemorialMan::

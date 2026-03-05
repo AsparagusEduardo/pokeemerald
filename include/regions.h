@@ -1,21 +1,12 @@
 #ifndef GUARD_REGIONS_H
 #define GUARD_REGIONS_H
 
-#include "global.h"
 #include "constants/regions.h"
 
-enum KantoSubRegion GetKantoSubregion(u32 mapSecId);
-
-static inline enum Region GetRegionForSectionId(u32 sectionId)
+static inline u32 GetCurrentRegion(void)
 {
-    if (sectionId >= KANTO_MAPSEC_START && sectionId < MAPSEC_SPECIAL_AREA)
-        return REGION_KANTO;
+    // TODO: Since there's no current multi-region support, we have this constant for the purposes of regional form comparisons.
     return REGION_HOENN;
-}
-
-static inline enum Region GetCurrentRegion(void)
-{
-    return GetRegionForSectionId(gMapHeader.regionMapSectionId);
 }
 
 #endif // GUARD_REGIONS_H

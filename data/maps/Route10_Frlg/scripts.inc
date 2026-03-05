@@ -1,4 +1,4 @@
-Route10_Frlg_MapScripts::
+Route10_MapScripts::
 	.byte 0
 
 Route10_EventScript_Unused::

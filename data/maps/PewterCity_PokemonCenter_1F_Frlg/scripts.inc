@@ -1,4 +1,4 @@
-PewterCity_PokemonCenter_1F_Frlg_MapScripts::
+PewterCity_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
@@ -10,7 +10,7 @@ PewterCity_PokemonCenter_1F_OnTransition::
 PewterCity_PokemonCenter_1F_EventScript_Nurse::
 	lock
 	faceplayer
-	call EventScript_PkmnCenterNurse_Frlg
+	call Common_EventScript_PkmnCenterNurse
 	release
 	end
 

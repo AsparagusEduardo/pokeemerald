@@ -1,2 +1,2 @@
-CeruleanCave_2F_Frlg_MapScripts::
+CeruleanCave_2F_MapScripts::
 	.byte 0

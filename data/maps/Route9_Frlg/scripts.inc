@@ -1,4 +1,4 @@
-Route9_Frlg_MapScripts::
+Route9_MapScripts::
 	.byte 0
 
 Route9_EventScript_RouteSign::

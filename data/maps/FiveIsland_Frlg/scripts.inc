@@ -1,4 +1,4 @@
-FiveIsland_Frlg_MapScripts::
+FiveIsland_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FiveIsland_OnTransition
 	.byte 0
 

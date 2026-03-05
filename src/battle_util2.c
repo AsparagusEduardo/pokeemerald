@@ -5,7 +5,6 @@
 #include "malloc.h"
 #include "pokemon.h"
 #include "trainer_hill.h"
-#include "trainer_tower.h"
 #include "party_menu.h"
 #include "event_data.h"
 #include "constants/abilities.h"
@@ -15,9 +14,7 @@
 
 void AllocateBattleResources(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER && gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
-        InitTrainerTowerBattleStruct();
-    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
         InitTrainerHillBattleStruct();
 
     gBattleStruct = AllocZeroed(sizeof(*gBattleStruct));
@@ -52,9 +49,7 @@ void AllocateBattleResources(void)
 
 void FreeBattleResources(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER && gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
-        FreeTrainerTowerBattleStruct();
-    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
         FreeTrainerHillBattleStruct();
 
     gFieldStatuses = 0;

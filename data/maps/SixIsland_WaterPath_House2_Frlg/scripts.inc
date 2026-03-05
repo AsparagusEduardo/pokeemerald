@@ -1,4 +1,4 @@
-SixIsland_WaterPath_House2_Frlg_MapScripts::
+SixIsland_WaterPath_House2_MapScripts::
 	.byte 0
 
 SixIsland_WaterPath_House2_EventScript_Man::

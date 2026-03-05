@@ -1,4 +1,4 @@
-OneIsland_KindleRoad_Frlg_MapScripts::
+OneIsland_KindleRoad_MapScripts::
 	.byte 0
 
 OneIsland_KindleRoad_EventScript_RouteSign::

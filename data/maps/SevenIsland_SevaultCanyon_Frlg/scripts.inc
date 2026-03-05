@@ -1,4 +1,4 @@
-SevenIsland_SevaultCanyon_Frlg_MapScripts::
+SevenIsland_SevaultCanyon_MapScripts::
 	.byte 0
 
 SevenIsland_SevaultCanyon_EventScript_RouteSign::

@@ -1,4 +1,4 @@
-Route8_Frlg_MapScripts::
+Route8_MapScripts::
 	.byte 0
 
 Route8_EventScript_UndergroundPathSign::

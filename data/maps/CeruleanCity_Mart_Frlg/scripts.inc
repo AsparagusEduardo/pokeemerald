@@ -1,4 +1,4 @@
-CeruleanCity_Mart_Frlg_MapScripts::
+CeruleanCity_Mart_MapScripts::
 	.byte 0
 
 CeruleanCity_Mart_EventScript_Youngster::

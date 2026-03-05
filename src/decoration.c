@@ -1215,8 +1215,7 @@ static void ShowDecorationOnMap_(u16 mapX, u16 mapY, u8 decWidth, u8 decHeight, 
 {
     u16 i, j;
     s16 x, y;
-    u16 metatileBehavior;
-    u16 layerType;
+    u16 attributes;
     u16 impassableFlag;
     u16 overlapsWall;
     u16 elevation;
@@ -1227,10 +1226,9 @@ static void ShowDecorationOnMap_(u16 mapX, u16 mapY, u8 decWidth, u8 decHeight, 
         for (i = 0; i < decWidth; i++)
         {
             x = mapX + i;
-            metatileBehavior = GetAttributeByMetatileIdAndMapLayout(NUM_TILES_IN_PRIMARY + gDecorations[decoration].tiles[j * decWidth + i], METATILE_ATTRIBUTE_BEHAVIOR, FALSE);
-            layerType = GetAttributeByMetatileIdAndMapLayout(NUM_TILES_IN_PRIMARY + gDecorations[decoration].tiles[j * decWidth + i], METATILE_ATTRIBUTE_LAYER_TYPE, FALSE);
-            if (MetatileBehavior_IsSecretBaseImpassable(metatileBehavior) == TRUE
-             || (gDecorations[decoration].permission != DECORPERM_PASS_FLOOR && layerType != METATILE_LAYER_TYPE_NORMAL))
+            attributes = GetMetatileAttributesById(NUM_TILES_IN_PRIMARY + gDecorations[decoration].tiles[j * decWidth + i]);
+            if (MetatileBehavior_IsSecretBaseImpassable(UNPACK_BEHAVIOR(attributes)) == TRUE
+             || (gDecorations[decoration].permission != DECORPERM_PASS_FLOOR && (attributes >> METATILE_ATTR_LAYER_SHIFT) != METATILE_LAYER_TYPE_NORMAL))
                 impassableFlag = MAPGRID_IMPASSABLE;
             else
                 impassableFlag = 0;
@@ -1558,7 +1556,7 @@ static bool8 CanPlaceDecoration(u8 taskId, const struct Decoration *decoration)
             {
                 curX = gTasks[taskId].tCursorX + j;
                 behaviorAt = MapGridGetMetatileBehaviorAt(curX, curY);
-                layerType = GetAttributeByMetatileIdAndMapLayout(NUM_TILES_IN_PRIMARY + decoration->tiles[(mapY - 1 - i) * mapX + j], METATILE_ATTRIBUTE_LAYER_TYPE, FALSE);
+                layerType = GetLayerType(NUM_TILES_IN_PRIMARY + decoration->tiles[(mapY - 1 - i) * mapX + j]);
                 if (!IsFloorOrBoardAndHole(behaviorAt, decoration))
                     return FALSE;
 
@@ -1579,7 +1577,7 @@ static bool8 CanPlaceDecoration(u8 taskId, const struct Decoration *decoration)
             {
                 curX = gTasks[taskId].tCursorX + j;
                 behaviorAt = MapGridGetMetatileBehaviorAt(curX, curY);
-                layerType = GetAttributeByMetatileIdAndMapLayout(NUM_TILES_IN_PRIMARY + decoration->tiles[(mapY - 1 - i) * mapX + j], METATILE_ATTRIBUTE_LAYER_TYPE, FALSE);
+                layerType = GetLayerType(NUM_TILES_IN_PRIMARY + decoration->tiles[(mapY - 1 - i) * mapX + j]);
                 if (!MetatileBehavior_IsNormal(behaviorAt) && !IsSecretBaseTrainerSpot(behaviorAt, layerType))
                     return FALSE;
 
@@ -1596,7 +1594,7 @@ static bool8 CanPlaceDecoration(u8 taskId, const struct Decoration *decoration)
         {
             curX = gTasks[taskId].tCursorX + j;
             behaviorAt = MapGridGetMetatileBehaviorAt(curX, curY);
-            layerType = GetAttributeByMetatileIdAndMapLayout(NUM_TILES_IN_PRIMARY + decoration->tiles[j], METATILE_ATTRIBUTE_LAYER_TYPE, FALSE);
+            layerType = GetLayerType(NUM_TILES_IN_PRIMARY + decoration->tiles[j]);
             if (!MetatileBehavior_IsNormal(behaviorAt) && !MetatileBehavior_IsSecretBaseNorthWall(behaviorAt))
                 return FALSE;
 

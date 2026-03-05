@@ -24,20 +24,6 @@ enum PlayerSpeed
     PLAYER_SPEED_FASTEST,
 };
 
-enum {
-    BIKE_TRANS_FACE_DIRECTION,
-    BIKE_TRANS_TURNING,
-    BIKE_TRANS_MOVE,
-    BIKE_TRANS_DOWNHILL,
-    BIKE_TRANS_UPHILL
-};
-
-enum {
-    BIKE_STATE_NORMAL,
-    BIKE_STATE_TURNING,
-    BIKE_STATE_SLOPE
-};
-
 // mach bike transitions enum
 enum MachTransition
 {
@@ -57,7 +43,6 @@ enum AcroState
     ACRO_STATE_WHEELIE_MOVING,
     ACRO_STATE_SIDE_JUMP,
     ACRO_STATE_TURN_JUMP,
-    ACRO_STATE_SLOPE
 };
 
 // Acro bike transitions
@@ -76,8 +61,6 @@ enum AcroTransition
     ACRO_TRANS_WHEELIE_MOVING,
     ACRO_TRANS_WHEELIE_RISING_MOVING,
     ACRO_TRANS_WHEELIE_LOWERING_MOVING,
-    ACRO_TRANS_DOWNHILL,
-    ACRO_TRANS_UPHILL
 };
 
 // Exported RAM declarations

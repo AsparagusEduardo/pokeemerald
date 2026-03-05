@@ -103,10 +103,9 @@ enum BattleSide
 #define BATTLE_TYPE_RECORDED           (1 << 24)
 #define BATTLE_TYPE_RECORDED_LINK      (1 << 25)
 #define BATTLE_TYPE_TRAINER_HILL       (1 << 26)
-#define BATTLE_TYPE_TRAINER_TOWER      BATTLE_TYPE_TRAINER_HILL
 #define BATTLE_TYPE_SECRET_BASE        (1 << 27)
-#define BATTLE_TYPE_GHOST              (1 << 28)
-#define BATTLE_TYPE_POKEDUDE           (1 << 29)
+#define BATTLE_TYPE_28                 (1 << 28)
+#define BATTLE_TYPE_29                 (1 << 29)
 #define BATTLE_TYPE_30                 (1 << 30)
 #define BATTLE_TYPE_RECORDED_IS_MASTER (1 << 31)
 #define BATTLE_TYPE_FRONTIER                (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_DOME | BATTLE_TYPE_PALACE | BATTLE_TYPE_ARENA | BATTLE_TYPE_FACTORY | BATTLE_TYPE_PIKE | BATTLE_TYPE_PYRAMID)
@@ -126,9 +125,6 @@ enum BattleSide
 // Multibattle test composite flags
 #define BATTLE_MULTI_TEST                   (BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS)
 #define BATTLE_TWO_VS_ONE_TEST              (BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI)
-
-#define RIVAL_BATTLE_HEAL_AFTER  1
-#define RIVAL_BATTLE_TUTORIAL    3
 
 // Battle Outcome defines
 #define B_OUTCOME_WON                  1
@@ -665,7 +661,6 @@ enum BattleEnvironments
 
 #define B_WIN_TYPE_NORMAL         0
 #define B_WIN_TYPE_ARENA          1
-#define B_WIN_TYPE_KANTO_TUTORIAL 2
 
 // Window Ids for sStandardBattleWindowTemplates / sBattleArenaWindowTemplates
 #define B_WIN_MSG                 0
@@ -693,7 +688,6 @@ enum BattleEnvironments
 #define B_WIN_VS_OUTCOME_LEFT    22
 #define B_WIN_VS_OUTCOME_RIGHT   23
 #define B_WIN_MOVE_DESCRIPTION   24
-#define B_WIN_OAK_OLD_MAN        25
 
 // The following are duplicate id values for windows that Battle Arena uses differently.
 #define ARENA_WIN_PLAYER_NAME      15

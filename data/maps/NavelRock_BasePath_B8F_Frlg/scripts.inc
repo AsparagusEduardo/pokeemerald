@@ -1,2 +1,2 @@
-NavelRock_BasePath_B8F_Frlg_MapScripts::
+NavelRock_BasePath_B8F_MapScripts::
 	.byte 0

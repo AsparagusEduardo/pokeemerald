@@ -1,4 +1,4 @@
-Route22_Frlg_MapScripts::
+Route22_MapScripts::
 	.byte 0
 
 Route22_EventScript_EarlyRivalTriggerTop::

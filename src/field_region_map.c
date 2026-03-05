@@ -231,11 +231,7 @@ static void PrintRegionMapSecName(void)
 static void PrintTitleWindowText(void)
 {
     static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
-    const u8 *region;
-    if (IS_FRLG)
-        region = gText_Kanto;
-    else
-        region = gText_Hoenn;
+    const u8 *region = gText_Hoenn;
     u32 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, region, 0x38);
     u32 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
 

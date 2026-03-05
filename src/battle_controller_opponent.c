@@ -40,7 +40,6 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "trainer_hill.h"
-#include "trainer_tower.h"
 #include "test_runner.h"
 #include "test/battle.h"
 #include "test/test_runner_battle.h"
@@ -321,10 +320,6 @@ static u32 OpponentGetTrainerPicId(enum BattlerId battlerId)
     else if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
     {
         trainerPicId = GetFrontierBrainTrainerPicIndex();
-    }
-    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER && gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
-    {
-        trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
     {

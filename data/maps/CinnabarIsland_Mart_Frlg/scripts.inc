@@ -1,4 +1,4 @@
-CinnabarIsland_Mart_Frlg_MapScripts::
+CinnabarIsland_Mart_MapScripts::
 	.byte 0
 
 CinnabarIsland_Mart_EventScript_Woman::
