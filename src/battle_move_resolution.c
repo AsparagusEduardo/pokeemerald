@@ -1962,6 +1962,44 @@ static enum CancelerResult CancelerMultihitMoves(struct BattleContext *ctx)
 
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
     }
+    else if (GetMoveEffect(ctx->move) == EFFECT_BOYFRIENDS)
+    {
+        struct Pokemon* party = GetBattlerParty(ctx->battlerAtk);
+        int i;
+        gBattleStruct->beatUpSlot = 0;
+        gMultiHitCounter = 0;
+        memset(gBattleStruct->beatUpSpecies, 0xFF, sizeof(gBattleStruct->beatUpSpecies));
+
+        u32 maleSpecies;
+        u32 femaleSpecies = gBattleMons[ctx->battlerAtk].species;
+        switch (femaleSpecies)
+        {
+        case SPECIES_NIDORAN_F:     maleSpecies = SPECIES_NIDORAN_M;     break;
+        case SPECIES_NIDORINA:      maleSpecies = SPECIES_NIDORINO;      break;
+        case SPECIES_NIDOQUEEN:     maleSpecies = SPECIES_NIDOKING;      break;
+        case SPECIES_MILTANK:       maleSpecies = SPECIES_TAUROS;        break;
+        case SPECIES_ILLUMISE:      maleSpecies = SPECIES_VOLBEAT;       break;
+        case SPECIES_MEOWSTIC_F:    maleSpecies = SPECIES_MEOWSTIC_M;    break;
+        case SPECIES_INDEEDEE_F:    maleSpecies = SPECIES_INDEEDEE_M;    break;
+        case SPECIES_BASCULEGION_F: maleSpecies = SPECIES_BASCULEGION_M; break;
+        case SPECIES_OINKOLOGNE_F:  maleSpecies = SPECIES_OINKOLOGNE_M;  break;
+        default:                    maleSpecies = femaleSpecies;         break;
+        }
+
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetBattlerMon(ctx->battlerAtk) == &party[i] // Caller
+            || (GetMonData(&party[i], MON_DATA_SPECIES) == maleSpecies
+             && GetMonData(&party[i], MON_DATA_HP)
+             && !GetMonData(&party[i], MON_DATA_IS_EGG)
+             && GetMonGender(&party[i]) == MON_MALE))
+            {
+                gBattleStruct->beatUpSpecies[gMultiHitCounter] = i;
+                gMultiHitCounter++;
+            }
+        }
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+    }
     else if (IsMoveParentalBondAffected(ctx))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;

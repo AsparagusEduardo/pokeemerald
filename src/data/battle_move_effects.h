@@ -830,6 +830,12 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 2,
     },
 
+    [EFFECT_BOYFRIENDS] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 2,
+    },
+
     [EFFECT_SEMI_INVULNERABLE] =
     {
         .battleScript = BattleScript_EffectHit,

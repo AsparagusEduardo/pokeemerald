@@ -904,10 +904,12 @@ enum __attribute__((packed)) Move
     MOVE_UPPER_HAND = 846,
     MOVE_MALIGNANT_CHAIN = 847,
     MOVES_COUNT_GEN9,
+    MOVE_BOYFRIENDS = MOVES_COUNT_GEN9,
+    MOVES_COUNT_CUSTOM,
 
     // Add any custom moves here, not further down!
 
-    MOVES_COUNT = MOVES_COUNT_GEN9,
+    MOVES_COUNT = MOVES_COUNT_CUSTOM,
 
     // Z Moves
     FIRST_Z_MOVE = MOVES_COUNT,

@@ -3619,7 +3619,8 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
     case MOVE_EFFECT_BEAT_UP_MESSAGE:
         if (GetConfig(B_BEAT_UP) >= GEN_5) // Gen5+ don't print any custom message on attack
             break;
-
+        // Fallthrough
+    case MOVE_EFFECT_BOYFRIENDS_MESSAGE:
         if (!IsBattlerAlive(gBattlerTarget))
         {
             gMultiHitCounter = 0;
