@@ -28,6 +28,7 @@
 #include "constants/heal_locations.h"
 #include "constants/rgb.h"
 #include "constants/weather.h"
+#include "task.h"
 
 /*
  *  This file handles region maps generally, and the map used when selecting a fly destination.
@@ -116,6 +117,8 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
 static void CB_HandleFlyMapInput(void);
 static void CB_ExitFlyMap(void);
+static void Task_scroll_right(u8 taskId);
+static void Task_scroll_left(u8 taskId);
 
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map/cursor.gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.smol");
@@ -133,6 +136,7 @@ static const u16 sRegionMapPlayerIcon_LeafPal[] = INCBIN_U16("graphics/pokenav/r
 static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCBIN_U8("graphics/pokenav/region_map/leaf_icon.4bpp");
 
 #include "data/region_map/region_map_layout.h"
+#include "data/region_map/region_map_layout_part2.h"
 #include "data/region_map/region_map_layout_kanto.h"
 #include "data/region_map/region_map_layout_sevii123.h"
 #include "data/region_map/region_map_layout_sevii45.h"
@@ -783,7 +787,7 @@ bool8 LoadRegionMapGfx(void)
         }
         else
         {
-            sRegionMap->scrollX = sRegionMap->cursorPosX * 8 - 0x34;
+            sRegionMap->scrollX = (sRegionMap->cursorPosX + (GetGpuReg(REG_OFFSET_BG2X_L)/0x800) )* 8 - 0x34;
             sRegionMap->scrollY = sRegionMap->cursorPosY * 8 - 0x44;
             sRegionMap->zoomedCursorPosX = sRegionMap->cursorPosX;
             sRegionMap->zoomedCursorPosY = sRegionMap->cursorPosY;
@@ -841,9 +845,35 @@ u8 DoRegionMapInputCallback(void)
     return sRegionMap->inputCallback();
 }
 
+
+#define tnumberOfPlays   data[1]
+
+static void Task_scroll_right(u8 taskId)
+{
+    gTasks[taskId].tnumberOfPlays += 1;
+    SetGpuReg(REG_OFFSET_BG2X_L, GetGpuReg(REG_OFFSET_BG2X_L) + 0x0F00);
+    sRegionMap->playerIconSprite->x -= 15;
+    if (gTasks[taskId].tnumberOfPlays == 8)
+    {
+        DestroyTask(taskId);
+    }
+}
+
+static void Task_scroll_left(u8 taskId)
+{
+    gTasks[taskId].tnumberOfPlays += 1;
+    SetGpuReg(REG_OFFSET_BG2X_L, GetGpuReg(REG_OFFSET_BG2X_L) - 0x0F00);
+    sRegionMap->playerIconSprite->x += 15;
+    if (gTasks[taskId].tnumberOfPlays == 8)
+    {
+        DestroyTask(taskId);
+    }
+}
+
 static u8 ProcessRegionMapInput_Full(void)
 {
     u8 input;
+    u8 taskId;
 
     input = MAP_INPUT_NONE;
     sRegionMap->cursorDeltaX = 0;
@@ -866,6 +896,18 @@ static u8 ProcessRegionMapInput_Full(void)
     if (JOY_HELD(DPAD_RIGHT) && sRegionMap->cursorPosX < MAPCURSOR_X_MAX)
     {
         sRegionMap->cursorDeltaX = +1;
+        input = MAP_INPUT_MOVE_START;
+    }
+    if (JOY_HELD(DPAD_RIGHT) && sRegionMap->cursorPosX >= MAPCURSOR_X_MAX && GetGpuReg(REG_OFFSET_BG2X_L) < 0xF000 && GetGpuReg(REG_OFFSET_BG2X_L) % 0x7800 == 0)
+    {
+        taskId = CreateTask(Task_scroll_right, 1);
+        gTasks[taskId].tnumberOfPlays = 0;
+        input = MAP_INPUT_MOVE_START;
+    }
+    if (JOY_HELD(DPAD_LEFT) && sRegionMap->cursorPosX <= MAPCURSOR_X_MIN && GetGpuReg(REG_OFFSET_BG2X_L) > 0x0000 && GetGpuReg(REG_OFFSET_BG2X_L) % 0x7800 == 0)
+    {
+        taskId = CreateTask(Task_scroll_left, 1);
+        gTasks[taskId].tnumberOfPlays = 0;
         input = MAP_INPUT_MOVE_START;
     }
     if (JOY_NEW(A_BUTTON))
@@ -946,7 +988,7 @@ static u8 ProcessRegionMapInput_Zoomed(void)
         sRegionMap->zoomedCursorDeltaX = -1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (JOY_HELD(DPAD_RIGHT) && sRegionMap->scrollX < 0xac)
+    if (JOY_HELD(DPAD_RIGHT) && sRegionMap->scrollX < 0x158)
     {
         sRegionMap->zoomedCursorDeltaX = +1;
         input = MAP_INPUT_MOVE_START;
@@ -1188,11 +1230,11 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
         return MAPSEC_NONE;
     }
     y -= MAPCURSOR_Y_MIN;
-    x -= MAPCURSOR_X_MIN;
 
     switch (GetCurrentRegion())
     {
     case REGION_KANTO:
+        x -= MAPCURSOR_X_MIN;
         switch (GetKantoSubregion(gMapHeader.regionMapSectionId))
         {
         case KANTO_SUBREGION_SEVII123:
@@ -1207,7 +1249,11 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
         }
     case REGION_HOENN:
     default:
+        x += (GetGpuReg(REG_OFFSET_BG2X_L)/0x800) - MAPCURSOR_X_MIN;
+        if (x <= 27)
             return sRegionMap_MapSectionLayout[y][x];
+        else
+            return sRegionMap_MapSectionLayoutPart2[y][(x - 27)];
     }
 }
 
@@ -2341,7 +2387,10 @@ static void CreateFlyDestIcons(void)
             continue;
 
         GetMapSecDimensions(sFlyLocations[i].mapsec, &x, &y, &width, &height);
-        x = (x + MAPCURSOR_X_MIN) * 8 + 4;
+        if (sFlyLocations[i].regionMapType == REGION_MAP_HOENN)
+            x = (x + MAPCURSOR_X_MIN - (GetGpuReg(REG_OFFSET_BG2X_L)/0x800)) * 8 + 4;
+        else
+            x = (x + MAPCURSOR_X_MIN) * 8 + 4;
         y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
 
         if (width == 2)
@@ -2439,6 +2488,7 @@ static void CB_FadeInFlyMap(void)
 
 static void CB_HandleFlyMapInput(void)
 {
+    RunTasks();
     if (sFlyMap->state == 0)
     {
         switch (DoRegionMapInputCallback())

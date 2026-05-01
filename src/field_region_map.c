@@ -12,6 +12,7 @@
 #include "region_map.h"
 #include "sound.h"
 #include "strings.h"
+#include "task.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
@@ -145,6 +146,7 @@ static void MCB2_FieldUpdateRegionMap(void)
 
 static void FieldUpdateRegionMap(void)
 {
+    RunTasks();
     switch (sFieldRegionMapHandler->state)
     {
     case 0:
