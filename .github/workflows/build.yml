@@ -39,7 +39,9 @@ jobs:
           ./install.sh ../
         working-directory: agbcc
 
-      - name: Compare
+      - name: agbcc
+        env:
+          COMPARE: 0
         run: make -j${nproc} all syms
 
       - name: Modern
