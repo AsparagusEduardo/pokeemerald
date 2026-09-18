@@ -38,6 +38,7 @@ endif
 #Enable MODERN if compiling portable version
 ifeq ($(PORTABLE), 1)
   MODERN := 1
+  COMPARE := 0
 endif
 
 # Default make rule
